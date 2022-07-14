@@ -20,3 +20,11 @@
 |<img src="https://github.com/dangsal.png" width="300">|<img src="https://github.com/Gobans.png" width="270">|<img src="https://github.com/seongmin221.png" width="300">|<img src="https://github.com/SH0123.png" width="250">|<img src="https://github.com/glitterer.png" width="290">|
 |:-:|:-:|:-:|:-:|:-:|
 |[Hoya](https://github.com/dangsal)|[Goban](https://github.com/Gobans)|[Id](https://github.com/seongmin221)|[Raymond](https://github.com/SH0123)|[Oz](https://github.com/glitterer)|
+
+## 🌃 Screenshots
+
+![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
+
+
+## ✨ Skills & Tech Stack
+UIKit
