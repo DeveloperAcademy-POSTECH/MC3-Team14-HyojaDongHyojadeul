@@ -15,7 +15,7 @@
 
 </div>
 
-### 🫂 Authors
+### 🫂 Developers
 
 |<img src="https://github.com/dangsal.png" width="300">|<img src="https://github.com/Gobans.png" width="270">|<img src="https://github.com/seongmin221.png" width="300">|<img src="https://github.com/SH0123.png" width="250">|<img src="https://github.com/glitterer.png" width="290">|
 |:-:|:-:|:-:|:-:|:-:|
@@ -25,6 +25,9 @@
 
 ![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
 
+## Coding Convention
+
+https://github.com/StyleShare/swift-style-guide
 
 ## ✨ Skills & Tech Stack
 UIKit
