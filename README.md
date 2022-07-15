@@ -17,9 +17,10 @@
 
 ### 🫂 Developers
 
-|<img src="https://github.com/dangsal.png" width="300">|<img src="https://github.com/Gobans.png" width="270">|<img src="https://github.com/seongmin221.png" width="300">|<img src="https://github.com/SH0123.png" width="250">|<img src="https://github.com/glitterer.png" width="290">|
+|Hoya|Goban|Id|Raymond|Oz|
 |:-:|:-:|:-:|:-:|:-:|
-|[Hoya](https://github.com/dangsal)|[Goban](https://github.com/Gobans)|[Id](https://github.com/seongmin221)|[Raymond](https://github.com/SH0123)|[Oz](https://github.com/glitterer)|
+|<img src="https://github.com/dangsal.png" width="300">|<img src="https://github.com/Gobans.png" width="270">|<img src="https://github.com/seongmin221.png" width="250">|<img src="https://github.com/SH0123.png" width="300">|<img src="https://github.com/glitterer.png" width="290">|
+|[@dangsal](https://github.com/dangsal)|[@Gobans](https://github.com/Gobans)|[@seongmin221](https://github.com/seongmin221)|[@SH0123](https://github.com/SH0123)|[@glitterer](https://github.com/glitterer)|
 
 ## 🌃 Screenshots
 
