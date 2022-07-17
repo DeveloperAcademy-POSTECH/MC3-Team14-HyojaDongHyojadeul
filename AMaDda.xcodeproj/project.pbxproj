@@ -114,7 +114,7 @@
 			children = (
 				915078AB2883C6C2002B7BDB /* Color+Extension.swift */,
 			);
-			path = Extension;
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		3E622D0628803C02006A921C /* UIComponent */ = {

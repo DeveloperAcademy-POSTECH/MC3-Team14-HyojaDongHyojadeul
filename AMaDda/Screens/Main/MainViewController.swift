@@ -13,7 +13,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureAddSubViews()
-        configureConstarints()
+        configureConstraints()
     }
 }
 
@@ -25,8 +25,9 @@ extension MainViewController {
     private func configureAddSubViews() {
         guard let view = self.view else { return }
         view.addSubview(todayQuestion.todayQuestionView)
+        todayQuestion.configureAddSubViewsTodayQuestionView()
     }
-    private func configureConstarints() {
+    private func configureConstraints() {
         todayQuestion.todayQuestionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             todayQuestion.todayQuestionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -34,7 +35,6 @@ extension MainViewController {
             todayQuestion.todayQuestionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             todayQuestion.todayQuestionView.heightAnchor.constraint(equalToConstant: 160),
         ])
-        todayQuestion.configureAddSubViewsTodayQuestionView()
         todayQuestion.configureConstraintsTodayQuestionView()
     }
 }
