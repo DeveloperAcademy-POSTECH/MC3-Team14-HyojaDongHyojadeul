@@ -13,6 +13,9 @@
 		3E622CF528803971006A921C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E622CF328803971006A921C /* Main.storyboard */; };
 		3E622CF728803972006A921C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E622CF628803972006A921C /* Assets.xcassets */; };
 		3E622CFA28803972006A921C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E622CF828803972006A921C /* LaunchScreen.storyboard */; };
+		915078AA2883A6F0002B7BDB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078A92883A6EF002B7BDB /* MainViewController.swift */; };
+		915078AC2883C6C2002B7BDB /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078AB2883C6C2002B7BDB /* Color+Extension.swift */; };
+		915078AF2883C988002B7BDB /* TodayQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078AE2883C988002B7BDB /* TodayQuestion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		3E622CF628803972006A921C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E622CF928803972006A921C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E622CFB28803972006A921C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		915078A92883A6EF002B7BDB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		915078AB2883C6C2002B7BDB /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Color+Extension.swift"; path = "AMaDda/Screens/Main/Color+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		915078AE2883C988002B7BDB /* TodayQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,7 @@
 		3E622D0528803BFA006A921C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				915078AB2883C6C2002B7BDB /* Color+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -128,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				3E622CF128803971006A921C /* ViewController.swift */,
+				915078A92883A6EF002B7BDB /* MainViewController.swift */,
+				915078AD2883C960002B7BDB /* Views */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -145,6 +154,14 @@
 				3E622CF328803971006A921C /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		915078AD2883C960002B7BDB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				915078AE2883C988002B7BDB /* TodayQuestion.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +236,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E622CF228803971006A921C /* ViewController.swift in Sources */,
+				915078AC2883C6C2002B7BDB /* Color+Extension.swift in Sources */,
 				3E622CEE28803971006A921C /* AppDelegate.swift in Sources */,
 				3E622CF028803971006A921C /* SceneDelegate.swift in Sources */,
+				915078AA2883A6F0002B7BDB /* MainViewController.swift in Sources */,
+				915078AF2883C988002B7BDB /* TodayQuestion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +387,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S9G6YGQ76H;
+				DEVELOPMENT_TEAM = 54QH6LCWDM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AMaDda/Global/Supports/info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -395,7 +415,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S9G6YGQ76H;
+				DEVELOPMENT_TEAM = 54QH6LCWDM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AMaDda/Global/Supports/info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
