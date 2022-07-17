@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     }()
     private let onboardingImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = UIColor.questionViewBackgroundColor
         return imageView
     }()
     private lazy var nextButton: CommonButton = {
