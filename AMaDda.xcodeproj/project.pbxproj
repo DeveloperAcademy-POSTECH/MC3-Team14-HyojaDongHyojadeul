@@ -17,6 +17,7 @@
 		915078AC2883C6C2002B7BDB /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078AB2883C6C2002B7BDB /* Color+Extension.swift */; };
 		915078AF2883C988002B7BDB /* TodayQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078AE2883C988002B7BDB /* TodayQuestion.swift */; };
 		915078B32883D456002B7BDB /* TodayQuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078B22883D456002B7BDB /* TodayQuestionData.swift */; };
+		915078B6288424C0002B7BDB /* TodayQuestionMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078B5288424C0002B7BDB /* TodayQuestionMockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		915078AB2883C6C2002B7BDB /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Color+Extension.swift"; path = "AMaDda/Global/Extension/Color+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		915078AE2883C988002B7BDB /* TodayQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestion.swift; sourceTree = "<group>"; };
 		915078B22883D456002B7BDB /* TodayQuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionData.swift; sourceTree = "<group>"; };
+		915078B5288424C0002B7BDB /* TodayQuestionMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionMockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				915078B22883D456002B7BDB /* TodayQuestionData.swift */,
+				915078B5288424C0002B7BDB /* TodayQuestionMockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				3E622CF228803971006A921C /* ViewController.swift in Sources */,
 				915078AC2883C6C2002B7BDB /* Color+Extension.swift in Sources */,
 				915078B32883D456002B7BDB /* TodayQuestionData.swift in Sources */,
+				915078B6288424C0002B7BDB /* TodayQuestionMockData.swift in Sources */,
 				3E622CEE28803971006A921C /* AppDelegate.swift in Sources */,
 				3E622CF028803971006A921C /* SceneDelegate.swift in Sources */,
 				915078AA2883A6F0002B7BDB /* MainViewController.swift in Sources */,
