@@ -15,10 +15,7 @@ final class TodayQuestion {
         TodayQuestionData(question: "Q. 이번 주말 가족들의 계획은?")
     ]
     // MARK: - property
-    let todayQuestionView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    let todayQuestionView = UIView()
     private let todayTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "오늘의 가족 Question"
