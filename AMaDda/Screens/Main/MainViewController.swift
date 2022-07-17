@@ -23,8 +23,9 @@ class MainViewController: UIViewController {
     }()
     private lazy var questionView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = UIColor.questionViewBackgroundColor
         view.addSubview(questionLabel)
+        view.layer.cornerRadius = 12
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         questionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         questionLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -46,6 +47,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        setupTableView()
         render()
     }
     // MARK: - Configure

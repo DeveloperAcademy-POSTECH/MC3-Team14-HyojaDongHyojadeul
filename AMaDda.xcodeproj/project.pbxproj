@@ -16,6 +16,7 @@
 		D79F33DC28840F16009A9F91 /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33DB28840F16009A9F91 /* CommonButton.swift */; };
 		D79F33DE28840F2E009A9F91 /* AlarmSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33DD28840F2E009A9F91 /* AlarmSettingViewController.swift */; };
 		D79F33E128840F65009A9F91 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33E028840F65009A9F91 /* MainViewController.swift */; };
+		D79F33E3288415CA009A9F91 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33E2288415CA009A9F91 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D79F33DB28840F16009A9F91 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 		D79F33DD28840F2E009A9F91 /* AlarmSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingViewController.swift; sourceTree = "<group>"; };
 		D79F33E028840F65009A9F91 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D79F33E2288415CA009A9F91 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		3E622D0528803BFA006A921C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D79F33E2288415CA009A9F91 /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D79F33E3288415CA009A9F91 /* UIColor+Extension.swift in Sources */,
 				3E622CF228803971006A921C /* ViewController.swift in Sources */,
 				3E622CEE28803971006A921C /* AppDelegate.swift in Sources */,
 				D79F33DC28840F16009A9F91 /* CommonButton.swift in Sources */,
