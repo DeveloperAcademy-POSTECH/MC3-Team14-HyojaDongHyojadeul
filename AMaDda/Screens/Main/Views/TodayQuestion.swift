@@ -14,6 +14,7 @@ final class TodayQuestion {
         TodayQuestionData(question: "Q. 고반의 생일은?"),
         TodayQuestionData(question: "Q. 이번 주말 가족들의 계획은?")
     ]
+    // MARK: - property
     let todayQuestionView: UIView = {
         let view = UIView()
         return view
@@ -36,6 +37,10 @@ final class TodayQuestion {
         label.text = randomQuestion
         return label
     }()
+}
+
+extension TodayQuestion {
+    // MARK: - configure
     func configureAddSubViewsTodayQuestionView() {
         todayQuestionView.addSubview(todayTitleLabel)
         todayQuestionView.addSubview(todayCardView)
@@ -60,9 +65,7 @@ final class TodayQuestion {
             todayCardQuestionLabel.centerXAnchor.constraint(equalTo: todayCardView.centerXAnchor)
         ])
     }
-}
-
-extension TodayQuestion {
+    // MARK: - function
     private func chooseRandomQuestion() -> String{
         let todayQuestion = todayQuestionData.randomElement()!
         return todayQuestion.question

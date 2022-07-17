@@ -18,6 +18,7 @@ final class MainViewController: UIViewController {
 }
 
 extension MainViewController {
+    // MARK: - configure
     private func configureUI() {
         guard let view = self.view else { return }
         view.backgroundColor = UIColor.amaddaBackgroundColor
