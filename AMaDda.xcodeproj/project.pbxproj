@@ -29,7 +29,7 @@
 		3E622CF928803972006A921C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E622CFB28803972006A921C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		915078A92883A6EF002B7BDB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		915078AB2883C6C2002B7BDB /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Color+Extension.swift"; path = "AMaDda/Screens/Main/Color+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		915078AB2883C6C2002B7BDB /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Color+Extension.swift"; path = "AMaDda/Global/Extension/Color+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		915078AE2883C988002B7BDB /* TodayQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestion.swift; sourceTree = "<group>"; };
 		915078B22883D456002B7BDB /* TodayQuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,7 +85,7 @@
 			children = (
 				3E622D0328803BED006A921C /* Literal */,
 				3E622D0428803BF3006A921C /* Supports */,
-				3E622D0528803BFA006A921C /* Extension */,
+				915078B42883F3C2002B7BDB /* Extension */,
 				3E622D0628803C02006A921C /* UIComponent */,
 				3E622D0728803C17006A921C /* Resource */,
 			);
@@ -107,14 +107,6 @@
 				3E622CEF28803971006A921C /* SceneDelegate.swift */,
 			);
 			path = Supports;
-			sourceTree = "<group>";
-		};
-		3E622D0528803BFA006A921C /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				915078AB2883C6C2002B7BDB /* Color+Extension.swift */,
-			);
-			name = Extension;
 			sourceTree = "<group>";
 		};
 		3E622D0628803C02006A921C /* UIComponent */ = {
@@ -173,6 +165,14 @@
 				915078B22883D456002B7BDB /* TodayQuestionData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		915078B42883F3C2002B7BDB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				915078AB2883C6C2002B7BDB /* Color+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
