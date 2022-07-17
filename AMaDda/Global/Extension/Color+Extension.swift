@@ -24,7 +24,13 @@ extension UIColor {
                green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
                blue: CGFloat(rgbValue & 0x0000FF) / 255.0, alpha: alpha)
        }
-    static let amaddaBackgroundColor = UIColor(hex: "FCFAF8")
-    static let buttonColor = UIColor(hex: "D1B48C")
-    static let cardBackgroundColor = UIColor(hex: "F4F3F3")
+    static var amaddaBackgroundColor: UIColor {
+        return UIColor(hex: "FCFAF8")
+    }
+    static var buttonColor: UIColor {
+        return UIColor(hex: "D1B48C")
+    }
+    static var cardBackgroundColor: UIColor {
+        return UIColor(hex: "F4F3F3")
+    }
 }

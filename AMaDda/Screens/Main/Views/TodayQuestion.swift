@@ -8,7 +8,7 @@
 import UIKit
 
 final class TodayQuestion {
-    let todayQuestionData: [TodayQuestionData] = [
+    private let todayQuestionData: [TodayQuestionData] = [
         TodayQuestionData(question: "Q. 오늘 가족들이 먹은 점심은 무엇인가요?"),
         TodayQuestionData(question: "Q. 가족들의 MBTI는?"),
         TodayQuestionData(question: "Q. 고반의 생일은?"),
@@ -18,13 +18,13 @@ final class TodayQuestion {
         let view = UIView()
         return view
     }()
-    let todayTitleLabel: UILabel = {
+    private let todayTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "오늘의 가족 Question"
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         return label
     }()
-    let todayCardView: UIView = {
+    private let todayCardView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 20
         view.backgroundColor = UIColor.cardBackgroundColor
