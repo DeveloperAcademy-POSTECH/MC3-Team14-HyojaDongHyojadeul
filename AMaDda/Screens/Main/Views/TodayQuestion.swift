@@ -8,6 +8,12 @@
 import UIKit
 
 final class TodayQuestion {
+    let todayQuestionData: [TodayQuestionData] = [
+        TodayQuestionData(question: "Q. 오늘 가족들이 먹은 점심은 무엇인가요?"),
+        TodayQuestionData(question: "Q. 가족들의 MBTI는?"),
+        TodayQuestionData(question: "Q. 고반의 생일은?"),
+        TodayQuestionData(question: "Q. 이번 주말 가족들의 계획은?")
+    ]
     let todayQuestionView: UIView = {
         let view = UIView()
         return view
@@ -24,9 +30,10 @@ final class TodayQuestion {
         view.backgroundColor = UIColor.cardBackgroundColor
         return view
     }()
-    let todayCardQuestionLabel: UILabel = {
+    lazy var todayCardQuestionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Q. 오늘 가족들이 먹은 점심은 무엇인가요?"
+        let randomQuestion = chooseRandomQuestion()
+        label.text = randomQuestion
         return label
     }()
     func configureAddSubViewsTodayQuestionView() {
@@ -52,5 +59,12 @@ final class TodayQuestion {
             todayCardQuestionLabel.centerYAnchor.constraint(equalTo: todayCardView.centerYAnchor),
             todayCardQuestionLabel.centerXAnchor.constraint(equalTo: todayCardView.centerXAnchor)
         ])
+    }
+}
+
+extension TodayQuestion {
+    private func chooseRandomQuestion() -> String{
+        let todayQuestion = todayQuestionData.randomElement()!
+        return todayQuestion.question
     }
 }

@@ -16,6 +16,7 @@
 		915078AA2883A6F0002B7BDB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078A92883A6EF002B7BDB /* MainViewController.swift */; };
 		915078AC2883C6C2002B7BDB /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078AB2883C6C2002B7BDB /* Color+Extension.swift */; };
 		915078AF2883C988002B7BDB /* TodayQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078AE2883C988002B7BDB /* TodayQuestion.swift */; };
+		915078B32883D456002B7BDB /* TodayQuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915078B22883D456002B7BDB /* TodayQuestionData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		915078A92883A6EF002B7BDB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		915078AB2883C6C2002B7BDB /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Color+Extension.swift"; path = "AMaDda/Screens/Main/Color+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		915078AE2883C988002B7BDB /* TodayQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestion.swift; sourceTree = "<group>"; };
+		915078B22883D456002B7BDB /* TodayQuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		3E622CEC28803971006A921C /* AMaDda */ = {
 			isa = PBXGroup;
 			children = (
+				915078B12883D432002B7BDB /* Model */,
 				3E622D0128803BBD006A921C /* Screens */,
 				3E622D0228803BE7006A921C /* Global */,
 				3E622CF828803972006A921C /* LaunchScreen.storyboard */,
@@ -164,6 +167,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		915078B12883D432002B7BDB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				915078B22883D456002B7BDB /* TodayQuestionData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -237,6 +248,7 @@
 			files = (
 				3E622CF228803971006A921C /* ViewController.swift in Sources */,
 				915078AC2883C6C2002B7BDB /* Color+Extension.swift in Sources */,
+				915078B32883D456002B7BDB /* TodayQuestionData.swift in Sources */,
 				3E622CEE28803971006A921C /* AppDelegate.swift in Sources */,
 				3E622CF028803971006A921C /* SceneDelegate.swift in Sources */,
 				915078AA2883A6F0002B7BDB /* MainViewController.swift in Sources */,
