@@ -35,6 +35,7 @@ class SettingViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = .questionViewBackgroundColor
+        navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: - function
