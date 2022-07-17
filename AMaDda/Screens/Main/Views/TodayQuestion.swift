@@ -23,7 +23,7 @@ final class TodayQuestion {
         view.backgroundColor = UIColor.cardBackgroundColor
         return view
     }()
-    lazy var todayCardQuestionLabel: UILabel = {
+    private lazy var todayCardQuestionLabel: UILabel = {
         let label = UILabel()
         let randomQuestion = chooseRandomQuestion()
         label.text = randomQuestion
@@ -59,7 +59,7 @@ extension TodayQuestion {
     }
     // MARK: - function
     private func chooseRandomQuestion() -> String {
-        let todayQuestion = todayQuestionData.randomElement()!
+        guard let todayQuestion = todayQuestionData.randomElement() else { return "Question이 없습니다."}
         return todayQuestion.question
     }
 }
