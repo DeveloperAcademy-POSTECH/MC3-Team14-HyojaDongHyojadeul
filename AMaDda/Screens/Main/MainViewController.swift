@@ -15,6 +15,11 @@ class MainViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
+    private let settingButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("설정", for: .normal)
+        return button
+    }()
     private var questionLabel: UILabel = {
         let label = UILabel()
         label.text = "Q.오늘 가족들이 먹은 점심은 무엇인가요?"
@@ -37,6 +42,11 @@ class MainViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
+    private let addingButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("추가", for: .normal)
+        return button
+    }()
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(QuestionTableViewCell.self, forCellReuseIdentifier: QuestionTableViewCell.className)
@@ -44,6 +54,7 @@ class MainViewController: UIViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +73,11 @@ class MainViewController: UIViewController {
         mainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45).isActive = true
         mainTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding).isActive = true
         
+        view.addSubview(settingButton)
+        settingButton.translatesAutoresizingMaskIntoConstraints = false
+        settingButton.topAnchor.constraint(equalTo: mainTitle.topAnchor).isActive = true
+        settingButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding).isActive = true
+        
         view.addSubview(questionView)
         questionView.translatesAutoresizingMaskIntoConstraints = false
         questionView.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 35).isActive = true
@@ -73,6 +89,11 @@ class MainViewController: UIViewController {
         subTitle.translatesAutoresizingMaskIntoConstraints = false
         subTitle.topAnchor.constraint(equalTo: questionView.bottomAnchor, constant: 35).isActive = true
         subTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: padding).isActive = true
+        
+        view.addSubview(addingButton)
+        addingButton.translatesAutoresizingMaskIntoConstraints = false
+        addingButton.topAnchor.constraint(equalTo: subTitle.topAnchor).isActive = true
+        addingButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding).isActive = true
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -111,4 +132,7 @@ extension MainViewController: UITableViewDataSource {
         return 120
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
