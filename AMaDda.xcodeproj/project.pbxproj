@@ -13,6 +13,9 @@
 		3E622CF528803971006A921C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E622CF328803971006A921C /* Main.storyboard */; };
 		3E622CF728803972006A921C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E622CF628803972006A921C /* Assets.xcassets */; };
 		3E622CFA28803972006A921C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E622CF828803972006A921C /* LaunchScreen.storyboard */; };
+		D79F33DC28840F16009A9F91 /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33DB28840F16009A9F91 /* CommonButton.swift */; };
+		D79F33DE28840F2E009A9F91 /* AlarmSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33DD28840F2E009A9F91 /* AlarmSettingViewController.swift */; };
+		D79F33E128840F65009A9F91 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33E028840F65009A9F91 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		3E622CF628803972006A921C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E622CF928803972006A921C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E622CFB28803972006A921C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D79F33DB28840F16009A9F91 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
+		D79F33DD28840F2E009A9F91 /* AlarmSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingViewController.swift; sourceTree = "<group>"; };
+		D79F33E028840F65009A9F91 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 		3E622D0128803BBD006A921C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D79F33DF28840F51009A9F91 /* Onboarding */,
 				3E622D0928803C44006A921C /* Main */,
 			);
 			path = Screens;
@@ -77,8 +84,8 @@
 				3E622D0328803BED006A921C /* Literal */,
 				3E622D0428803BF3006A921C /* Supports */,
 				3E622D0528803BFA006A921C /* Extension */,
-				3E622D0628803C02006A921C /* UIComponent */,
 				3E622D0728803C17006A921C /* Resource */,
+				D79F33DA28840EFD009A9F91 /* UIComponent */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -107,13 +114,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		3E622D0628803C02006A921C /* UIComponent */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UIComponent;
-			sourceTree = "<group>";
-		};
 		3E622D0728803C17006A921C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,7 +127,7 @@
 		3E622D0928803C44006A921C /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				3E622CF128803971006A921C /* ViewController.swift */,
+				D79F33E028840F65009A9F91 /* MainViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -145,6 +145,23 @@
 				3E622CF328803971006A921C /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D79F33DA28840EFD009A9F91 /* UIComponent */ = {
+			isa = PBXGroup;
+			children = (
+				D79F33DB28840F16009A9F91 /* CommonButton.swift */,
+			);
+			path = UIComponent;
+			sourceTree = "<group>";
+		};
+		D79F33DF28840F51009A9F91 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				3E622CF128803971006A921C /* ViewController.swift */,
+				D79F33DD28840F2E009A9F91 /* AlarmSettingViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +237,10 @@
 			files = (
 				3E622CF228803971006A921C /* ViewController.swift in Sources */,
 				3E622CEE28803971006A921C /* AppDelegate.swift in Sources */,
+				D79F33DC28840F16009A9F91 /* CommonButton.swift in Sources */,
+				D79F33E128840F65009A9F91 /* MainViewController.swift in Sources */,
 				3E622CF028803971006A921C /* SceneDelegate.swift in Sources */,
+				D79F33DE28840F2E009A9F91 /* AlarmSettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
