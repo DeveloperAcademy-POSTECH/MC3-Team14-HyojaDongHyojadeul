@@ -63,7 +63,7 @@ extension TodayQuestion {
         ])
     }
     // MARK: - function
-    private func chooseRandomQuestion() -> String{
+    private func chooseRandomQuestion() -> String {
         let todayQuestion = todayQuestionData.randomElement()!
         return todayQuestion.question
     }
