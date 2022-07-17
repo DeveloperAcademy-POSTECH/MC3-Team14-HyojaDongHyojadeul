@@ -52,17 +52,19 @@ class QuestionTableViewCell: UITableViewCell {
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        contentView.layer.borderWidth = 1
+        
     }
     // MARK: - configure
     private func configureUI() {
-        backgroundColor = .questionViewBackgroundColor
+        backgroundColor = .systemBackground
+        contentView.layer.cornerRadius = 12
+        contentView.backgroundColor = .questionViewBackgroundColor
     }
     
     private func render() {
         addSubview(familyImage)
         familyImage.translatesAutoresizingMaskIntoConstraints = false
-        familyImage.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
+        familyImage.centerYAnchor.constraint(equalTo: centerYAnchor,constant: -10).isActive = true
         familyImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         familyImage.widthAnchor.constraint(equalToConstant: 60).isActive = true
         familyImage.heightAnchor.constraint(equalToConstant: 60).isActive = true

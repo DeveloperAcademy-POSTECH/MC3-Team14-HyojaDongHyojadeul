@@ -19,6 +19,7 @@
 		D79F33E3288415CA009A9F91 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33E2288415CA009A9F91 /* UIColor+Extension.swift */; };
 		D79F33E628841E92009A9F91 /* QustionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33E528841E92009A9F91 /* QustionTableViewCell.swift */; };
 		D79F33E828841F48009A9F91 /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33E728841F48009A9F91 /* NSObject+Extension.swift */; };
+		D79F33EE28845E46009A9F91 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F33ED28845E46009A9F91 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D79F33E2288415CA009A9F91 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D79F33E528841E92009A9F91 /* QustionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QustionTableViewCell.swift; sourceTree = "<group>"; };
 		D79F33E728841F48009A9F91 /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
+		D79F33ED28845E46009A9F91 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		3E622D0128803BBD006A921C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D79F33EC28845E2F009A9F91 /* Setting */,
 				D79F33DF28840F51009A9F91 /* Onboarding */,
 				3E622D0928803C44006A921C /* Main */,
 			);
@@ -87,6 +90,7 @@
 		3E622D0228803BE7006A921C /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				D79F33E9288456A5009A9F91 /* Helper */,
 				3E622D0328803BED006A921C /* Literal */,
 				3E622D0428803BF3006A921C /* Supports */,
 				3E622D0528803BFA006A921C /* Extension */,
@@ -181,6 +185,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D79F33E9288456A5009A9F91 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		D79F33EC28845E2F009A9F91 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				D79F33ED28845E46009A9F91 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -253,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D79F33E3288415CA009A9F91 /* UIColor+Extension.swift in Sources */,
+				D79F33EE28845E46009A9F91 /* SettingViewController.swift in Sources */,
 				3E622CF228803971006A921C /* ViewController.swift in Sources */,
 				D79F33E828841F48009A9F91 /* NSObject+Extension.swift in Sources */,
 				3E622CEE28803971006A921C /* AppDelegate.swift in Sources */,

@@ -15,9 +15,10 @@ class MainViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
-    private let settingButton: UIButton = {
+    private lazy var settingButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("설정", for: .normal)
+        button.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
         return button
     }()
     private var questionLabel: UILabel = {
@@ -110,12 +111,17 @@ class MainViewController: UIViewController {
     // MARK: - Function
     
     // MARK: - Selectors
+    @objc private func didTapSettingButton() {
+        navigationController?.pushViewController(SettingViewController(), animated: true)
+    }
 }
 
 // MARK: - extensions
 
 extension MainViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension MainViewController: UITableViewDataSource {
@@ -132,7 +138,5 @@ extension MainViewController: UITableViewDataSource {
         return 120
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
+
 }
