@@ -9,7 +9,7 @@ import UIKit
 
 class OnboardingOneViewController: UIViewController {
     // MARK: Properties
-    private lazy var FirstOnboardTitle: UILabel = {
+    private let firstOnboardTitle: UILabel = {
         let label = UILabel()
         label.text = "일정시간마다 연락에 대한 알림을 받을 수 있어요"
         label.font = .boldSystemFont(ofSize: 25)
@@ -18,13 +18,13 @@ class OnboardingOneViewController: UIViewController {
         return label
     }()
     
-    private lazy var FirstOnboardingview: UIImageView = {
+    private let firstOnboardingview: UIImageView = {
         let FirstOnboardingview = UIImageView()
         FirstOnboardingview.image = UIImage(named: "onboardingImage.png")
         return FirstOnboardingview
     }()
     
-    private lazy var nextButton: UIButton = {
+    private let nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: UIControl.State.normal)
         button.setTitleColor(.systemBlue, for: .normal)
@@ -44,33 +44,33 @@ class OnboardingOneViewController: UIViewController {
     }
     
     private func configureAddSubView() {
-        view.addSubview(FirstOnboardTitle)
-        view.addSubview(FirstOnboardingview)
+        view.addSubview(firstOnboardTitle)
+        view.addSubview(firstOnboardingview)
         view.addSubview(nextButton)
     }
     
     func configureConstraints(){
         view.backgroundColor = .systemBackground
         
-        FirstOnboardTitle.translatesAutoresizingMaskIntoConstraints = false
+        firstOnboardTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            FirstOnboardTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
-            FirstOnboardTitle.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            FirstOnboardTitle.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor)
+            firstOnboardTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            firstOnboardTitle.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            firstOnboardTitle.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor)
         ])
         
-        FirstOnboardingview.translatesAutoresizingMaskIntoConstraints = false
+        firstOnboardingview.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            FirstOnboardingview.topAnchor.constraint(equalTo: FirstOnboardTitle.bottomAnchor, constant: 34),
-            FirstOnboardingview.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            FirstOnboardingview.widthAnchor.constraint(equalToConstant: 240),
-            FirstOnboardingview.heightAnchor.constraint(equalToConstant: 480)
+            firstOnboardingview.topAnchor.constraint(equalTo: firstOnboardTitle.bottomAnchor, constant: 34),
+            firstOnboardingview.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            firstOnboardingview.widthAnchor.constraint(equalToConstant: 240),
+            firstOnboardingview.heightAnchor.constraint(equalToConstant: 480)
         ])
         
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextButton.topAnchor.constraint(equalTo: FirstOnboardingview.bottomAnchor, constant: 34)
+            nextButton.topAnchor.constraint(equalTo: firstOnboardingview.bottomAnchor, constant: 34)
         ])
     }
 }
