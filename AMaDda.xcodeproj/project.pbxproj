@@ -21,6 +21,7 @@
 		91FD28B82884F70A00F49D20 /* FontsPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28B72884F70A00F49D20 /* FontsPlaceHolder.swift */; };
 		D72A1DFE28854AA10058EE12 /* AddingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1DFD28854AA10058EE12 /* AddingViewController.swift */; };
 		D72A1E0028854C9C0058EE12 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1DFF28854C9C0058EE12 /* ImageLiteral.swift */; };
+		D72A1E02288558990058EE12 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1E01288558990058EE12 /* UIImage+Extension.swift */; };
 		D7ADBBA72883D520004BB5FE /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ADBBA62883D520004BB5FE /* CommonButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		91FD28B72884F70A00F49D20 /* FontsPlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsPlaceHolder.swift; sourceTree = "<group>"; };
 		D72A1DFD28854AA10058EE12 /* AddingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingViewController.swift; sourceTree = "<group>"; };
 		D72A1DFF28854C9C0058EE12 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
+		D72A1E01288558990058EE12 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		D7ADBBA62883D520004BB5FE /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				91FD28B12884F4B800F49D20 /* Color+Extension.swift */,
+				D72A1E01288558990058EE12 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72A1E02288558990058EE12 /* UIImage+Extension.swift in Sources */,
 				91FD28B22884F4B800F49D20 /* Color+Extension.swift in Sources */,
 				D72A1E0028854C9C0058EE12 /* ImageLiteral.swift in Sources */,
 				91FD28B82884F70A00F49D20 /* FontsPlaceHolder.swift in Sources */,
