@@ -24,6 +24,16 @@ class OnboardingOneViewController: UIViewController {
         return FirstOnboardingview
     }()
     
+    private lazy var nextButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("다음", for: UIControl.State.normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.frame = CGRect(x: 15, y: -50, width: 300, height: 500)
+        // TODO: Button Function을 필요로 한다.
+        // button.addTarget(self, action: #selector(requestNotificationPermission), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         render()
@@ -44,5 +54,10 @@ class OnboardingOneViewController: UIViewController {
         FirstOnboardingview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         FirstOnboardingview.widthAnchor.constraint(equalToConstant: 240).isActive = true
         FirstOnboardingview.heightAnchor.constraint(equalToConstant: 480).isActive = true
+        
+        view.addSubview(nextButton)
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nextButton.topAnchor.constraint(equalTo: FirstOnboardingview.bottomAnchor, constant: 34).isActive = true
     }
 }
