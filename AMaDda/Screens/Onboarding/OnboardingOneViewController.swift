@@ -18,6 +18,12 @@ class OnboardingOneViewController: UIViewController {
         return label
     }()
     
+    private lazy var FirstOnboardingview: UIImageView = {
+        let FirstOnboardingview = UIImageView()
+        FirstOnboardingview.image = UIImage(named: "onboardingImage.png")
+        return FirstOnboardingview
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         render()
@@ -31,5 +37,12 @@ class OnboardingOneViewController: UIViewController {
         FirstOnboardTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48).isActive = true
         FirstOnboardTitle.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
         FirstOnboardTitle.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
+        
+        view.addSubview(FirstOnboardingview)
+        FirstOnboardingview.translatesAutoresizingMaskIntoConstraints = false
+        FirstOnboardingview.topAnchor.constraint(equalTo: FirstOnboardTitle.bottomAnchor, constant: 34).isActive = true
+        FirstOnboardingview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        FirstOnboardingview.widthAnchor.constraint(equalToConstant: 240).isActive = true
+        FirstOnboardingview.heightAnchor.constraint(equalToConstant: 480).isActive = true
     }
 }
