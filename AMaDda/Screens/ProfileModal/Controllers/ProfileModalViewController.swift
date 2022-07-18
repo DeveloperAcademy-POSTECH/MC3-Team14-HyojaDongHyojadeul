@@ -28,12 +28,11 @@ final class ProfileModalViewController: UIViewController {
         configureConstraints()
     }
     
-    // MARK: - addSubviews
+    // MARK: - configure
     private func configureAddSubviews() {
         view.addSubview(collectionView)
     }
     
-    // MARK: - Constraints
     private func configureConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         collectionView.translatesAutoresizingMaskIntoConstraints = false
