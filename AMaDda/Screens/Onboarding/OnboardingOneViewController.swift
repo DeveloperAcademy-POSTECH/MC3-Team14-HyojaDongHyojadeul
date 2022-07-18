@@ -19,9 +19,9 @@ class OnboardingOneViewController: UIViewController {
     }()
     
     private let firstOnboardingview: UIImageView = {
-        let FirstOnboardingview = UIImageView()
-        FirstOnboardingview.image = UIImage(named: "onboardingImage.png")
-        return FirstOnboardingview
+        let firstOnboardingview = UIImageView()
+        firstOnboardingview.image = UIImage(named: "onboardingImage.png")
+        return firstOnboardingview
     }()
     
     private let nextButton: UIButton = {
