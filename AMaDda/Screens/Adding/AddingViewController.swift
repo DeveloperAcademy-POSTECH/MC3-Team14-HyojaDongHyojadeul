@@ -10,7 +10,7 @@ import UIKit
 class AddingViewController: UIViewController {
     
     // MARK: - property
-    private let addingTitle: UILabel = {
+    private let addingTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "추가하기"
         label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
@@ -71,7 +71,7 @@ class AddingViewController: UIViewController {
     }
     
     private func configureAddSubView() {
-        view.addSubview(addingTitle)
+        view.addSubview(addingTitleLabel)
         view.addSubview(profileImageView)
         view.addSubview(plusIcon)
         view.addSubview(createNicknameLabel)
@@ -82,15 +82,15 @@ class AddingViewController: UIViewController {
     }
     
     private func configureConstraints() {
-        addingTitle.translatesAutoresizingMaskIntoConstraints = false
+        addingTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addingTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            addingTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: Size.leadingTrailingPadding),
+            addingTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            addingTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: Size.leadingTrailingPadding),
         ])
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profileImageView.topAnchor.constraint(equalTo: addingTitle.bottomAnchor, constant: 37),
+            profileImageView.topAnchor.constraint(equalTo: addingTitleLabel.bottomAnchor, constant: 37),
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
             profileImageView.heightAnchor.constraint(equalToConstant: 100),
         ])
