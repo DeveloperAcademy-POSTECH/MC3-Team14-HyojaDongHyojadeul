@@ -28,9 +28,7 @@ class OnboardingOneViewController: UIViewController {
         let button = UIButton()
         button.setTitle("다음", for: UIControl.State.normal)
         button.setTitleColor(.systemBlue, for: .normal)
-        button.frame = CGRect(x: 15, y: -50, width: 300, height: 500)
         // TODO: Button Function을 필요로 한다.
-        // button.addTarget(self, action: #selector(requestNotificationPermission), for: .touchUpInside)
         return button
     }()
     
