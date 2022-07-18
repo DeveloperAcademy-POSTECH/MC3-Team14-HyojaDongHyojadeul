@@ -16,7 +16,7 @@ final class MainViewController: UIViewController {
     private let familyTableLabel: UILabel = {
         let label = UILabel()
         label.text = "우리 가족"
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         return label
     }()
     private let familyTableView: UITableView = {
@@ -44,8 +44,8 @@ final class MainViewController: UIViewController {
 extension MainViewController {
     // MARK: - configure
     private func configureUI() {
-        view.backgroundColor = UIColor.amaddaBackgroundColor
-        familyTableView.backgroundColor = UIColor.amaddaBackgroundColor
+        view.backgroundColor = .systemBackground
+        familyTableView.backgroundColor = .systemBackground
     }
     private func configureAddSubViews() {
         view.addSubview(todayQuestionView)
@@ -54,27 +54,29 @@ extension MainViewController {
         view.addSubview(familyTableView)
     }
     private func configureConstraints() {
+        let safeAreaLayoutGuide = view.safeAreaLayoutGuide
+        
         todayQuestionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            todayQuestionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            todayQuestionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
-            todayQuestionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            todayQuestionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            todayQuestionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
+            todayQuestionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
             todayQuestionView.heightAnchor.constraint(equalToConstant: 160),
         ])
         todayQuestionView.configureConstraintsTodayQuestionView()
         
         familyTableLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            familyTableLabel.topAnchor.constraint(equalTo: todayQuestionView.bottomAnchor, constant: 50),
+            familyTableLabel.topAnchor.constraint(equalTo: todayQuestionView.bottomAnchor, constant: 35),
             familyTableLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
         familyTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            familyTableView.topAnchor.constraint(equalTo: familyTableLabel.bottomAnchor),
+            familyTableView.topAnchor.constraint(equalTo: familyTableLabel.bottomAnchor, constant: 20),
             familyTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Size.leadingTrailingPadding),
             familyTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            familyTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            familyTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 }
@@ -86,7 +88,7 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
     }
 }
 
@@ -96,7 +98,7 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.reuseableIdentifier, for: indexPath) as! FamilyTableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.reuseableIdentifier, for: indexPath) as? FamilyTableCell else { fatalError() }
         let item = self.familyMembers[indexPath.row]
         cell.item = item
         cell.selectionStyle = .none

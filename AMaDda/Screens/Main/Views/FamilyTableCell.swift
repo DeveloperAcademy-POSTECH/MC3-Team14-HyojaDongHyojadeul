@@ -18,9 +18,8 @@ class FamilyTableCell: UITableViewCell {
         static let actionBtnSize: CGFloat = 55.0
     }
     
-    
     // MARK: - property
-    var item: FamilyMember? {
+    var item: FamilyMemberData? {
         didSet {
             self.familyNameLabel.text = item?.name
             self.familyDescriptionLabel.text = item?.description
@@ -28,34 +27,19 @@ class FamilyTableCell: UITableViewCell {
         }
     }
     
-    private let familyCharacterImage: UIImage = {
-        let familyCharacterImage = UIImage()
-        return familyCharacterImage
-    }()
-    private let familyCharacterImageView: UIImageView = {
-        let familyCharacterImageView = UIImageView()
-        return familyCharacterImageView
-    }()
-    private let familyNameLabel: UILabel = {
-        let familyNameLabel = UILabel()
-        return familyNameLabel
-    }()
-    private let familyDescriptionLabel: UILabel = {
-        let familyDescriptionText = UILabel()
-        
-        return familyDescriptionText
-    }()
+    private let familyCharacterImage = UIImage()
+    private let familyCharacterImageView = UIImageView()
+    private let familyNameLabel = UILabel()
+    private let familyDescriptionLabel = UILabel()
     private lazy var contactButton: UIButton = {
         let contactButton = UIButton()
         contactButton.setTitle("버튼", for: .normal)
         return contactButton
     }()
     
-    
     // MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor.amaddaBackgroundColor
         configureAddSubViews()
         configureConstraints()
         configureUI()
@@ -63,14 +47,12 @@ class FamilyTableCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // MARK: - configure
     private func configureAddSubViews() {
@@ -84,7 +66,7 @@ class FamilyTableCell: UITableViewCell {
         
         familyCharacterImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            familyCharacterImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: Size.sideSpacing),
+            familyCharacterImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Size.sideSpacing),
             familyCharacterImageView.topAnchor.constraint(equalTo: topAnchor, constant: Size.topBottomSpacing),
             familyCharacterImageView.heightAnchor.constraint(equalToConstant: 60),
             familyCharacterImageView.widthAnchor.constraint(equalToConstant: 50),
@@ -98,13 +80,13 @@ class FamilyTableCell: UITableViewCell {
         
         familyDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            familyDescriptionLabel.leftAnchor.constraint(equalTo: familyCharacterImageView.rightAnchor, constant: Size.sideSpacing),
+            familyDescriptionLabel.leadingAnchor.constraint(equalTo: familyCharacterImageView.trailingAnchor, constant: Size.sideSpacing),
             familyDescriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
         
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contactButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Size.sideSpacing),
+            contactButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Size.sideSpacing),
             contactButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             contactButton.widthAnchor.constraint(equalToConstant: Size.actionBtnSize),
             contactButton.heightAnchor.constraint(equalToConstant: Size.actionBtnSize),
@@ -112,6 +94,8 @@ class FamilyTableCell: UITableViewCell {
     }
     
     func configureUI() {
+        backgroundColor = .systemBackground
+        
         contentView.backgroundColor = UIColor.cardBackgroundColor
         contentView.layer.cornerRadius = 20
         
