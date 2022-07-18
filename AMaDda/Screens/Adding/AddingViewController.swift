@@ -16,7 +16,7 @@ class AddingViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         return label
     }()
-    private let imageView: UIImageView = {
+    private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.btnProfile
         imageView.tintColor = .lightGray
@@ -36,7 +36,7 @@ class AddingViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
     }()
-    private let textField: UITextField = {
+    private let nickNameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "예시) 아버지, 엄마, 세젤예 우리엄마"
         return textField
@@ -72,10 +72,10 @@ class AddingViewController: UIViewController {
     
     private func configureAddSubView() {
         view.addSubview(addingTitle)
-        view.addSubview(imageView)
+        view.addSubview(profileImageView)
         view.addSubview(plusIcon)
         view.addSubview(createNicknameLabel)
-        view.addSubview(textField)
+        view.addSubview(nickNameTextField)
         view.addSubview(underLineView)
         view.addSubview(textFieldLimitLabel)
         view.addSubview(addButton)
@@ -87,43 +87,43 @@ class AddingViewController: UIViewController {
             addingTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             addingTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: Size.leadingTrailingPadding),
         ])
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: addingTitle.bottomAnchor, constant: 37),
-            imageView.widthAnchor.constraint(equalToConstant: 100),
-            imageView.heightAnchor.constraint(equalToConstant: 100),
+            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profileImageView.topAnchor.constraint(equalTo: addingTitle.bottomAnchor, constant: 37),
+            profileImageView.widthAnchor.constraint(equalToConstant: 100),
+            profileImageView.heightAnchor.constraint(equalToConstant: 100),
         ])
         plusIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            plusIcon.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 0),
-            plusIcon.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 0),
+            plusIcon.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 0),
+            plusIcon.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 0),
             plusIcon.widthAnchor.constraint(equalToConstant: 25),
             plusIcon.heightAnchor.constraint(equalToConstant: 25),
         ])
         createNicknameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            createNicknameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 64),
+            createNicknameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor,constant: 64),
             createNicknameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        nickNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: createNicknameLabel.bottomAnchor, constant: 20),
-            textField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: Size.leadingTrailingPadding),
-            textField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            textField.heightAnchor.constraint(equalToConstant: 60),
+            nickNameTextField.topAnchor.constraint(equalTo: createNicknameLabel.bottomAnchor, constant: 20),
+            nickNameTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: Size.leadingTrailingPadding),
+            nickNameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            nickNameTextField.heightAnchor.constraint(equalToConstant: 50),
         ])
         underLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            underLineView.topAnchor.constraint(equalTo: textField.bottomAnchor),
-            underLineView.leadingAnchor.constraint(equalTo: textField.leadingAnchor),
-            underLineView.trailingAnchor.constraint(equalTo: textField.trailingAnchor),
+            underLineView.topAnchor.constraint(equalTo: nickNameTextField.bottomAnchor),
+            underLineView.leadingAnchor.constraint(equalTo: nickNameTextField.leadingAnchor),
+            underLineView.trailingAnchor.constraint(equalTo: nickNameTextField.trailingAnchor),
             underLineView.heightAnchor.constraint(equalToConstant: 1),
         ])
         textFieldLimitLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textFieldLimitLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 5),
-            textFieldLimitLabel.trailingAnchor.constraint(equalTo: textField.trailingAnchor),
+            textFieldLimitLabel.topAnchor.constraint(equalTo: nickNameTextField.bottomAnchor, constant: 5),
+            textFieldLimitLabel.trailingAnchor.constraint(equalTo: nickNameTextField.trailingAnchor),
         ])
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
