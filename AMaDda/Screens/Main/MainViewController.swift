@@ -63,9 +63,25 @@ class MainViewController: UIViewController {
         setupTableView()
         render()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: - Configure
     private func configureUI() {
         view.backgroundColor = .systemBackground
+    }
+    
+    private func configureAddSubView() {
+        view.addSubview(mainTitle)
+    }
+    private func configureConstraints() {
+        mainTitle.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45),
+            mainTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
+        ])
     }
     
     private func render() {
@@ -137,6 +153,4 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
-    
-
 }
