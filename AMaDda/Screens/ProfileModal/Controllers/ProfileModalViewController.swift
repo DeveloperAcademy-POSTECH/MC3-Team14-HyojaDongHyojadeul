@@ -24,13 +24,18 @@ final class ProfileModalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
+        configureAddSubviews()
+        configureConstraints()
     }
     
-    // MARK: - Layout
-    private func setupCollectionView() {
-        let safeAreaLayoutGuide = view.safeAreaLayoutGuide
+    // MARK: - addSubviews
+    private func configureAddSubviews() {
         view.addSubview(collectionView)
+    }
+    
+    // MARK: - Constraints
+    private func configureConstraints() {
+        let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
