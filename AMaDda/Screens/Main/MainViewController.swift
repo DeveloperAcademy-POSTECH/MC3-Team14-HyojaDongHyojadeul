@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-    private let todayQuestion = TodayQuestion()
+    private let todayQuestionView = TodayQuestionView()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -25,17 +25,17 @@ extension MainViewController {
     }
     private func configureAddSubViews() {
         guard let view = self.view else { return }
-        view.addSubview(todayQuestion.todayQuestionView)
-        todayQuestion.configureAddSubViewsTodayQuestionView()
+        view.addSubview(todayQuestionView)
+        todayQuestionView.configureAddSubViewsTodayQuestionView()
     }
     private func configureConstraints() {
-        todayQuestion.todayQuestionView.translatesAutoresizingMaskIntoConstraints = false
+        todayQuestionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            todayQuestion.todayQuestionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            todayQuestion.todayQuestionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            todayQuestion.todayQuestionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            todayQuestion.todayQuestionView.heightAnchor.constraint(equalToConstant: 160),
+            todayQuestionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            todayQuestionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            todayQuestionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            todayQuestionView.heightAnchor.constraint(equalToConstant: 160),
         ])
-        todayQuestion.configureConstraintsTodayQuestionView()
+        todayQuestionView.configureConstraintsTodayQuestionView()
     }
 }

@@ -7,10 +7,9 @@
 
 import UIKit
 
-final class TodayQuestion {
+final class TodayQuestionView: UIView {
     private let todayQuestionData = TodayQuestionMockData.mockData
     // MARK: - property
-    let todayQuestionView = UIView()
     private let todayTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "오늘의 가족 Question"
@@ -31,25 +30,25 @@ final class TodayQuestion {
     }()
 }
 
-extension TodayQuestion {
+extension TodayQuestionView {
     // MARK: - configure
     func configureAddSubViewsTodayQuestionView() {
-        todayQuestionView.addSubview(todayTitleLabel)
-        todayQuestionView.addSubview(todayCardView)
-        todayCardView.addSubview(todayCardQuestionLabel)
+        addSubview(todayTitleLabel)
+        addSubview(todayCardView)
+        addSubview(todayCardQuestionLabel)
     }
     func configureConstraintsTodayQuestionView() {
         todayTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            todayTitleLabel.topAnchor.constraint(equalTo: todayQuestionView.safeAreaLayoutGuide.topAnchor),
-            todayTitleLabel.leadingAnchor.constraint(equalTo: todayQuestionView.safeAreaLayoutGuide.leadingAnchor)
+            todayTitleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            todayTitleLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor)
         ])
         todayCardView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             todayCardView.topAnchor.constraint(equalTo: todayTitleLabel.safeAreaLayoutGuide.bottomAnchor, constant: 28),
-            todayCardView.leadingAnchor.constraint(equalTo: todayQuestionView.safeAreaLayoutGuide.leadingAnchor),
-            todayCardView.trailingAnchor.constraint(equalTo: todayQuestionView.safeAreaLayoutGuide.trailingAnchor),
-            todayCardView.bottomAnchor.constraint(equalTo: todayQuestionView.safeAreaLayoutGuide.bottomAnchor)
+            todayCardView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            todayCardView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            todayCardView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
         todayCardQuestionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
