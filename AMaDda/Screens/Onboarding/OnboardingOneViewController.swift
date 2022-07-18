@@ -34,28 +34,43 @@ class OnboardingOneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        render()
+        configureUI()
+        configureAddSubView()
+        configureConstraints()
     }
     
-    func render(){
+    private func configureUI() {
+        view.backgroundColor = .systemBackground
+    }
+    
+    private func configureAddSubView() {
+        view.addSubview(FirstOnboardTitle)
+        view.addSubview(FirstOnboardingview)
+        view.addSubview(nextButton)
+    }
+    
+    func configureConstraints(){
         view.backgroundColor = .systemBackground
         
-        view.addSubview(FirstOnboardTitle)
         FirstOnboardTitle.translatesAutoresizingMaskIntoConstraints = false
-        FirstOnboardTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48).isActive = true
-        FirstOnboardTitle.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
-        FirstOnboardTitle.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            FirstOnboardTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            FirstOnboardTitle.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            FirstOnboardTitle.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor)
+        ])
         
-        view.addSubview(FirstOnboardingview)
         FirstOnboardingview.translatesAutoresizingMaskIntoConstraints = false
-        FirstOnboardingview.topAnchor.constraint(equalTo: FirstOnboardTitle.bottomAnchor, constant: 34).isActive = true
-        FirstOnboardingview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        FirstOnboardingview.widthAnchor.constraint(equalToConstant: 240).isActive = true
-        FirstOnboardingview.heightAnchor.constraint(equalToConstant: 480).isActive = true
+        NSLayoutConstraint.activate([
+            FirstOnboardingview.topAnchor.constraint(equalTo: FirstOnboardTitle.bottomAnchor, constant: 34),
+            FirstOnboardingview.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            FirstOnboardingview.widthAnchor.constraint(equalToConstant: 240),
+            FirstOnboardingview.heightAnchor.constraint(equalToConstant: 480)
+        ])
         
-        view.addSubview(nextButton)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nextButton.topAnchor.constraint(equalTo: FirstOnboardingview.bottomAnchor, constant: 34).isActive = true
+        NSLayoutConstraint.activate([
+            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nextButton.topAnchor.constraint(equalTo: FirstOnboardingview.bottomAnchor, constant: 34)
+        ])
     }
 }
