@@ -24,10 +24,9 @@ class OnboardingOneViewController: UIViewController {
         return firstOnboardingview
     }()
     
-    private let nextButton: UIButton = {
-        let button = UIButton()
+    private let nextButton: CommonButton = {
+        let button = CommonButton()
         button.setTitle("다음", for: UIControl.State.normal)
-        button.setTitleColor(.systemBlue, for: .normal)
         // TODO: Button Function을 필요로 한다.
         return button
     }()
@@ -70,7 +69,7 @@ class OnboardingOneViewController: UIViewController {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextButton.topAnchor.constraint(equalTo: firstOnboardingview.bottomAnchor, constant: 34)
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42)
         ])
     }
 }
