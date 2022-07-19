@@ -54,8 +54,8 @@ class OnboardingOneViewController: UIViewController {
         firstOnboardTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             firstOnboardTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
-            firstOnboardTitle.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            firstOnboardTitle.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor)
+            firstOnboardTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Size.leadingTrailingPadding),
+            firstOnboardTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding)
         ])
         
         firstOnboardingview.translatesAutoresizingMaskIntoConstraints = false
