@@ -118,13 +118,6 @@ extension ProfileModalViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegate
-extension ProfileModalViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedCharacterName = characterNames[indexPath.row]
-    }
-}
-
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ProfileModalViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
