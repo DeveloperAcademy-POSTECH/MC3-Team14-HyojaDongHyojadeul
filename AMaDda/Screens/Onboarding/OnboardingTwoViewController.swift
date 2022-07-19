@@ -14,14 +14,15 @@ class OnboardingTwoViewController: UIViewController {
     // MARK: Properties
     private let onboardingTwoTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 25)
-        label.numberOfLines = 0
-        
         let attributedString = NSMutableAttributedString(string: "며칠에 한 번 가족에게 연락하고\n싶으세요?")
         let paragraphStyle = NSMutableParagraphStyle()
+        
+        label.font = .boldSystemFont(ofSize: 25)
+        label.numberOfLines = 0
+        label.attributedText = attributedString
         paragraphStyle.lineSpacing = 10
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-        label.attributedText = attributedString
+
         return label
     }()
     
