@@ -130,14 +130,15 @@ class AddingViewController: UIViewController {
     }
     
     private func configureAddSubView() {
-        view.addSubview(addingTitleLabel)
-        view.addSubview(profileImageView)
-        view.addSubview(plusIcon)
-        view.addSubview(createNicknameLabel)
-        view.addSubview(nickNameTextField)
-        view.addSubview(underLineView)
-        view.addSubview(textFieldLimitLabel)
-        view.addSubview(addButton)
+        view.addSubviews(addingTitleLabel,
+                         profileImageView,
+                         plusIcon,
+                         createNicknameLabel,
+                         nickNameTextField,
+                         underLineView,
+                         textFieldLimitLabel,
+                         addButton
+                        )
     }
     
     private func configureConstraints() {
