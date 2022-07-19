@@ -56,10 +56,10 @@ class FamilyTableCell: UITableViewCell {
     
     // MARK: - configure
     private func configureAddSubViews() {
-        contentView.addSubview(familyCharacterImageView)
-        contentView.addSubview(familyNameLabel)
-        contentView.addSubview(familyDescriptionLabel)
-        contentView.addSubview(contactButton)
+        contentView.addSubviews(familyCharacterImageView,
+                               familyNameLabel,
+                               familyDescriptionLabel,
+                               contactButton)
     }
     
     private func configureConstraints() {

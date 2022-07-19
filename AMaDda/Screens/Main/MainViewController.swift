@@ -48,10 +48,10 @@ extension MainViewController {
         familyTableView.backgroundColor = .systemBackground
     }
     private func configureAddSubViews() {
-        view.addSubview(todayQuestionView)
+        view.addSubviews(todayQuestionView,
+                         familyTableLabel,
+                         familyTableView)
         todayQuestionView.configureAddSubViewsTodayQuestionView()
-        view.addSubview(familyTableLabel)
-        view.addSubview(familyTableView)
     }
     private func configureConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
