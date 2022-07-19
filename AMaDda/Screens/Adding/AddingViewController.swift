@@ -77,8 +77,8 @@ class AddingViewController: UIViewController {
     
     @objc private func didTapAddButton() {
         guard let text = nickNameTextField.text else { return }
-        
         print(text)
+        // TODO: 이미지경로(String) 이랑 text(String) 를 array에 append하고 그 array를 UserDefault에 저장
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
