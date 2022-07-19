@@ -83,8 +83,7 @@ extension OnboardingOneViewController {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.badge, .alert, .sound]) { granted, error in
             if let error = error {
-                print("request authorization failed")
-                print("error: \(error)")
+                print("request authorization failed: \(error)")
             }
             // TODO: sprint1 때에는 granted 설정에 상관 없이 onboarding2로 이동
             // TODO: sprint2 때에는 분기점 생성
