@@ -24,9 +24,6 @@ extension UIColor {
                green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
                blue: CGFloat(rgbValue & 0x0000FF) / 255.0, alpha: alpha)
        }
-    static var amaddaBackgroundColor: UIColor {
-        return UIColor(hex: "FCFAF8")
-    }
     static var buttonColor: UIColor {
         return UIColor(hex: "D1B48C")
     }
