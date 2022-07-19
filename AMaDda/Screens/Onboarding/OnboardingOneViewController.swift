@@ -31,6 +31,7 @@ class OnboardingOneViewController: UIViewController {
         let button = CommonButton()
         button.setTitle("다음", for: .normal)
         // TODO: Button Function을 필요로 한다.
+        button.addTarget(self, action: #selector(notificationAuthorizationRequest), for: .touchUpInside)
         return button
     }()
     
@@ -75,5 +76,19 @@ class OnboardingOneViewController: UIViewController {
             nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
         ])
         
+    }
+}
+
+extension OnboardingOneViewController {
+    @objc private func notificationAuthorizationRequest(){
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.badge, .alert, .sound]) { granted, error in
+            if let error = error {
+                print("request authorization failed")
+                print("error: \(error)")
+            }
+            // TODO: sprint1 때에는 granted 설정에 상관 없이 onboarding2로 이동
+            // TODO: sprint2 때에는 분기점 생성
+        }
     }
 }
