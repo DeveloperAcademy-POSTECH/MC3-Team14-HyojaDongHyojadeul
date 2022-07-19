@@ -23,6 +23,7 @@
 		91FD28B52884F55C00F49D20 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28B42884F55C00F49D20 /* Size.swift */; };
 		91FD28B82884F70A00F49D20 /* FontsPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28B72884F70A00F49D20 /* FontsPlaceHolder.swift */; };
 		D7ADBBA72883D520004BB5FE /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ADBBA62883D520004BB5FE /* CommonButton.swift */; };
+		E6278AE52884FCF500DC0CB0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		91FD28B42884F55C00F49D20 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		91FD28B72884F70A00F49D20 /* FontsPlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsPlaceHolder.swift; sourceTree = "<group>"; };
 		D7ADBBA62883D520004BB5FE /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
+		E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				91FD28B12884F4B800F49D20 /* Color+Extension.swift */,
+				E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6278AE52884FCF500DC0CB0 /* UIView+Extension.swift in Sources */,
 				91FD28B22884F4B800F49D20 /* Color+Extension.swift in Sources */,
 				91FD28B82884F70A00F49D20 /* FontsPlaceHolder.swift in Sources */,
 				3E15D66F2884FB8000570DD7 /* FamilyTableCell.swift in Sources */,
