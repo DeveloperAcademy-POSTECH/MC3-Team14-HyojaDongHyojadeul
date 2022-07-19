@@ -41,6 +41,13 @@ class OnboardingTwoViewController: UIViewController {
         return stepper
     }()
     
+    private let startButton: CommonButton = {
+        let button = CommonButton()
+        button.setTitle("시작하기", for: UIControl.State.normal)
+        // TODO: Button Function을 필요로 한다.
+        return button
+    }()
+    
     // MARK: stepper function
     @objc func stepperValueChanged(_ stepper: UIStepper) {
         notificationCount = Int(stepper.value)
@@ -63,26 +70,35 @@ class OnboardingTwoViewController: UIViewController {
         view.addSubview(onboardingTwoTitle)
         view.addSubview(showNotification)
         view.addSubview(onboardingStepper)
+        view.addSubview(startButton)
     }
     
     // MARK: Configures
     func configureConstraints(){
-        view.backgroundColor = .systemBackground
         
-        view.addSubview(onboardingTwoTitle)
         onboardingTwoTitle.translatesAutoresizingMaskIntoConstraints = false
-        onboardingTwoTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48).isActive = true
-        onboardingTwoTitle.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
-        onboardingTwoTitle.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+        onboardingTwoTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+        onboardingTwoTitle.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+        onboardingTwoTitle.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+        ])
         
-        view.addSubview(showNotification)
         showNotification.translatesAutoresizingMaskIntoConstraints = false
-        showNotification.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        showNotification.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+        showNotification.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        showNotification.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
         
-        view.addSubview(onboardingStepper)
         onboardingStepper.translatesAutoresizingMaskIntoConstraints = false
-        onboardingStepper.bottomAnchor.constraint(equalTo: showNotification.bottomAnchor, constant: 145).isActive = true
-        onboardingStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        NSLayoutConstraint.activate([
+        onboardingStepper.bottomAnchor.constraint(equalTo: showNotification.bottomAnchor, constant: 145),
+        onboardingStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+        
+        startButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
+        ])
     }
 }
