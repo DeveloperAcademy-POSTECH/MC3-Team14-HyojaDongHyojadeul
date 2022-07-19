@@ -19,7 +19,6 @@ class AddingViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         return label
     }()
-    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.btnProfile
@@ -27,7 +26,6 @@ class AddingViewController: UIViewController {
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
-    
     private let plusIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.icPlus
@@ -36,34 +34,29 @@ class AddingViewController: UIViewController {
         imageView.clipsToBounds = true
         return imageView
     }()
-    
     private let createNicknameLabel: UILabel = {
         let label = UILabel()
         label.text = "어떻게 부르고 싶나요?"
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
     }()
-    
     private lazy var nickNameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "예시) 아버지, 엄마, 세젤예 우리엄마"
         textField.delegate = self
         return textField
     }()
-    
     private let underLineView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
         return view
     }()
-    
     private let textFieldLimitLabel: UILabel = {
         let label = UILabel()
         label.text = "0/10"
         label.textColor = .lightGray
         return label
     }()
-    
     private lazy var addButton: CommonButton = {
         let button = CommonButton()
         button.title = "추가하기"
