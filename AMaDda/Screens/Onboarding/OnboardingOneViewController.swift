@@ -9,7 +9,7 @@ import UIKit
 
 class OnboardingOneViewController: UIViewController {
     // MARK: Properties
-    private let firstOnboardTitle: UILabel = {
+    private let firstOnboardTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 25)
         label.numberOfLines = 0
@@ -48,22 +48,22 @@ class OnboardingOneViewController: UIViewController {
     }
     
     private func configureAddSubView() {
-        view.addSubviews(firstOnboardTitle,
+        view.addSubviews(firstOnboardTitleLabel,
                          (firstOnboardingView),
                          nextButton)
     }
     
     func configureConstraints(){        
-        firstOnboardTitle.translatesAutoresizingMaskIntoConstraints = false
+        firstOnboardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            firstOnboardTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
-            firstOnboardTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            firstOnboardTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
+            firstOnboardTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            firstOnboardTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            firstOnboardTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
         firstOnboardingView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            firstOnboardingView.topAnchor.constraint(equalTo: firstOnboardTitle.bottomAnchor, constant: 34),
+            firstOnboardingView.topAnchor.constraint(equalTo: firstOnboardTitleLabel.bottomAnchor, constant: 34),
             firstOnboardingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             firstOnboardingView.widthAnchor.constraint(equalToConstant: 240),
             firstOnboardingView.heightAnchor.constraint(equalToConstant: 480),

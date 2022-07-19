@@ -12,7 +12,7 @@ class OnboardingTwoViewController: UIViewController {
     var notificationCount = 3
     
     // MARK: Properties
-    private let onboardingTwoTitle: UILabel = {
+    private let onboardingTwoTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 25)
         label.numberOfLines = 0
@@ -67,7 +67,7 @@ class OnboardingTwoViewController: UIViewController {
     }
     
     private func configureAddSubView() {
-        view.addSubviews(onboardingTwoTitle,
+        view.addSubviews(onboardingTwoTitleLabel,
                         showNotification,
                         onboardingStepper,
                         startButton)
@@ -75,11 +75,11 @@ class OnboardingTwoViewController: UIViewController {
     
     // MARK: Configures
     func configureConstraints(){
-        onboardingTwoTitle.translatesAutoresizingMaskIntoConstraints = false
+        onboardingTwoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            onboardingTwoTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
-            onboardingTwoTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            onboardingTwoTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
+            onboardingTwoTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            onboardingTwoTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            onboardingTwoTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
         showNotification.translatesAutoresizingMaskIntoConstraints = false
