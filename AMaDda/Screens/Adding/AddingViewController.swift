@@ -12,6 +12,7 @@ class AddingViewController: UIViewController {
     private var maxLength = 10
     
     // MARK: - property
+    
     private let addingTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "추가하기"
@@ -62,7 +63,9 @@ class AddingViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
         return button
     }()
+    
     // MARK: - life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -125,6 +128,7 @@ class AddingViewController: UIViewController {
     }
     
     // MARK: - configure
+    
     private func configureUI() {
         view.backgroundColor = .systemBackground
     }
@@ -137,8 +141,7 @@ class AddingViewController: UIViewController {
                          nickNameTextField,
                          underLineView,
                          textFieldLimitLabel,
-                         addButton
-                        )
+                         addButton)
     }
     
     private func configureConstraints() {
@@ -201,7 +204,6 @@ class AddingViewController: UIViewController {
         
     }
 }
-
 
 extension AddingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
