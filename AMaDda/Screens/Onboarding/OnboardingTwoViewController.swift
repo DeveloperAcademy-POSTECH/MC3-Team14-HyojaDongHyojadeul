@@ -43,7 +43,7 @@ class OnboardingTwoViewController: UIViewController {
     
     private let startButton: CommonButton = {
         let button = CommonButton()
-        button.setTitle("시작하기", for: UIControl.State.normal)
+        button.setTitle("시작하기", for: .normal)
         // TODO: Button Function을 필요로 한다.
         return button
     }()

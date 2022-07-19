@@ -31,7 +31,7 @@ class OnboardingOneViewController: UIViewController {
     
     private let nextButton: CommonButton = {
         let button = CommonButton()
-        button.setTitle("다음", for: UIControl.State.normal)
+        button.setTitle("다음", for: .normal)
         // TODO: Button Function을 필요로 한다.
         return button
     }()
