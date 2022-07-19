@@ -67,10 +67,10 @@ class OnboardingTwoViewController: UIViewController {
     }
     
     private func configureAddSubView() {
-        view.addSubview(onboardingTwoTitle)
-        view.addSubview(showNotification)
-        view.addSubview(onboardingStepper)
-        view.addSubview(startButton)
+        view.addSubviews(onboardingTwoTitle,
+                        showNotification,
+                        onboardingStepper,
+                        startButton)
     }
     
     // MARK: Configures

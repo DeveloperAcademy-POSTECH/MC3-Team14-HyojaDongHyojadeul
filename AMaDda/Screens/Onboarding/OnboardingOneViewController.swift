@@ -48,9 +48,9 @@ class OnboardingOneViewController: UIViewController {
     }
     
     private func configureAddSubView() {
-        view.addSubview(firstOnboardTitle)
-        view.addSubview(firstOnboardingView)
-        view.addSubview(nextButton)
+        view.addSubviews(firstOnboardTitle,
+                         (firstOnboardingView),
+                         nextButton)
     }
     
     func configureConstraints(){        
