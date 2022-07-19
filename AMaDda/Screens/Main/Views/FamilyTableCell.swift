@@ -8,9 +8,6 @@
 import UIKit
 
 class FamilyTableCell: UITableViewCell {
-    
-    static let reuseableIdentifier = "family"
-    
     private enum Size {
         static let sideSpacing: CGFloat = 20.0
         static let topBottomSpacing: CGFloat = 25.0
@@ -39,7 +36,7 @@ class FamilyTableCell: UITableViewCell {
     
     // MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: style, reuseIdentifier: FamilyTableCell.className)
         configureAddSubViews()
         configureConstraints()
         configureUI()
