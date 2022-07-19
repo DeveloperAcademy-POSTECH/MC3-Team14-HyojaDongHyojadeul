@@ -27,11 +27,10 @@ class OnboardingOneViewController: UIViewController {
         imageView.image = UIImage(named: "onboardingImage.png")
         return imageView
     }()
-    private let nextButton: CommonButton = {
+    private lazy var nextButton: CommonButton = {
         let button = CommonButton()
         button.setTitle("다음", for: .normal)
-        // TODO: Button Function을 필요로 한다.
-        button.addTarget(self, action: #selector(notificationAuthorizationRequest), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
     
@@ -80,7 +79,12 @@ class OnboardingOneViewController: UIViewController {
 }
 
 extension OnboardingOneViewController {
-    @objc private func notificationAuthorizationRequest(){
+    @objc private func didTapNextButton(){
+        notificationAuthorizationRequest()
+        // TODO: onboarding2 로 이동
+    }
+    
+    private func notificationAuthorizationRequest(){
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.badge, .alert, .sound]) { granted, error in
             if let error = error {
