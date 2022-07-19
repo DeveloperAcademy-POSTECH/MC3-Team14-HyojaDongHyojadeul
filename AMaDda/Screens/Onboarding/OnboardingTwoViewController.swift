@@ -77,21 +77,21 @@ class OnboardingTwoViewController: UIViewController {
     func configureConstraints(){
         onboardingTwoTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        onboardingTwoTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
-        onboardingTwoTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
-        onboardingTwoTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
+            onboardingTwoTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            onboardingTwoTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            onboardingTwoTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
         showNotification.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        showNotification.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        showNotification.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            showNotification.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            showNotification.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
         
         onboardingStepper.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        onboardingStepper.bottomAnchor.constraint(equalTo: showNotification.bottomAnchor, constant: 144),
-        onboardingStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            onboardingStepper.bottomAnchor.constraint(equalTo: showNotification.bottomAnchor, constant: 144),
+            onboardingStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
         startButton.translatesAutoresizingMaskIntoConstraints = false
