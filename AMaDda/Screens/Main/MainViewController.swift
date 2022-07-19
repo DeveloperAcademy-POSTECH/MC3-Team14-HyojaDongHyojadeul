@@ -21,7 +21,7 @@ final class MainViewController: UIViewController {
     }()
     private let familyTableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(FamilyTableCell.self, forCellReuseIdentifier: FamilyTableCell.reuseableIdentifier)
+        tableView.register(FamilyTableCell.self, forCellReuseIdentifier: FamilyTableCell.className)
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -48,10 +48,10 @@ extension MainViewController {
         familyTableView.backgroundColor = .systemBackground
     }
     private func configureAddSubViews() {
-        view.addSubview(todayQuestionView)
+        view.addSubviews(todayQuestionView,
+                         familyTableLabel,
+                         familyTableView)
         todayQuestionView.configureAddSubViewsTodayQuestionView()
-        view.addSubview(familyTableLabel)
-        view.addSubview(familyTableView)
     }
     private func configureConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
@@ -98,7 +98,7 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.reuseableIdentifier, for: indexPath) as? FamilyTableCell else { fatalError() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { fatalError() }
         let item = self.familyMembers[indexPath.row]
         cell.item = item
         cell.selectionStyle = .none

@@ -8,9 +8,6 @@
 import UIKit
 
 class FamilyTableCell: UITableViewCell {
-    
-    static let reuseableIdentifier = "family"
-    
     private enum Size {
         static let sideSpacing: CGFloat = 20.0
         static let topBottomSpacing: CGFloat = 25.0
@@ -56,10 +53,10 @@ class FamilyTableCell: UITableViewCell {
     
     // MARK: - configure
     private func configureAddSubViews() {
-        contentView.addSubview(familyCharacterImageView)
-        contentView.addSubview(familyNameLabel)
-        contentView.addSubview(familyDescriptionLabel)
-        contentView.addSubview(contactButton)
+        contentView.addSubviews(familyCharacterImageView,
+                               familyNameLabel,
+                               familyDescriptionLabel,
+                               contactButton)
     }
     
     private func configureConstraints() {
