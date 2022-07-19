@@ -11,19 +11,19 @@ class OnboardingOneViewController: UIViewController {
     // MARK: Properties
     private let firstOnboardTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 25)
-        label.numberOfLines = 0
-        
         let attributedString = NSMutableAttributedString(string: "일정시간마다 연락에 대한\n알림을 받을 수 있어요")
         let paragraphStyle = NSMutableParagraphStyle()
+        
+        label.font = .boldSystemFont(ofSize: 25)
+        label.numberOfLines = 0
+        label.attributedText = attributedString
         paragraphStyle.lineSpacing = 10
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-        label.attributedText = attributedString
         
         return label
     }()
     
-    private let firstOnboardingView: UIImageView = {
+    private let firstOnboardingImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "onboardingImage.png")
         return imageView
@@ -43,13 +43,14 @@ class OnboardingOneViewController: UIViewController {
         configureConstraints()
     }
     
+    // MARK: Configures
     private func configureUI() {
         view.backgroundColor = .systemBackground
     }
     
     private func configureAddSubView() {
         view.addSubviews(firstOnboardTitleLabel,
-                         (firstOnboardingView),
+                         firstOnboardingImageView,
                          nextButton)
     }
     
@@ -61,12 +62,12 @@ class OnboardingOneViewController: UIViewController {
             firstOnboardTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
-        firstOnboardingView.translatesAutoresizingMaskIntoConstraints = false
+        firstOnboardingImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            firstOnboardingView.topAnchor.constraint(equalTo: firstOnboardTitleLabel.bottomAnchor, constant: 34),
-            firstOnboardingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            firstOnboardingView.widthAnchor.constraint(equalToConstant: 240),
-            firstOnboardingView.heightAnchor.constraint(equalToConstant: 480),
+            firstOnboardingImageView.topAnchor.constraint(equalTo: firstOnboardTitleLabel.bottomAnchor, constant: 34),
+            firstOnboardingImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            firstOnboardingImageView.widthAnchor.constraint(equalToConstant: 240),
+            firstOnboardingImageView.heightAnchor.constraint(equalToConstant: 480),
         ])
         
         nextButton.translatesAutoresizingMaskIntoConstraints = false
@@ -74,5 +75,6 @@ class OnboardingOneViewController: UIViewController {
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
         ])
+        
     }
 }

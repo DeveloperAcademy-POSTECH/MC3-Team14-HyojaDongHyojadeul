@@ -26,7 +26,7 @@ class OnboardingTwoViewController: UIViewController {
         return label
     }()
     
-    private lazy var showNotification: UILabel = {
+    private lazy var showNotificationLabel: UILabel = {
         let label = UILabel()
         label.text = "\(notificationCount)일"
         label.font = .systemFont(ofSize: 40)
@@ -52,7 +52,7 @@ class OnboardingTwoViewController: UIViewController {
     // MARK: stepper function
     @objc func stepperValueChanged(_ stepper: UIStepper) {
         notificationCount = Int(stepper.value)
-        showNotification.text = "\(notificationCount)일"
+        showNotificationLabel.text = "\(notificationCount)일"
     }
     
     // MARK: Life Cycle functions
@@ -63,18 +63,18 @@ class OnboardingTwoViewController: UIViewController {
         configureConstraints()
     }
     
+    // MARK: Configures
     private func configureUI() {
         view.backgroundColor = .systemBackground
     }
     
     private func configureAddSubView() {
         view.addSubviews(onboardingTwoTitleLabel,
-                        showNotification,
+                        showNotificationLabel,
                         onboardingStepper,
                         startButton)
     }
     
-    // MARK: Configures
     func configureConstraints(){
         onboardingTwoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -83,15 +83,15 @@ class OnboardingTwoViewController: UIViewController {
             onboardingTwoTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
-        showNotification.translatesAutoresizingMaskIntoConstraints = false
+        showNotificationLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            showNotification.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            showNotification.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            showNotificationLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            showNotificationLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
         
         onboardingStepper.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            onboardingStepper.topAnchor.constraint(equalTo: showNotification.bottomAnchor, constant: 104),
+            onboardingStepper.topAnchor.constraint(equalTo: showNotificationLabel.bottomAnchor, constant: 104),
             onboardingStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
@@ -100,5 +100,6 @@ class OnboardingTwoViewController: UIViewController {
             startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
         ])
+        
     }
 }
