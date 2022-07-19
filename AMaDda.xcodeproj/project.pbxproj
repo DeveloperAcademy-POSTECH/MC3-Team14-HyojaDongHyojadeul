@@ -27,6 +27,9 @@
 		D72A1E0028854C9C0058EE12 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1DFF28854C9C0058EE12 /* ImageLiteral.swift */; };
 		D72A1E02288558990058EE12 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1E01288558990058EE12 /* UIImage+Extension.swift */; };
 		D7ADBBA72883D520004BB5FE /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ADBBA62883D520004BB5FE /* CommonButton.swift */; };
+		E6278AD928843F8E00DC0CB0 /* ProfileModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */; };
+		E6278ADD2884412D00DC0CB0 /* ProfileModalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */; };
+		E6DCDBDB288652CF001D4F67 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DCDBDA288652CF001D4F67 /* UIViewController+Extension.swift */; };
 		E6278AE52884FCF500DC0CB0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +56,9 @@
 		D72A1DFF28854C9C0058EE12 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		D72A1E01288558990058EE12 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		D7ADBBA62883D520004BB5FE /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
+		E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalViewController.swift; sourceTree = "<group>"; };
+		E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalCell.swift; sourceTree = "<group>"; };
+		E6DCDBDA288652CF001D4F67 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +103,7 @@
 		3E622D0128803BBD006A921C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				E6278AD728843ECB00DC0CB0 /* ProfileModal */,
 				D72A1DFC28854A960058EE12 /* Adding */,
 				3E622D0928803C44006A921C /* Main */,
 			);
@@ -176,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				91FD28B12884F4B800F49D20 /* Color+Extension.swift */,
+				E6DCDBDA288652CF001D4F67 /* UIViewController+Extension.swift */,
 				D72A1E01288558990058EE12 /* UIImage+Extension.swift */,
 				E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */,
 				3E98E8E4288652DF001153E4 /* NSObject+Extension.swift */,
@@ -214,6 +222,31 @@
 				D7ADBBA62883D520004BB5FE /* CommonButton.swift */,
 			);
 			path = UIComponent;
+			sourceTree = "<group>";
+		};
+		E6278AD728843ECB00DC0CB0 /* ProfileModal */ = {
+			isa = PBXGroup;
+			children = (
+				E6278ADB288440F200DC0CB0 /* Views */,
+				E6278ADA288440E900DC0CB0 /* Controllers */,
+			);
+			path = ProfileModal;
+			sourceTree = "<group>";
+		};
+		E6278ADA288440E900DC0CB0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E6278ADB288440F200DC0CB0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +320,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6278AD928843F8E00DC0CB0 /* ProfileModalViewController.swift in Sources */,
+				E6DCDBDB288652CF001D4F67 /* UIViewController+Extension.swift in Sources */,
+				E6278ADD2884412D00DC0CB0 /* ProfileModalCell.swift in Sources */,
 				D72A1E02288558990058EE12 /* UIImage+Extension.swift in Sources */,
 				E6278AE52884FCF500DC0CB0 /* UIView+Extension.swift in Sources */,
 				91FD28B22884F4B800F49D20 /* Color+Extension.swift in Sources */,
