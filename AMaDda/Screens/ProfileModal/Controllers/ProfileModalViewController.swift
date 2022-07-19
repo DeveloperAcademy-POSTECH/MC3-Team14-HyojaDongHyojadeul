@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 // TODO: edit, add viewController에서 delegate 구현 필요
 protocol profileModalViewDelegate: AnyObject {
@@ -19,9 +18,7 @@ final class ProfileModalViewController: UIViewController {
         static let horizontalInset: CGFloat = 20.0
         static let collectionInterItemSize: CGFloat = 20.0
     }
-    private enum BarButtonStyle: Int {
-        case cancel, register
-    }
+
     // TODO: 이미지 이름 바인딩 필요
     var selectedCharacterName = "Character1"
     private var postfixNums = Array<Int>(1...8)
@@ -62,8 +59,8 @@ final class ProfileModalViewController: UIViewController {
     // MARK: - configure
     private func configureUI() {
         view.backgroundColor = .systemBackground
-        self.navigationItem.leftBarButtonItem = cancelBarButton
-        self.navigationItem.rightBarButtonItem = registerBarButton
+        navigationItem.leftBarButtonItem = cancelBarButton
+        navigationItem.rightBarButtonItem = registerBarButton
     }
     
     private func configureAddSubviews() {
@@ -132,6 +129,8 @@ extension ProfileModalViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - Preview
 #if DEBUG
+import SwiftUI
+
 struct ProfileView: PreviewProvider {
     static var previews: some View {
         ProfileModalViewController().toPreview()
