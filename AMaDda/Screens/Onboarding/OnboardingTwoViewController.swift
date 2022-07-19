@@ -25,14 +25,12 @@ class OnboardingTwoViewController: UIViewController {
 
         return label
     }()
-    
     private lazy var showNotificationLabel: UILabel = {
         let label = UILabel()
         label.text = "\(notificationCount)일"
         label.font = .systemFont(ofSize: 40)
         return label
     }()
-    
     private lazy var onboardingStepper: UIStepper = {
         let stepper = UIStepper()
         stepper.value = 3
@@ -41,7 +39,6 @@ class OnboardingTwoViewController: UIViewController {
         stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
-    
     private let startButton: CommonButton = {
         let button = CommonButton()
         button.setTitle("시작하기", for: .normal)

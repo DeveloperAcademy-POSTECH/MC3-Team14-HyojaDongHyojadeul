@@ -22,13 +22,11 @@ class OnboardingOneViewController: UIViewController {
         
         return label
     }()
-    
     private let firstOnboardingImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "onboardingImage.png")
         return imageView
     }()
-    
     private let nextButton: CommonButton = {
         let button = CommonButton()
         button.setTitle("다음", for: .normal)
@@ -36,6 +34,7 @@ class OnboardingOneViewController: UIViewController {
         return button
     }()
     
+    // MARK: Life Cycle functions
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
