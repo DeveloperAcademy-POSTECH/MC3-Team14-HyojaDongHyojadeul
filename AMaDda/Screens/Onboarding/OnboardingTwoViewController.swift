@@ -12,7 +12,7 @@ class OnboardingTwoViewController: UIViewController {
     var notificationCount = 3
     
     // MARK: Properties
-    private lazy var onboardingTwoTitle: UILabel = {
+    private let onboardingTwoTitle: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 25)
         label.numberOfLines = 0
@@ -75,12 +75,11 @@ class OnboardingTwoViewController: UIViewController {
     
     // MARK: Configures
     func configureConstraints(){
-        
         onboardingTwoTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
         onboardingTwoTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
-        onboardingTwoTitle.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-        onboardingTwoTitle.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+        onboardingTwoTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
+        onboardingTwoTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
         showNotification.translatesAutoresizingMaskIntoConstraints = false
@@ -91,7 +90,7 @@ class OnboardingTwoViewController: UIViewController {
         
         onboardingStepper.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        onboardingStepper.bottomAnchor.constraint(equalTo: showNotification.bottomAnchor, constant: 145),
+        onboardingStepper.bottomAnchor.constraint(equalTo: showNotification.bottomAnchor, constant: 144),
         onboardingStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         

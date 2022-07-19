@@ -53,9 +53,7 @@ class OnboardingOneViewController: UIViewController {
         view.addSubview(nextButton)
     }
     
-    func configureConstraints(){
-        view.backgroundColor = .systemBackground
-        
+    func configureConstraints(){        
         firstOnboardTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             firstOnboardTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
