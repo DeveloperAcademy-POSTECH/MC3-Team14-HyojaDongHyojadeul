@@ -11,10 +11,15 @@ class OnboardingOneViewController: UIViewController {
     // MARK: Properties
     private let firstOnboardTitle: UILabel = {
         let label = UILabel()
-        label.text = "일정시간마다 연락에 대한 알림을 받을 수 있어요"
         label.font = .boldSystemFont(ofSize: 25)
         label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
+        
+        let attributedString = NSMutableAttributedString(string: "일정시간마다 연락에 대한\n알림을 받을 수 있어요")
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        label.attributedText = attributedString
+        
         return label
     }()
     
