@@ -14,10 +14,14 @@ class OnboardingTwoViewController: UIViewController {
     // MARK: Properties
     private lazy var onboardingTwoTitle: UILabel = {
         let label = UILabel()
-        label.text = "며칠에 한 번 가족에게 연락하고 싶으세요?"
         label.font = .boldSystemFont(ofSize: 25)
         label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
+        
+        let attributedString = NSMutableAttributedString(string: "며칠에 한 번 가족에게 연락하고\n싶으세요?")
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        label.attributedText = attributedString
         return label
     }()
     
@@ -46,11 +50,23 @@ class OnboardingTwoViewController: UIViewController {
     // MARK: Life Cycle functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        render()
+        configureUI()
+        configureAddSubView()
+        configureConstraints()
+    }
+    
+    private func configureUI() {
+        view.backgroundColor = .systemBackground
+    }
+    
+    private func configureAddSubView() {
+        view.addSubview(onboardingTwoTitle)
+        view.addSubview(showNotification)
+        view.addSubview(onboardingStepper)
     }
     
     // MARK: Configures
-    func render(){
+    func configureConstraints(){
         view.backgroundColor = .systemBackground
         
         view.addSubview(onboardingTwoTitle)
