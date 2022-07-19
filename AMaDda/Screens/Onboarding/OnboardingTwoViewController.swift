@@ -90,7 +90,7 @@ class OnboardingTwoViewController: UIViewController {
         
         onboardingStepper.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            onboardingStepper.bottomAnchor.constraint(equalTo: showNotification.bottomAnchor, constant: 144),
+            onboardingStepper.topAnchor.constraint(equalTo: showNotification.bottomAnchor, constant: 104),
             onboardingStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
