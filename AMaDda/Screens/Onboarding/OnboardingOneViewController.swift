@@ -23,10 +23,10 @@ class OnboardingOneViewController: UIViewController {
         return label
     }()
     
-    private let firstOnboardingview: UIImageView = {
-        let firstOnboardingview = UIImageView()
-        firstOnboardingview.image = UIImage(named: "onboardingImage.png")
-        return firstOnboardingview
+    private let firstOnboardingView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "onboardingImage.png")
+        return imageView
     }()
     
     private let nextButton: CommonButton = {
@@ -49,7 +49,7 @@ class OnboardingOneViewController: UIViewController {
     
     private func configureAddSubView() {
         view.addSubview(firstOnboardTitle)
-        view.addSubview(firstOnboardingview)
+        view.addSubview(firstOnboardingView)
         view.addSubview(nextButton)
     }
     
@@ -59,22 +59,22 @@ class OnboardingOneViewController: UIViewController {
         firstOnboardTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             firstOnboardTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
-            firstOnboardTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Size.leadingTrailingPadding),
-            firstOnboardTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding)
+            firstOnboardTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            firstOnboardTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
-        firstOnboardingview.translatesAutoresizingMaskIntoConstraints = false
+        firstOnboardingView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            firstOnboardingview.topAnchor.constraint(equalTo: firstOnboardTitle.bottomAnchor, constant: 34),
-            firstOnboardingview.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            firstOnboardingview.widthAnchor.constraint(equalToConstant: 240),
-            firstOnboardingview.heightAnchor.constraint(equalToConstant: 480)
+            firstOnboardingView.topAnchor.constraint(equalTo: firstOnboardTitle.bottomAnchor, constant: 34),
+            firstOnboardingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            firstOnboardingView.widthAnchor.constraint(equalToConstant: 240),
+            firstOnboardingView.heightAnchor.constraint(equalToConstant: 480),
         ])
         
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42)
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
         ])
     }
 }
