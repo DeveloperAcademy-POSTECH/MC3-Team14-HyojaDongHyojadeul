@@ -36,7 +36,7 @@ class FamilyTableCell: UITableViewCell {
     
     // MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: FamilyTableCell.className)
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureAddSubViews()
         configureConstraints()
         configureUI()
