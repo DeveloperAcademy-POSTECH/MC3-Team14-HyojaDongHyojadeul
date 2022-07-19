@@ -11,12 +11,15 @@ import SwiftUI
 final class ProfileModalViewController: UIViewController {
     
     // MARK: - Properties
-    private let horizontalInset: CGFloat = 20.0
+    enum Size {
+        static let horizontalInset: CGFloat = 20.0
+        static let collectionInterItemSize: CGFloat = 5.0
+    }
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ProfileModalCell.self, forCellWithReuseIdentifier: ProfileModalCell.identifier)
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: Size.horizontalInset, bottom: 0, right: Size.horizontalInset)
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
@@ -24,11 +27,15 @@ final class ProfileModalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
         configureAddSubviews()
         configureConstraints()
     }
     
     // MARK: - configure
+    private func configureUI() {
+        view.backgroundColor = .systemBackground
+    }
     private func configureAddSubviews() {
         view.addSubview(collectionView)
     }
@@ -57,14 +64,14 @@ extension ProfileModalViewController: UICollectionViewDataSource {
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return Size.collectionInterItemSize
     }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ProfileModalViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width - horizontalInset * 2 - 1 * 2) / 3
+        let width = (view.frame.width - Size.horizontalInset * 2 - Size.collectionInterItemSize * 2) / 3
         let height = width * 1.5
         return CGSize(width: width, height: height)
     }
@@ -76,25 +83,4 @@ struct ProfileView: PreviewProvider {
         ProfileModalViewController().toPreview()
     }
 }
-
-#if DEBUG
-import SwiftUI
-
-extension UIViewController {
-    private struct Preview: UIViewControllerRepresentable {
-            let profileViewController: UIViewController
-
-            func makeUIViewController(context: Context) -> UIViewController {
-                return profileViewController
-            }
-
-            func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-            }
-        }
-
-        func toPreview() -> some View {
-            Preview(profileViewController: self)
-        }
-}
-#endif
 
