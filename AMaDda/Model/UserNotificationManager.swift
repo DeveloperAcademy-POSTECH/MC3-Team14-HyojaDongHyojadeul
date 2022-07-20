@@ -9,7 +9,7 @@ import UserNotifications
 
 final class UserNotificationManager {
     private let notificationCenter = UNUserNotificationCenter.current()
-    private let notificationCycleDay = 36
+    private let notificationCycleDay: Int = 36
     private var identifierDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
@@ -46,8 +46,8 @@ final class UserNotificationManager {
                     let requestIdentifier = identifierDateFormatter.string(from: requestStartDate)
                     let request = UNNotificationRequest(identifier: requestIdentifier, content: notificationContent, trigger: notificationTrigger)
                     self.notificationCenter.add(request) { error in
-                        if let Error = error {
-                            print(Error)
+                        if let error = error {
+                            print(error)
                         }
                     }
                     requestStartDate = Calendar.current.date(byAdding: .day, value: userNotificationCycle, to: requestStartDate) ?? Date()
