@@ -19,8 +19,8 @@ extension UserDefaults {
     }
     var finalContactDiff: Int? {
         get {
-            guard let count = UserDefaults.standard.value(forKey: "finalContactDiff") as? Int else { return nil }
-            return count
+            guard let diff = UserDefaults.standard.value(forKey: "finalContactDiff") as? Int else { return nil }
+            return diff
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "finalContactDiff")
