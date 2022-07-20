@@ -14,16 +14,16 @@ extension UserDefaults {
             return count
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "notificationCount")
+            UserDefaults.standard.set(newValue, forKey: "userNotificationCycle")
         }
     }
-    var finalContactCount: Int? {
+    var finalContactDiff: Int? {
         get {
-            guard let count = UserDefaults.standard.value(forKey: "finalContactCount") as? Int else { return nil }
+            guard let count = UserDefaults.standard.value(forKey: "finalContactDiff") as? Int else { return nil }
             return count
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "finalContactCount")
+            UserDefaults.standard.set(newValue, forKey: "finalContactDiff")
         }
     }
 }
