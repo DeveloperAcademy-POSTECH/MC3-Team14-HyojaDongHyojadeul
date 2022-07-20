@@ -35,7 +35,7 @@ final class UserNotificationManager {
             let requestAddCount = (notificationCycleDay - requestRemainDateCount) / userNotificationCycle
             // MARK: - request 등록. better way?
             self.getRequestLastPendingDate { [self] requestLastPendingDate in
-                var requestStartDate = Calendar.current.date(byAdding: .day, value: userNotificationCycle + 1, to: requestLastPendingDate) ?? Date()
+                var requestStartDate = Calendar.current.date(byAdding: .day, value: userNotificationCycle, to: requestLastPendingDate) ?? Date()
                 for i in 0..<requestAddCount {
                     finalContactDiff += userNotificationCycle
                     var requestStartDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: requestStartDate)
@@ -71,14 +71,14 @@ final class UserNotificationManager {
             completion(self.identifierDateFormatter.date(from: notificationIdentifier) ?? Date())
         }
     }
-    private func createRequestContent(_ finalContact: Int) -> UNMutableNotificationContent {
+    private func createRequestContent(_ finalContactDiff: Int) -> UNMutableNotificationContent {
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = "가족에게 연락해보세요"
         var finalContactString = ""
         var finalContactAfterStirng = "넘었어요"
-        switch finalContact {
+        switch finalContactDiff {
         case 0...7:
-            finalContactString = "\(finalContact)일"
+            finalContactString = "\(finalContactDiff)일"
             finalContactAfterStirng = "됐어요"
         case 8...14:
             finalContactString = "1주일"
@@ -97,6 +97,19 @@ final class UserNotificationManager {
     func removeAllPendingRequest() {
         notificationCenter.removeAllPendingNotificationRequests()
         print("Pending request 삭제 완료")
+    }
+    func updateRequestPendingContent() {
+        guard var finalContactDiff = UserDefaults.standard.finalContactDiff else {return}
+        guard let userNotificationCycle = UserDefaults.standard.userNotificationCycle else {return}
+        notificationCenter.getPendingNotificationRequests { (notificationRequests) in
+            for request: UNNotificationRequest in notificationRequests {
+                let currentRequest = request
+                let content = self.createRequestContent(finalContactDiff)
+                let updatedRequest = UNNotificationRequest(identifier: currentRequest.identifier, content: content, trigger: currentRequest.trigger)
+                self.notificationCenter.add(updatedRequest)
+                finalContactDiff += userNotificationCycle
+            }
+        }
     }
     // MARK: - testing function
 #if DEBUG
