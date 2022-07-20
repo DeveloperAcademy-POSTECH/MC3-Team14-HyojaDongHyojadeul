@@ -8,14 +8,10 @@
 import Foundation
 
 extension UserDefaults {
-    var notificationCount: Int? {
+    var userNotificationCycle: Int? {
         get {
-            var notificationCount: Int
-            guard let count = UserDefaults.standard.value(forKey: "notificationCount") as? Int else {
-                return nil
-            }
-            notificationCount = count
-            return notificationCount
+            guard let count = UserDefaults.standard.value(forKey: "userNotificationCycle") as? Int else { return nil }
+            return count
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "notificationCount")
@@ -23,12 +19,8 @@ extension UserDefaults {
     }
     var finalContactCount: Int? {
         get {
-            var finalContactCount: Int
-            guard let count = UserDefaults.standard.value(forKey: "finalContactCount") as? Int else {
-                return nil
-            }
-            finalContactCount = count
-            return finalContactCount
+            guard let count = UserDefaults.standard.value(forKey: "finalContactCount") as? Int else { return nil }
+            return count
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "finalContactCount")

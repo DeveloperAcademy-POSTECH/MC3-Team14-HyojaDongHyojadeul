@@ -19,7 +19,7 @@ final class UserNotificationManager {
     }
     func addRequest() {
         // TODO: notificationCount 앱 알림 횟수 설정할 떄 pending 삭제 후 UserDefaluts에 등록
-        guard let notificationCount = UserDefaults.standard.notificationCount else {
+        guard let userNotificationCycle = UserDefaults.standard.userNotificationCycle else {
             print("notificationCount 값 없음")
             return
         }
@@ -30,14 +30,14 @@ final class UserNotificationManager {
         }
         // MARK: - request 등록 날짜 계산. better way?
         getRequestPendingCount { [self] requestPendingCount in
-            let requestRemainDateCount = notificationCount * requestPendingCount
+            let requestRemainDateCount = userNotificationCycle * requestPendingCount
             finalContactCount += requestRemainDateCount // 앱이 로드될 떄 갱신되면 필요없을듯
-            let requestAddCount = (notificationCycleDay - requestRemainDateCount) / notificationCount
+            let requestAddCount = (notificationCycleDay - requestRemainDateCount) / userNotificationCycle
             // MARK: - request 등록. better way?
             self.getRequestLastPendingDate { [self] requestLastPendingDate in
-                var requestStartDate = Calendar.current.date(byAdding: .day, value: notificationCount + 1, to: requestLastPendingDate) ?? Date()
+                var requestStartDate = Calendar.current.date(byAdding: .day, value: userNotificationCycle + 1, to: requestLastPendingDate) ?? Date()
                 for i in 0..<requestAddCount {
-                    finalContactCount += notificationCount
+                    finalContactCount += userNotificationCycle
                     var requestStartDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: requestStartDate)
                     requestStartDateComponents.hour = 14
                     requestStartDateComponents.minute = 0
@@ -50,7 +50,7 @@ final class UserNotificationManager {
                             print(Error)
                         }
                     }
-                    requestStartDate = Calendar.current.date(byAdding: .day, value: notificationCount, to: requestStartDate) ?? Date()
+                    requestStartDate = Calendar.current.date(byAdding: .day, value: userNotificationCycle, to: requestStartDate) ?? Date()
                     print("request\(i) 등록 완료")
                 }
             }
