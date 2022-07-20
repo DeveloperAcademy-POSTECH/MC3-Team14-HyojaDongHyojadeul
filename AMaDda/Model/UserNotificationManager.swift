@@ -100,8 +100,8 @@ final class UserNotificationManager {
         print("Pending request 삭제 완료")
     }
     func updateRequestPendingContent() {
-        guard var finalContactDiff = UserDefaults.standard.finalContactDiff else {return}
-        guard let userNotificationCycle = UserDefaults.standard.userNotificationCycle else {return}
+        guard var finalContactDiff = UserDefaults.standard.finalContactDiff else { return }
+        guard let userNotificationCycle = UserDefaults.standard.userNotificationCycle else { return }
         notificationCenter.getPendingNotificationRequests { (notificationRequests) in
             for request: UNNotificationRequest in notificationRequests {
                 let currentRequest = request
