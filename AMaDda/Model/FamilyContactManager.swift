@@ -12,8 +12,7 @@ final class FamilyContactManager {
     
     func updateFinalContact() {
         guard let finalConnectDate = UserDefaults.finalConnectDate else {return}
-        let finalConnectDateComponents = Calendar.current.dateComponents([.day], from: finalConnectDate, to: today)
-        print()
+        let offsetDateComponents = Calendar.current.dateComponents([.day], from: finalConnectDate, to: today)
     }
 }
 
@@ -31,4 +30,30 @@ extension UserDefaults {
              UserDefaults.standard.set(newValue, forKey: "finalConnectDate")
          }
     }
+    var notificationCount: Int? {
+             get {
+                 var notificationCount: Int
+                 if let count = UserDefaults.standard.value(forKey: "notificationCount") as? Int {
+                     notificationCount = count
+                     return notificationCount
+                 }
+                 return nil
+             }
+             set {
+                 UserDefaults.standard.set(newValue, forKey: "notificationCount")
+             }
+         }
+     var finalContactCount: Int? {
+         get {
+             var finalContactCount: Int
+             if let count = UserDefaults.standard.value(forKey: "finalContactCount") as? Int {
+                 finalContactCount = count
+                 return finalContactCount
+             }
+             return nil
+         }
+         set {
+             UserDefaults.standard.set(newValue, forKey: "finalContactCount")
+         }
+     }
 }
