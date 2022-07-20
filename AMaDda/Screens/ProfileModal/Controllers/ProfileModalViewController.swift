@@ -79,8 +79,14 @@ final class ProfileModalViewController: UIViewController {
     
     // MARK: - Function
     private func getImageIndex(by name: String) -> Int {
-        guard let index = characterNames.firstIndex(of: name) else { fatalError() }
+        guard let index = characterNames.firstIndex(of: name) else { getIndexErrorHandling()
+            return 1
+        }
         return index
+    }
+    
+    private func getIndexErrorHandling() {
+        // TODO: 코드 문제로 에러 발생, 관리자에게 제보하도록 유도하는 메세지 작성
     }
     
     // MARK: - Selector
