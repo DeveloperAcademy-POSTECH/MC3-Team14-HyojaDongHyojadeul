@@ -8,7 +8,7 @@
 import UIKit
 
 // TODO: edit, add viewController에서 delegate 구현 필요
-protocol profileModalViewDelegate: AnyObject {
+protocol ProfileModalViewDelegate: AnyObject {
     func registerSelectedCharacter(imageName: String)
 }
 
@@ -20,15 +20,14 @@ final class ProfileModalViewController: UIViewController {
     }
 
     // TODO: 이미지 이름 바인딩 필요
-    weak var delegate: profileModalViewDelegate?
-    var selectedCharacterName = "Character1"
-    private var postfixNums = Array<Int>(1...8)
-    private lazy var characterNames: [String] = {
-        let names = postfixNums.map {
-            "Character" + String($0)
-        }
-        return names
-    }()
+    weak var delegate: ProfileModalViewDelegate?
+    var selectedCharacterName = ProfileImage.baseName + "1"
+    private let cancelBarButtonTag = 0
+    private let registerBarButtonTag = 1
+    private let characterNames: [String] = ProfileImage.allCases.map {
+        return ProfileImage.baseName + String($0.rawValue)
+    }
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -40,12 +39,12 @@ final class ProfileModalViewController: UIViewController {
     }()
     private lazy var cancelBarButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapBarButton(_:)))
-        button.tag = 0
+        button.tag = cancelBarButtonTag
         return button
     }()
     private lazy var registerBarButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "등록", style: .plain, target: self, action: #selector(tapBarButton(_:)))
-        button.tag = 1
+        button.tag = registerBarButtonTag
         return button
     }()
     
@@ -87,7 +86,7 @@ final class ProfileModalViewController: UIViewController {
     // MARK: - Selector
     @objc func tapBarButton(_ sender: Any) {
         guard let sender = sender as? UIBarButtonItem else { return }
-        if sender.tag == 1 {
+        if sender.tag == cancelBarButtonTag {
             // TODO: 데이터 바인딩 방법에 따른 코드 구현
             let imageIndex = getImageIndex(by: selectedCharacterName)
             self.delegate?.registerSelectedCharacter(imageName: characterNames[imageIndex])
