@@ -9,6 +9,12 @@ import UIKit
 
 struct FamilyMemberData {
     var name: String
-    var characterImage: UIImage
-    var description: String
+    var characterImageName: String
+    var lastContact: Date
+    
+    init(name: String) {
+        self.name = name
+        self.characterImageName = "Character1"
+        self.lastContact = Date.now
+    }
 }

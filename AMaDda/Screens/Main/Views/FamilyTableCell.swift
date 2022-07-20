@@ -19,8 +19,8 @@ class FamilyTableCell: UITableViewCell {
     var item: FamilyMemberData? {
         didSet {
             self.familyNameLabel.text = item?.name
-            self.familyDescriptionLabel.text = item?.description
-            self.familyCharacterImageView.image = item?.characterImage
+//            self.familyDescriptionLabel.text = item?.lastContact
+//            self.familyCharacterImageView.image = item?.characterImage
         }
     }
     
