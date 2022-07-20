@@ -8,7 +8,9 @@
 import UIKit
 
 class OnboardingOneViewController: UIViewController {
-    // MARK: Properties
+    
+    // MARK: - Properties
+    
     private let firstOnboardTitleLabel: UILabel = {
         let label = UILabel()
         let attributedString = NSMutableAttributedString(string: "일정시간마다 연락에 대한\n알림을 받을 수 있어요")
@@ -27,14 +29,15 @@ class OnboardingOneViewController: UIViewController {
         imageView.image = UIImage(named: "onboardingImage.png")
         return imageView
     }()
-    private let nextButton: CommonButton = {
+    private lazy var nextButton: CommonButton = {
         let button = CommonButton()
         button.setTitle("다음", for: .normal)
-        // TODO: Button Function을 필요로 한다.
+        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
     
-    // MARK: Life Cycle functions
+    // MARK: - Life Cycle functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -42,7 +45,8 @@ class OnboardingOneViewController: UIViewController {
         configureConstraints()
     }
     
-    // MARK: Configures
+    // MARK: - Configures
+    
     private func configureUI() {
         view.backgroundColor = .systemBackground
     }
@@ -74,6 +78,27 @@ class OnboardingOneViewController: UIViewController {
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
         ])
-        
+    }
+    
+    // MARK: - selector
+    
+    @objc private func didTapNextButton(){
+        notificationAuthorizationRequest()
+        // TODO: onboarding2 로 이동
+    }
+}
+
+// MARK: - extensions
+
+extension OnboardingOneViewController {
+    private func notificationAuthorizationRequest(){
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.badge, .alert, .sound]) { granted, error in
+            if let error = error {
+                print("request authorization failed: \(error)")
+            }
+            // TODO: sprint1 때에는 granted 설정에 상관 없이 onboarding2로 이동
+            // TODO: sprint2 때에는 분기점 생성
+        }
     }
 }
