@@ -104,7 +104,11 @@ final class UserNotificationManager {
         notificationCenter.getPendingNotificationRequests { (notificationRequests) in
             for request: UNNotificationRequest in notificationRequests {
                 let currentRequest = request
-                let content = self.createRequestContent(finalContactDiff)
+                guard let currentRequestDate = self.identifierDateFormatter.date(from: currentRequest.identifier) else{return}
+                let offsetDateComponents = Calendar.current.dateComponents([.day], from: Date(), to: currentRequestDate)
+                guard let offsetDay = offsetDateComponents.day else {return}
+                let requestFinalContactDiff = finalContactDiff + offsetDay
+                let content = self.createRequestContent(requestFinalContactDiff)
                 let updatedRequest = UNNotificationRequest(identifier: currentRequest.identifier, content: content, trigger: currentRequest.trigger)
                 self.notificationCenter.add(updatedRequest)
                 finalContactDiff += userNotificationCycle
