@@ -17,6 +17,7 @@
 		3E622CFA28803972006A921C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E622CF828803972006A921C /* LaunchScreen.storyboard */; };
 		3E98E8E5288652DF001153E4 /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98E8E4288652DF001153E4 /* NSObject+Extension.swift */; };
 		595E3B41288577D60036B677 /* OnboardingOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E3B40288577D60036B677 /* OnboardingOneViewController.swift */; };
+		598E6285288843690012CADA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598E6284288843690012CADA /* SettingsViewController.swift */; };
 		59F2584228868FA9003BC6ED /* OnboardingTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */; };
 		91715FFA28883E1C00A780B7 /* NotificationDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91715FF928883E1C00A780B7 /* NotificationDemoViewController.swift */; };
 		918BAFFC2886ED94002F94DB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */; };
@@ -52,6 +53,7 @@
 		3E622CFB28803972006A921C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E98E8E4288652DF001153E4 /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		595E3B40288577D60036B677 /* OnboardingOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOneViewController.swift; sourceTree = "<group>"; };
+		598E6284288843690012CADA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoViewController.swift; sourceTree = "<group>"; };
 		91715FF928883E1C00A780B7 /* NotificationDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDemoViewController.swift; sourceTree = "<group>"; };
 		918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				D72A1E1D2886D93B0058EE12 /* Editting */,
+				598E6283288843530012CADA /* Settings */,
 				595E3B3E288577B30036B677 /* Onboarding */,
 				E6278AD728843ECB00DC0CB0 /* ProfileModal */,
 				D72A1DFC28854A960058EE12 /* Adding */,
@@ -181,6 +184,14 @@
 				59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		598E6283288843530012CADA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				598E6284288843690012CADA /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		91FD28A62884F30E00F49D20 /* Views */ = {
@@ -381,6 +392,7 @@
 				91FD28A82884F32700F49D20 /* MainViewController.swift in Sources */,
 				D72A1E1F2886D94A0058EE12 /* EdittingViewController.swift in Sources */,
 				D72A1DFE28854AA10058EE12 /* AddingViewController.swift in Sources */,
+				598E6285288843690012CADA /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
