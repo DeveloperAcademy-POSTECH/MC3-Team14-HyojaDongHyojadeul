@@ -13,7 +13,7 @@ final class UserNotificationManager {
     private var identifierDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
-        dateFormatter.timeZone = TimeZone(abbreviation: "KST")
+        dateFormatter.timeZone = TimeZone.current
         dateFormatter.locale = Locale(identifier: "ko_KR")
         return dateFormatter
     }
@@ -67,8 +67,9 @@ final class UserNotificationManager {
                 completion(Date())
                 return
             }
-            // TODO: 왜인지 모르겠는데 날짜가 하루 적음
-            completion(self.identifierDateFormatter.date(from: notificationIdentifier) ?? Date())
+            let reqeustPendingDate = self.identifierDateFormatter.date(from: notificationIdentifier) ?? Date()
+            let currentPendingDate = Calendar.current.date(byAdding: .day, value: 1, to: reqeustPendingDate) ?? Date()
+            completion(currentPendingDate)
         }
     }
     private func createRequestContent(_ finalContactDiff: Int) -> UNMutableNotificationContent {
@@ -105,7 +106,8 @@ final class UserNotificationManager {
             for request: UNNotificationRequest in notificationRequests {
                 let currentRequest = request
                 guard let currentRequestDate = self.identifierDateFormatter.date(from: currentRequest.identifier) else{return}
-                let offsetDateComponents = Calendar.current.dateComponents([.day], from: Date(), to: currentRequestDate)
+                let requestStartDate = Calendar.current.date(byAdding: .day, value: 1, to: currentRequestDate) ?? Date()
+                let offsetDateComponents = Calendar.current.dateComponents([.day], from: Date(), to: requestStartDate)
                 guard let offsetDay = offsetDateComponents.day else {return}
                 let requestFinalContactDiff = finalContactDiff + offsetDay
                 let content = self.createRequestContent(requestFinalContactDiff)
@@ -113,6 +115,7 @@ final class UserNotificationManager {
                 self.notificationCenter.add(updatedRequest)
                 finalContactDiff += userNotificationCycle
             }
+            print("requestPendingContent 변경완료")
         }
     }
     // MARK: - testing function

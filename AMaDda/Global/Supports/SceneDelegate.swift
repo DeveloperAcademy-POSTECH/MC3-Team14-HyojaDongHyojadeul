@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let mainVC = MainViewController()
 //        let mainVC = AddingViewController()
 //        let mainVC = EdittingViewController()
+//        let mainVC = SettingsViewController()
         let mainVC = NotificationDemoViewController()
         window?.rootViewController = mainVC
         window?.makeKeyAndVisible()
