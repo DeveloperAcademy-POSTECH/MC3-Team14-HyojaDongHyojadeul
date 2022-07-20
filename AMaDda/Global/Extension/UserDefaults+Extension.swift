@@ -11,11 +11,11 @@ extension UserDefaults {
     var notificationCount: Int? {
         get {
             var notificationCount: Int
-            if let count = UserDefaults.standard.value(forKey: "notificationCount") as? Int {
-                notificationCount = count
-                return notificationCount
+            guard let count = UserDefaults.standard.value(forKey: "notificationCount") as? Int else {
+                return nil
             }
-            return nil
+            notificationCount = count
+            return notificationCount
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "notificationCount")
@@ -24,11 +24,11 @@ extension UserDefaults {
     var finalContactCount: Int? {
         get {
             var finalContactCount: Int
-            if let count = UserDefaults.standard.value(forKey: "finalContactCount") as? Int {
-                finalContactCount = count
-                return finalContactCount
+            guard let count = UserDefaults.standard.value(forKey: "finalContactCount") as? Int else {
+                return nil
             }
-            return nil
+            finalContactCount = count
+            return finalContactCount
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "finalContactCount")
