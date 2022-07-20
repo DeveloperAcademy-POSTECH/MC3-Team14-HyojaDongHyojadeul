@@ -20,6 +20,7 @@ final class ProfileModalViewController: UIViewController {
     }
 
     // TODO: 이미지 이름 바인딩 필요
+    weak var delegate: profileModalViewDelegate?
     var selectedCharacterName = "Character1"
     private var postfixNums = Array<Int>(1...8)
     private lazy var characterNames: [String] = {
@@ -47,7 +48,6 @@ final class ProfileModalViewController: UIViewController {
         button.tag = 1
         return button
     }()
-    weak var delegate: profileModalViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +102,7 @@ extension ProfileModalViewController: UICollectionViewDataSource {
         //TODO: 이미지 이름 배열에 따른 개수 출력
         return characterNames.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileModalCell.className, for: indexPath) as? ProfileModalCell else { fatalError() }
         let imageIndex = getImageIndex(by: selectedCharacterName)
@@ -113,8 +114,16 @@ extension ProfileModalViewController: UICollectionViewDataSource {
         cell.imageName = characterNames[indexPath.row]
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return Size.collectionInterItemSize
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension ProfileModalViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedCharacterName = characterNames[indexPath.row]
     }
 }
 

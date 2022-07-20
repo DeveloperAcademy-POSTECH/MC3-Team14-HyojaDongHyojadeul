@@ -12,7 +12,9 @@ final class ProfileModalCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            checkMarkImageView.isHidden = !isSelected
+            DispatchQueue.main.async {
+                self.checkMarkImageView.isHidden = !self.isSelected
+            }
         }
     }
     var imageName: String = "Character1" {
@@ -20,7 +22,7 @@ final class ProfileModalCell: UICollectionViewCell {
             profileImageView.image = .load(name: imageName)
         }
     }
-    private let profileImageView: UIImageView = {
+    let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
