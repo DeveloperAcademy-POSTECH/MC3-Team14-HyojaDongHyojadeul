@@ -22,14 +22,12 @@ final class UserDefaultsStateManager {
         if offsetDay == 0 {
             return
         } else {
-            updateFinalContactDiffDay()
+            updateFinalContactDiffDay(finalEnteredDate)
             UserDefaults.standard.finalEnteredDate = today
         }
     }
-    private func updateFinalContactDiffDay() {
-        guard var finalEnteredDate = UserDefaults.standard.finalEnteredDate else { return }
+    private func updateFinalContactDiffDay(_ finalEnteredDate: Date) {
         guard var finalContactDiffDay = UserDefaults.standard.finalContactDiffDay else { return }
-        finalEnteredDate = convertKoreaDate(finalEnteredDate)
         let offsetDateComponents = Calendar.current.dateComponents([.day], from: finalEnteredDate, to: today)
         guard let offsetDay = offsetDateComponents.day else { return }
         finalContactDiffDay += offsetDay
