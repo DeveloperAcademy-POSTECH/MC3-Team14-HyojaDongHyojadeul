@@ -101,7 +101,6 @@ final class UserNotificationManager {
     }
     func updateRequestPendingContent() {
         guard let finalContactDiff = UserDefaults.standard.finalContactDiffDay else { return }
-        let dayAsSecond: Double = 86400
         notificationCenter.getPendingNotificationRequests { [weak self] (notificationRequests) in
             guard let self = self else { return }
             for request: UNNotificationRequest in notificationRequests {
@@ -109,8 +108,8 @@ final class UserNotificationManager {
                 guard let currentRequestDate = self.identifierDateFormatter.date(from: currentRequest.identifier) else{ return }
                 let convertedCurrentRequestDate = self.convertKoreaDate(currentRequestDate)
                 let today = self.convertKoreaDate(Date())
-                let offsetInterval = today.timeIntervalSince(convertedCurrentRequestDate)
-                let offsetDay = Int(offsetInterval / dayAsSecond)
+                let offsetDateComponents = Calendar.current.dateComponents([.day], from: today, to: convertedCurrentRequestDate)
+                guard let offsetDay = offsetDateComponents.day else { return }
                 let requestFinalContactDiff = finalContactDiff + offsetDay
                 let content = self.createRequestContent(requestFinalContactDiff)
                 let updatedRequest = UNNotificationRequest(identifier: currentRequest.identifier, content: content, trigger: currentRequest.trigger)
