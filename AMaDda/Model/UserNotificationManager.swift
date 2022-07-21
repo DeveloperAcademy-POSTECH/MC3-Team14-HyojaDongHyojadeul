@@ -9,7 +9,10 @@ import UserNotifications
 
 final class UserNotificationManager {
     private let notificationCenter = UNUserNotificationCenter.current()
-    private let notificationCycleDay = 36
+    private let notificationCycleDay: Int = 36
+    private var today: Date {
+        convertKoreaDate(Date())
+    }
     private var identifierDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
@@ -24,25 +27,25 @@ final class UserNotificationManager {
             return
         }
         // TODO: 앱이 로드될 떄 finalContactCount 갱신 (finalContactDate와 오늘 날짜 차이를 계산하여 갱신 -> 연락하기 버튼을 누르면 0으로 갱신)
-        guard var finalContactDiff = UserDefaults.standard.finalContactDiff else {
-            print("finalContactDiff 값 없음")
+        guard var finalContactDiffDay = UserDefaults.standard.finalContactDiffDay else {
+            print("finalContactDiffDay 값 없음")
             return
         }
-        // MARK: - request 등록 날짜 계산. better way?
+        // MARK: - request 등록 날짜 계산
         getRequestPendingCount { [self] requestPendingCount in
             let requestRemainDateCount = userNotificationCycle * requestPendingCount
-            finalContactDiff += requestRemainDateCount // 앱이 로드될 떄 갱신되면 필요없을듯
+            finalContactDiffDay += requestRemainDateCount // 앱이 로드될 떄 갱신되면 필요없을듯
             let requestAddCount = (notificationCycleDay - requestRemainDateCount) / userNotificationCycle
-            // MARK: - request 등록. better way?
-            self.getRequestLastPendingDate { [self] requestLastPendingDate in
+            // MARK: - request 등록
+            self.requestLastPendingDate { [self] requestLastPendingDate in
                 var requestStartDate = Calendar.current.date(byAdding: .day, value: userNotificationCycle, to: requestLastPendingDate) ?? Date()
                 for i in 0..<requestAddCount {
-                    finalContactDiff += userNotificationCycle
+                    finalContactDiffDay += userNotificationCycle
                     var requestStartDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: requestStartDate)
                     requestStartDateComponents.hour = 14
                     requestStartDateComponents.minute = 0
                     let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: requestStartDateComponents, repeats: false)
-                    let notificationContent = createRequestContent(finalContactDiff)
+                    let notificationContent = createRequestContent(finalContactDiffDay)
                     let requestIdentifier = identifierDateFormatter.string(from: requestStartDate)
                     let request = UNNotificationRequest(identifier: requestIdentifier, content: notificationContent, trigger: notificationTrigger)
                     self.notificationCenter.add(request) { error in
@@ -61,14 +64,14 @@ final class UserNotificationManager {
             completion(notificationRequests.count)
         }
     }
-    private func getRequestLastPendingDate(completion: @escaping(Date) -> Void) {
-        notificationCenter.getPendingNotificationRequests { (notificationRequests) in
+    private func requestLastPendingDate(completion: @escaping(Date) -> Void) {
+        notificationCenter.getPendingNotificationRequests { [self] (notificationRequests) in
             guard let notificationIdentifier = notificationRequests.last?.identifier else {
                 completion(Date())
                 return
             }
-            let reqeustPendingDate = self.identifierDateFormatter.date(from: notificationIdentifier) ?? Date()
-            let currentPendingDate = Calendar.current.date(byAdding: .day, value: 1, to: reqeustPendingDate) ?? Date()
+            let reqeustPendingDate = identifierDateFormatter.date(from: notificationIdentifier) ?? Date()
+            let currentPendingDate = convertKoreaDate(reqeustPendingDate)
             completion(currentPendingDate)
         }
     }
@@ -100,15 +103,16 @@ final class UserNotificationManager {
         print("Pending request 삭제 완료")
     }
     func updateRequestPendingContent() {
-        guard var finalContactDiff = UserDefaults.standard.finalContactDiff else {return}
-        guard let userNotificationCycle = UserDefaults.standard.userNotificationCycle else {return}
-        notificationCenter.getPendingNotificationRequests { (notificationRequests) in
+        guard let finalContactDiff = UserDefaults.standard.finalContactDiffDay else { return }
+        let dayAsSecond: Double = 86400
+        notificationCenter.getPendingNotificationRequests { [weak self] (notificationRequests) in
+            guard let self = self else { return }
             for request: UNNotificationRequest in notificationRequests {
                 let currentRequest = request
-                guard let currentRequestDate = self.identifierDateFormatter.date(from: currentRequest.identifier) else{return}
-                let requestStartDate = Calendar.current.date(byAdding: .day, value: 1, to: currentRequestDate) ?? Date()
-                let offsetDateComponents = Calendar.current.dateComponents([.day], from: Date(), to: requestStartDate)
-                guard let offsetDay = offsetDateComponents.day else {return}
+                guard let currentRequestDate = self.identifierDateFormatter.date(from: currentRequest.identifier) else{ return }
+                let convertedCurrentRequestDate = self.convertKoreaDate(currentRequestDate)
+                let offsetInterval = convertedCurrentRequestDate.timeIntervalSince(self.today)
+                let offsetDay = Int(offsetInterval / dayAsSecond)
                 let requestFinalContactDiff = finalContactDiff + offsetDay
                 let content = self.createRequestContent(requestFinalContactDiff)
                 print(requestFinalContactDiff)
@@ -118,6 +122,14 @@ final class UserNotificationManager {
             print("requestPendingContent 변경완료")
         }
     }
+    private func convertKoreaDate(_ convertDate: Date) -> Date{
+          let hourAsSecond: Int = 3600
+          let koreaGreenwichDiff = TimeInterval(hourAsSecond*9)
+          let convertedDateComponent = Calendar.current.dateComponents([.year, .month, .day], from: convertDate)
+          var convertedDate = Calendar.current.date(from: convertedDateComponent) ?? Date()
+          convertedDate += koreaGreenwichDiff
+          return convertedDate
+      }
     // MARK: - testing function
 #if DEBUG
     func checkPendingNotificationRequests() {
