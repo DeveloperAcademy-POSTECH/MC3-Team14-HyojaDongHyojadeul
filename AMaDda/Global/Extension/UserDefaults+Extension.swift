@@ -17,13 +17,13 @@ extension UserDefaults {
             UserDefaults.standard.set(newValue, forKey: "userNotificationCycle")
         }
     }
-    var finalContactDiff: Int? {
+    var finalContactDiffDay: Int? {
         get {
-            guard let diff = UserDefaults.standard.value(forKey: "finalContactDiff") as? Int else { return nil }
+            guard let diff = UserDefaults.standard.value(forKey: "finalContactDiffDay") as? Int else { return nil }
             return diff
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "finalContactDiff")
+            UserDefaults.standard.set(newValue, forKey: "finalContactDiffDay")
         }
     }
 }
