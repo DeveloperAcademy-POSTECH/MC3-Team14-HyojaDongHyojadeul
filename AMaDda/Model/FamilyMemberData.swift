@@ -12,9 +12,9 @@ struct FamilyMemberData {
     var characterImageName: String
     var lastContact: Date
     
-    init(name: String) {
+    init(name: String, characterImageName: String) {
         self.name = name
-        self.characterImageName = "Character1"
+        self.characterImageName = characterImageName
         self.lastContact = Date.now
     }
 }
