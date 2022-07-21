@@ -113,7 +113,6 @@ final class UserNotificationManager {
                 let content = self.createRequestContent(requestFinalContactDiff)
                 let updatedRequest = UNNotificationRequest(identifier: currentRequest.identifier, content: content, trigger: currentRequest.trigger)
                 self.notificationCenter.add(updatedRequest)
-                finalContactDiff += userNotificationCycle
             }
         }
     }
