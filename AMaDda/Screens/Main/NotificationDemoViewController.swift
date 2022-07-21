@@ -79,11 +79,11 @@ final class NotificationDemoViewController: UIViewController {
         userNotificationManager.removeAllPendingRequest()
     }
     @objc func changeFinalContactDiff() {
-        UserDefaults.standard.finalContactDiff = 4
+        UserDefaults.standard.finalContactDiffDay = 4
         userNotificationManager.updateRequestPendingContent()
     }
     @objc func setUpUserDefaults() {
         UserDefaults.standard.userNotificationCycle = 3
-        UserDefaults.standard.finalContactDiff = 0
+        UserDefaults.standard.finalContactDiffDay = 0
     }
 }

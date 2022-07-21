@@ -32,7 +32,7 @@ final class UserNotificationManager {
             return
         }
         // MARK: - request 등록 날짜 계산
-        getRequestPendingCount { [self] requestPendingCount in
+        requestPendingCount { [self] requestPendingCount in
             let requestRemainDateCount = userNotificationCycle * requestPendingCount
             finalContactDiffDay += requestRemainDateCount // 앱이 로드될 떄 갱신되면 필요없을듯
             let requestAddCount = (notificationCycleDay - requestRemainDateCount) / userNotificationCycle
@@ -59,7 +59,7 @@ final class UserNotificationManager {
             }
         }
     }
-    private func getRequestPendingCount(completion: @escaping(Int) -> Void) {
+    private func requestPendingCount(completion: @escaping(Int) -> Void) {
         notificationCenter.getPendingNotificationRequests { (notificationRequests) in
             completion(notificationRequests.count)
         }
