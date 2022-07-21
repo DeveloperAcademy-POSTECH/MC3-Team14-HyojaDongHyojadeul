@@ -11,13 +11,6 @@ final class UserDefaultsStateManager {
     private var today: Date {
         return convertKoreaDate(Date())
     }
-    private var userDefaultsDateFormatter: DateFormatter {
-         let dateFormatter = DateFormatter()
-         dateFormatter.dateFormat = "yyyyMMdd"
-         dateFormatter.timeZone = TimeZone(abbreviation: "KST")
-         dateFormatter.locale = Locale(identifier: "ko_KR")
-         return dateFormatter
-     }
     func userEnteredApp() {
         guard var finalEnteredDate = UserDefaults.standard.finalEnteredDate else {
             UserDefaults.standard.finalEnteredDate = today
