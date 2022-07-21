@@ -26,4 +26,15 @@ extension UserDefaults {
             UserDefaults.standard.set(newValue, forKey: "finalContactDiffDay")
         }
     }
+    var finalEnteredDate: Date? {
+        get {
+            guard let enteredDate = UserDefaults.standard.value(forKey: "finalEnteredDate") as? Date else {
+                return nil
+            }
+            return enteredDate
+        }
+         set {
+             UserDefaults.standard.set(newValue, forKey: "finalEnteredDate")
+         }
+    }
 }
