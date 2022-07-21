@@ -111,9 +111,9 @@ final class UserNotificationManager {
                 guard let offsetDay = offsetDateComponents.day else {return}
                 let requestFinalContactDiff = finalContactDiff + offsetDay
                 let content = self.createRequestContent(requestFinalContactDiff)
+                print(requestFinalContactDiff)
                 let updatedRequest = UNNotificationRequest(identifier: currentRequest.identifier, content: content, trigger: currentRequest.trigger)
                 self.notificationCenter.add(updatedRequest)
-                finalContactDiff += userNotificationCycle
             }
             print("requestPendingContent 변경완료")
         }
