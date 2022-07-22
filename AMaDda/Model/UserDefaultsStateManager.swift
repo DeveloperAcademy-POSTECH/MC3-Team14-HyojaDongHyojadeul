@@ -8,10 +8,8 @@
 import Foundation
 
 final class UserDefaultsStateManager {
-    private var today: Date {
-        return convertKoreaDate(Date())
-    }
-    func userEnteredApp() {
+    static func userEnteredApp() {
+        let today = convertKoreaDate(Date())
         guard var finalEnteredDate = UserDefaults.standard.finalEnteredDate else {
             UserDefaults.standard.finalEnteredDate = today
             return
@@ -22,14 +20,15 @@ final class UserDefaultsStateManager {
         updateFinalContactDiffDay(finalEnteredDate)
         UserDefaults.standard.finalEnteredDate = today
     }
-    private func updateFinalContactDiffDay(_ finalEnteredDate: Date) {
+    static private func updateFinalContactDiffDay(_ finalEnteredDate: Date) {
+        let today = convertKoreaDate(Date())
         guard var finalContactDiffDay = UserDefaults.standard.finalContactDiffDay else { return }
         let offsetDateComponents = Calendar.current.dateComponents([.day], from: finalEnteredDate, to: today)
         guard let offsetDay = offsetDateComponents.day else { return }
         finalContactDiffDay += offsetDay
         UserDefaults.standard.finalContactDiffDay = finalContactDiffDay
     }
-    private func convertKoreaDate(_ convertDate: Date) -> Date {
+    static private func convertKoreaDate(_ convertDate: Date) -> Date {
         let hourAsSecond: Int = 3600
         let koreaGreenwichDiff = TimeInterval(hourAsSecond * 9)
         let convertedDateComponent = Calendar.current.dateComponents([.year, .month, .day], from: convertDate)
