@@ -15,3 +15,12 @@ enum ImageLiterals {
     // MARK: - button
     static var btnProfile: UIImage { .load(systemName: "person.circle.fill") }
 }
+
+// MARK: - ProfileImage
+
+enum ProfileImage: Int, CaseIterable {
+    case normalCat = 1
+    case ribbonCat, brownCat, hatCat, noseCat, bellCat, eyebrowCat, necktieCat
+    
+    static let baseName = "Character"
+}
