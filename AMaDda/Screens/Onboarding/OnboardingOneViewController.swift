@@ -84,7 +84,10 @@ class OnboardingOneViewController: UIViewController {
     
     @objc private func didTapNextButton(){
         notificationAuthorizationRequest()
-        // TODO: onboarding2 로 이동
+        // BUG: 온보딩2로 넘어간 화면에서 알림권한허용 alert가 뜬다.
+        let mainVC = OnboardingTwoViewController()
+        mainVC.modalPresentationStyle = .fullScreen
+        present(mainVC, animated: true, completion: nil)
     }
 }
 
@@ -97,8 +100,6 @@ extension OnboardingOneViewController {
             if let error = error {
                 print("request authorization failed: \(error)")
             }
-            // TODO: sprint1 때에는 granted 설정에 상관 없이 onboarding2로 이동
-            // TODO: sprint2 때에는 분기점 생성
         }
     }
 }
