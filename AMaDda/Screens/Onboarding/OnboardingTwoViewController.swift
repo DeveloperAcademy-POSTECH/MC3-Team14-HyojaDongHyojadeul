@@ -10,6 +10,7 @@ import UIKit
 class OnboardingTwoViewController: UIViewController {
     
     var notificationCount = 3
+    var checkedOnboarding = false
     
     // MARK: Properties
     private let onboardingTwoTitleLabel: UILabel = {
@@ -42,7 +43,7 @@ class OnboardingTwoViewController: UIViewController {
     private let startButton: CommonButton = {
         let button = CommonButton()
         button.setTitle("시작하기", for: .normal)
-        // TODO: Button Function을 필요로 한다.
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button
     }()
     
@@ -50,6 +51,11 @@ class OnboardingTwoViewController: UIViewController {
     @objc func stepperValueChanged(_ stepper: UIStepper) {
         notificationCount = Int(stepper.value)
         showNotificationLabel.text = "\(notificationCount)일"
+    }
+    
+    @objc func buttonAction(sender: UIButton!) {
+        UserDefaults.standard.set(notificationCount, forKey: "notificationCount") // 알림획수 저장
+        UserDefaults.standard.set(true, forKey: "checkedOnboarding")
     }
     
     // MARK: Life Cycle functions
