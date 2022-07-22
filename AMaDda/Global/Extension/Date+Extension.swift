@@ -8,18 +8,17 @@
 import Foundation
 
 extension Date {
-    static func convertKoreaDate(_ convertDate: Date) -> Date {
+    var convertedKoreaDate: Date {
         let hourAsSecond: Int = 3600
         let koreaGreenwichDiff = TimeInterval(hourAsSecond * 9)
-        let convertedDateComponent = Calendar.current.dateComponents([.year, .month, .day], from: convertDate)
+        let convertedDateComponent = Calendar.current.dateComponents([.year, .month, .day], from: self)
         var convertedDate = Calendar.current.date(from: convertedDateComponent) ?? Date()
         convertedDate += koreaGreenwichDiff
         return convertedDate
     }
     static func offsetToday(_ compareDate: Date) -> Int? {
-        let today = Date.convertKoreaDate(Date())
-        let convertedCompareDate = Date.convertKoreaDate(compareDate)
-        let offsetDateComponents = Calendar.current.dateComponents([.day], from: today, to: convertedCompareDate)
+        let today = Date().convertedKoreaDate
+        let offsetDateComponents = Calendar.current.dateComponents([.day], from: today, to: compareDate.convertedKoreaDate)
         guard let offsetDay = offsetDateComponents.day else {
             return nil
         }

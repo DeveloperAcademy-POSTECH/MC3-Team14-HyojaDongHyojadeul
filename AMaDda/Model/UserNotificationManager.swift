@@ -68,8 +68,7 @@ final class UserNotificationManager {
                 return
             }
             let reqeustPendingDate = identifierDateFormatter.date(from: notificationIdentifier) ?? Date()
-            let currentPendingDate = Date.convertKoreaDate(reqeustPendingDate)
-            completion(currentPendingDate)
+            completion(reqeustPendingDate.convertedKoreaDate)
         }
     }
     private func createRequestContent(_ finalContactDiff: Int) -> UNMutableNotificationContent {

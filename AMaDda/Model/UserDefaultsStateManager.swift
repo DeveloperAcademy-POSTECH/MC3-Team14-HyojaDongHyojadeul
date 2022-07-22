@@ -9,7 +9,7 @@ import Foundation
 
 final class UserDefaultsStateManager {
     static func userEnteredApp() {
-        let today = Date.convertKoreaDate(Date())
+        let today = Date().convertedKoreaDate
         guard let finalEnteredDate = UserDefaults.standard.finalEnteredDate else {
             UserDefaults.standard.finalEnteredDate = today
             return
