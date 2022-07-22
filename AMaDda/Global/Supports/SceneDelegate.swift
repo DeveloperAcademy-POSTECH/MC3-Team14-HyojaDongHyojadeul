@@ -21,8 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if UserDefaults.standard.bool(forKey: "checkedOnboarding") == true {
             let mainVC = MainViewController()
             window?.rootViewController = mainVC
-        }
-        else{
+        } else {
             let mainVC = OnboardingOneViewController()
             window?.rootViewController = mainVC
         }

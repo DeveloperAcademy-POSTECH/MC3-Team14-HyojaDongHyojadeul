@@ -54,6 +54,9 @@ class OnboardingTwoViewController: UIViewController {
     }
     
     @objc func buttonAction(sender: UIButton!) {
+        let mainVC = MainViewController()
+        mainVC.modalPresentationStyle = .fullScreen
+        present(mainVC, animated: true, completion: nil)
         UserDefaults.standard.set(notificationCount, forKey: "notificationCount") // 알림획수 저장
         UserDefaults.standard.set(true, forKey: "checkedOnboarding")
     }
