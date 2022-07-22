@@ -18,13 +18,9 @@ final class UserDefaultsStateManager {
         }
         finalEnteredDate = convertKoreaDate(finalEnteredDate)
         let offsetDateComponents = Calendar.current.dateComponents([.day], from: finalEnteredDate, to: today)
-        guard let offsetDay = offsetDateComponents.day else { return }
-        if offsetDay == 0 {
-            return
-        } else {
-            updateFinalContactDiffDay(finalEnteredDate)
-            UserDefaults.standard.finalEnteredDate = today
-        }
+        guard let offsetDay = offsetDateComponents.day, offsetDay != 0 else { return }
+        updateFinalContactDiffDay(finalEnteredDate)
+        UserDefaults.standard.finalEnteredDate = today
     }
     private func updateFinalContactDiffDay(_ finalEnteredDate: Date) {
         guard var finalContactDiffDay = UserDefaults.standard.finalContactDiffDay else { return }
