@@ -22,7 +22,7 @@ final class MainViewController: UIViewController {
     private let familyTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(FamilyTableCell.self, forCellReuseIdentifier: FamilyTableCell.className)
-        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
     
@@ -74,8 +74,8 @@ extension MainViewController {
         familyTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             familyTableView.topAnchor.constraint(equalTo: familyTableLabel.bottomAnchor, constant: 20),
-            familyTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Size.leadingTrailingPadding),
-            familyTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            familyTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            familyTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             familyTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }

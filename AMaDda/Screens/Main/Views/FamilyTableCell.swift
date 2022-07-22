@@ -9,7 +9,7 @@ import UIKit
 
 class FamilyTableCell: UITableViewCell {
     private enum Size {
-        static let sideSpacing: CGFloat = 20.0
+        static let sideSpacing: CGFloat = 30.0
         static let topBottomSpacing: CGFloat = 25.0
         static let height: CGFloat = 120.0
         static let actionBtnSize: CGFloat = 55.0
@@ -28,9 +28,15 @@ class FamilyTableCell: UITableViewCell {
     private let familyCharacterImageView = UIImageView()
     private let familyNameLabel = UILabel()
     private let familyDescriptionLabel = UILabel()
+    private let callImage: UIImage = {
+        let configuration = UIImage.SymbolConfiguration(textStyle: .title1)
+        let image = UIImage(systemName: "phone.fill", withConfiguration: configuration)
+        return image!
+    }()
     private lazy var contactButton: UIButton = {
         let contactButton = UIButton()
-        contactButton.setTitle("버튼", for: .normal)
+        contactButton.setImage(callImage, for: .normal)
+        contactButton.tintColor = .white
         return contactButton
     }()
     
@@ -93,7 +99,7 @@ class FamilyTableCell: UITableViewCell {
     func configureUI() {
         backgroundColor = .systemBackground
         
-        contentView.backgroundColor = UIColor.cardBackgroundColor
+//        contentView.backgroundColor = UIColor.cardBackgroundColor
         contentView.layer.cornerRadius = 20
         
         contactButton.layer.cornerRadius = Size.actionBtnSize/2
