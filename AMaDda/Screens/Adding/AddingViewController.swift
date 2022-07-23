@@ -62,6 +62,7 @@ class AddingViewController: UIViewController {
     private lazy var addButton: CommonButton = {
         let button = CommonButton()
         button.title = "추가하기"
+        button.isDisabled = true
         button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
         return button
     }()
@@ -117,7 +118,7 @@ class AddingViewController: UIViewController {
         let hasText = nickNameTextField.hasText
         let canEabled = hasText
         // TODO: 이미지랑도 비교해야함
-        addButton.isDisabled = canEabled
+        addButton.isDisabled = !canEabled
     }
     
     private func setupTapGesture() {

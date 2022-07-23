@@ -56,7 +56,7 @@ class CommonButton: UIButton {
             setTitle(title, for: .normal)
         }
 
-        backgroundColor = isDisabled ? .black : .disableButtonColor
+        backgroundColor = isDisabled ? .disableButtonColor : .black
         isEnabled = !isDisabled
     }
 }
