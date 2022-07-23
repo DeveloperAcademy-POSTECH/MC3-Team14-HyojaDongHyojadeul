@@ -11,8 +11,6 @@ class AddingViewController: UIViewController {
     
     private var maxLength = 5
     
-    private var applyAddButtonEnabled: (() -> ())?
-    
     // MARK: - property
     
     private let addingTitleLabel: UILabel = {
@@ -77,7 +75,6 @@ class AddingViewController: UIViewController {
         hidekeyboardWhenTappedAround()
         setupNotificationCenter()
         setupTapGesture()
-        checkAddButton()
     }
     
     // MARK: - seletor
@@ -107,13 +104,7 @@ class AddingViewController: UIViewController {
     }
     
     // MARK: - function
-    
-    private func checkAddButton() {
-        applyAddButtonEnabled = { [weak self] in
-            self?.changeButtonEnableState()
-        }
-    }
-    
+
     private func changeButtonEnableState() {
         let hasText = nickNameTextField.hasText
         let canEabled = hasText
@@ -225,6 +216,6 @@ class AddingViewController: UIViewController {
 extension AddingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         setCounter(count: textField.text?.count ?? 0)
-        applyAddButtonEnabled?()
+        changeButtonEnableState()
     }
 }
