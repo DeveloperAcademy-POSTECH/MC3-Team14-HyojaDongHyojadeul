@@ -29,13 +29,13 @@ final class TodayQuestionView: UIView {
     }()
     private let openingQuoteImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "quote.opening")
+        imageView.image = ImageLiterals.openingQuote
         imageView.tintColor = .black
         return imageView
     }()
     private let closingQuoteImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "quote.closing")
+        imageView.image = ImageLiterals.closingQuote
         imageView.tintColor = .black
         return imageView
     }()
