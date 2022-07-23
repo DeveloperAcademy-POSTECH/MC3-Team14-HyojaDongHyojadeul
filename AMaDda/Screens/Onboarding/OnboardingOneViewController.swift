@@ -86,9 +86,6 @@ class OnboardingOneViewController: UIViewController {
     
     @objc private func didTapNextButton(){
         notificationAuthorizationRequest()
-        let navVC = OnboardingTwoViewController()
-        navigationController?.pushViewController(navVC, animated: true)
-        navigationController?.isNavigationBarHidden = true
     }
 }
 
@@ -100,6 +97,13 @@ extension OnboardingOneViewController {
         center.requestAuthorization(options: [.badge, .alert, .sound]) { granted, error in
             if let error = error {
                 print("request authorization failed: \(error)")
+            }
+            else {
+                DispatchQueue.main.async {
+                    let navVC = OnboardingTwoViewController()
+                    self.navigationController?.pushViewController(navVC, animated: true)
+                    self.navigationController?.isNavigationBarHidden = true
+                }
             }
         }
     }
