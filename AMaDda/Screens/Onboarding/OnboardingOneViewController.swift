@@ -40,10 +40,12 @@ class OnboardingOneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         configureUI()
         configureAddSubView()
         configureConstraints()
     }
+    
     
     // MARK: - Configures
     
@@ -84,7 +86,6 @@ class OnboardingOneViewController: UIViewController {
     
     @objc private func didTapNextButton(){
         notificationAuthorizationRequest()
-        // TODO: onboarding2 로 이동
     }
 }
 
@@ -97,8 +98,13 @@ extension OnboardingOneViewController {
             if let error = error {
                 print("request authorization failed: \(error)")
             }
-            // TODO: sprint1 때에는 granted 설정에 상관 없이 onboarding2로 이동
-            // TODO: sprint2 때에는 분기점 생성
+            else {
+                DispatchQueue.main.async {
+                    let navVC = OnboardingTwoViewController()
+                    self.navigationController?.pushViewController(navVC, animated: true)
+                    self.navigationController?.isNavigationBarHidden = true
+                }
+            }
         }
     }
 }
