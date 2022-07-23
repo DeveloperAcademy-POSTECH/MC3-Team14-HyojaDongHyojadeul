@@ -44,7 +44,11 @@ final class TodayQuestionView: UIView {
 extension TodayQuestionView {
     // MARK: - configure
     func configureAddSubViewsTodayQuestionView() {
-        addSubviews(todayTitleLabel, todayCardView, todayCardQuestionLabel, openingQuoteImageView, closingQuoteImageView)
+        addSubviews(todayTitleLabel,
+                    todayCardView,
+                    todayCardQuestionLabel,
+                    openingQuoteImageView,
+                    closingQuoteImageView)
     }
     func configureConstraintsTodayQuestionView() {
         todayTitleLabel.translatesAutoresizingMaskIntoConstraints = false
