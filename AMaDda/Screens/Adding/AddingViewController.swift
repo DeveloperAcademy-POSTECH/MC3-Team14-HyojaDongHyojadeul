@@ -112,7 +112,7 @@ class AddingViewController: UIViewController {
     }
     
     private func setCounter(count: Int) {
-        textFieldLimitLabel.text = "\(count)/10"
+        textFieldLimitLabel.text = "\(count)/5"
         checkMaxLength(textField: nickNameTextField, maxLength: maxLength)
     }
 
