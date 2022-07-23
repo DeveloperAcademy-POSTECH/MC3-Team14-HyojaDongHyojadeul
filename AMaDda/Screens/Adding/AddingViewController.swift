@@ -9,7 +9,7 @@ import UIKit
 
 class AddingViewController: UIViewController {
     
-    private var maxLength = 10
+    private var maxLength = 5
     
     // MARK: - property
     
@@ -53,7 +53,7 @@ class AddingViewController: UIViewController {
     }()
     private let textFieldLimitLabel: UILabel = {
         let label = UILabel()
-        label.text = "0/10"
+        label.text = "0/5"
         label.textColor = .lightGray
         return label
     }()
