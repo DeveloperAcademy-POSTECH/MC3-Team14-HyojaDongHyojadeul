@@ -40,7 +40,7 @@ class OnboardingTwoViewController: UIViewController {
         stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
-    private let startButton: CommonButton = {
+    private lazy var startButton: CommonButton = {
         let button = CommonButton()
         button.setTitle("시작하기", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
@@ -57,7 +57,7 @@ class OnboardingTwoViewController: UIViewController {
         let mainVC = MainViewController()
         navigationController?.pushViewController(mainVC, animated: true)
         navigationController?.isNavigationBarHidden = true
-        UserDefaults.standard.set(notificationCount, forKey: "notificationCount") // 알림획수 저장
+        UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
         UserDefaults.standard.set(true, forKey: "checkedOnboarding")
     }
     
