@@ -26,4 +26,30 @@ extension UserDefaults {
             UserDefaults.standard.set(newValue, forKey: "finalContactDiffDay")
         }
     }
+    var familyMembers: [FamilyMemberData]? {
+        get {
+            var members: [FamilyMemberData]?
+            if let data = UserDefaults.standard.value(forKey: "familyMembers") as? Data {
+                members = try? PropertyListDecoder().decode([FamilyMemberData].self, from: data)
+            }
+            return members ?? []
+        }
+        set {
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey: "familyMembers")
+        }
+    }
 }
+
+
+//static var stressArray: [Stress]? {
+//     get {
+//         var stress: [Stress]?
+//         if let data = UserDefaults.standard.value(forKey:"stressArray") as? Data {
+//             stress = try? PropertyListDecoder().decode([Stress].self, from: data)
+//         }
+//         return stress ?? []
+//     }
+//     set {
+//         UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey:"stressArray")
+//     }
+// }

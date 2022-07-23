@@ -9,7 +9,16 @@ import Foundation
 import UIKit
 
 final class MainViewController: UIViewController {
-    private var familyMembers = FamilyMemberMockData.familyMemberData
+    
+    private var familyMembers: [FamilyMemberData]? = {
+        UserDefaults.standard.familyMembers = FamilyMemberMockData.familyMemberData
+        guard let familyMembers = UserDefaults.standard.familyMembers else {
+            print("아직 추가한 가족 멤버 없음")
+            return nil
+        }
+        print(familyMembers)
+        return familyMembers
+    }()
     
     private let todayQuestionView = TodayQuestionView()
     
@@ -26,6 +35,8 @@ final class MainViewController: UIViewController {
         return tableView
     }()
     
+    // MARK: - init
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -35,6 +46,7 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - functions
+    
     private func setUpDelegate() {
         familyTableView.delegate = self
         familyTableView.dataSource = self
@@ -42,7 +54,9 @@ final class MainViewController: UIViewController {
 }
 
 extension MainViewController {
+    
     // MARK: - configure
+    
     private func configureUI() {
         view.backgroundColor = .systemBackground
         familyTableView.backgroundColor = .systemBackground
@@ -94,14 +108,20 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return familyMembers.count
+        guard let count = familyMembers?.count else {
+            print("familyMembers 배열의 길이는 0 입니다")
+            return 0
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { fatalError() }
-        let item = self.familyMembers[indexPath.row]
+        guard let item = familyMembers?[indexPath.row] else {
+            print("아직 등록된 가족이 없습니다")
+            return cell
+        }
         cell.item = item
-        cell.selectionStyle = .none
         return cell
     }
 }

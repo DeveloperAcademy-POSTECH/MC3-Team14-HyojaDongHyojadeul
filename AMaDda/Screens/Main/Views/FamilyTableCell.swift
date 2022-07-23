@@ -19,12 +19,11 @@ class FamilyTableCell: UITableViewCell {
     var item: FamilyMemberData? {
         didSet {
             self.familyNameLabel.text = item?.name
-//            self.familyDescriptionLabel.text = item?.lastContact
-//            self.familyCharacterImageView.image = item?.characterImage
+            self.familyDescriptionLabel.text = item?.contactTermString
+            self.familyCharacterImageView.image = UIImage(named: item?.characterImageName ?? "Character1")
         }
     }
     
-    private let familyCharacterImage = UIImage()
     private let familyCharacterImageView = UIImageView()
     private let familyNameLabel = UILabel()
     private let familyDescriptionLabel = UILabel()
@@ -98,11 +97,24 @@ class FamilyTableCell: UITableViewCell {
     
     func configureUI() {
         backgroundColor = .systemBackground
-        
-//        contentView.backgroundColor = UIColor.cardBackgroundColor
         contentView.layer.cornerRadius = 20
         
         contactButton.layer.cornerRadius = Size.actionBtnSize/2
         contactButton.backgroundColor = .black
+    }
+}
+
+extension FamilyTableCell {
+    func updateUserDefaults() {
+        guard var familyArray = UserDefaults.standard.familyMembers else { fatalError() }
+//        for family in familyArray {
+//            if family.id == self.item?.id {
+//
+//            }
+//        }
+//        let index = familyArray.index(where: { $0.id == self.item.id }) {
+//            familyArray.remove(at: index)
+//        }
+//        UserDefaults.standard.familyMembers = familyArray
     }
 }
