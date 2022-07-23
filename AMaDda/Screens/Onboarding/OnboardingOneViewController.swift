@@ -40,10 +40,12 @@ class OnboardingOneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         configureUI()
         configureAddSubView()
         configureConstraints()
     }
+    
     
     // MARK: - Configures
     
@@ -84,10 +86,9 @@ class OnboardingOneViewController: UIViewController {
     
     @objc private func didTapNextButton(){
         notificationAuthorizationRequest()
-        // BUG: 온보딩2로 넘어간 화면에서 알림권한허용 alert가 뜬다.
-        let mainVC = OnboardingTwoViewController()
-        mainVC.modalPresentationStyle = .fullScreen
-        present(mainVC, animated: true, completion: nil)
+        let navVC = OnboardingTwoViewController()
+        navigationController?.pushViewController(navVC, animated: true)
+        navigationController?.isNavigationBarHidden = true
     }
 }
 
