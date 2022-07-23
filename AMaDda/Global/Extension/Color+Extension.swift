@@ -30,4 +30,7 @@ extension UIColor {
     static var cardBackgroundColor: UIColor {
         return UIColor(hex: "F4F3F3")
     }
+    static var disableButtonColor: UIColor {
+        return UIColor(hex: "DADADA")
+    }
 }
