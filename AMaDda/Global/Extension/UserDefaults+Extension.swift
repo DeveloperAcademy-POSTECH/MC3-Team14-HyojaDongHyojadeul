@@ -33,8 +33,8 @@ extension UserDefaults {
             }
             return enteredDate
         }
-         set {
-             UserDefaults.standard.set(newValue, forKey: "finalEnteredDate")
-         }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "finalEnteredDate")
+        }
     }
 }
