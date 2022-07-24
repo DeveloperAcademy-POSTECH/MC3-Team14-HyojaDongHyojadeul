@@ -9,7 +9,7 @@ import UIKit
 
 class AddingViewController: UIViewController {
     
-    private var maxLength = 10
+    private var maxLength = 5
     
     // MARK: - property
     
@@ -53,13 +53,14 @@ class AddingViewController: UIViewController {
     }()
     private let textFieldLimitLabel: UILabel = {
         let label = UILabel()
-        label.text = "0/10"
+        label.text = "0/5"
         label.textColor = .lightGray
         return label
     }()
     private lazy var addButton: CommonButton = {
         let button = CommonButton()
         button.title = "추가하기"
+        button.isDisabled = true
         button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
         return button
     }()
@@ -76,6 +77,10 @@ class AddingViewController: UIViewController {
         setupTapGesture()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     // MARK: - seletor
     
     @objc private func didTapAddButton() {
@@ -85,7 +90,8 @@ class AddingViewController: UIViewController {
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
-        print("gesture")
+        let vc = ProfileModalViewController()
+        present(vc, animated: true)
     }
     
     @objc private func keyboardWillShow(notification:NSNotification) {
@@ -102,7 +108,21 @@ class AddingViewController: UIViewController {
         })
     }
     
+    @objc private func didSaveButton(_ notification: Notification) {
+        let vc = ProfileModalViewController()
+        vc.delegate = self
+        profileImageView.image = UIImage(systemName: "heart")
+        print("SSS")
+    }
+    
     // MARK: - function
+    
+    private func changeButtonEnableState() {
+        let hasText = nickNameTextField.hasText
+        let canEabled = hasText
+        // TODO: 이미지랑도 비교해야함
+        addButton.isDisabled = !canEabled
+    }
     
     private func setupTapGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapProfileImageView(_:)))
@@ -112,10 +132,10 @@ class AddingViewController: UIViewController {
     }
     
     private func setCounter(count: Int) {
-        textFieldLimitLabel.text = "\(count)/10"
+        textFieldLimitLabel.text = "\(count)/5"
         checkMaxLength(textField: nickNameTextField, maxLength: maxLength)
     }
-
+    
     private func checkMaxLength(textField: UITextField, maxLength: Int) {
         if (textField.text?.count ?? 0 > maxLength) {
             textField.deleteBackward()
@@ -125,6 +145,7 @@ class AddingViewController: UIViewController {
     private func setupNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didSaveButton(_:)), name: NSNotification.Name("DismissDetailView"), object: nil)
     }
     
     // MARK: - configure
@@ -208,5 +229,13 @@ class AddingViewController: UIViewController {
 extension AddingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         setCounter(count: textField.text?.count ?? 0)
+        changeButtonEnableState()
+    }
+}
+
+extension AddingViewController: ProfileModalViewDelegate {
+    func registerSelectedCharacter(imageName: String) {
+        self.profileImageView.image = UIImage(named: imageName)
+        print("DELEGATE")
     }
 }

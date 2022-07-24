@@ -18,11 +18,11 @@ class CommonButton: UIButton {
     // MARK: - property
     
     var title: String? {
-        didSet {
-            if let title = title {
-                setTitle(title, for: .normal)
-            }
-        }
+        didSet { setupAttribute() }
+    }
+    
+    var isDisabled: Bool = false {
+        didSet { setupAttribute() }
     }
     
     // MARK: - init
@@ -49,5 +49,14 @@ class CommonButton: UIButton {
         layer.cornerRadius = 10
         titleLabel?.font = UIFont.systemFont(ofSize: 20)
         backgroundColor = .black
+    }
+    
+    private func setupAttribute() {
+        if let title = title {
+            setTitle(title, for: .normal)
+        }
+
+        backgroundColor = isDisabled ? .disableButtonColor : .black
+        isEnabled = !isDisabled
     }
 }
