@@ -41,7 +41,6 @@ final class MainViewController: UIViewController {
             }
         }
         let cycleSetting = UIAction(title: "알림 주기 설정") { [weak self] _ in
-            // TODO: 세팅에서 주기 설정 페이지 이동, 온보딩에서 주기 설정 페이지 각각에 따라 다른 처리 해줘야한다
             let notiSettingViewController = OnboardingTwoViewController()
             let notificationCycle = UserDefaults.standard.userNotificationCycle
             notiSettingViewController.cycleViewMode = .setting(cycle: Double(notificationCycle ?? 3))
