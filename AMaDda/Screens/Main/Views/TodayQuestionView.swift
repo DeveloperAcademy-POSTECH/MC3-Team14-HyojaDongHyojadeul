@@ -11,7 +11,7 @@ import UIKit
 final class TodayQuestionView: UIView {
     private let todayQuestionData = TodayQuestionMockData.mockData
     // MARK: - property
-    private let todayTitleLabel: UILabel = {
+    let todayTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "오늘의 질문"
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
