@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingTwoViewController: UIViewController {
+final class OnboardingTwoViewController: UIViewController {
     
     var notificationCount = 3
     
