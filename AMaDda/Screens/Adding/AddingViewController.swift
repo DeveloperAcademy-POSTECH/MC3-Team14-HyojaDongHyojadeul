@@ -77,6 +77,10 @@ class AddingViewController: UIViewController {
         setupTapGesture()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     // MARK: - seletor
     
     @objc private func didTapAddButton() {
@@ -86,7 +90,8 @@ class AddingViewController: UIViewController {
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
-        print("gesture")
+        let vc = ProfileModalViewController()
+        present(vc, animated: true)
     }
     
     @objc private func keyboardWillShow(notification:NSNotification) {
@@ -103,8 +108,15 @@ class AddingViewController: UIViewController {
         })
     }
     
+    @objc private func didSaveButton(_ notification: Notification) {
+        let vc = ProfileModalViewController()
+        vc.delegate = self
+        profileImageView.image = UIImage(systemName: "heart")
+        print("SSS")
+    }
+    
     // MARK: - function
-
+    
     private func changeButtonEnableState() {
         let hasText = nickNameTextField.hasText
         let canEabled = hasText
@@ -123,7 +135,7 @@ class AddingViewController: UIViewController {
         textFieldLimitLabel.text = "\(count)/5"
         checkMaxLength(textField: nickNameTextField, maxLength: maxLength)
     }
-
+    
     private func checkMaxLength(textField: UITextField, maxLength: Int) {
         if (textField.text?.count ?? 0 > maxLength) {
             textField.deleteBackward()
@@ -133,6 +145,7 @@ class AddingViewController: UIViewController {
     private func setupNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didSaveButton(_:)), name: NSNotification.Name("DismissDetailView"), object: nil)
     }
     
     // MARK: - configure
@@ -217,5 +230,12 @@ extension AddingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         setCounter(count: textField.text?.count ?? 0)
         changeButtonEnableState()
+    }
+}
+
+extension AddingViewController: ProfileModalViewDelegate {
+    func registerSelectedCharacter(imageName: String) {
+        self.profileImageView.image = UIImage(named: imageName)
+        print("DELEGATE")
     }
 }
