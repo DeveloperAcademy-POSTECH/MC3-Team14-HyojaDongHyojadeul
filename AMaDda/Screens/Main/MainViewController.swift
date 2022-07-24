@@ -31,7 +31,7 @@ final class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(tapAddButton(_:)), for: .touchUpInside)
         return button
     }()
-    private lazy var settingButton: UIButton = {
+    private let settingButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.icSetting, for: .normal)
         button.showsMenuAsPrimaryAction = true
