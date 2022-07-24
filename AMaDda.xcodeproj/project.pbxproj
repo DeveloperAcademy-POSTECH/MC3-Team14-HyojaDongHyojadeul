@@ -15,11 +15,11 @@
 		3E622CF528803971006A921C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E622CF328803971006A921C /* Main.storyboard */; };
 		3E622CF728803972006A921C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E622CF628803972006A921C /* Assets.xcassets */; };
 		3E622CFA28803972006A921C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E622CF828803972006A921C /* LaunchScreen.storyboard */; };
-		918BAFFC2886ED94002F94DB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */; };
-		91F1488728859FD1005A45E1 /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1488628859FD1005A45E1 /* UserNotificationManager.swift */; };
 		3E98E8E5288652DF001153E4 /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98E8E4288652DF001153E4 /* NSObject+Extension.swift */; };
 		595E3B41288577D60036B677 /* OnboardingOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E3B40288577D60036B677 /* OnboardingOneViewController.swift */; };
 		59F2584228868FA9003BC6ED /* OnboardingTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */; };
+		918BAFFC2886ED94002F94DB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */; };
+		91F1488728859FD1005A45E1 /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1488628859FD1005A45E1 /* UserNotificationManager.swift */; };
 		91FD28A82884F32700F49D20 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28A72884F32700F49D20 /* MainViewController.swift */; };
 		91FD28AA2884F3E500F49D20 /* TodayQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28A92884F3E500F49D20 /* TodayQuestionView.swift */; };
 		91FD28AD2884F43A00F49D20 /* TodayQuestionMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28AC2884F43A00F49D20 /* TodayQuestionMockData.swift */; };
@@ -34,6 +34,7 @@
 		E6278AD928843F8E00DC0CB0 /* ProfileModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */; };
 		E6278ADD2884412D00DC0CB0 /* ProfileModalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */; };
 		E6278AE52884FCF500DC0CB0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */; };
+		E67D4646288D21F400083187 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67D4645288D21F400083187 /* EmptyTableViewCell.swift */; };
 		E6DCDBDB288652CF001D4F67 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DCDBDA288652CF001D4F67 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,11 +49,11 @@
 		3E622CF628803972006A921C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E622CF928803972006A921C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E622CFB28803972006A921C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
-		91F1488628859FD1005A45E1 /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		3E98E8E4288652DF001153E4 /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		595E3B40288577D60036B677 /* OnboardingOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOneViewController.swift; sourceTree = "<group>"; };
 		59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoViewController.swift; sourceTree = "<group>"; };
+		918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		91F1488628859FD1005A45E1 /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		91FD28A72884F32700F49D20 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		91FD28A92884F3E500F49D20 /* TodayQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionView.swift; sourceTree = "<group>"; };
 		91FD28AC2884F43A00F49D20 /* TodayQuestionMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionMockData.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalViewController.swift; sourceTree = "<group>"; };
 		E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalCell.swift; sourceTree = "<group>"; };
 		E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		E67D4645288D21F400083187 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		E6DCDBDA288652CF001D4F67 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +184,7 @@
 			children = (
 				91FD28A92884F3E500F49D20 /* TodayQuestionView.swift */,
 				3E15D66E2884FB8000570DD7 /* FamilyTableCell.swift */,
+				E67D4645288D21F400083187 /* EmptyTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				3E15D6732884FC1F00570DD7 /* FamilyMemberMockData.swift in Sources */,
 				91FD28A82884F32700F49D20 /* MainViewController.swift in Sources */,
 				D72A1DFE28854AA10058EE12 /* AddingViewController.swift in Sources */,
+				E67D4646288D21F400083187 /* EmptyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
