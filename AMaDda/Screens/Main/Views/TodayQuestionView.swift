@@ -16,10 +16,7 @@ final class TodayQuestionView: UIView {
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         return label
     }()
-    private let todayCardView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private let todayCardView = UIView()
     var todayCardQuestionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
