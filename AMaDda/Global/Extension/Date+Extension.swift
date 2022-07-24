@@ -16,7 +16,7 @@ extension Date {
         convertedDate += koreaGreenwichDiff
         return convertedDate
     }
-    static func offsetToday(_ compareDate: Date) -> Int? {
+    static func daysFromToday(_ compareDate: Date) -> Int? {
         let today = Date().convertedKoreaDate
         let offsetDateComponents = Calendar.current.dateComponents([.day], from: today, to: compareDate.convertedKoreaDate)
         guard let offsetDay = offsetDateComponents.day else {
