@@ -56,8 +56,8 @@ class OnboardingTwoViewController: UIViewController {
         let mainVC = MainViewController()
         navigationController?.pushViewController(mainVC, animated: true)
         navigationController?.isNavigationBarHidden = true
-        UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
-        UserDefaults.standard.set(true, forKey: "checkedOnboarding")
+        UserDefaults.standard.notificationCount = notificationCount
+        UserDefaults.standard.checkedOnboarding = true
     }
     
     // MARK: Life Cycle functions

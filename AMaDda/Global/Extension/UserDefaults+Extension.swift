@@ -26,4 +26,22 @@ extension UserDefaults {
             UserDefaults.standard.set(newValue, forKey: "finalContactDiffDay")
         }
     }
+    var notificationCount: Int? {
+        get {
+            guard let count = UserDefaults.standard.value(forKey: "notificationCount") as? Int else { return nil }
+            return count
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "notificationCount")
+        }
+    }
+    var checkedOnboarding: Bool? {
+        get {
+            let count = UserDefaults.standard.bool(forKey: "checkedOnboarding")
+            return count
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "checkedOnboarding")
+        }
+    }
 }
