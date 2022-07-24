@@ -40,7 +40,6 @@ final class OnboardingOneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
         configureUI()
         configureAddSubView()
         configureConstraints()
@@ -51,6 +50,7 @@ final class OnboardingOneViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = .systemBackground
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     private func configureAddSubView() {
@@ -100,8 +100,8 @@ extension OnboardingOneViewController {
             }
             else {
                 DispatchQueue.main.async {
-                    let navVC = OnboardingTwoViewController()
-                    self.navigationController?.pushViewController(navVC, animated: true)
+                    let OnboardingTwoVC = OnboardingTwoViewController()
+                    self.navigationController?.pushViewController(OnboardingTwoVC, animated: true)
                     self.navigationController?.isNavigationBarHidden = true
                 }
             }
