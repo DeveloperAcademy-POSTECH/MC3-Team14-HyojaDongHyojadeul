@@ -10,7 +10,6 @@ import UIKit
 class OnboardingTwoViewController: UIViewController {
     
     var notificationCount = 3
-    var checkedOnboarding = false
     
     // MARK: Properties
     private let onboardingTwoTitleLabel: UILabel = {
