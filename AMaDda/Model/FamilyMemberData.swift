@@ -23,6 +23,14 @@ struct FamilyMemberData: Codable {
 extension FamilyMemberData {
     mutating func updateLastContact() {
         lastContact = Date.now
+        updateUserDefaults()
+    }
+    
+    func updateUserDefaults() {
+        guard var familyArray = UserDefaults.standard.familyMembers else { return }
+        guard let index = familyArray.firstIndex(where: { $0.id == self.id }) else { return }
+        familyArray.remove(at: index)
+        familyArray.append(self)
     }
     
     var contactTermString: String {

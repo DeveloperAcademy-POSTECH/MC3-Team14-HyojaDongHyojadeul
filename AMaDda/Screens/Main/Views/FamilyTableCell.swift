@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class FamilyTableCell: UITableViewCell {
     private enum Size {
@@ -29,13 +30,14 @@ class FamilyTableCell: UITableViewCell {
     private let familyDescriptionLabel = UILabel()
     private let callImage: UIImage = {
         let configuration = UIImage.SymbolConfiguration(textStyle: .title1)
-        let image = UIImage(systemName: "phone.fill", withConfiguration: configuration)
-        return image!
+        guard let image = UIImage(systemName: "phone.fill", withConfiguration: configuration) else { fatalError() }
+        return image
     }()
     private lazy var contactButton: UIButton = {
         let contactButton = UIButton()
         contactButton.setImage(callImage, for: .normal)
         contactButton.tintColor = .white
+        contactButton.addTarget(self, action: #selector(updateMemberData), for: .touchUpInside)
         return contactButton
     }()
     
@@ -102,19 +104,11 @@ class FamilyTableCell: UITableViewCell {
         contactButton.layer.cornerRadius = Size.actionBtnSize/2
         contactButton.backgroundColor = .black
     }
-}
-
-extension FamilyTableCell {
-    func updateUserDefaults() {
-        guard var familyArray = UserDefaults.standard.familyMembers else { fatalError() }
-//        for family in familyArray {
-//            if family.id == self.item?.id {
-//
-//            }
-//        }
-//        let index = familyArray.index(where: { $0.id == self.item.id }) {
-//            familyArray.remove(at: index)
-//        }
-//        UserDefaults.standard.familyMembers = familyArray
+    
+    // MARK: - selector
+    
+    @objc func updateMemberData() {
+        self.item?.updateLastContact()
+        UserDefaults.standard.finalContactDiffDay = 0
     }
 }

@@ -39,17 +39,3 @@ extension UserDefaults {
         }
     }
 }
-
-
-//static var stressArray: [Stress]? {
-//     get {
-//         var stress: [Stress]?
-//         if let data = UserDefaults.standard.value(forKey:"stressArray") as? Data {
-//             stress = try? PropertyListDecoder().decode([Stress].self, from: data)
-//         }
-//         return stress ?? []
-//     }
-//     set {
-//         UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey:"stressArray")
-//     }
-// }
