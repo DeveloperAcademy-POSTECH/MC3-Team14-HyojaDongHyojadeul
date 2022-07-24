@@ -35,10 +35,9 @@ final class UserDefaultsStateManager {
         var questionIndex = UserDefaults.standard.questionIndex
         if questionIndex >= TodayQuestionMockData.mockData.count {
             questionIndex = 0
-            UserDefaults.standard.questionIndex = questionIndex
-            return
+        } else {
+            questionIndex += 1
         }
-        questionIndex += 1
         todayQuestionDelegate?.changeTodayQuestion(questionIndex)
         UserDefaults.standard.questionIndex = questionIndex
     }
