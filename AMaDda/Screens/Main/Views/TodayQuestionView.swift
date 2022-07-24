@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class TodayQuestionView: UIView {
-    private let todayQuestionData = TodayQuestionMockData.mockData
     // MARK: - property
     private let todayTitleLabel: UILabel = {
         let label = UILabel()
@@ -23,10 +22,8 @@ final class TodayQuestionView: UIView {
         view.backgroundColor = UIColor.cardBackgroundColor
         return view
     }()
-    private lazy var todayCardQuestionLabel: UILabel = {
+    var todayCardQuestionLabel: UILabel = {
         let label = UILabel()
-        let randomQuestion = chooseRandomQuestion()
-        label.text = randomQuestion
         return label
     }()
 }
@@ -54,10 +51,5 @@ extension TodayQuestionView {
             todayCardQuestionLabel.centerYAnchor.constraint(equalTo: todayCardView.centerYAnchor),
             todayCardQuestionLabel.centerXAnchor.constraint(equalTo: todayCardView.centerXAnchor)
         ])
-    }
-    // MARK: - function
-    private func chooseRandomQuestion() -> String {
-        guard let todayQuestion = todayQuestionData.randomElement() else { return "Question이 없습니다."}
-        return todayQuestion.question
     }
 }

@@ -37,4 +37,13 @@ extension UserDefaults {
              UserDefaults.standard.set(newValue, forKey: "finalEnteredDate")
          }
     }
+    var questionIndex: Int {
+        get {
+            guard let index = UserDefaults.standard.value(forKey: "questionIndex") as? Int else { return 0 }
+            return index
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "questionIndex")
+        }
+    }
 }

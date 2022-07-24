@@ -10,8 +10,9 @@ import UIKit
 
 final class MainViewController: UIViewController {
     private var familyMembers = FamilyMemberMockData.familyMemberData
-    
+    private let todayQuestionData = TodayQuestionMockData.mockData
     private let todayQuestionView = TodayQuestionView()
+    private let todayQuestionIndex = UserDefaults.standard.questionIndex
     
     private let familyTableLabel: UILabel = {
         let label = UILabel()
@@ -32,10 +33,12 @@ final class MainViewController: UIViewController {
         configureAddSubViews()
         configureConstraints()
         setUpDelegate()
+        changeTodayQuestion(todayQuestionIndex)
     }
     
     // MARK: - functions
     private func setUpDelegate() {
+        UserDefaultsStateManager.todayQuestionDelegate = self
         familyTableView.delegate = self
         familyTableView.dataSource = self
     }
@@ -103,5 +106,12 @@ extension MainViewController: UITableViewDataSource {
         cell.item = item
         cell.selectionStyle = .none
         return cell
+    }
+}
+
+extension MainViewController: TodayQuestionDelegate {
+    func changeTodayQuestion(_ index: Int) {
+        let todayQuestion = todayQuestionData[index].question
+        todayQuestionView.todayCardQuestionLabel.text = todayQuestion
     }
 }
