@@ -42,17 +42,17 @@ final class OnboardingTwoViewController: UIViewController {
     private lazy var startButton: CommonButton = {
         let button = CommonButton()
         button.setTitle("시작하기", for: .normal)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapstartButton), for: .touchUpInside)
         return button
     }()
     
     // MARK: stepper function
-    @objc func stepperValueChanged(_ stepper: UIStepper) {
+    @objc private func stepperValueChanged(_ stepper: UIStepper) {
         notificationCount = Int(stepper.value)
         showNotificationLabel.text = "\(notificationCount)일"
     }
     
-    @objc func buttonAction(sender: UIButton!) {
+    @objc private func didTapstartButton(sender: UIButton!) {
         let mainVC = MainViewController()
         navigationController?.pushViewController(mainVC, animated: true)
         navigationController?.isNavigationBarHidden = true
@@ -80,7 +80,7 @@ final class OnboardingTwoViewController: UIViewController {
                         startButton)
     }
     
-    func configureConstraints(){
+    private func configureConstraints(){
         onboardingTwoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             onboardingTwoTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),

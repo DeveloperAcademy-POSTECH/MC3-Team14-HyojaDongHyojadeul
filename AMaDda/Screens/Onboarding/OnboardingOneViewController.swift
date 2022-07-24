@@ -59,7 +59,7 @@ final class OnboardingOneViewController: UIViewController {
                          nextButton)
     }
     
-    func configureConstraints(){        
+    private func configureConstraints(){        
         firstOnboardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             firstOnboardTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
