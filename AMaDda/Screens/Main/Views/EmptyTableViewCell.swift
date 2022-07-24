@@ -10,7 +10,7 @@ import UIKit
 final class EmptyTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    private let upperTableViewSpacing: CGFloat = 10
+    private let upperTableViewSpacing: CGFloat = 20
     private let mainTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "아직 기록중인 가족이 없어요"
@@ -58,7 +58,7 @@ final class EmptyTableViewCell: UITableViewCell {
         textStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             textStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textStackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -upperTableViewSpacing),
+            textStackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -(upperTableViewSpacing / 2)),
         ])
         
     }
