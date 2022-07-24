@@ -47,7 +47,7 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - Selector
-    @objc func tapAddButton(_ sender: Any) {
+    @objc private func tapAddButton(_ sender: Any) {
         guard let sender = sender as? UIButton else { return }
         let addingViewController = AddingViewController()
         navigationController?.pushViewController(addingViewController, animated: true)
