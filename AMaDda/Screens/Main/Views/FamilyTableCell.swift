@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 
 class FamilyTableCell: UITableViewCell {
+    // TODO: cell 터치시 editing view 열기
     private enum Size {
         static let sideSpacing: CGFloat = 30.0
         static let topBottomSpacing: CGFloat = 25.0

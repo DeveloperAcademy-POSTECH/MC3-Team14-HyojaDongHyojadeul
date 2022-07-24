@@ -17,6 +17,8 @@ struct FamilyMemberData: Codable {
         self.name = name
         self.characterImageName = characterImageName
         self.lastContact = lastContact
+        // TODO: 인스턴스가 생성될 때는 Date.now로 initialize 하기
+        // 현재는 mockData 사용하기 위해 lastContact로 init 선언
     }
 }
 
@@ -52,8 +54,10 @@ extension FamilyMemberData {
             finalContactString = "2주일"
         case 22...28:
             finalContactString = "3주일"
+        case 29...:
+            finalContactString = "한달이"
         default:
-            finalContactString = "한달"
+            finalContactAfterStirng = "통화를 하고\n기록을 시작해볼까요?"
         }
         return finalContactString + finalContactAfterStirng
     }
