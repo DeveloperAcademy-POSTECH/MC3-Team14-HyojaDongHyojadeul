@@ -34,19 +34,6 @@ final class MainViewController: UIViewController {
     private lazy var settingButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.icSetting, for: .normal)
-        let notiSetting = UIAction(title: "알림 설정") { _ in
-            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        }
-        let cycleSetting = UIAction(title: "알림 주기 설정") { [weak self] _ in
-            let notiSettingViewController = OnboardingTwoViewController()
-            let notificationCycle = UserDefaults.standard.userNotificationCycle
-            notiSettingViewController.cycleViewMode = .setting(cycle: Double(notificationCycle ?? 3))
-            self?.navigationController?.pushViewController(notiSettingViewController, animated: true)
-        }
-        button.menu = UIMenu(title: "설정", image: nil, identifier: nil, options: .displayInline , children: [notiSetting, cycleSetting])
         button.showsMenuAsPrimaryAction = true
         return button
     }()
@@ -71,6 +58,22 @@ final class MainViewController: UIViewController {
         familyTableView.delegate = self
         familyTableView.dataSource = self
     }
+    
+    private func setButtonMenu() {
+        let notiSetting = UIAction(title: "알림 설정") { _ in
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        let cycleSetting = UIAction(title: "알림 주기 설정") { [weak self] _ in
+            let notiSettingViewController = OnboardingTwoViewController()
+            let notificationCycle = UserDefaults.standard.userNotificationCycle
+            notiSettingViewController.cycleViewMode = .setting(cycle: Double(notificationCycle ?? 3))
+            self?.navigationController?.pushViewController(notiSettingViewController, animated: true)
+        }
+        settingButton.menu = UIMenu(title: "설정", image: nil, identifier: nil, options: .displayInline , children: [notiSetting, cycleSetting])
+    }
 }
 
 extension MainViewController {
@@ -78,6 +81,7 @@ extension MainViewController {
     private func configureUI() {
         view.backgroundColor = .systemBackground
         familyTableView.backgroundColor = .systemBackground
+        setButtonMenu()
     }
     private func configureAddSubViews() {
         view.addSubviews(todayQuestionView,
