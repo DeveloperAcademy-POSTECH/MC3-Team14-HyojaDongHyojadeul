@@ -9,7 +9,7 @@ import UIKit
 
 final class OnboardingTwoViewController: UIViewController {
     
-    var notificationCount = 3
+    var notificationCount: Int = 3
     
     // MARK: Properties
     private let onboardingTwoTitleLabel: UILabel = {

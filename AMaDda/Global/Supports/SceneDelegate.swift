@@ -19,8 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
          window = UIWindow(windowScene: windowScene)
         if UserDefaults.standard.checkedOnboarding == true {
-            let mainVC = MainViewController()
-            window?.rootViewController = mainVC
+            let rootVC = MainViewController()
+            let navVC = UINavigationController(rootViewController: rootVC)
+            window?.rootViewController = navVC
         } else {
             let rootVC = OnboardingOneViewController()
             let navVC = UINavigationController(rootViewController: rootVC)
