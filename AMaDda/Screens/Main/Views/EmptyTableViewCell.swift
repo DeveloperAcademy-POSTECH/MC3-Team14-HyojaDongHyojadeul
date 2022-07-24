@@ -51,14 +51,14 @@ final class EmptyTableViewCell: UITableViewCell {
     }
     
     private func configureAddSubviews() {
-        addSubviews(textStackView)
+        contentView.addSubviews(textStackView)
     }
     
     private func configureConstraints() {
         textStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textStackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -(upperTableViewSpacing / 2)),
+            textStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            textStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -(upperTableViewSpacing / 2)),
         ])
         
     }
