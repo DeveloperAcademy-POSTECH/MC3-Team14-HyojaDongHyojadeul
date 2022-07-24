@@ -105,7 +105,7 @@ final class UserNotificationManager {
             for request: UNNotificationRequest in notificationRequests {
                 let currentRequest = request
                 guard let currentRequestDate = self.identifierDateFormatter.date(from: currentRequest.identifier) else{ return }
-                guard let offsetDay = Date.offsetToday(currentRequestDate) else { return }
+                guard let offsetDay = Date.daysFromToday(currentRequestDate) else { return }
                 let requestFinalContactDiff = finalContactDiff + offsetDay
                 let content = self.createRequestContent(requestFinalContactDiff)
                 let updatedRequest = UNNotificationRequest(identifier: currentRequest.identifier, content: content, trigger: currentRequest.trigger)

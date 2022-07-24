@@ -14,7 +14,7 @@ final class UserDefaultsStateManager {
             UserDefaults.standard.finalEnteredDate = today
             return
         }
-        guard let offsetDay = Date.offsetToday(finalEnteredDate), offsetDay != 0 else {
+        guard let offsetDay = Date.daysFromToday(finalEnteredDate), offsetDay != 0 else {
             return
         }
         updateFinalContactDiffDay(offsetDay)
