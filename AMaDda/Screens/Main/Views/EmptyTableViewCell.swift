@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EmptyTableViewCell: UITableViewCell {
+final class EmptyTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     private let upperTableViewSpacing: CGFloat = 10
