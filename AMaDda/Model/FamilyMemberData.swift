@@ -32,11 +32,11 @@ extension FamilyMemberData {
     }
     
     private func updateUserDefaults() {
-        guard var familyArray = UserDefaults.standard.familyMembers else { return }
-        guard let index = familyArray.firstIndex(where: { $0.id == self.id }) else { return }
-        familyArray.remove(at: index)
-        familyArray.append(self)
-        UserDefaults.standard.familyMembers = familyArray
+        guard var familyMembers = UserDefaults.standard.familyMembers else { return }
+        guard let index = familyMembers.firstIndex(where: { $0.id == self.id }) else { return }
+        familyMembers.remove(at: index)
+        familyMembers.append(self)
+        UserDefaults.standard.familyMembers = familyMembers
     }
     
     var contactTermString: String {
