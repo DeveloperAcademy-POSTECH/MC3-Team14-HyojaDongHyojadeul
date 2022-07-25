@@ -17,7 +17,7 @@ final class TodayQuestionView: UIView {
         return label
     }()
     private let todayCardView = UIView()
-    var todayCardQuestionLabel: UILabel = {
+    let todayCardQuestionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.numberOfLines = 0
