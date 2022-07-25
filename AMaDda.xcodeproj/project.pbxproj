@@ -36,6 +36,7 @@
 		E6278AD928843F8E00DC0CB0 /* ProfileModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */; };
 		E6278ADD2884412D00DC0CB0 /* ProfileModalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */; };
 		E6278AE52884FCF500DC0CB0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */; };
+		E67D4646288D21F400083187 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67D4645288D21F400083187 /* EmptyTableViewCell.swift */; };
 		E6DCDBDB288652CF001D4F67 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DCDBDA288652CF001D4F67 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalViewController.swift; sourceTree = "<group>"; };
 		E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalCell.swift; sourceTree = "<group>"; };
 		E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		E67D4645288D21F400083187 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		E6DCDBDA288652CF001D4F67 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,6 +188,7 @@
 			children = (
 				91FD28A92884F3E500F49D20 /* TodayQuestionView.swift */,
 				3E15D66E2884FB8000570DD7 /* FamilyTableCell.swift */,
+				E67D4645288D21F400083187 /* EmptyTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				91FD28A82884F32700F49D20 /* MainViewController.swift in Sources */,
 				91715FF62888019700A780B7 /* UserDefaultsStateManager.swift in Sources */,
 				D72A1DFE28854AA10058EE12 /* AddingViewController.swift in Sources */,
+				E67D4646288D21F400083187 /* EmptyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
