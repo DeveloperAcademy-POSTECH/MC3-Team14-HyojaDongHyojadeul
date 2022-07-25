@@ -28,7 +28,7 @@ extension FamilyMemberData {
         updateUserDefaults()
     }
     
-    func updateUserDefaults() {
+    private func updateUserDefaults() {
         guard var familyArray = UserDefaults.standard.familyMembers else { return }
         guard let index = familyArray.firstIndex(where: { $0.id == self.id }) else { return }
         familyArray.remove(at: index)
