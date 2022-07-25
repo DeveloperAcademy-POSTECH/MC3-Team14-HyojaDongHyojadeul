@@ -9,16 +9,9 @@ import Foundation
 import UIKit
 
 final class MainViewController: UIViewController {
-    private var familyMembers: [FamilyMemberData] = {
-        UserDefaults.standard.familyMembers = FamilyMemberMockData.familyMemberData
-//        guard let familyMembers = UserDefaults.standard.familyMembers else {
-//            print("아직 추가한 가족 멤버 없음")
-//            return nil
-//        }
-        let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
-        return familyMembers
-    }()
-    private lazy var familyMemberCount = familyMembers.count
+
+    private let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers]
+
     private let todayQuestionView = TodayQuestionView()
     
     private let touchAreaSize: CGFloat = 44
@@ -60,6 +53,11 @@ final class MainViewController: UIViewController {
         configureAddSubViews()
         configureConstraints()
         setUpDelegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        familyTableView.reloadData()
     }
     
     // MARK: - Selector
