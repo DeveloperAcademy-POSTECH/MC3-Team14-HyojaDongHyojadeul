@@ -9,7 +9,7 @@ import UIKit
 
 enum CycleViewMode {
     case onboarding
-    case setting(cycle: Double)
+    case setting(cycle: Int)
 }
 
 class OnboardingTwoViewController: UIViewController {
@@ -69,8 +69,8 @@ class OnboardingTwoViewController: UIViewController {
     // MARK: - Functions
     private func checkCycleViewMode() {
         if case let CycleViewMode.setting(cycle) = cycleViewMode {
-            onboardingStepper.value = cycle
-            showNotificationLabel.text = "\(Int(cycle))일"
+            onboardingStepper.value = Double(cycle)
+            showNotificationLabel.text = "\(cycle)일"
         }
     }
     
