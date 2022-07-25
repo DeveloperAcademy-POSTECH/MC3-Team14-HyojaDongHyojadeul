@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class TodayQuestionView: UIView {
-    private let todayQuestionData = TodayQuestionMockData.mockData
     // MARK: - property
     let todayTitleLabel: UILabel = {
         let label = UILabel()
@@ -18,10 +17,8 @@ final class TodayQuestionView: UIView {
         return label
     }()
     private let todayCardView = UIView()
-    private lazy var todayCardQuestionLabel: UILabel = {
+    let todayCardQuestionLabel: UILabel = {
         let label = UILabel()
-        let randomQuestion = chooseRandomQuestion()
-        label.text = randomQuestion
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -84,10 +81,5 @@ extension TodayQuestionView {
             closingQuoteImageView.leadingAnchor.constraint(equalTo: todayCardQuestionLabel.trailingAnchor , constant: 7)
         ])
         
-    }
-    // MARK: - function
-    private func chooseRandomQuestion() -> String {
-        guard let todayQuestion = todayQuestionData.randomElement() else { return "Question이 없습니다."}
-        return todayQuestion.question
     }
 }

@@ -21,6 +21,8 @@
 		59F2584228868FA9003BC6ED /* OnboardingTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */; };
 		91715FF62888019700A780B7 /* UserDefaultsStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91715FF52888019700A780B7 /* UserDefaultsStateManager.swift */; };
 		918BAFFC2886ED94002F94DB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */; };
+		91DC448E288E80E7002F0D46 /* TextLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DC448D288E80E7002F0D46 /* TextLiteral.swift */; };
+		91DC4490288E8628002F0D46 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DC448F288E8628002F0D46 /* Collection+Extension.swift */; };
 		91F1488728859FD1005A45E1 /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1488628859FD1005A45E1 /* UserNotificationManager.swift */; };
 		91FD28A82884F32700F49D20 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28A72884F32700F49D20 /* MainViewController.swift */; };
 		91FD28AA2884F3E500F49D20 /* TodayQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28A92884F3E500F49D20 /* TodayQuestionView.swift */; };
@@ -57,6 +59,8 @@
 		59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoViewController.swift; sourceTree = "<group>"; };
 		91715FF52888019700A780B7 /* UserDefaultsStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStateManager.swift; sourceTree = "<group>"; };
 		918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		91DC448D288E80E7002F0D46 /* TextLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLiteral.swift; sourceTree = "<group>"; };
+		91DC448F288E8628002F0D46 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		91F1488628859FD1005A45E1 /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		91FD28A72884F32700F49D20 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		91FD28A92884F3E500F49D20 /* TodayQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionView.swift; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 				D72A1E01288558990058EE12 /* UIImage+Extension.swift */,
 				E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */,
 				3E98E8E4288652DF001153E4 /* NSObject+Extension.swift */,
+				91804FAA288A737F0038A2A2 /* Date+Extension.swift */,
+				91DC448F288E8628002F0D46 /* Collection+Extension.swift */,
 				3E98E8F4288A9353001153E4 /* Date+Extension.swift */,
 			);
 			path = Extension;
@@ -225,6 +231,7 @@
 			children = (
 				91FD28B42884F55C00F49D20 /* Size.swift */,
 				D72A1DFF28854C9C0058EE12 /* ImageLiteral.swift */,
+				91DC448D288E80E7002F0D46 /* TextLiteral.swift */,
 			);
 			path = Literal;
 			sourceTree = "<group>";
@@ -358,8 +365,10 @@
 				91FD28B22884F4B800F49D20 /* Color+Extension.swift in Sources */,
 				D72A1E0028854C9C0058EE12 /* ImageLiteral.swift in Sources */,
 				91FD28B82884F70A00F49D20 /* FontsPlaceHolder.swift in Sources */,
+				91DC448E288E80E7002F0D46 /* TextLiteral.swift in Sources */,
 				3E15D66F2884FB8000570DD7 /* FamilyTableCell.swift in Sources */,
 				3E622CEE28803971006A921C /* AppDelegate.swift in Sources */,
+				91DC4490288E8628002F0D46 /* Collection+Extension.swift in Sources */,
 				3E98E8E5288652DF001153E4 /* NSObject+Extension.swift in Sources */,
 				91FD28AA2884F3E500F49D20 /* TodayQuestionView.swift in Sources */,
 				D7ADBBA72883D520004BB5FE /* CommonButton.swift in Sources */,
