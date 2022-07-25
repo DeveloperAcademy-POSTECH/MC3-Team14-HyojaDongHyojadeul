@@ -107,7 +107,6 @@ extension MainViewController {
                          familyTableView,
                         addMemberButton,
                         settingButton)
-        todayQuestionView.configureAddSubViewsTodayQuestionView()
     }
     private func configureConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
@@ -119,7 +118,6 @@ extension MainViewController {
             todayQuestionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
             todayQuestionView.heightAnchor.constraint(equalToConstant: 170),
         ])
-        todayQuestionView.configureConstraintsTodayQuestionView()
         
         familyTableLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

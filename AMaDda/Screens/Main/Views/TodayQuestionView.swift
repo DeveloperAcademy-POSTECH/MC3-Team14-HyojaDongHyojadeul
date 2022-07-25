@@ -17,7 +17,9 @@ final class TodayQuestionView: UIView {
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         return label
     }()
+    
     private let todayCardView = UIView()
+    
     private lazy var todayCardQuestionLabel: UILabel = {
         let label = UILabel()
         let randomQuestion = chooseRandomQuestion()
@@ -27,30 +29,43 @@ final class TodayQuestionView: UIView {
         label.textAlignment = .center
         return label
     }()
+    
     private let openingQuoteImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.openingQuote
         imageView.tintColor = .black
         return imageView
     }()
+    
     private let closingQuoteImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.closingQuote
         imageView.tintColor = .black
         return imageView
     }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureAddSubViewsTodayQuestionView()
+        configureConstraintsTodayQuestionView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
 
 extension TodayQuestionView {
     // MARK: - configure
-    func configureAddSubViewsTodayQuestionView() {
+    private func configureAddSubViewsTodayQuestionView() {
         addSubviews(todayTitleLabel,
                     todayCardView,
                     todayCardQuestionLabel,
                     openingQuoteImageView,
                     closingQuoteImageView)
     }
-    func configureConstraintsTodayQuestionView() {
+    private func configureConstraintsTodayQuestionView() {
         todayTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             todayTitleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
