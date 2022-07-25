@@ -45,6 +45,11 @@ final class MainViewController: UIViewController {
         setUpDelegate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        familyTableView.reloadData()
+    }
+    
     // MARK: - functions
     
     private func setUpDelegate() {
