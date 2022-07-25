@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SwiftUI
 
 class FamilyTableCell: UITableViewCell {
+    // TODO: cell 터치시 editing view 열기
     private enum Size {
-        static let sideSpacing: CGFloat = 20.0
+        static let sideSpacing: CGFloat = 30.0
         static let topBottomSpacing: CGFloat = 25.0
         static let height: CGFloat = 120.0
         static let actionBtnSize: CGFloat = 55.0
@@ -19,18 +21,28 @@ class FamilyTableCell: UITableViewCell {
     var item: FamilyMemberData? {
         didSet {
             self.familyNameLabel.text = item?.name
-            self.familyDescriptionLabel.text = item?.description
-            self.familyCharacterImageView.image = item?.characterImage
+            self.familyDescriptionLabel.text = item?.contactTermString
+            self.familyCharacterImageView.image = UIImage.load(name: item?.characterImageName ?? "Character1")
         }
     }
     
-    private let familyCharacterImage = UIImage()
     private let familyCharacterImageView = UIImageView()
     private let familyNameLabel = UILabel()
-    private let familyDescriptionLabel = UILabel()
+    private let familyDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    private let callImage: UIImage = {
+        let configuration = UIImage.SymbolConfiguration(textStyle: .title1)
+        let image = UIImage.load(systemName: "phone.fill", configuration: configuration)
+        return image
+    }()
     private lazy var contactButton: UIButton = {
         let contactButton = UIButton()
-        contactButton.setTitle("버튼", for: .normal)
+        contactButton.setImage(callImage, for: .normal)
+        contactButton.tintColor = .white
+        contactButton.addTarget(self, action: #selector(updateMemberData), for: .touchUpInside)
         return contactButton
     }()
     
@@ -90,13 +102,18 @@ class FamilyTableCell: UITableViewCell {
         ])
     }
     
-    func configureUI() {
+    private func configureUI() {
         backgroundColor = .systemBackground
-        
-        contentView.backgroundColor = UIColor.cardBackgroundColor
         contentView.layer.cornerRadius = 20
         
         contactButton.layer.cornerRadius = Size.actionBtnSize/2
         contactButton.backgroundColor = .black
+    }
+    
+    // MARK: - selector
+    
+    @objc func updateMemberData() {
+        self.item?.updateLastContact()
+        UserDefaults.standard.finalContactDiffDay = 0
     }
 }
