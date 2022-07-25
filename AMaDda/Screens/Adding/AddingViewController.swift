@@ -91,7 +91,7 @@ class AddingViewController: UIViewController {
     @objc private func didTapAddButton() {
         guard let text = nickNameTextField.text else { return }
         familyMembers = UserDefaults.standard.familyMembers
-        familyMembers.append(FamilyMemberData(name: text, characterImageName: characterImageName, lastContactDate: Date.now))
+        familyMembers.append(FamilyMemberData(name: text, characterImageName: characterImageName))
         
         UserDefaults.standard.familyMembers = familyMembers
     }
