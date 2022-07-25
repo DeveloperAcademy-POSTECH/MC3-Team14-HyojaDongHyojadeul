@@ -10,7 +10,8 @@ import UIKit
 
 final class MainViewController: UIViewController {
 
-    private let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers]
+    private let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
+    private lazy var familyMemberCount = familyMembers.count
 
     private let todayQuestionView = TodayQuestionView()
     
