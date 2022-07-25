@@ -236,7 +236,8 @@ extension AddingViewController: UITextFieldDelegate {
 
 extension AddingViewController: ProfileModalViewDelegate {
     func registerSelectedCharacter(imageName: String) {
-        self.profileImageView.image = UIImage(named: imageName)
-        print("DELEGATE")
+        DispatchQueue.main.async {
+            self.profileImageView.image = UIImage(named: imageName)
+        }
     }
 }
