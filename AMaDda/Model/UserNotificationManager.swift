@@ -131,5 +131,12 @@ final class UserNotificationManager {
             }
         }
     }
+    func addTestRequest() {
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        let notificationContent = createRequestContent(3)
+        let requestIdentifier = "testRequest"
+        let request = UNNotificationRequest(identifier: requestIdentifier, content: notificationContent, trigger: notificationTrigger)
+        notificationCenter.add(request)
+    }
 #endif
 }
