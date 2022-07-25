@@ -10,9 +10,9 @@ import UIKit
 
 final class MainViewController: UIViewController {
     private var familyMembers = FamilyMemberMockData.familyMemberData
-    
     private let todayQuestionView = TodayQuestionView()
     
+    private let touchAreaSize: CGFloat = 44
     private let familyTableLabel: UILabel = {
         let label = UILabel()
         label.text = "우리 가족"
@@ -27,13 +27,17 @@ final class MainViewController: UIViewController {
     }()
     private lazy var addMemberButton: UIButton = {
         let button = UIButton()
-        button.setImage(ImageLiterals.icPlus, for: .normal)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24)
+        let image = UIImage.load(systemName: "plus", configuration: configuration)
+        button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(tapAddButton), for: .touchUpInside)
         return button
     }()
     private let settingButton: UIButton = {
         let button = UIButton()
-        button.setImage(ImageLiterals.icSetting, for: .normal)
+        let configuaration = UIImage.SymbolConfiguration(pointSize: 24)
+        let image = UIImage.load(systemName: "ellipsis.circle", configuration: configuaration)
+        button.setImage(image, for: .normal)
         button.showsMenuAsPrimaryAction = true
         return button
     }()
@@ -120,16 +124,16 @@ extension MainViewController {
         NSLayoutConstraint.activate([
             addMemberButton.centerYAnchor.constraint(equalTo: familyTableLabel.centerYAnchor),
             addMemberButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            addMemberButton.heightAnchor.constraint(equalToConstant: 24),
-            addMemberButton.widthAnchor.constraint(equalToConstant: 24),
+            addMemberButton.heightAnchor.constraint(equalToConstant: touchAreaSize),
+            addMemberButton.widthAnchor.constraint(equalToConstant: touchAreaSize),
         ])
         
         settingButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             settingButton.centerYAnchor.constraint(equalTo: todayQuestionView.todayTitleLabel.centerYAnchor),
             settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            settingButton.heightAnchor.constraint(equalToConstant: 24),
-            settingButton.widthAnchor.constraint(equalToConstant: 24),
+            settingButton.heightAnchor.constraint(equalToConstant: touchAreaSize),
+            settingButton.widthAnchor.constraint(equalToConstant: touchAreaSize),
         ])
     }
 }
