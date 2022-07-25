@@ -17,6 +17,9 @@ enum ImageLiterals {
     
     // MARK: - button
     static var btnProfile: UIImage { .load(systemName: "person.circle.fill") }
+    // MARK: - design
+    static var openingQuote: UIImage { .load(systemName: "quote.opening")}
+    static var closingQuote: UIImage { .load(systemName: "quote.closing")}
 }
 
 // MARK: - ProfileImage

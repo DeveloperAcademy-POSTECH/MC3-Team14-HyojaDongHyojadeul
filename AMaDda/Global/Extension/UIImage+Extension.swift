@@ -25,9 +25,10 @@ extension UIImage {
     }
     
     static func load(systemName: String, configuration: UIImage.SymbolConfiguration) -> UIImage {
-             guard let image = UIImage(systemName: systemName, withConfiguration: configuration) else {
-                 return UIImage()
-             }
+        guard let image = UIImage(systemName: systemName, withConfiguration: configuration) else {
+            return UIImage()
+        }
+        image.accessibilityIdentifier = systemName
         return image
     }
     
