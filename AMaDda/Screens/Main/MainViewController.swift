@@ -10,10 +10,11 @@ import UIKit
 
 final class MainViewController: UIViewController {
 
-    private let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
-    
+    private let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers]
+
     private let todayQuestionView = TodayQuestionView()
     
+    private let touchAreaSize: CGFloat = 44
     private let familyTableLabel: UILabel = {
         let label = UILabel()
         label.text = "우리 가족"
@@ -23,8 +24,25 @@ final class MainViewController: UIViewController {
     private let familyTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(FamilyTableCell.self, forCellReuseIdentifier: FamilyTableCell.className)
+        tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: EmptyTableViewCell.className)
         tableView.showsVerticalScrollIndicator = false
         return tableView
+    }()
+    private lazy var addMemberButton: UIButton = {
+        let button = UIButton()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24)
+        let image = UIImage.load(systemName: "plus", configuration: configuration)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(tapAddButton), for: .touchUpInside)
+        return button
+    }()
+    private let settingButton: UIButton = {
+        let button = UIButton()
+        let configuaration = UIImage.SymbolConfiguration(pointSize: 24)
+        let image = UIImage.load(systemName: "ellipsis.circle", configuration: configuaration)
+        button.setImage(image, for: .normal)
+        button.showsMenuAsPrimaryAction = true
+        return button
     }()
     
     // MARK: - init
@@ -42,11 +60,33 @@ final class MainViewController: UIViewController {
         familyTableView.reloadData()
     }
     
+    // MARK: - Selector
+    @objc private func tapAddButton() {
+        let addingViewController = AddingViewController()
+        navigationController?.pushViewController(addingViewController, animated: true)
+    }
+    
     // MARK: - functions
     
     private func setUpDelegate() {
         familyTableView.delegate = self
         familyTableView.dataSource = self
+    }
+    
+    private func setButtonMenu() {
+        let notiSetting = UIAction(title: "알림 허용 설정", image: ImageLiterals.icBell) { _ in
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        let cycleSetting = UIAction(title: "알림 주기 설정", image: ImageLiterals.icPencil) { [weak self] _ in
+            let notiSettingViewController = OnboardingTwoViewController()
+            let notificationCycle = UserDefaults.standard.userNotificationCycle
+            notiSettingViewController.cycleViewMode = .setting(cycle: notificationCycle ?? 3)
+            self?.navigationController?.pushViewController(notiSettingViewController, animated: true)
+        }
+        settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting])
     }
 }
 
@@ -57,11 +97,14 @@ extension MainViewController {
     private func configureUI() {
         view.backgroundColor = .systemBackground
         familyTableView.backgroundColor = .systemBackground
+        setButtonMenu()
     }
     private func configureAddSubViews() {
         view.addSubviews(todayQuestionView,
                          familyTableLabel,
-                         familyTableView)
+                         familyTableView,
+                        addMemberButton,
+                        settingButton)
         todayQuestionView.configureAddSubViewsTodayQuestionView()
     }
     private func configureConstraints() {
@@ -89,12 +132,33 @@ extension MainViewController {
             familyTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             familyTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
+        
+        addMemberButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            addMemberButton.centerYAnchor.constraint(equalTo: familyTableLabel.centerYAnchor),
+            addMemberButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            addMemberButton.heightAnchor.constraint(equalToConstant: touchAreaSize),
+            addMemberButton.widthAnchor.constraint(equalToConstant: touchAreaSize),
+        ])
+        
+        settingButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            settingButton.centerYAnchor.constraint(equalTo: todayQuestionView.todayTitleLabel.centerYAnchor),
+            settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            settingButton.heightAnchor.constraint(equalToConstant: touchAreaSize),
+            settingButton.widthAnchor.constraint(equalToConstant: touchAreaSize),
+        ])
     }
 }
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
+        switch familyMemberCount {
+        case 0:
+            return familyTableView.frame.height
+        default:
+            return 140
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -104,14 +168,28 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = familyMembers.count
-        return count
+        switch familyMemberCount {
+        case 0:
+            tableView.separatorStyle = .none
+            return 1
+        default:
+            return familyMembers.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { return UITableViewCell() }
-        let item = familyMembers[indexPath.row]
-        cell.item = item
-        return cell
+        switch familyMemberCount {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.className, for: indexPath) as? EmptyTableViewCell else {
+                return UITableViewCell()
+            }
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { fatalError() }
+            let item = self.familyMembers[indexPath.row]
+            cell.item = item
+            cell.selectionStyle = .none
+            return cell
+        }
     }
 }

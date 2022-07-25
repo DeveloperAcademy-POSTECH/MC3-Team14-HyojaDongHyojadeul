@@ -11,6 +11,9 @@ enum ImageLiterals {
     
     // MARK: - icon
     static var icPlus: UIImage { .load(systemName: "plus") }
+    static var icSetting: UIImage { .load(systemName: "ellipsis.circle") }
+    static var icBell: UIImage { .load(systemName: "bell") }
+    static var icPencil: UIImage { .load(systemName: "pencil") }
     
     // MARK: - button
     static var btnProfile: UIImage { .load(systemName: "person.circle.fill") }
