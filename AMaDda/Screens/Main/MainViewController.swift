@@ -16,7 +16,6 @@ final class MainViewController: UIViewController {
             print("아직 추가한 가족 멤버 없음")
             return nil
         }
-        print(familyMembers)
         return familyMembers
     }()
     
