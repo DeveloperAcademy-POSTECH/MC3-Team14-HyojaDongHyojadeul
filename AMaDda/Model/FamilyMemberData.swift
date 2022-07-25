@@ -36,7 +36,7 @@ extension FamilyMemberData {
     }
     
     var contactTermString: String {
-        let term = Date.
+        guard let term = Date.daysFromToday(lastContact) else { return "오류" }
         var finalContactString = ""
         var finalContactAfterStirng = " 넘었어요"
         switch term {
