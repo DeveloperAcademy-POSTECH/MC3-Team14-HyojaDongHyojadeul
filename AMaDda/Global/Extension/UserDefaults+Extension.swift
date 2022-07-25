@@ -27,13 +27,17 @@ extension UserDefaults {
         }
     }
     
-    var familyMembers: [FamilyMemberData]? {
+    var familyMembers: [FamilyMemberData] {
         get {
-            var members: [FamilyMemberData]?
+            var members: [FamilyMemberData] = []
             if let data = UserDefaults.standard.value(forKey: "familyMembers") as? Data {
-                members = try? PropertyListDecoder().decode([FamilyMemberData].self, from: data)
+                do {
+                    members = try PropertyListDecoder().decode([FamilyMemberData].self, from: data)
+                } catch {
+                    print("Unable to decode UserDefaults")
+                }
             }
-            return members ?? []
+            return members
         }
         set {
             UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey: "familyMembers")

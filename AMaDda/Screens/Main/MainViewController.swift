@@ -10,12 +10,13 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    private var familyMembers: [FamilyMemberData]? = {
+    private var familyMembers: [FamilyMemberData] = {
         UserDefaults.standard.familyMembers = FamilyMemberMockData.familyMemberData
-        guard let familyMembers = UserDefaults.standard.familyMembers else {
-            print("아직 추가한 가족 멤버 없음")
-            return nil
-        }
+//        guard let familyMembers = UserDefaults.standard.familyMembers else {
+//            print("아직 추가한 가족 멤버 없음")
+//            return nil
+//        }
+        let familyMembers = UserDefaults.standard.familyMembers
         return familyMembers
     }()
     
@@ -106,19 +107,13 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count = familyMembers?.count else {
-            print("familyMembers 배열의 길이는 0 입니다")
-            return 0
-        }
+        let count = familyMembers.count
         return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { return UITableViewCell() }
-        guard let item = familyMembers?[indexPath.row] else {
-            print("아직 등록된 가족이 없습니다")
-            return cell
-        }
+        let item = familyMembers[indexPath.row]
         cell.item = item
         return cell
     }
