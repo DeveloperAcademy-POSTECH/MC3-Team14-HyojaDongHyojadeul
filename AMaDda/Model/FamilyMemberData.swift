@@ -12,11 +12,13 @@ struct FamilyMemberData: Codable {
     var name: String
     var characterImageName: String
     var lastContact: Date
+    var initialized: Bool
     
     init(name: String, characterImageName: String, lastContact: Date) {
         self.name = name
         self.characterImageName = characterImageName
         self.lastContact = lastContact
+        self.initialized = true
         // TODO: 인스턴스가 생성될 때는 Date.now로 initialize 하기
         // 현재는 mockData 사용하기 위해 lastContact로 init 선언
     }
@@ -24,6 +26,7 @@ struct FamilyMemberData: Codable {
 
 extension FamilyMemberData {
     mutating func updateLastContact() {
+        initialized = false
         lastContact = Date.now
         updateUserDefaults()
     }
@@ -36,28 +39,31 @@ extension FamilyMemberData {
     }
     
     var contactTermString: String {
-        guard let term = Date.daysFromToday(lastContact) else { return "오류" }
         var finalContactString = ""
         var finalContactAfterStirng = " 넘었어요"
-        switch term {
-        case 0:
-            finalContactAfterStirng = "오늘 연락했어요"
-        case 1...6:
-            finalContactString = "\(term)일"
-            finalContactAfterStirng = " 됐어요"
-        case 7:
-            finalContactString = "1주일"
-            finalContactAfterStirng = " 됐어요"
-        case 8...14:
-            finalContactString = "1주일"
-        case 15...21:
-            finalContactString = "2주일"
-        case 22...28:
-            finalContactString = "3주일"
-        case 29...:
-            finalContactString = "한달이"
-        default:
-            finalContactAfterStirng = "통화를 하고\n기록을 시작해볼까요?"
+        if initialized {
+            finalContactString = "통화를 하고\n"
+            finalContactAfterStirng = "기록을 시작해볼까요?"
+        } else {
+            guard let term = Date.daysFromToday(lastContact) else { return "오류" }
+            switch term {
+            case 0:
+                finalContactAfterStirng = "오늘 연락했어요"
+            case 1...6:
+                finalContactString = "\(term)일"
+                finalContactAfterStirng = " 됐어요"
+            case 7:
+                finalContactString = "1주일"
+                finalContactAfterStirng = " 됐어요"
+            case 8...14:
+                finalContactString = "1주일"
+            case 15...21:
+                finalContactString = "2주일"
+            case 22...28:
+                finalContactString = "3주일"
+            default:
+                finalContactString = "한달"
+            }
         }
         return finalContactString + finalContactAfterStirng
     }

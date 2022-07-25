@@ -28,7 +28,11 @@ class FamilyTableCell: UITableViewCell {
     
     private let familyCharacterImageView = UIImageView()
     private let familyNameLabel = UILabel()
-    private let familyDescriptionLabel = UILabel()
+    private let familyDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
     private let callImage: UIImage = {
         let configuration = UIImage.SymbolConfiguration(textStyle: .title1)
         guard let image = UIImage(systemName: "phone.fill", withConfiguration: configuration) else { fatalError() }
