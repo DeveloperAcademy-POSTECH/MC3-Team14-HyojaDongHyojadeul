@@ -47,6 +47,20 @@ final class ProfileModalViewController: UIViewController {
         button.tag = registerBarButtonTag
         return button
     }()
+    private lazy var saveButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("저장", for: .normal)
+        button.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        return button
+    }()
+    private lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("취소", for: .normal)
+        button.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,10 +78,29 @@ final class ProfileModalViewController: UIViewController {
     
     private func configureAddSubviews() {
         view.addSubview(collectionView)
+        view.addSubview(cancelButton)
+        view.addSubview(saveButton)
     }
     
     private func configureConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
+        
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cancelButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            cancelButton.widthAnchor.constraint(equalToConstant: 44),
+            cancelButton.heightAnchor.constraint(equalToConstant: 44)
+        ])
+        
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: cancelButton.topAnchor),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            saveButton.widthAnchor.constraint(equalToConstant: 44),
+            saveButton.heightAnchor.constraint(equalToConstant: 44)
+        ])
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -90,6 +123,17 @@ final class ProfileModalViewController: UIViewController {
     }
     
     // MARK: - Selector
+    @objc func didTapSaveButton() {
+        let imageIndex = getImageIndex(by: selectedCharacterName)
+        self.delegate?.registerSelectedCharacter(imageName: characterNames[imageIndex])
+       
+        dismiss(animated: true)
+    }
+    
+    @objc func didTapCancelButton() {
+        dismiss(animated: true)
+    }
+    
     @objc func tapBarButton(_ sender: Any) {
         guard let sender = sender as? UIBarButtonItem else { return }
         if sender.tag == cancelBarButtonTag {
