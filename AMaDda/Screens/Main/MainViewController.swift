@@ -101,6 +101,7 @@ extension MainViewController {
         view.backgroundColor = .systemBackground
         familyTableView.backgroundColor = .systemBackground
         setButtonMenu()
+        self.navigationItem.setHidesBackButton(true, animated:true)
     }
     private func configureAddSubViews() {
         view.addSubviews(todayQuestionView,
