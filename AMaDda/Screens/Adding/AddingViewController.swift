@@ -54,9 +54,9 @@ class AddingViewController: UIViewController {
         view.backgroundColor = .lightGray
         return view
     }()
-    private let textFieldLimitLabel: UILabel = {
+    private lazy var textFieldLimitLabel: UILabel = {
         let label = UILabel()
-        label.text = "0/5"
+        label.text = "0/\(maxLength)"
         label.textColor = .lightGray
         return label
     }()
@@ -94,7 +94,6 @@ class AddingViewController: UIViewController {
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
-        
         present(vc, animated: true)
     }
     
@@ -134,7 +133,7 @@ class AddingViewController: UIViewController {
     }
     
     private func setCounter(count: Int) {
-        textFieldLimitLabel.text = "\(count)/5"
+        textFieldLimitLabel.text = "\(count)/\(maxLength)"
         checkMaxLength(textField: nickNameTextField, maxLength: maxLength)
     }
     
