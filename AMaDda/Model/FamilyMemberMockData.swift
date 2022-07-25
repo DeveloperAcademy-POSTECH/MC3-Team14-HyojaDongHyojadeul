@@ -24,9 +24,9 @@ final class FamilyMemberMockData {
         
         guard let someDateTime = calendar.date(from: dateComponents) else { fatalError() }
         guard let someDateTime1 = calendar.date(from: dateComponents1) else { fatalError() }
-        var data = [
-            FamilyMemberData(name: "엄마", characterImageName: "Character2", lastContactDate: someDateTime),
-            FamilyMemberData(name: "아빠", characterImageName: "Character2", lastContactDate: someDateTime1),
+        var data: [FamilyMemberData] = [
+//            FamilyMemberData(name: "엄마", characterImageName: "Character2", lastContactDate: someDateTime),
+//            FamilyMemberData(name: "아빠", characterImageName: "Character2", lastContactDate: someDateTime1),
         ]
         return data
     }()
