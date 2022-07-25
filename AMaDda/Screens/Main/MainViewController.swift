@@ -28,7 +28,7 @@ final class MainViewController: UIViewController {
     private lazy var addMemberButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.icPlus, for: .normal)
-        button.addTarget(self, action: #selector(tapAddButton(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tapAddButton), for: .touchUpInside)
         return button
     }()
     private let settingButton: UIButton = {
@@ -47,7 +47,7 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - Selector
-    @objc private func tapAddButton(_ sender: Any) {
+    @objc private func tapAddButton() {
         let addingViewController = AddingViewController()
         navigationController?.pushViewController(addingViewController, animated: true)
     }
