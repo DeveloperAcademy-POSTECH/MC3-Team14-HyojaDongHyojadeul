@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingOneViewController: UIViewController {
+final class OnboardingOneViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -46,10 +46,12 @@ class OnboardingOneViewController: UIViewController {
         configureConstraints()
     }
     
+    
     // MARK: - Configures
     
     private func configureUI() {
         view.backgroundColor = .systemBackground
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     private func configureAddSubView() {
@@ -58,7 +60,7 @@ class OnboardingOneViewController: UIViewController {
                          nextButton)
     }
     
-    func configureConstraints(){        
+    private func configureConstraints(){        
         firstOnboardTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             firstOnboardTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
@@ -85,7 +87,6 @@ class OnboardingOneViewController: UIViewController {
     
     @objc private func didTapNextButton(){
         notificationAuthorizationRequest()
-        // TODO: onboarding2 로 이동
     }
 }
 
@@ -98,8 +99,13 @@ extension OnboardingOneViewController {
             if let error = error {
                 print("request authorization failed: \(error)")
             }
-            // TODO: sprint1 때에는 granted 설정에 상관 없이 onboarding2로 이동
-            // TODO: sprint2 때에는 분기점 생성
+            else {
+                DispatchQueue.main.async {
+                    let OnboardingTwoVC = OnboardingTwoViewController()
+                    self.navigationController?.pushViewController(OnboardingTwoVC, animated: true)
+                    self.navigationController?.isNavigationBarHidden = true
+                }
+            }
         }
     }
 }
