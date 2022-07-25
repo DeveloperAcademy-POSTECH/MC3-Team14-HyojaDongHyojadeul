@@ -58,7 +58,7 @@ final class EmptyTableViewCell: UITableViewCell {
         textStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             textStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            textStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -(upperTableViewSpacing / 2)),
+            textStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -upperTableViewSpacing),
         ])
         
     }

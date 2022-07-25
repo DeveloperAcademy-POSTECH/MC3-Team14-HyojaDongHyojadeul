@@ -10,8 +10,12 @@ import UIKit
 
 final class MainViewController: UIViewController {
     //private var familyMembers = FamilyMemberMockData.familyMemberData
-    private var familyMembers: [FamilyMemberData] = []
-    
+    private var familyMembers = Array<FamilyMemberData>() {
+        didSet {
+            familyMemberCount = familyMembers.count
+        }
+    }
+    private var familyMemberCount = 0
     private let todayQuestionView = TodayQuestionView()
     
     private let familyTableLabel: UILabel = {
@@ -85,22 +89,22 @@ extension MainViewController {
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch familyMembers.count {
+        switch familyMemberCount {
         case 0:
             return familyTableView.frame.height
         default:
             return 140
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
     }
 }
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch familyMembers.count {
+        switch familyMemberCount {
         case 0:
             return 1
         default:
@@ -109,9 +113,11 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch familyMembers.count {
+        switch familyMemberCount {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.className, for: indexPath) as? EmptyTableViewCell else { fatalError() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.className, for: indexPath) as? EmptyTableViewCell else {
+                return UITableViewCell()
+            }
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { fatalError() }
@@ -119,7 +125,6 @@ extension MainViewController: UITableViewDataSource {
             cell.item = item
             cell.selectionStyle = .none
             return cell
-
         }
     }
 }
