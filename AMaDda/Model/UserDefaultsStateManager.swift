@@ -33,7 +33,7 @@ final class UserDefaultsStateManager {
     }
     static private func updateTodayQuestion() {
         var questionIndex = UserDefaults.standard.questionIndex
-        if questionIndex >= TodayQuestionMockData.mockData.count {
+        if questionIndex >= TodayQuestionMockData.mockData.count - 1 {
             questionIndex = 0
         } else {
             questionIndex += 1
