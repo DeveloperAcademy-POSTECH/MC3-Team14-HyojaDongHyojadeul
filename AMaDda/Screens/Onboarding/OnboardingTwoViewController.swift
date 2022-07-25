@@ -7,9 +7,9 @@
 
 import UIKit
 
-class OnboardingTwoViewController: UIViewController {
+final class OnboardingTwoViewController: UIViewController {
     
-    var notificationCount = 3
+    var notificationCount: Int = 3
     
     // MARK: Properties
     private let onboardingTwoTitleLabel: UILabel = {
@@ -40,17 +40,25 @@ class OnboardingTwoViewController: UIViewController {
         stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
-    private let startButton: CommonButton = {
+    private lazy var startButton: CommonButton = {
         let button = CommonButton()
         button.setTitle("시작하기", for: .normal)
-        // TODO: Button Function을 필요로 한다.
+        button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
     }()
     
     // MARK: stepper function
-    @objc func stepperValueChanged(_ stepper: UIStepper) {
+    @objc private func stepperValueChanged(_ stepper: UIStepper) {
         notificationCount = Int(stepper.value)
         showNotificationLabel.text = "\(notificationCount)일"
+    }
+    
+    @objc private func didTapStartButton() {
+        let mainVC = MainViewController()
+        navigationController?.pushViewController(mainVC, animated: true)
+        navigationController?.isNavigationBarHidden = true
+        UserDefaults.standard.notificationCount = notificationCount
+        UserDefaults.standard.checkedOnboarding = true
     }
     
     // MARK: Life Cycle functions
@@ -73,7 +81,7 @@ class OnboardingTwoViewController: UIViewController {
                         startButton)
     }
     
-    func configureConstraints(){
+    private func configureConstraints(){
         onboardingTwoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             onboardingTwoTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),

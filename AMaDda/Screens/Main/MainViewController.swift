@@ -9,7 +9,16 @@ import Foundation
 import UIKit
 
 final class MainViewController: UIViewController {
-    private var familyMembers = FamilyMemberMockData.familyMemberData
+    
+    private var familyMembers: [FamilyMemberData] = {
+        UserDefaults.standard.familyMembers = FamilyMemberMockData.familyMemberData
+//        guard let familyMembers = UserDefaults.standard.familyMembers else {
+//            print("아직 추가한 가족 멤버 없음")
+//            return nil
+//        }
+        let familyMembers = UserDefaults.standard.familyMembers
+        return familyMembers
+    }()
     
     private let todayQuestionView = TodayQuestionView()
     
@@ -22,9 +31,11 @@ final class MainViewController: UIViewController {
     private let familyTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(FamilyTableCell.self, forCellReuseIdentifier: FamilyTableCell.className)
-        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
+    
+    // MARK: - init
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +46,7 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - functions
+    
     private func setUpDelegate() {
         familyTableView.delegate = self
         familyTableView.dataSource = self
@@ -42,7 +54,9 @@ final class MainViewController: UIViewController {
 }
 
 extension MainViewController {
+    
     // MARK: - configure
+    
     private func configureUI() {
         view.backgroundColor = .systemBackground
         familyTableView.backgroundColor = .systemBackground
@@ -74,8 +88,8 @@ extension MainViewController {
         familyTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             familyTableView.topAnchor.constraint(equalTo: familyTableLabel.bottomAnchor, constant: 20),
-            familyTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Size.leadingTrailingPadding),
-            familyTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            familyTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            familyTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             familyTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }
@@ -88,20 +102,19 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
     }
 }
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return familyMembers.count
+        let count = familyMembers.count
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { fatalError() }
-        let item = self.familyMembers[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { return UITableViewCell() }
+        let item = familyMembers[indexPath.row]
         cell.item = item
-        cell.selectionStyle = .none
         return cell
     }
 }

@@ -10,8 +10,9 @@ import UIKit
 class AddingViewController: UIViewController {
     
     private var maxLength = 5
+    var characterImageName: String = "Character1"
+    private var familyMemers = [FamilyMemberData]()
     private let vc = ProfileModalViewController()
-    
     
     // MARK: - property
     
@@ -54,9 +55,9 @@ class AddingViewController: UIViewController {
         view.backgroundColor = .lightGray
         return view
     }()
-    private let textFieldLimitLabel: UILabel = {
+    private lazy var textFieldLimitLabel: UILabel = {
         let label = UILabel()
-        label.text = "0/5"
+        label.text = "0/\(maxLength)"
         label.textColor = .lightGray
         return label
     }()
@@ -89,12 +90,13 @@ class AddingViewController: UIViewController {
     
     @objc private func didTapAddButton() {
         guard let text = nickNameTextField.text else { return }
-        print(text)
-        // TODO: 이미지경로(String) 이랑 text(String) 를 array에 append하고 그 array를 UserDefault에 저장
+        familyMemers = UserDefaults.standard.familyMembers
+        familyMemers.append(FamilyMemberData(name: text, characterImageName: characterImageName, lastContactDate: Date.now))
+        
+        UserDefaults.standard.familyMembers = familyMemers
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
-        
         present(vc, animated: true)
     }
     
@@ -134,7 +136,7 @@ class AddingViewController: UIViewController {
     }
     
     private func setCounter(count: Int) {
-        textFieldLimitLabel.text = "\(count)/5"
+        textFieldLimitLabel.text = "\(count)/\(maxLength)"
         checkMaxLength(textField: nickNameTextField, maxLength: maxLength)
     }
     
@@ -236,6 +238,7 @@ extension AddingViewController: UITextFieldDelegate {
 
 extension AddingViewController: ProfileModalViewDelegate {
     func registerSelectedCharacter(imageName: String) {
+        characterImageName = imageName
         DispatchQueue.main.async {
             self.profileImageView.image = UIImage(named: imageName)
         }
