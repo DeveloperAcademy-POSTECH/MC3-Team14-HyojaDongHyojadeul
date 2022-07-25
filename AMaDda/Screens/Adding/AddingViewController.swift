@@ -120,8 +120,9 @@ class AddingViewController: UIViewController {
     
     private func changeButtonEnableState() {
         let hasText = nickNameTextField.hasText
-        let canEabled = hasText
-        // TODO: 이미지랑도 비교해야함
+        let hasImage = profileImageView.image != ImageLiterals.btnProfile
+        let canEabled = hasText && hasImage
+
         addButton.isDisabled = !canEabled
     }
     
