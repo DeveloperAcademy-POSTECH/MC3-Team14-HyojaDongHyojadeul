@@ -42,7 +42,7 @@ class FamilyTableCell: UITableViewCell {
         let contactButton = UIButton()
         contactButton.setImage(callImage, for: .normal)
         contactButton.tintColor = .white
-        contactButton.addTarget(self, action: #selector(updateMemberData), for: .touchUpInside)
+        contactButton.addTarget(self, action: #selector(didTapContactButton), for: .touchUpInside)
         return contactButton
     }()
     
@@ -112,8 +112,8 @@ class FamilyTableCell: UITableViewCell {
     
     // MARK: - selector
     
-    @objc func updateMemberData() {
-        self.item?.updateLastContact()
+    @objc func didTapContactButton() {
+        self.item?.updateLastContactDate()
         UserDefaults.standard.finalContactDiffDay = 0
     }
 }

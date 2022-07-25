@@ -17,28 +17,29 @@ struct FamilyMemberData: Codable {
     init(name: String, characterImageName: String) {
         self.name = name
         self.characterImageName = characterImageName
-        self.lastContactDate = Date.now
+        self.lastContactDate = Date().convertedKoreaDate
         self.initialized = true
-        // TODO: 인스턴스가 생성될 때는 Date.now로 initialize 하기
-        // 현재는 mockData 사용하기 위해 lastContact로 init 선언
     }
 }
 
 extension FamilyMemberData {
-    mutating func updateLastContact() {
+    mutating func updateLastContactDate() {
         initialized = false
-        lastContactDate = Date.now
+        lastContactDate = Date().convertedKoreaDate
         updateUserDefaults()
     }
     
+    private func addFamilyMember() {
+        var familyMembers = UserDefaults.standard.familyMembers
+        familyMembers.append(self)
+        UserDefaults.standard.familyMembers = familyMembers
+    }
+    
     private func updateUserDefaults() {
-//        guard var familyMembers = UserDefaults.standard.familyMembers else { return }
         var familyMembers = UserDefaults.standard.familyMembers
         if let index = familyMembers.firstIndex(where: { $0.id == self.id }) {
             familyMembers.remove(at: index)
             familyMembers.insert(self, at: index)
-        } else {
-            familyMembers.append(self)
         }
         UserDefaults.standard.familyMembers = familyMembers
     }
