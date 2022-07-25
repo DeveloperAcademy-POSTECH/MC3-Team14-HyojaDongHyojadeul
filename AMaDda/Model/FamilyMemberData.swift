@@ -36,6 +36,7 @@ extension FamilyMemberData {
         guard let index = familyArray.firstIndex(where: { $0.id == self.id }) else { return }
         familyArray.remove(at: index)
         familyArray.append(self)
+        UserDefaults.standard.familyMembers = familyArray
     }
     
     var contactTermString: String {
