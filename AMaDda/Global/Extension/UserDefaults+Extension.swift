@@ -26,6 +26,23 @@ extension UserDefaults {
             UserDefaults.standard.set(newValue, forKey: "finalContactDiffDay")
         }
     }
+    
+    var familyMembers: [FamilyMemberData] {
+        get {
+            var members: [FamilyMemberData] = []
+            if let data = UserDefaults.standard.value(forKey: "familyMembers") as? Data {
+                do {
+                    members = try PropertyListDecoder().decode([FamilyMemberData].self, from: data)
+                } catch {
+                    print("Unable to decode UserDefaults")
+                }
+            }
+            return members
+        }
+        set {
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey: "familyMembers")
+        }
+    }
     var finalEnteredDate: Date? {
         get {
             guard let enteredDate = UserDefaults.standard.value(forKey: "finalEnteredDate") as? Date else {
@@ -35,6 +52,7 @@ extension UserDefaults {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "finalEnteredDate")
+            
         }
     }
     var notificationCount: Int? {
