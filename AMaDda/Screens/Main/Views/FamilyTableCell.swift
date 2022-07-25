@@ -34,8 +34,7 @@ class FamilyTableCell: UITableViewCell {
         return label
     }()
     private let callImage: UIImage = {
-        let configuration = UIImage.SymbolConfiguration(textStyle: .title1)
-        guard let image = UIImage(systemName: "phone.fill", withConfiguration: configuration) else { fatalError() }
+        let image = UIImage.loadLarge(systemName: "phone.fill")
         return image
     }()
     private lazy var contactButton: UIButton = {
