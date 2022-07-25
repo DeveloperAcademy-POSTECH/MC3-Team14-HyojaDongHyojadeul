@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 final class MainViewController: UIViewController {
-
+    private let todayQuestionData = TodayQuestionMockData.mockData
     private let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
     private lazy var familyMemberCount = familyMembers.count
-
     private let todayQuestionView = TodayQuestionView()
+    private let todayQuestionIndex = UserDefaults.standard.questionIndex
     
     private let touchAreaSize: CGFloat = 44
     private let familyTableLabel: UILabel = {
@@ -54,6 +54,7 @@ final class MainViewController: UIViewController {
         configureAddSubViews()
         configureConstraints()
         setUpDelegate()
+        changeTodayQuestion(todayQuestionIndex)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +71,7 @@ final class MainViewController: UIViewController {
     // MARK: - functions
     
     private func setUpDelegate() {
+        UserDefaultsStateManager.todayQuestionDelegate = self
         familyTableView.delegate = self
         familyTableView.dataSource = self
     }
@@ -192,5 +194,12 @@ extension MainViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         }
+    }
+}
+
+extension MainViewController: TodayQuestionDelegate {
+    func changeTodayQuestion(_ index: Int) {
+        guard let todayQuestion = todayQuestionData[safe: index] else { return }
+        todayQuestionView.todayCardQuestionLabel.text = todayQuestion.question
     }
 }
