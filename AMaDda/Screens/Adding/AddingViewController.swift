@@ -10,6 +10,8 @@ import UIKit
 class AddingViewController: UIViewController {
     
     private var maxLength = 5
+    private let vc = ProfileModalViewController()
+    
     
     // MARK: - property
     
@@ -22,6 +24,7 @@ class AddingViewController: UIViewController {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.btnProfile
+        imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .lightGray
         imageView.isUserInteractionEnabled = true
         return imageView
@@ -75,6 +78,7 @@ class AddingViewController: UIViewController {
         hidekeyboardWhenTappedAround()
         setupNotificationCenter()
         setupTapGesture()
+        setupDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,7 +94,7 @@ class AddingViewController: UIViewController {
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
-        let vc = ProfileModalViewController()
+        
         present(vc, animated: true)
     }
     
@@ -108,14 +112,12 @@ class AddingViewController: UIViewController {
         })
     }
     
-    @objc private func didSaveButton(_ notification: Notification) {
-        let vc = ProfileModalViewController()
-        vc.delegate = self
-        profileImageView.image = UIImage(systemName: "heart")
-        print("SSS")
-    }
     
     // MARK: - function
+    
+    private func setupDelegate() {
+        vc.delegate = self
+    }
     
     private func changeButtonEnableState() {
         let hasText = nickNameTextField.hasText
@@ -145,7 +147,6 @@ class AddingViewController: UIViewController {
     private func setupNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didSaveButton(_:)), name: NSNotification.Name("DismissDetailView"), object: nil)
     }
     
     // MARK: - configure
@@ -177,7 +178,7 @@ class AddingViewController: UIViewController {
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             profileImageView.topAnchor.constraint(equalTo: addingTitleLabel.bottomAnchor, constant: 37),
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
-            profileImageView.heightAnchor.constraint(equalToConstant: 100),
+            profileImageView.heightAnchor.constraint(equalTo: profileImageView.widthAnchor, multiplier: 1.5),
         ])
         
         plusIcon.translatesAutoresizingMaskIntoConstraints = false

@@ -126,7 +126,7 @@ final class ProfileModalViewController: UIViewController {
     @objc func didTapSaveButton() {
         let imageIndex = getImageIndex(by: selectedCharacterName)
         self.delegate?.registerSelectedCharacter(imageName: characterNames[imageIndex])
-        NotificationCenter.default.post(name: NSNotification.Name("DismissDetailView"), object: nil, userInfo: nil)
+       
         dismiss(animated: true)
     }
     
