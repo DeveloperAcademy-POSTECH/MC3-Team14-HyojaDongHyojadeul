@@ -60,7 +60,7 @@ final class MainViewController: UIViewController {
     }
     
     private func setButtonMenu() {
-        let notiSetting = UIAction(title: "알림 설정", image: ImageLiterals.icBell) { _ in
+        let notiSetting = UIAction(title: "알림 허용 설정", image: ImageLiterals.icBell) { _ in
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
