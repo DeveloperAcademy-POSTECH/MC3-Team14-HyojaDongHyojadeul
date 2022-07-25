@@ -33,9 +33,12 @@ extension FamilyMemberData {
     
     private func updateUserDefaults() {
         guard var familyMembers = UserDefaults.standard.familyMembers else { return }
-        guard let index = familyMembers.firstIndex(where: { $0.id == self.id }) else { return }
-        familyMembers.remove(at: index)
-        familyMembers.append(self)
+        if let index = familyMembers.firstIndex(where: { $0.id == self.id }) {
+            familyMembers.remove(at: index)
+            familyMembers.insert(self, at: index)
+        } else {
+            familyMembers.append(self)
+        }
         UserDefaults.standard.familyMembers = familyMembers
     }
     
