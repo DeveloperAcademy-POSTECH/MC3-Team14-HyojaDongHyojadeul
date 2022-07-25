@@ -11,13 +11,13 @@ struct FamilyMemberData: Codable {
     var id = UUID()
     var name: String
     var characterImageName: String
-    var lastContact: Date
+    var lastContactDate: Date
     var initialized: Bool
     
-    init(name: String, characterImageName: String, lastContact: Date) {
+    init(name: String, characterImageName: String, lastContactDate: Date) {
         self.name = name
         self.characterImageName = characterImageName
-        self.lastContact = lastContact
+        self.lastContactDate = lastContactDate
         self.initialized = true
         // TODO: 인스턴스가 생성될 때는 Date.now로 initialize 하기
         // 현재는 mockData 사용하기 위해 lastContact로 init 선언
@@ -27,7 +27,7 @@ struct FamilyMemberData: Codable {
 extension FamilyMemberData {
     mutating func updateLastContact() {
         initialized = false
-        lastContact = Date.now
+        lastContactDate = Date.now
         updateUserDefaults()
     }
     
@@ -45,7 +45,7 @@ extension FamilyMemberData {
             finalContactString = "통화를 하고\n"
             finalContactAfterStirng = "기록을 시작해볼까요?"
         } else {
-            guard let term = Date.daysFromToday(lastContact) else { return "오류" }
+            guard let term = Date.daysFromToday(lastContactDate) else { return "오류" }
             switch term {
             case 0:
                 finalContactAfterStirng = "오늘 연락했어요"
