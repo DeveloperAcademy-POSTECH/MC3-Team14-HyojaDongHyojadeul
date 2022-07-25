@@ -24,8 +24,7 @@ extension UIImage {
         return image
     }
     
-    static func loadLarge(systemName: String) -> UIImage {
-        let configuration = UIImage.SymbolConfiguration(textStyle: .title1)
+    static func load(systemName: String, configuration: UIImage.SymbolConfiguration) -> UIImage {
         guard let image = UIImage(systemName: systemName, withConfiguration: configuration) else {
             return UIImage()
         }
