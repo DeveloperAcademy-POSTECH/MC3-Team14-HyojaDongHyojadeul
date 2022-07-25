@@ -10,7 +10,7 @@ import UIKit
 
 final class MainViewController: UIViewController {
 
-    private let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
+    private var familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
     private lazy var familyMemberCount = familyMembers.count
 
     private let todayQuestionView = TodayQuestionView()
@@ -58,6 +58,8 @@ final class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        familyMembers = UserDefaults.standard.familyMembers
+        familyMemberCount = familyMembers.count
         familyTableView.reloadData()
     }
     

@@ -94,6 +94,7 @@ class AddingViewController: UIViewController {
         familyMembers.append(FamilyMemberData(name: text, characterImageName: characterImageName))
         
         UserDefaults.standard.familyMembers = familyMembers
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
