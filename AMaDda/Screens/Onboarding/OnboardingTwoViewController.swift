@@ -7,9 +7,8 @@
 
 import UIKit
 
-enum CycleViewMode {
-    case onboarding
-    case setting(cycle: Int)
+enum CycleViewMode: Equatable{
+    case onboarding, setting
 }
 
 final class OnboardingTwoViewController: UIViewController {
@@ -48,7 +47,8 @@ final class OnboardingTwoViewController: UIViewController {
     }()
     private lazy var startButton: CommonButton = {
         let button = CommonButton()
-        button.setTitle("시작하기", for: .normal)
+        let buttonTitle = cycleViewMode == .onboarding ? "시작하기" : "저장하기"
+        button.setTitle(buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
     }()
@@ -60,11 +60,16 @@ final class OnboardingTwoViewController: UIViewController {
     }
     
     @objc private func didTapStartButton() {
-        let mainVC = MainViewController()
-        navigationController?.pushViewController(mainVC, animated: true)
-        navigationController?.isNavigationBarHidden = true
+        switch cycleViewMode {
+        case .onboarding:
+            let mainVC = MainViewController()
+            navigationController?.pushViewController(mainVC, animated: true)
+            navigationController?.isNavigationBarHidden = true
+            UserDefaults.standard.checkedOnboarding = true
+        case .setting:
+            navigationController?.popViewController(animated: true)
+        }
         UserDefaults.standard.notificationCount = notificationCount
-        UserDefaults.standard.checkedOnboarding = true
     }
     
     // MARK: Life Cycle functions
@@ -77,9 +82,10 @@ final class OnboardingTwoViewController: UIViewController {
     
     // MARK: - Functions
     private func checkCycleViewMode() {
-        if case let CycleViewMode.setting(cycle) = cycleViewMode {
-            onboardingStepper.value = Double(cycle)
-            showNotificationLabel.text = "\(cycle)일"
+        if case CycleViewMode.setting = cycleViewMode {
+            guard let notificationCycle = UserDefaults.standard.notificationCount else { return }
+            onboardingStepper.value = Double(notificationCycle)
+            showNotificationLabel.text = "\(notificationCycle)일"
         }
     }
     

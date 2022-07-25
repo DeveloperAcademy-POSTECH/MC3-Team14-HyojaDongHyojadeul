@@ -83,8 +83,7 @@ final class MainViewController: UIViewController {
         }
         let cycleSetting = UIAction(title: "알림 주기 설정", image: ImageLiterals.icPencil) { [weak self] _ in
             let notiSettingViewController = OnboardingTwoViewController()
-            let notificationCycle = UserDefaults.standard.userNotificationCycle
-            notiSettingViewController.cycleViewMode = .setting(cycle: notificationCycle ?? 3)
+            notiSettingViewController.cycleViewMode = .setting
             self?.navigationController?.pushViewController(notiSettingViewController, animated: true)
         }
         settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting])
