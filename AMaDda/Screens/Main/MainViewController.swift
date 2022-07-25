@@ -110,7 +110,7 @@ extension MainViewController: UITableViewDataSource {
 
 extension MainViewController: TodayQuestionDelegate {
     func changeTodayQuestion(_ index: Int) {
-        let todayQuestion = todayQuestionData[index].question
-        todayQuestionView.todayCardQuestionLabel.text = todayQuestion
+        guard let todayQuestion = todayQuestionData[safe: index] else { return }
+        todayQuestionView.todayCardQuestionLabel.text = todayQuestion.question
     }
 }

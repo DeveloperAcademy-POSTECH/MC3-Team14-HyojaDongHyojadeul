@@ -22,6 +22,7 @@
 		91804FAB288A737F0038A2A2 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91804FAA288A737F0038A2A2 /* Date+Extension.swift */; };
 		918BAFFC2886ED94002F94DB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */; };
 		91DC448E288E80E7002F0D46 /* TextLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DC448D288E80E7002F0D46 /* TextLiteral.swift */; };
+		91DC4490288E8628002F0D46 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DC448F288E8628002F0D46 /* Collection+Extension.swift */; };
 		91F1488728859FD1005A45E1 /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1488628859FD1005A45E1 /* UserNotificationManager.swift */; };
 		91FD28A82884F32700F49D20 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28A72884F32700F49D20 /* MainViewController.swift */; };
 		91FD28AA2884F3E500F49D20 /* TodayQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28A92884F3E500F49D20 /* TodayQuestionView.swift */; };
@@ -58,6 +59,7 @@
 		91804FAA288A737F0038A2A2 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		91DC448D288E80E7002F0D46 /* TextLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLiteral.swift; sourceTree = "<group>"; };
+		91DC448F288E8628002F0D46 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		91F1488628859FD1005A45E1 /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		91FD28A72884F32700F49D20 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		91FD28A92884F3E500F49D20 /* TodayQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */,
 				3E98E8E4288652DF001153E4 /* NSObject+Extension.swift */,
 				91804FAA288A737F0038A2A2 /* Date+Extension.swift */,
+				91DC448F288E8628002F0D46 /* Collection+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				91DC448E288E80E7002F0D46 /* TextLiteral.swift in Sources */,
 				3E15D66F2884FB8000570DD7 /* FamilyTableCell.swift in Sources */,
 				3E622CEE28803971006A921C /* AppDelegate.swift in Sources */,
+				91DC4490288E8628002F0D46 /* Collection+Extension.swift in Sources */,
 				3E98E8E5288652DF001153E4 /* NSObject+Extension.swift in Sources */,
 				91FD28AA2884F3E500F49D20 /* TodayQuestionView.swift in Sources */,
 				D7ADBBA72883D520004BB5FE /* CommonButton.swift in Sources */,
