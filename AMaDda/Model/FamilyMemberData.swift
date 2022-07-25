@@ -14,10 +14,10 @@ struct FamilyMemberData: Codable {
     var lastContactDate: Date
     var initialized: Bool
     
-    init(name: String, characterImageName: String, lastContactDate: Date) {
+    init(name: String, characterImageName: String) {
         self.name = name
         self.characterImageName = characterImageName
-        self.lastContactDate = lastContactDate
+        self.lastContactDate = Date.now
         self.initialized = true
         // TODO: 인스턴스가 생성될 때는 Date.now로 initialize 하기
         // 현재는 mockData 사용하기 위해 lastContact로 init 선언

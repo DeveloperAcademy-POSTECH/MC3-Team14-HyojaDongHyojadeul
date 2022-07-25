@@ -9,16 +9,8 @@ import Foundation
 import UIKit
 
 final class MainViewController: UIViewController {
-    
-    private var familyMembers: [FamilyMemberData] = {
-        UserDefaults.standard.familyMembers = FamilyMemberMockData.familyMemberData
-//        guard let familyMembers = UserDefaults.standard.familyMembers else {
-//            print("아직 추가한 가족 멤버 없음")
-//            return nil
-//        }
-        let familyMembers = UserDefaults.standard.familyMembers
-        return familyMembers
-    }()
+
+    private let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
     
     private let todayQuestionView = TodayQuestionView()
     
