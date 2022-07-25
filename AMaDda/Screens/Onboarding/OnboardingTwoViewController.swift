@@ -7,9 +7,15 @@
 
 import UIKit
 
+enum CycleViewMode {
+    case onboarding
+    case setting(cycle: Int)
+}
+
 final class OnboardingTwoViewController: UIViewController {
     
     var notificationCount: Int = 3
+    var cycleViewMode = CycleViewMode.onboarding
     
     // MARK: Properties
     private let onboardingTwoTitleLabel: UILabel = {
@@ -69,9 +75,18 @@ final class OnboardingTwoViewController: UIViewController {
         configureConstraints()
     }
     
+    // MARK: - Functions
+    private func checkCycleViewMode() {
+        if case let CycleViewMode.setting(cycle) = cycleViewMode {
+            onboardingStepper.value = Double(cycle)
+            showNotificationLabel.text = "\(cycle)일"
+        }
+    }
+    
     // MARK: Configures
     private func configureUI() {
         view.backgroundColor = .systemBackground
+        checkCycleViewMode()
     }
     
     private func configureAddSubView() {
