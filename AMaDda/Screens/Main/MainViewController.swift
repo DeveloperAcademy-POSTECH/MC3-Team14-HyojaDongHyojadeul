@@ -9,16 +9,16 @@ import Foundation
 import UIKit
 
 final class MainViewController: UIViewController {
-    private var familyMemberCount = 0
     private var familyMembers: [FamilyMemberData] = {
         UserDefaults.standard.familyMembers = FamilyMemberMockData.familyMemberData
 //        guard let familyMembers = UserDefaults.standard.familyMembers else {
 //            print("아직 추가한 가족 멤버 없음")
 //            return nil
 //        }
-        let familyMembers = UserDefaults.standard.familyMembers
+        let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
         return familyMembers
     }()
+    private lazy var familyMemberCount = familyMembers.count
     private let todayQuestionView = TodayQuestionView()
     
     private let touchAreaSize: CGFloat = 44
@@ -32,7 +32,6 @@ final class MainViewController: UIViewController {
         let tableView = UITableView()
         tableView.register(FamilyTableCell.self, forCellReuseIdentifier: FamilyTableCell.className)
         tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: EmptyTableViewCell.className)
-        tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
@@ -173,6 +172,7 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch familyMemberCount {
         case 0:
+            tableView.separatorStyle = .none
             return 1
         default:
             return familyMembers.count
