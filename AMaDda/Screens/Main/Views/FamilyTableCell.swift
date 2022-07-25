@@ -98,7 +98,7 @@ class FamilyTableCell: UITableViewCell {
         ])
     }
     
-    func configureUI() {
+    private func configureUI() {
         backgroundColor = .systemBackground
         contentView.layer.cornerRadius = 20
         
