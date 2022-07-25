@@ -13,6 +13,7 @@ final class MainViewController: UIViewController {
     private var familyMembers = Array<FamilyMemberData>() {
         didSet {
             familyMemberCount = familyMembers.count
+            familyTableView.reloadData()
         }
     }
     private var familyMemberCount = 0
