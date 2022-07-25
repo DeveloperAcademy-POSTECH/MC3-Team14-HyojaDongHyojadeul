@@ -20,7 +20,7 @@ final class EmptyTableViewCell: UITableViewCell {
     }()
     private let subTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "가족을 추가해볼까요?"
+        label.text = "+ 버튼을 눌러 가족을 추가해볼까요?"
         label.textAlignment = .center
         label.textColor = .gray
         return label
