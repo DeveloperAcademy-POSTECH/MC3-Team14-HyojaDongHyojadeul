@@ -11,7 +11,7 @@ class AddingViewController: UIViewController {
     
     private var maxLength = 5
     var characterImageName: String = "Character1"
-    private var familyMemers = [FamilyMemberData]()
+    private var familyMembers = [FamilyMemberData]()
     private let vc = ProfileModalViewController()
     
     // MARK: - property
@@ -90,10 +90,10 @@ class AddingViewController: UIViewController {
     
     @objc private func didTapAddButton() {
         guard let text = nickNameTextField.text else { return }
-        familyMemers = UserDefaults.standard.familyMembers
-        familyMemers.append(FamilyMemberData(name: text, characterImageName: characterImageName, lastContactDate: Date.now))
+        familyMembers = UserDefaults.standard.familyMembers
+        familyMembers.append(FamilyMemberData(name: text, characterImageName: characterImageName, lastContactDate: Date.now))
         
-        UserDefaults.standard.familyMembers = familyMemers
+        UserDefaults.standard.familyMembers = familyMembers
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
