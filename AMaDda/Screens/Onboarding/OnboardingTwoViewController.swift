@@ -64,7 +64,7 @@ final class OnboardingTwoViewController: UIViewController {
         case .onboarding:
             let mainVC = MainViewController()
             navigationController?.pushViewController(mainVC, animated: true)
-            navigationController?.isNavigationBarHidden = true
+            navigationController?.isNavigationBarHidden = false
             UserDefaults.standard.checkedOnboarding = true
         case .setting:
             navigationController?.popViewController(animated: true)
