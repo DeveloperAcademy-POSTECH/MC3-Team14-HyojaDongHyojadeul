@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum CycleViewMode: Equatable{
+enum CycleViewMode: Equatable {
     case onboarding, setting
 }
 
