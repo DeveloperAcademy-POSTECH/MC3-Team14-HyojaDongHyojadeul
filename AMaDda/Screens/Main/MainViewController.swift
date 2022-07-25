@@ -75,7 +75,7 @@ extension MainViewController {
             todayQuestionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             todayQuestionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
             todayQuestionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            todayQuestionView.heightAnchor.constraint(equalToConstant: 160),
+            todayQuestionView.heightAnchor.constraint(equalToConstant: 170),
         ])
         todayQuestionView.configureConstraintsTodayQuestionView()
         
