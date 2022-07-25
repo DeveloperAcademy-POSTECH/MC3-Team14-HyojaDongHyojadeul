@@ -62,7 +62,7 @@ final class OnboardingTwoViewController: UIViewController {
     @objc private func didTapStartButton() {
         let mainVC = MainViewController()
         navigationController?.pushViewController(mainVC, animated: true)
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = false
         UserDefaults.standard.notificationCount = notificationCount
         UserDefaults.standard.checkedOnboarding = true
     }

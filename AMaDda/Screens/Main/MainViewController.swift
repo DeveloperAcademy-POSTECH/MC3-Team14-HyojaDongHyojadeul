@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 
 final class MainViewController: UIViewController {
+
+    private var familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
     private let todayQuestionData = TodayQuestionMockData.mockData
-    private let familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
     private lazy var familyMemberCount = familyMembers.count
     private let todayQuestionView = TodayQuestionView()
     private let todayQuestionIndex = UserDefaults.standard.questionIndex
@@ -59,6 +60,8 @@ final class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        familyMembers = UserDefaults.standard.familyMembers
+        familyMemberCount = familyMembers.count
         familyTableView.reloadData()
     }
     
@@ -101,6 +104,7 @@ extension MainViewController {
         view.backgroundColor = .systemBackground
         familyTableView.backgroundColor = .systemBackground
         setButtonMenu()
+        self.navigationItem.setHidesBackButton(true, animated:true)
     }
     private func configureAddSubViews() {
         view.addSubviews(todayQuestionView,
