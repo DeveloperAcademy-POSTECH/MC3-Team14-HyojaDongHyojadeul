@@ -19,6 +19,7 @@ final class OnboardingOneViewController: UIViewController {
         label.font = .boldSystemFont(ofSize: 25)
         label.numberOfLines = 0
         label.attributedText = attributedString
+        label.textAlignment = .center
         paragraphStyle.lineSpacing = 10
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
         
