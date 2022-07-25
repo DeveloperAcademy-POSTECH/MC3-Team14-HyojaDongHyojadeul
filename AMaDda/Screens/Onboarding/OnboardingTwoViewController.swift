@@ -43,7 +43,7 @@ final class OnboardingTwoViewController: UIViewController {
     private lazy var startButton: CommonButton = {
         let button = CommonButton()
         button.setTitle("시작하기", for: .normal)
-        button.addTarget(self, action: #selector(didTapstartButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
     }()
     
@@ -53,7 +53,7 @@ final class OnboardingTwoViewController: UIViewController {
         showNotificationLabel.text = "\(notificationCount)일"
     }
     
-    @objc private func didTapstartButton(sender: UIButton!) {
+    @objc private func didTapStartButton() {
         let mainVC = MainViewController()
         navigationController?.pushViewController(mainVC, animated: true)
         navigationController?.isNavigationBarHidden = true
