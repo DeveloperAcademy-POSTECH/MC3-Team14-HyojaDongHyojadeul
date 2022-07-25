@@ -22,7 +22,7 @@ class FamilyTableCell: UITableViewCell {
         didSet {
             self.familyNameLabel.text = item?.name
             self.familyDescriptionLabel.text = item?.contactTermString
-            self.familyCharacterImageView.image = UIImage(named: item?.characterImageName ?? "Character1")
+            self.familyCharacterImageView.image = UIImage.load(name: item?.characterImageName ?? "Character1")
         }
     }
     
