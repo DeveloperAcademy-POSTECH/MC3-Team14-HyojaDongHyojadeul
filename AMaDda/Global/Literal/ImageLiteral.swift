@@ -26,7 +26,7 @@ enum ImageLiterals {
 
 enum ProfileImage: Int, CaseIterable {
     case normalCat = 1
-    case ribbonCat, brownCat, hatCat, noseCat, bellCat, eyebrowCat, bowtieCat, necktieCat, scarCat, eyeTie
+    case ribbonCat, brownCat, hatCat, noseCat, bellCat, eyebrowCat, bowtieCat, necktieCat, scarCat, glassesTie
     
     static let baseName = "Character"
 }
