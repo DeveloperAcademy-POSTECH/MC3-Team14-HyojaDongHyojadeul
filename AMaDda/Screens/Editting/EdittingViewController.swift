@@ -95,9 +95,9 @@ class EdittingViewController: UIViewController {
     @objc private func didTapAddButton() {
         guard let text = nickNameTextField.text else { return }
         familyMembers = UserDefaults.standard.familyMembers
-        familyMembers.append(FamilyMemberData(name: text, characterImageName: characterImageName))
-        
-        UserDefaults.standard.familyMembers = familyMembers
+        familyMember?.name = text
+        familyMember?.characterImageName = characterImageName
+        familyMember?.updateUserDefaults()
         navigationController?.popViewController(animated: true)
     }
     
