@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "Character5.svg",
-      "idiom" : "universal"
+      "filename" : "Character5.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Character5@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Character5@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
