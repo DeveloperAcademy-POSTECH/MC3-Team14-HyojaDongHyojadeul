@@ -9,7 +9,10 @@ import UIKit
 
 class AddingViewController: UIViewController {
     
-    private var maxLength = 10
+    private var maxLength = 5
+    var characterImageName: String = "Character1"
+    private var familyMembers = [FamilyMemberData]()
+    private let vc = ProfileModalViewController()
     
     // MARK: - property
     
@@ -22,6 +25,7 @@ class AddingViewController: UIViewController {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.btnProfile
+        imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .lightGray
         imageView.isUserInteractionEnabled = true
         return imageView
@@ -51,15 +55,16 @@ class AddingViewController: UIViewController {
         view.backgroundColor = .lightGray
         return view
     }()
-    private let textFieldLimitLabel: UILabel = {
+    private lazy var textFieldLimitLabel: UILabel = {
         let label = UILabel()
-        label.text = "0/10"
+        label.text = "0/\(maxLength)"
         label.textColor = .lightGray
         return label
     }()
     private lazy var addButton: CommonButton = {
         let button = CommonButton()
         button.title = "추가하기"
+        button.isDisabled = true
         button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
         return button
     }()
@@ -74,18 +79,26 @@ class AddingViewController: UIViewController {
         hidekeyboardWhenTappedAround()
         setupNotificationCenter()
         setupTapGesture()
+        setupDelegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     // MARK: - seletor
     
     @objc private func didTapAddButton() {
         guard let text = nickNameTextField.text else { return }
-        print(text)
-        // TODO: 이미지경로(String) 이랑 text(String) 를 array에 append하고 그 array를 UserDefault에 저장
+        familyMembers = UserDefaults.standard.familyMembers
+        familyMembers.append(FamilyMemberData(name: text, characterImageName: characterImageName))
+        
+        UserDefaults.standard.familyMembers = familyMembers
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
-        print("gesture")
+        present(vc, animated: true)
     }
     
     @objc private func keyboardWillShow(notification:NSNotification) {
@@ -102,7 +115,20 @@ class AddingViewController: UIViewController {
         })
     }
     
+    
     // MARK: - function
+    
+    private func setupDelegate() {
+        vc.delegate = self
+    }
+    
+    private func changeButtonEnableState() {
+        let hasText = nickNameTextField.hasText
+        let hasImage = profileImageView.image != ImageLiterals.btnProfile
+        let canEabled = hasText && hasImage
+
+        addButton.isDisabled = !canEabled
+    }
     
     private func setupTapGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapProfileImageView(_:)))
@@ -112,10 +138,10 @@ class AddingViewController: UIViewController {
     }
     
     private func setCounter(count: Int) {
-        textFieldLimitLabel.text = "\(count)/10"
+        textFieldLimitLabel.text = "\(count)/\(maxLength)"
         checkMaxLength(textField: nickNameTextField, maxLength: maxLength)
     }
-
+    
     private func checkMaxLength(textField: UITextField, maxLength: Int) {
         if (textField.text?.count ?? 0 > maxLength) {
             textField.deleteBackward()
@@ -156,7 +182,7 @@ class AddingViewController: UIViewController {
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             profileImageView.topAnchor.constraint(equalTo: addingTitleLabel.bottomAnchor, constant: 37),
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
-            profileImageView.heightAnchor.constraint(equalToConstant: 100),
+            profileImageView.heightAnchor.constraint(equalTo: profileImageView.widthAnchor, multiplier: 1.5),
         ])
         
         plusIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -208,5 +234,15 @@ class AddingViewController: UIViewController {
 extension AddingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         setCounter(count: textField.text?.count ?? 0)
+        changeButtonEnableState()
+    }
+}
+
+extension AddingViewController: ProfileModalViewDelegate {
+    func registerSelectedCharacter(imageName: String) {
+        characterImageName = imageName
+        DispatchQueue.main.async {
+            self.profileImageView.image = UIImage(named: imageName)
+        }
     }
 }

@@ -7,19 +7,25 @@
 
 import UIKit
 
-class OnboardingTwoViewController: UIViewController {
+enum CycleViewMode: Equatable {
+    case onboarding, setting
+}
+
+final class OnboardingTwoViewController: UIViewController {
     
-    var notificationCount = 3
+    var notificationCount: Int = 3
+    var cycleViewMode = CycleViewMode.onboarding
     
     // MARK: Properties
     private let onboardingTwoTitleLabel: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(string: "며칠에 한 번 가족에게 연락하고\n싶으세요?")
+        let attributedString = NSMutableAttributedString(string: "며칠에 한 번 가족에게\n연락하고 싶으세요?")
         let paragraphStyle = NSMutableParagraphStyle()
         
         label.font = .boldSystemFont(ofSize: 25)
         label.numberOfLines = 0
         label.attributedText = attributedString
+        label.textAlignment = .center
         paragraphStyle.lineSpacing = 10
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
 
@@ -39,17 +45,31 @@ class OnboardingTwoViewController: UIViewController {
         stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
-    private let startButton: CommonButton = {
+    private lazy var startButton: CommonButton = {
         let button = CommonButton()
-        button.setTitle("시작하기", for: .normal)
-        // TODO: Button Function을 필요로 한다.
+        let buttonTitle = cycleViewMode == .onboarding ? "시작하기" : "저장하기"
+        button.setTitle(buttonTitle, for: .normal)
+        button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
     }()
     
     // MARK: stepper function
-    @objc func stepperValueChanged(_ stepper: UIStepper) {
+    @objc private func stepperValueChanged(_ stepper: UIStepper) {
         notificationCount = Int(stepper.value)
         showNotificationLabel.text = "\(notificationCount)일"
+    }
+    
+    @objc private func didTapStartButton() {
+        switch cycleViewMode {
+        case .onboarding:
+            let mainVC = MainViewController()
+            navigationController?.pushViewController(mainVC, animated: true)
+            navigationController?.isNavigationBarHidden = false
+            UserDefaults.standard.checkedOnboarding = true
+        case .setting:
+            navigationController?.popViewController(animated: true)
+        }
+        UserDefaults.standard.notificationCount = notificationCount
     }
     
     // MARK: Life Cycle functions
@@ -60,9 +80,19 @@ class OnboardingTwoViewController: UIViewController {
         configureConstraints()
     }
     
+    // MARK: - Functions
+    private func checkCycleViewMode() {
+        if case CycleViewMode.setting = cycleViewMode {
+            guard let notificationCycle = UserDefaults.standard.notificationCount else { return }
+            onboardingStepper.value = Double(notificationCycle)
+            showNotificationLabel.text = "\(notificationCycle)일"
+        }
+    }
+    
     // MARK: Configures
     private func configureUI() {
         view.backgroundColor = .systemBackground
+        checkCycleViewMode()
     }
     
     private func configureAddSubView() {
@@ -72,7 +102,7 @@ class OnboardingTwoViewController: UIViewController {
                         startButton)
     }
     
-    func configureConstraints(){
+    private func configureConstraints(){
         onboardingTwoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             onboardingTwoTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
