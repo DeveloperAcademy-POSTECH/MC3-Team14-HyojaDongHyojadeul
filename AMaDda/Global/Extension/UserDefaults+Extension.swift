@@ -8,6 +8,28 @@
 import Foundation
 
 extension UserDefaults {
+    // MARK: - User connect data
+    var finalEnteredDate: Date? {
+        get {
+            guard let enteredDate = UserDefaults.standard.value(forKey: TextLiteral.finalEnteredDate) as? Date else {
+                return nil
+            }
+            return enteredDate
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: TextLiteral.finalEnteredDate)
+        }
+    }
+    var checkedOnboarding: Bool? {
+        get {
+            let count = UserDefaults.standard.bool(forKey: TextLiteral.checkedOnboarding)
+            return count
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: TextLiteral.checkedOnboarding)
+        }
+    }
+    // MARK: - notification data
     var userNotificationCycle: Int? {
         get {
             guard let count = UserDefaults.standard.value(forKey: TextLiteral.userNotificationCycle) as? Int else { return nil }
@@ -26,7 +48,26 @@ extension UserDefaults {
             UserDefaults.standard.set(newValue, forKey: TextLiteral.finalContactDiffDay)
         }
     }
-    
+    var notificationCount: Int? {
+        get {
+            guard let count = UserDefaults.standard.value(forKey: TextLiteral.notificationCount) as? Int else { return nil }
+            return count
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: TextLiteral.notificationCount)
+        }
+    }
+    // MARK: - question data
+    var questionIndex: Int {
+        get {
+            guard let index = UserDefaults.standard.value(forKey: TextLiteral.questionIndex) as? Int else { return 0 }
+            return index
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: TextLiteral.questionIndex)
+        }
+    }
+    // MARK: - family data
     var familyMembers: [FamilyMemberData] {
         get {
             var members: [FamilyMemberData] = []
@@ -43,42 +84,32 @@ extension UserDefaults {
             UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue), forKey: "familyMembers")
         }
     }
-    var finalEnteredDate: Date? {
+    // MARK: - Feedback data
+    var userContactGoal: Int {
         get {
-            guard let enteredDate = UserDefaults.standard.value(forKey: TextLiteral.finalEnteredDate) as? Date else {
-                return nil
-            }
-            return enteredDate
+            guard let goal = UserDefaults.standard.value(forKey: TextLiteral.userContactGoal) as? Int else { return 2 }
+            return goal
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: TextLiteral.finalEnteredDate)
+            UserDefaults.standard.set(newValue, forKey: TextLiteral.userContactGoal)
         }
     }
-    var questionIndex: Int {
+    var contactGoalCount: Int {
         get {
-            guard let index = UserDefaults.standard.value(forKey: TextLiteral.questionIndex) as? Int else { return 0 }
-            return index
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: TextLiteral.questionIndex)
-        }
-    }
-    var notificationCount: Int? {
-        get {
-            guard let count = UserDefaults.standard.value(forKey: "notificationCount") as? Int else { return nil }
+            guard let count = UserDefaults.standard.value(forKey: TextLiteral.contactGoalCount) as? Int else { return 0 }
             return count
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "notificationCount")
+            UserDefaults.standard.set(newValue, forKey: TextLiteral.contactGoalCount)
         }
     }
-    var checkedOnboarding: Bool? {
+    var isFeedbackPresented: Bool {
         get {
-            let count = UserDefaults.standard.bool(forKey: "checkedOnboarding")
-            return count
+            let check = UserDefaults.standard.bool(forKey: TextLiteral.isFeedbackPresented)
+            return check
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "checkedOnboarding")
+            UserDefaults.standard.set(newValue, forKey: TextLiteral.isFeedbackPresented)
         }
     }
 }

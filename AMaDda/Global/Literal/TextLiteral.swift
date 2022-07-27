@@ -13,4 +13,9 @@ enum TextLiteral {
     static var finalContactDiffDay: String { return "finalContactDiffDay"}
     static var finalEnteredDate: String { return "finalEnteredDate"}
     static var questionIndex: String { return "questionIndex"}
+    static var notificationCount: String { return "notificationCount"}
+    static var checkedOnboarding: String { return "checkedOnboarding"}
+    static var userContactGoal: String { return "userContactGoal"}
+    static var contactGoalCount: String { return "contactGoalCount"}
+    static var isFeedbackPresented: String { return "isFeedbackPresented"}
 }
