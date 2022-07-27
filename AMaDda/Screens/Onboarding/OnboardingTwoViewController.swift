@@ -47,7 +47,7 @@ final class OnboardingTwoViewController: UIViewController {
     }()
     private lazy var startButton: CommonButton = {
         let button = CommonButton()
-        let buttonTitle = cycleViewMode == .onboarding ? "시작하기" : "저장하기"
+        let buttonTitle = cycleViewMode == .onboarding ? "다음" : "저장하기"
         button.setTitle(buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
