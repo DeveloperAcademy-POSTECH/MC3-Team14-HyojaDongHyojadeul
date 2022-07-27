@@ -1,30 +1,32 @@
 //
-//  AddingViewController.swift
+//  EdittingViewController.swift
 //  AMaDda
 //
-//  Created by 이성호 on 2022/07/18.
+//  Created by 이성호 on 2022/07/19.
 //
 
 import UIKit
 
-class AddingViewController: UIViewController {
+class EdittingViewController: UIViewController {
     
     private var maxLength = 5
     var characterImageName: String = "Character1"
     private var familyMembers = [FamilyMemberData]()
     private let vc = ProfileModalViewController()
+    var familyMember: FamilyMemberData?
+    private lazy var placeholderTextCount = nickNameTextField.text?.count ?? 0
     
     // MARK: - property
     
     private let addingTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "추가하기"
+        label.text = "수정하기"
         label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         return label
     }()
-    private let profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiterals.btnProfile
+        imageView.image = UIImage(named: "\(familyMember?.characterImageName ?? "profile.circle")")
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .lightGray
         imageView.isUserInteractionEnabled = true
@@ -46,7 +48,7 @@ class AddingViewController: UIViewController {
     }()
     private lazy var nickNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "예시) 아버지, 엄마, 세젤예 우리엄마"
+        textField.text = familyMember?.name
         textField.delegate = self
         return textField
     }()
@@ -57,13 +59,13 @@ class AddingViewController: UIViewController {
     }()
     private lazy var textFieldLimitLabel: UILabel = {
         let label = UILabel()
-        label.text = "0/\(maxLength)"
+        label.text = "\(placeholderTextCount)/\(maxLength)"
         label.textColor = .lightGray
         return label
     }()
     private lazy var addButton: CommonButton = {
         let button = CommonButton()
-        button.title = "추가하기"
+        button.title = "저장하기"
         button.isDisabled = true
         button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
         return button
@@ -80,18 +82,22 @@ class AddingViewController: UIViewController {
         setupNotificationCenter()
         setupTapGesture()
         setupDelegate()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setTextFieldCount()
     }
     
     // MARK: - seletor
     
     @objc private func didTapAddButton() {
         guard let text = nickNameTextField.text else { return }
-        let familyMember = FamilyMemberData(name: text, characterImageName: characterImageName)
-        familyMember.addFamilyMember()
+        familyMembers = UserDefaults.standard.familyMembers
+        familyMember?.name = text
+        familyMember?.characterImageName = characterImageName
+        familyMember?.updateUserDefaults()
         navigationController?.popViewController(animated: true)
     }
     
@@ -103,6 +109,7 @@ class AddingViewController: UIViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
                 self.addButton.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 60)
+                self.view.transform = CGAffineTransform(translationX: 0, y: -40)
             })
         }
     }
@@ -110,11 +117,15 @@ class AddingViewController: UIViewController {
     @objc private func keyboardWillHide(notification:NSNotification) {
         UIView.animate(withDuration: 0.2, animations: {
             self.addButton.transform = .identity
+            self.view.transform = .identity
         })
     }
     
     
     // MARK: - function
+    private func setTextFieldCount() {
+        placeholderTextCount = nickNameTextField.text?.count ?? 0
+    }
     
     private func setupDelegate() {
         vc.delegate = self
@@ -155,6 +166,7 @@ class AddingViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.backgroundColor = .systemBackground
     }
     
     private func configureAddSubView() {
@@ -178,7 +190,7 @@ class AddingViewController: UIViewController {
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profileImageView.topAnchor.constraint(equalTo: addingTitleLabel.bottomAnchor, constant: 37),
+            profileImageView.topAnchor.constraint(equalTo: addingTitleLabel.bottomAnchor),
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
             profileImageView.heightAnchor.constraint(equalTo: profileImageView.widthAnchor, multiplier: 1.5),
         ])
@@ -229,14 +241,14 @@ class AddingViewController: UIViewController {
     }
 }
 
-extension AddingViewController: UITextFieldDelegate {
+extension EdittingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         setCounter(count: textField.text?.count ?? 0)
         changeButtonEnableState()
     }
 }
 
-extension AddingViewController: ProfileModalViewDelegate {
+extension EdittingViewController: ProfileModalViewDelegate {
     func registerSelectedCharacter(imageName: String) {
         characterImageName = imageName
         DispatchQueue.main.async {

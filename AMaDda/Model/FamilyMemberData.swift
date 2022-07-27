@@ -29,13 +29,13 @@ extension FamilyMemberData {
         updateUserDefaults()
     }
     
-    private func addFamilyMember() {
+    func addFamilyMember() {
         var familyMembers = UserDefaults.standard.familyMembers
         familyMembers.append(self)
         UserDefaults.standard.familyMembers = familyMembers
     }
     
-    private func updateUserDefaults() {
+    func updateUserDefaults() {
         var familyMembers = UserDefaults.standard.familyMembers
         if let index = familyMembers.firstIndex(where: { $0.id == self.id }) {
             familyMembers.remove(at: index)
