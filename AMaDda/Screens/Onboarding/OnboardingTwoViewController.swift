@@ -45,11 +45,11 @@ final class OnboardingTwoViewController: UIViewController {
         stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
-    private lazy var startButton: CommonButton = {
+    private lazy var nextButton: CommonButton = {
         let button = CommonButton()
         let buttonTitle = cycleViewMode == .onboarding ? "다음" : "저장하기"
         button.setTitle(buttonTitle, for: .normal)
-        button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
     
@@ -59,7 +59,7 @@ final class OnboardingTwoViewController: UIViewController {
         showNotificationLabel.text = "\(notificationCount)일"
     }
     
-    @objc private func didTapStartButton() {
+    @objc private func didTapNextButton() {
         switch cycleViewMode {
         case .onboarding:
             let onboardingGoalVC = OnboardingGoalViewController()
@@ -99,7 +99,7 @@ final class OnboardingTwoViewController: UIViewController {
         view.addSubviews(onboardingTwoTitleLabel,
                         showNotificationLabel,
                         onboardingStepper,
-                        startButton)
+                        nextButton)
     }
     
     private func configureConstraints(){
@@ -122,10 +122,10 @@ final class OnboardingTwoViewController: UIViewController {
             onboardingStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
-        startButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
+            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
         ])
         
     }
