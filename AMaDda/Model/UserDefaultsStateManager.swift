@@ -62,9 +62,6 @@ final class UserDefaultsStateManager {
             UserDefaults.standard.contactGoalCount = 0
         }
     }
-    static func userCreatedFamily() {
-        UserDefaults.standard.finalContactDiffDay = 0
-    }
     func userContacted() {
         let isUserTodayContacted = UserDefaults.standard.isUserTodayContacted
         if !isUserTodayContacted {
