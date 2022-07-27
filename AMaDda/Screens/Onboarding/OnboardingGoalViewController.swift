@@ -1,25 +1,24 @@
 //
-//  OnboardingTwoViewController.swift
+//  OnboardingGoalViewController.swift
 //  AMaDda
 //
-//  Created by Seik Oh on 2022/07/19.
+//  Created by Seik Oh on 2022/07/28.
 //
 
 import UIKit
 
-enum CycleViewMode: Equatable {
+enum CycleViewModeForGoal: Equatable {
     case onboarding, setting
 }
 
-final class OnboardingTwoViewController: UIViewController {
-    
-    var notificationCount: Int = 3
-    var cycleViewMode = CycleViewMode.onboarding
+class OnboardingGoalViewController: UINavigationController {
+    var goalCount: Int = 3
+    var cycleViewModeForGoal = CycleViewModeForGoal.onboarding
     
     // MARK: Properties
-    private let onboardingTwoTitleLabel: UILabel = {
+    private let onboardingGoalTitleLabel: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(string: "며칠에 한 번 가족에게\n연락하고 싶으세요?")
+        let attributedString = NSMutableAttributedString(string: "일주일에 몇 회 가족에게\n연락하는 것을 목표로 하시나요?")
         let paragraphStyle = NSMutableParagraphStyle()
         
         label.font = .boldSystemFont(ofSize: 25)
@@ -33,7 +32,7 @@ final class OnboardingTwoViewController: UIViewController {
     }()
     private lazy var showNotificationLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(notificationCount)일"
+        label.text = "\(goalCount)회"
         label.font = .systemFont(ofSize: 40)
         return label
     }()
@@ -47,7 +46,7 @@ final class OnboardingTwoViewController: UIViewController {
     }()
     private lazy var startButton: CommonButton = {
         let button = CommonButton()
-        let buttonTitle = cycleViewMode == .onboarding ? "시작하기" : "저장하기"
+        let buttonTitle = cycleViewModeForGoal == .onboarding ? "시작하기" : "저장하기"
         button.setTitle(buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
@@ -55,21 +54,21 @@ final class OnboardingTwoViewController: UIViewController {
     
     // MARK: stepper function
     @objc private func stepperValueChanged(_ stepper: UIStepper) {
-        notificationCount = Int(stepper.value)
-        showNotificationLabel.text = "\(notificationCount)일"
+        goalCount = Int(stepper.value)
+        showNotificationLabel.text = "\(goalCount)회"
     }
     
     @objc private func didTapStartButton() {
-        switch cycleViewMode {
+        switch cycleViewModeForGoal {
         case .onboarding:
-            let onboardingGoalVC = OnboardingGoalViewController()
-            navigationController?.pushViewController(onboardingGoalVC, animated: true)
+            let mainVC = MainViewController()
+            navigationController?.pushViewController(mainVC, animated: true)
             navigationController?.isNavigationBarHidden = false
             UserDefaults.standard.checkedOnboarding = true
         case .setting:
             navigationController?.popViewController(animated: true)
         }
-        UserDefaults.standard.notificationCount = notificationCount
+        UserDefaults.standard.goalCount = goalCount
     }
     
     // MARK: Life Cycle functions
@@ -81,33 +80,33 @@ final class OnboardingTwoViewController: UIViewController {
     }
     
     // MARK: - Functions
-    private func checkCycleViewMode() {
-        if case CycleViewMode.setting = cycleViewMode {
-            guard let notificationCycle = UserDefaults.standard.notificationCount else { return }
-            onboardingStepper.value = Double(notificationCycle)
-            showNotificationLabel.text = "\(notificationCycle)일"
+    private func checkCycleViewModeForGoal() {
+        if case CycleViewModeForGoal.setting = cycleViewModeForGoal {
+            guard let goalNumber = UserDefaults.standard.notificationCount else { return }
+            onboardingStepper.value = Double(goalNumber)
+            showNotificationLabel.text = "\(goalNumber)회"
         }
     }
     
     // MARK: Configures
     private func configureUI() {
         view.backgroundColor = .systemBackground
-        checkCycleViewMode()
+        checkCycleViewModeForGoal()
     }
     
     private func configureAddSubView() {
-        view.addSubviews(onboardingTwoTitleLabel,
+        view.addSubviews(onboardingGoalTitleLabel,
                         showNotificationLabel,
                         onboardingStepper,
                         startButton)
     }
     
     private func configureConstraints(){
-        onboardingTwoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        onboardingGoalTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            onboardingTwoTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
-            onboardingTwoTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            onboardingTwoTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
+            onboardingGoalTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            onboardingGoalTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            onboardingGoalTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
         showNotificationLabel.translatesAutoresizingMaskIntoConstraints = false
