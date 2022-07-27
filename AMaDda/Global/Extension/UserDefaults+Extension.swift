@@ -48,15 +48,6 @@ extension UserDefaults {
             UserDefaults.standard.set(newValue, forKey: TextLiteral.finalContactDiffDay)
         }
     }
-    var notificationCount: Int? {
-        get {
-            guard let count = UserDefaults.standard.value(forKey: TextLiteral.notificationCount) as? Int else { return nil }
-            return count
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: TextLiteral.notificationCount)
-        }
-    }
     // MARK: - question data
     var questionIndex: Int {
         get {
