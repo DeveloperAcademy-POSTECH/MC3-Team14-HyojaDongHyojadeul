@@ -78,7 +78,6 @@ final class UserDefaultsStateManager {
     }
     func userChangeNotificationCycle(changedNotificationCycle: Int) {
         UserDefaults.standard.userNotificationCycle = changedNotificationCycle
-        let userNotificationManager = UserNotificationManager()
         userNotificationManager.removeAllPendingRequest()
     }
 }
