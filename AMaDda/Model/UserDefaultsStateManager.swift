@@ -59,4 +59,11 @@ final class UserDefaultsStateManager {
             UserDefaults.standard.contactGoalCount = 0
         }
     }
+    static func userContacted() {
+        UserDefaults.standard.finalContactDiffDay = 0
+        var contactGoalCount = UserDefaults.standard.contactGoalCount
+        contactGoalCount += 1
+        UserDefaults.standard.contactGoalCount = contactGoalCount
+        UserDefaults.standard.isFeedbackPresented = true
+    }
 }
