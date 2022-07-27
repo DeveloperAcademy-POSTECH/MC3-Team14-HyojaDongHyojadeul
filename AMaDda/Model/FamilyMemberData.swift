@@ -13,12 +13,14 @@ struct FamilyMemberData: Codable {
     var characterImageName: String
     var lastContactDate: Date
     var initialized: Bool
+    var contactNumber: String
     
-    init(name: String, characterImageName: String) {
+    init(name: String, characterImageName: String, contactNumber: String) {
         self.name = name
         self.characterImageName = characterImageName
         self.lastContactDate = Date().convertedKoreaDate
         self.initialized = true
+        self.contactNumber = contactNumber
     }
 }
 

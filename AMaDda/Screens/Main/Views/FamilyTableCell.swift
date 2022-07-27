@@ -66,9 +66,9 @@ class FamilyTableCell: UITableViewCell {
     // MARK: - configure
     private func configureAddSubViews() {
         contentView.addSubviews(familyCharacterImageView,
-                               familyNameLabel,
-                               familyDescriptionLabel,
-                               contactButton)
+                                familyNameLabel,
+                                familyDescriptionLabel,
+                                contactButton)
     }
     
     private func configureConstraints() {
@@ -113,6 +113,27 @@ class FamilyTableCell: UITableViewCell {
     // MARK: - selector
     
     @objc func didTapContactButton() {
+        guard let phoneNumber = self.item?.contactNumber else { return }
+        callNumber(phoneNumber: phoneNumber)
+    }
+}
+
+extension FamilyTableCell {
+    private func callNumber(phoneNumber:String) {
+        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+            let application: UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+//        if let phoneURL = NSURL(string: ("tel://" + phoneNumber)) {
+//            let alert = UIAlertController(title: ("Call" + phoneNumber + "?"), message: nil, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Call", style: .default, handler: {(action) in
+//                UIApplication.shared.open(phoneURL as URL, options: [:], completionHandler: nil)
+//            }))
+//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//            MainViewController().present(alert, animated: true, completion: nil)
+//        }
         self.item?.updateLastContactDate()
         UserDefaults.standard.finalContactDiffDay = 0
     }
