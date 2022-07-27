@@ -92,6 +92,7 @@ class AddingViewController: UIViewController {
         guard let text = nickNameTextField.text else { return }
         let familyMember = FamilyMemberData(name: text, characterImageName: characterImageName)
         familyMember.addFamilyMember()
+        UserDefaultsStateManager.userCreatedFamily()
         navigationController?.popViewController(animated: true)
     }
     

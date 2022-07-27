@@ -16,5 +16,5 @@ enum TextLiteral {
     static var checkedOnboarding: String { return "checkedOnboarding"}
     static var userContactGoal: String { return "userContactGoal"}
     static var contactGoalCount: String { return "contactGoalCount"}
-    static var isFeedbackPresented: String { return "isFeedbackPresented"}
+    static var isUserTodayContacted: String { return "isUserTodayContacted"}
 }

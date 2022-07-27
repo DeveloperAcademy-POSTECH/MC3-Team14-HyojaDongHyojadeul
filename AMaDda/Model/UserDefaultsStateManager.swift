@@ -13,20 +13,23 @@ protocol TodayQuestionDelegate: AnyObject {
 
 final class UserDefaultsStateManager {
     static var todayQuestionDelegate: TodayQuestionDelegate?
+    let userNotificationManager = UserNotificationManager()
     static func userEnteredApp() {
         let today = Date().convertedKoreaDate
         guard let finalEnteredDate = UserDefaults.standard.finalEnteredDate else {
             UserDefaults.standard.finalEnteredDate = today
             return
         }
+        // MARK: - Today already Entered App
         guard let offsetDay = Date.daysFromToday(finalEnteredDate), offsetDay != 0 else {
             return
         }
+        // MARK: - First Entered App
         updateFinalContactDiffDay(offsetDay)
         updateTodayQuestion()
         updateContactGoalCount(offsetDay)
         UserDefaults.standard.finalEnteredDate = today
-        UserDefaults.standard.isFeedbackPresented = false
+        UserDefaults.standard.isUserTodayContacted = false
     }
     static private func updateFinalContactDiffDay(_ offsetDay: Int) {
         guard var finalContactDiffDay = UserDefaults.standard.finalContactDiffDay else { return }
@@ -59,11 +62,23 @@ final class UserDefaultsStateManager {
             UserDefaults.standard.contactGoalCount = 0
         }
     }
-    static func userContacted() {
+    static func userCreatedFamily() {
         UserDefaults.standard.finalContactDiffDay = 0
-        var contactGoalCount = UserDefaults.standard.contactGoalCount
-        contactGoalCount += 1
-        UserDefaults.standard.contactGoalCount = contactGoalCount
-        UserDefaults.standard.isFeedbackPresented = true
+    }
+    func userContacted() {
+        let isUserTodayContacted = UserDefaults.standard.isUserTodayContacted
+        if !isUserTodayContacted {
+            UserDefaults.standard.finalContactDiffDay = 0
+            var contactGoalCount = UserDefaults.standard.contactGoalCount
+            contactGoalCount += 1
+            UserDefaults.standard.contactGoalCount = contactGoalCount
+            userNotificationManager.updateRequestPendingContent()
+            UserDefaults.standard.isUserTodayContacted = true
+        }
+    }
+    func userChangeNotificationCycle(changedNotificationCycle: Int) {
+        UserDefaults.standard.userNotificationCycle = changedNotificationCycle
+        let userNotificationManager = UserNotificationManager()
+        userNotificationManager.removeAllPendingRequest()
     }
 }

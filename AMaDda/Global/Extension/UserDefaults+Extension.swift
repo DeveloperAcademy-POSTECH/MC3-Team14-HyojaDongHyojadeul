@@ -94,13 +94,13 @@ extension UserDefaults {
             UserDefaults.standard.set(newValue, forKey: TextLiteral.contactGoalCount)
         }
     }
-    var isFeedbackPresented: Bool {
+    var isUserTodayContacted: Bool {
         get {
-            let check = UserDefaults.standard.bool(forKey: TextLiteral.isFeedbackPresented)
+            let check = UserDefaults.standard.bool(forKey: TextLiteral.isUserTodayContacted)
             return check
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: TextLiteral.isFeedbackPresented)
+            UserDefaults.standard.set(newValue, forKey: TextLiteral.isUserTodayContacted)
         }
     }
 }
