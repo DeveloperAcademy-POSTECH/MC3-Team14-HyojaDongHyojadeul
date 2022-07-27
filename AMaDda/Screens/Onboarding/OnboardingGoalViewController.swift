@@ -11,7 +11,7 @@ enum CycleViewModeForGoal: Equatable {
     case onboarding, setting
 }
 
-class OnboardingGoalViewController: UINavigationController {
+class OnboardingGoalViewController: UIViewController {
     var goalCount: Int = 3
     var cycleViewModeForGoal = CycleViewModeForGoal.onboarding
     
