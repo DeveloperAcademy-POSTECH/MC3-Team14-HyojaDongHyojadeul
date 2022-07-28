@@ -71,7 +71,7 @@ final class UserDefaultsStateManager {
             UserDefaults.standard.isUserTodayContacted = true
         }
     }
-    func userChangeNotificationCycle(changedNotificationCycle: Int) {
+    func userChangeNotificationCycle(_ changedNotificationCycle: Int) {
         UserDefaults.standard.userNotificationCycle = changedNotificationCycle
         userNotificationManager.removeAllPendingRequest()
     }

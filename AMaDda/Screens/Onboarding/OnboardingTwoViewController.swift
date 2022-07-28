@@ -69,7 +69,7 @@ final class OnboardingTwoViewController: UIViewController {
         case .setting:
             navigationController?.popViewController(animated: true)
         }
-        UserDefaultsStateManager().userChangeNotificationCycle(changedNotificationCycle: userNotificationCycle)
+        UserDefaultsStateManager().userChangeNotificationCycle(userNotificationCycle)
     }
     
     // MARK: Life Cycle functions
