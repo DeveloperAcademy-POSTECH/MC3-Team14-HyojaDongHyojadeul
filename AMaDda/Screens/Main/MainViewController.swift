@@ -5,14 +5,14 @@
 //  Created by Lee Myeonghwan on 2022/07/18.
 //
 
-import Foundation
 import UIKit
 
 final class MainViewController: UIViewController {
-
+    
+    private var member: FamilyMemberData?
     private var familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
-    private let todayQuestionData = TodayQuestionMockData.mockData
     private lazy var familyMemberCount = familyMembers.count
+    private let todayQuestionData = TodayQuestionMockData.mockData
     private let todayQuestionView = TodayQuestionView()
     private let todayQuestionIndex = UserDefaults.standard.questionIndex
     
@@ -65,6 +65,10 @@ final class MainViewController: UIViewController {
         familyTableView.reloadData()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Selector
     @objc private func tapAddButton() {
         let addingViewController = AddingViewController()
@@ -109,8 +113,8 @@ extension MainViewController {
         view.addSubviews(todayQuestionView,
                          familyTableLabel,
                          familyTableView,
-                        addMemberButton,
-                        settingButton)
+                         addMemberButton,
+                         settingButton)
         todayQuestionView.configureAddSubViewsTodayQuestionView()
     }
     private func configureConstraints() {
@@ -195,6 +199,7 @@ extension MainViewController: UITableViewDataSource {
             let item = self.familyMembers[indexPath.row]
             cell.item = item
             cell.selectionStyle = .none
+            cell.delegate = self
             return cell
         }
     }
@@ -204,5 +209,49 @@ extension MainViewController: TodayQuestionDelegate {
     func changeTodayQuestion(_ index: Int) {
         guard let todayQuestion = todayQuestionData[safe: index] else { return }
         todayQuestionView.todayCardQuestionLabel.text = todayQuestion.question
+    }
+}
+
+extension MainViewController: FamilyTableCellDelegate {
+    
+    // MARK: - TableViewCellDelegate
+    
+    func displayActionSheet(familyMember: FamilyMemberData) {
+        
+        let alert = UIAlertController(title: "전화하기", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "전화하기", style: .default, handler: { (UIAlertAction) in
+            self.makeCall(familyMember: familyMember)
+        }))
+        alert.addAction(UIAlertAction(title: "기록하기", style: .default, handler: { (UIAlertAction) in
+            self.updateLastCall(familyMember: familyMember)
+        }))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+    }
+}
+
+extension MainViewController {
+    
+    // MARK: - functions
+    
+    private func makeCall(familyMember: FamilyMemberData) {
+        if let phoneCallURL = URL(string: "tel://\(familyMember.contactNumber)") {
+            let application: UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+        updateLastCall(familyMember: familyMember)
+    }
+    private func updateLastCall(familyMember: FamilyMemberData) {
+        var member = familyMember
+        member.updateLastContactDate()
+        UserDefaults.standard.finalContactDiffDay = 0
+        familyTableView.reloadData()
     }
 }

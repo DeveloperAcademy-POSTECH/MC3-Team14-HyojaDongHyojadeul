@@ -8,6 +8,10 @@
 import UIKit
 import SwiftUI
 
+protocol FamilyTableCellDelegate: AnyObject {
+    func displayActionSheet(familyMember: FamilyMemberData)
+}
+
 class FamilyTableCell: UITableViewCell {
     // TODO: cell 터치시 editing view 열기
     private enum Size {
@@ -18,6 +22,9 @@ class FamilyTableCell: UITableViewCell {
     }
     
     // MARK: - property
+    
+    weak var delegate: FamilyTableCellDelegate?
+    
     var item: FamilyMemberData? {
         didSet {
             self.familyNameLabel.text = item?.name
@@ -112,29 +119,43 @@ class FamilyTableCell: UITableViewCell {
     
     // MARK: - selector
     
-    @objc func didTapContactButton() {
-        guard let phoneNumber = self.item?.contactNumber else { return }
-        callNumber(phoneNumber: phoneNumber)
+    @objc private func didTapContactButton() {
+        guard let item = item else { fatalError() }
+        delegate?.displayActionSheet(familyMember: item)
     }
+//
+//    @objc func displayActionSheet() {
+//        guard let phoneNumber = self.item?.contactNumber else { return }
+//
+//        let alert = UIAlertController(title: "전화하기", message: nil, preferredStyle: .actionSheet)
+//        alert.addAction(UIAlertAction(title: "전화하기", style: .default, handler: { (UIAlertAction) in
+//            self.makeCall(phoneNumber: phoneNumber)
+//        }))
+//        alert.addAction(UIAlertAction(title: "기록하기", style: .default, handler: { (UIAlertAction) in
+//            self.updateLastCall()
+//        }))
+//        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+//            print("User click Dismiss button")
+//        }))
+//
+//        self.present(alert, animated: true, completion: {
+//            print("completion block")
+//        })
+//    }
 }
 
 extension FamilyTableCell {
-    private func callNumber(phoneNumber:String) {
+    private func makeCall(phoneNumber: String) {
         if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
             let application: UIApplication = UIApplication.shared
             if (application.canOpenURL(phoneCallURL)) {
                 application.open(phoneCallURL, options: [:], completionHandler: nil)
             }
         }
-//        if let phoneURL = NSURL(string: ("tel://" + phoneNumber)) {
-//            let alert = UIAlertController(title: ("Call" + phoneNumber + "?"), message: nil, preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Call", style: .default, handler: {(action) in
-//                UIApplication.shared.open(phoneURL as URL, options: [:], completionHandler: nil)
-//            }))
-//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//            MainViewController().present(alert, animated: true, completion: nil)
-//        }
+    }
+    private func updateLastCall() {
         self.item?.updateLastContactDate()
         UserDefaults.standard.finalContactDiffDay = 0
     }
 }
+
