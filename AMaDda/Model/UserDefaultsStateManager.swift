@@ -64,9 +64,7 @@ final class UserDefaultsStateManager {
         let isUserTodayContacted = UserDefaults.standard.isUserTodayContacted
         if !isUserTodayContacted {
             UserDefaults.standard.finalContactDiffDay = 0
-            var contactGoalCount = UserDefaults.standard.contactGoalCount
-            contactGoalCount += 1
-            UserDefaults.standard.contactGoalCount = contactGoalCount
+            UserDefaults.standard.contactGoalCount += 1
             userNotificationManager.updateRequestPendingContent()
             UserDefaults.standard.isUserTodayContacted = true
         }
