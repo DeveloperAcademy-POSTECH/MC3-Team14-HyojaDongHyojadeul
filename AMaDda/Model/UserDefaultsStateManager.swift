@@ -47,15 +47,13 @@ final class UserDefaultsStateManager {
         UserDefaults.standard.questionIndex = questionIndex
     }
     static private func updateContactGoalCount(_ offsetDay: Int) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEEE"
-        dateFormatter.timeZone = TimeZone(abbreviation: "KST")
-        dateFormatter.locale = Locale(identifier: "ko_KR")
         var checkDate = Date().convertedKoreaDate
         var daysFromMonday = 0
-        while (dateFormatter.string(from: checkDate) != "월") {
+        var weekDay = Calendar.current.dateComponents([.weekday], from: checkDate).weekday ?? 2
+        while (weekDay != 2) {
             guard let pastDate = Calendar.current.date(byAdding: .day, value: -1, to: checkDate) else { return }
             checkDate = pastDate
+            weekDay = Calendar.current.dateComponents([.weekday], from: checkDate).weekday ?? 2
             daysFromMonday += 1
         }
         if daysFromMonday < offsetDay {
