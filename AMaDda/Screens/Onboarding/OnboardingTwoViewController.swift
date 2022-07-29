@@ -13,7 +13,7 @@ enum CycleViewMode: Equatable {
 
 final class OnboardingTwoViewController: UIViewController {
     
-    var notificationCount: Int = 3
+    var userNotificationCycle: Int = 3
     var cycleViewMode = CycleViewMode.onboarding
     
     // MARK: Properties
@@ -33,7 +33,7 @@ final class OnboardingTwoViewController: UIViewController {
     }()
     private lazy var showNotificationLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(notificationCount)일"
+        label.text = "\(userNotificationCycle)일"
         label.font = .systemFont(ofSize: 40)
         return label
     }()
@@ -55,8 +55,8 @@ final class OnboardingTwoViewController: UIViewController {
     
     // MARK: stepper function
     @objc private func stepperValueChanged(_ stepper: UIStepper) {
-        notificationCount = Int(stepper.value)
-        showNotificationLabel.text = "\(notificationCount)일"
+        userNotificationCycle = Int(stepper.value)
+        showNotificationLabel.text = "\(userNotificationCycle)일"
     }
     
     @objc private func didTapNextButton() {
@@ -69,7 +69,7 @@ final class OnboardingTwoViewController: UIViewController {
         case .setting:
             navigationController?.popViewController(animated: true)
         }
-        UserDefaults.standard.notificationCount = notificationCount
+        UserDefaultsStateManager().userChangeNotificationCycle(userNotificationCycle)
     }
     
     // MARK: Life Cycle functions
@@ -83,9 +83,9 @@ final class OnboardingTwoViewController: UIViewController {
     // MARK: - Functions
     private func checkCycleViewMode() {
         if case CycleViewMode.setting = cycleViewMode {
-            guard let notificationCycle = UserDefaults.standard.notificationCount else { return }
-            onboardingStepper.value = Double(notificationCycle)
-            showNotificationLabel.text = "\(notificationCycle)일"
+            guard let userNotificationCycle = UserDefaults.standard.userNotificationCycle else { return }
+            onboardingStepper.value = Double(userNotificationCycle)
+            showNotificationLabel.text = "\(userNotificationCycle)일"
         }
     }
     
