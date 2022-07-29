@@ -248,7 +248,6 @@ extension MainViewController: FamilyTableCellDelegate {
         feedBackView.alpha = 0
         
         UIView.animate(withDuration: 0.3) {
-            self.navigationController?.navigationBar.isHidden = true
             self.blurEffectView.alpha = 1
             self.feedBackView.alpha = 1
         }
