@@ -18,12 +18,11 @@ final class UserNotificationManager {
         return dateFormatter
     }
     func addRequest() {
-        // TODO: notificationCount 앱 알림 횟수 설정할 떄 pending 삭제 후 UserDefaluts에 등록
+        // TODO: userNotificationCycle 앱 알림 횟수 설정할 떄 pending 삭제 후 UserDefaluts에 등록
         guard let userNotificationCycle = UserDefaults.standard.userNotificationCycle else {
             print("userNotificationCycle 값 없음")
             return
         }
-        // TODO: 앱이 로드될 떄 finalContactCount 갱신 (finalContactDate와 오늘 날짜 차이를 계산하여 갱신 -> 연락하기 버튼을 누르면 0으로 갱신)
         guard var finalContactDiffDay = UserDefaults.standard.finalContactDiffDay else {
             print("finalContactDiffDay 값 없음")
             return

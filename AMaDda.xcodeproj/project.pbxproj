@@ -18,6 +18,7 @@
 		3E98E8E5288652DF001153E4 /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98E8E4288652DF001153E4 /* NSObject+Extension.swift */; };
 		3E98E8F5288A9353001153E4 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98E8F4288A9353001153E4 /* Date+Extension.swift */; };
 		595E3B41288577D60036B677 /* OnboardingOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E3B40288577D60036B677 /* OnboardingOneViewController.swift */; };
+		598F8F6428918E7B0040ACA4 /* OnboardingGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598F8F6328918E7B0040ACA4 /* OnboardingGoalViewController.swift */; };
 		59F2584228868FA9003BC6ED /* OnboardingTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */; };
 		91715FF62888019700A780B7 /* UserDefaultsStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91715FF52888019700A780B7 /* UserDefaultsStateManager.swift */; };
 		918BAFFC2886ED94002F94DB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */; };
@@ -34,6 +35,7 @@
 		D72A1DFE28854AA10058EE12 /* AddingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1DFD28854AA10058EE12 /* AddingViewController.swift */; };
 		D72A1E0028854C9C0058EE12 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1DFF28854C9C0058EE12 /* ImageLiteral.swift */; };
 		D72A1E02288558990058EE12 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1E01288558990058EE12 /* UIImage+Extension.swift */; };
+		D72A1E1F2886D94A0058EE12 /* EdittingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1E1E2886D94A0058EE12 /* EdittingViewController.swift */; };
 		D7ADBBA72883D520004BB5FE /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ADBBA62883D520004BB5FE /* CommonButton.swift */; };
 		E6278AD928843F8E00DC0CB0 /* ProfileModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */; };
 		E6278ADD2884412D00DC0CB0 /* ProfileModalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */; };
@@ -56,6 +58,7 @@
 		3E98E8E4288652DF001153E4 /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		3E98E8F4288A9353001153E4 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		595E3B40288577D60036B677 /* OnboardingOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOneViewController.swift; sourceTree = "<group>"; };
+		598F8F6328918E7B0040ACA4 /* OnboardingGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGoalViewController.swift; sourceTree = "<group>"; };
 		59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoViewController.swift; sourceTree = "<group>"; };
 		91715FF52888019700A780B7 /* UserDefaultsStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStateManager.swift; sourceTree = "<group>"; };
 		918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
@@ -72,6 +75,7 @@
 		D72A1DFD28854AA10058EE12 /* AddingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingViewController.swift; sourceTree = "<group>"; };
 		D72A1DFF28854C9C0058EE12 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		D72A1E01288558990058EE12 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		D72A1E1E2886D94A0058EE12 /* EdittingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingViewController.swift; sourceTree = "<group>"; };
 		D7ADBBA62883D520004BB5FE /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 		E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalViewController.swift; sourceTree = "<group>"; };
 		E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalCell.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		3E622D0128803BBD006A921C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D72A1E1D2886D93B0058EE12 /* Editting */,
 				595E3B3E288577B30036B677 /* Onboarding */,
 				E6278AD728843ECB00DC0CB0 /* ProfileModal */,
 				D72A1DFC28854A960058EE12 /* Adding */,
@@ -183,6 +188,7 @@
 			children = (
 				595E3B40288577D60036B677 /* OnboardingOneViewController.swift */,
 				59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */,
+				598F8F6328918E7B0040ACA4 /* OnboardingGoalViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -249,6 +255,14 @@
 				D72A1DFD28854AA10058EE12 /* AddingViewController.swift */,
 			);
 			path = Adding;
+			sourceTree = "<group>";
+		};
+		D72A1E1D2886D93B0058EE12 /* Editting */ = {
+			isa = PBXGroup;
+			children = (
+				D72A1E1E2886D94A0058EE12 /* EdittingViewController.swift */,
+			);
+			path = Editting;
 			sourceTree = "<group>";
 		};
 		D7ADBBA52883D4FE004BB5FE /* UIComponent */ = {
@@ -365,6 +379,7 @@
 				D72A1E0028854C9C0058EE12 /* ImageLiteral.swift in Sources */,
 				91FD28B82884F70A00F49D20 /* FontsPlaceHolder.swift in Sources */,
 				91DC448E288E80E7002F0D46 /* TextLiteral.swift in Sources */,
+				598F8F6428918E7B0040ACA4 /* OnboardingGoalViewController.swift in Sources */,
 				3E15D66F2884FB8000570DD7 /* FamilyTableCell.swift in Sources */,
 				3E622CEE28803971006A921C /* AppDelegate.swift in Sources */,
 				91DC4490288E8628002F0D46 /* Collection+Extension.swift in Sources */,
@@ -382,6 +397,7 @@
 				595E3B41288577D60036B677 /* OnboardingOneViewController.swift in Sources */,
 				3E15D6732884FC1F00570DD7 /* FamilyMemberMockData.swift in Sources */,
 				91FD28A82884F32700F49D20 /* MainViewController.swift in Sources */,
+				D72A1E1F2886D94A0058EE12 /* EdittingViewController.swift in Sources */,
 				91715FF62888019700A780B7 /* UserDefaultsStateManager.swift in Sources */,
 				D72A1DFE28854AA10058EE12 /* AddingViewController.swift in Sources */,
 				E67D4646288D21F400083187 /* EmptyTableViewCell.swift in Sources */,
@@ -460,6 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "아마따";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -514,6 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "아마따";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

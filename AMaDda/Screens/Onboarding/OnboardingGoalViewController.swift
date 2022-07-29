@@ -1,25 +1,24 @@
 //
-//  OnboardingTwoViewController.swift
+//  OnboardingGoalViewController.swift
 //  AMaDda
 //
-//  Created by Seik Oh on 2022/07/19.
+//  Created by Seik Oh on 2022/07/28.
 //
 
 import UIKit
 
-enum CycleViewMode: Equatable {
+enum CycleViewModeForGoal: Equatable {
     case onboarding, setting
 }
 
-final class OnboardingTwoViewController: UIViewController {
-    
-    var userNotificationCycle: Int = 3
-    var cycleViewMode = CycleViewMode.onboarding
+class OnboardingGoalViewController: UIViewController {
+    var userContactGoal: Int = 3
+    var cycleViewModeForGoal = CycleViewModeForGoal.onboarding
     
     // MARK: Properties
-    private let onboardingTwoTitleLabel: UILabel = {
+    private let onboardingGoalTitleLabel: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(string: "며칠에 한 번 가족에게\n연락하고 싶으세요?")
+        let attributedString = NSMutableAttributedString(string: "일주일에 몇 회 가족에게\n연락하는 것을 목표로 하시나요?")
         let paragraphStyle = NSMutableParagraphStyle()
         
         label.font = .boldSystemFont(ofSize: 25)
@@ -33,7 +32,7 @@ final class OnboardingTwoViewController: UIViewController {
     }()
     private lazy var showNotificationLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(userNotificationCycle)일"
+        label.text = "\(userContactGoal)회"
         label.font = .systemFont(ofSize: 40)
         return label
     }()
@@ -45,31 +44,31 @@ final class OnboardingTwoViewController: UIViewController {
         stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
-    private lazy var nextButton: CommonButton = {
+    private lazy var startButton: CommonButton = {
         let button = CommonButton()
-        let buttonTitle = cycleViewMode == .onboarding ? "다음" : "저장하기"
+        let buttonTitle = cycleViewModeForGoal == .onboarding ? "시작하기" : "저장하기"
         button.setTitle(buttonTitle, for: .normal)
-        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
     }()
     
     // MARK: stepper function
     @objc private func stepperValueChanged(_ stepper: UIStepper) {
-        userNotificationCycle = Int(stepper.value)
-        showNotificationLabel.text = "\(userNotificationCycle)일"
+        userContactGoal = Int(stepper.value)
+        showNotificationLabel.text = "\(userContactGoal)회"
     }
     
-    @objc private func didTapNextButton() {
-        switch cycleViewMode {
+    @objc private func didTapStartButton() {
+        switch cycleViewModeForGoal {
         case .onboarding:
-            let onboardingGoalVC = OnboardingGoalViewController()
-            navigationController?.pushViewController(onboardingGoalVC, animated: true)
-            navigationController?.isNavigationBarHidden = true
+            let mainVC = MainViewController()
+            navigationController?.pushViewController(mainVC, animated: true)
+            navigationController?.isNavigationBarHidden = false
             UserDefaults.standard.checkedOnboarding = true
         case .setting:
             navigationController?.popViewController(animated: true)
         }
-        UserDefaultsStateManager().userChangeNotificationCycle(userNotificationCycle)
+        UserDefaults.standard.userContactGoal = userContactGoal
     }
     
     // MARK: Life Cycle functions
@@ -81,33 +80,33 @@ final class OnboardingTwoViewController: UIViewController {
     }
     
     // MARK: - Functions
-    private func checkCycleViewMode() {
-        if case CycleViewMode.setting = cycleViewMode {
-            guard let userNotificationCycle = UserDefaults.standard.userNotificationCycle else { return }
-            onboardingStepper.value = Double(userNotificationCycle)
-            showNotificationLabel.text = "\(userNotificationCycle)일"
+    private func checkCycleViewModeForGoal() {
+        if case CycleViewModeForGoal.setting = cycleViewModeForGoal {
+            let goalNumber = UserDefaults.standard.userContactGoal
+            onboardingStepper.value = Double(goalNumber)
+            showNotificationLabel.text = "\(goalNumber)회"
         }
     }
     
     // MARK: Configures
     private func configureUI() {
         view.backgroundColor = .systemBackground
-        checkCycleViewMode()
+        checkCycleViewModeForGoal()
     }
     
     private func configureAddSubView() {
-        view.addSubviews(onboardingTwoTitleLabel,
+        view.addSubviews(onboardingGoalTitleLabel,
                         showNotificationLabel,
                         onboardingStepper,
-                        nextButton)
+                        startButton)
     }
     
     private func configureConstraints(){
-        onboardingTwoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        onboardingGoalTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            onboardingTwoTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
-            onboardingTwoTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            onboardingTwoTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
+            onboardingGoalTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            onboardingGoalTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            onboardingGoalTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
         showNotificationLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -122,10 +121,10 @@ final class OnboardingTwoViewController: UIViewController {
             onboardingStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        startButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
+            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
         ])
     }
 }

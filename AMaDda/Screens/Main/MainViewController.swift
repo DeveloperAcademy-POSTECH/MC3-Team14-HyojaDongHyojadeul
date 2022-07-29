@@ -116,7 +116,12 @@ final class MainViewController: UIViewController {
         var member = familyMember
         member.updateLastContactDate()
         UserDefaults.standard.finalContactDiffDay = 0
-        viewWillAppear(true)
+        
+        familyMembers = UserDefaults.standard.familyMembers
+        familyMemberCount = familyMembers.count
+        DispatchQueue.main.async {
+            self.familyTableView.reloadData()
+        }
     }
 }
 
@@ -193,7 +198,13 @@ extension MainViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if familyMemberCount != 0 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            let familyMember = familyMembers[indexPath.row]
+            let EditVC = EdittingViewController()
+            EditVC.familyMember = familyMember
+            navigationController?.pushViewController(EditVC, animated: true)
+        }
     }
 }
 
