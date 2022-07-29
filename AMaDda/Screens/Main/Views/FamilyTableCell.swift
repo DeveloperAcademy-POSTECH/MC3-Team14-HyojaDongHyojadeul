@@ -124,19 +124,3 @@ class FamilyTableCell: UITableViewCell {
         delegate?.displayActionSheet(familyMember: item)
     }
 }
-
-extension FamilyTableCell {
-    private func makeCall(phoneNumber: String) {
-        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
-            let application: UIApplication = UIApplication.shared
-            if (application.canOpenURL(phoneCallURL)) {
-                application.open(phoneCallURL, options: [:], completionHandler: nil)
-            }
-        }
-    }
-    private func updateLastCall() {
-        self.item?.updateLastContactDate()
-        UserDefaults.standard.finalContactDiffDay = 0
-    }
-}
-
