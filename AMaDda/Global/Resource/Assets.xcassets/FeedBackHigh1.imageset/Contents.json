@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "FeedbackHigh3.png",
+      "filename" : "FeedBackHigh1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "FeedbackHigh3@2x.png",
+      "filename" : "FeedBackHigh1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "FeedbackHigh3@3x.png",
+      "filename" : "FeedBackHigh1@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
