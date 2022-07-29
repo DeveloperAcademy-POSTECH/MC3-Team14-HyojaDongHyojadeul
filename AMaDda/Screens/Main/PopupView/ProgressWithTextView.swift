@@ -8,15 +8,22 @@
 import UIKit
 
 class ProgressWithTextView: UIView {
+//
+//    let contactGoalCount = UserDefaults.standard.contactGoalCount
+//    let userContactGoal = UserDefaults.standard.userContactGoal
     
-    let contactGoalCount = UserDefaults.standard.contactGoalCount
-    let userContactGoal = UserDefaults.standard.userContactGoal
+    private let contactGoalCount = 2
+    private let userContactGoal = 4
+    private lazy var previousContactGoalCount = contactGoalCount - 1
+    private lazy var previousProgress = Float(previousContactGoalCount) / Float(userContactGoal)
+    private lazy var progress = Float(contactGoalCount) / Float(userContactGoal)
     
     // MARK: - property
-    private let feedBackprogressView: UIProgressView = {
+    private lazy var feedBackprogressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.progressViewStyle = .default
-        progressView.progress = 0.5
+        progressView.progress = previousProgress
+        progressView.trackImage = ImageLiterals.icBell
         return progressView
     }()
     private let progressImage: UIImageView = {
@@ -51,7 +58,12 @@ class ProgressWithTextView: UIView {
     // MARK: - function
     
     private func configureUI() {
-        
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
+                    self.feedBackprogressView.setProgress(self.progress, animated: true)
+                }
+
+            }
     }
     
     private func configureAddSubViews() {
