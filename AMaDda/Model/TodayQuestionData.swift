@@ -10,3 +10,4 @@ import Foundation
 struct TodayQuestionData {
     let question: String
 }
+
