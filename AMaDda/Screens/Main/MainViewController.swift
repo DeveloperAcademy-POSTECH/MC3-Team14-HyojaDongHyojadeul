@@ -252,6 +252,8 @@ extension MainViewController: FamilyTableCellDelegate {
             self.blurEffectView.alpha = 1
             self.feedBackView.alpha = 1
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("showPopUp"), object: nil)
     }
 }
 

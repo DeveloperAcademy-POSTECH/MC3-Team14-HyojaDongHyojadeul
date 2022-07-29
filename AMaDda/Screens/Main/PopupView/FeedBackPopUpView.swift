@@ -15,6 +15,8 @@ class FeedBackPopUpView: UIView {
     
     weak var delegate: FeedBackPopUpViewDelegate?
     
+    private let imageArray = [ImageLiterals.FeedBackHigh1, ImageLiterals.FeedBackHigh2, ImageLiterals.FeedBackHigh3]
+    
     // MARK: - property
     private let feedBackTitleLabel: UILabel = {
         let label = UILabel()
@@ -31,9 +33,11 @@ class FeedBackPopUpView: UIView {
         label.textColor = .gray
         return label
     }()
-    private let feedBackImageView: UIImageView = {
+    private lazy var feedBackImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .gray
+        let randomImage = imageArray.randomElement()
+        imageView.image = randomImage
+        imageView.backgroundColor = .systemBackground
         return imageView
     }()
 
@@ -49,7 +53,6 @@ class FeedBackPopUpView: UIView {
     
     private let progressView = ProgressWithTextView()
 
-    
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -107,7 +110,7 @@ class FeedBackPopUpView: UIView {
         
         progressView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            progressView.topAnchor.constraint(equalTo: feedBackImageView.bottomAnchor, constant: 50),
+            progressView.topAnchor.constraint(equalTo: feedBackImageView.bottomAnchor, constant: 30),
             progressView.centerXAnchor.constraint(equalTo: feedBackImageView.centerXAnchor),
             progressView.widthAnchor.constraint(equalToConstant: 220),
             progressView.heightAnchor.constraint(equalToConstant: 10)

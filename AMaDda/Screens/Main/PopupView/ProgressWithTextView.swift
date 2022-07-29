@@ -8,33 +8,33 @@
 import UIKit
 
 class ProgressWithTextView: UIView {
-//
-//    let contactGoalCount = UserDefaults.standard.contactGoalCount
-//    let userContactGoal = UserDefaults.standard.userContactGoal
-    
-    private let contactGoalCount = 2
-    private let userContactGoal = 4
+
+    let contactGoalCount = UserDefaults.standard.contactGoalCount
+    let userContactGoal = UserDefaults.standard.userContactGoal
     private lazy var previousContactGoalCount = contactGoalCount - 1
     private lazy var previousProgress = Float(previousContactGoalCount) / Float(userContactGoal)
     private lazy var progress = Float(contactGoalCount) / Float(userContactGoal)
+    private let width = 220
+    
+    var ConsArray: [NSLayoutConstraint] = []
+    var newConsArray: [NSLayoutConstraint] = []
     
     // MARK: - property
     private lazy var feedBackprogressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.progressViewStyle = .default
         progressView.progress = previousProgress
-        progressView.trackImage = ImageLiterals.icBell
         return progressView
     }()
     private let progressImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiterals.icBell
+        imageView.image = ImageLiterals.FeedBackLow1
         imageView.tintColor = .black
         return imageView
     }()
     private lazy var contactGoalCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(contactGoalCount)회"
+        label.text = "\(contactGoalCount-1)회"
         return label
     }()
     private lazy var  userContactGoalLabel: UILabel = {
@@ -46,7 +46,7 @@ class ProgressWithTextView: UIView {
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        setUpNotification()
         configureAddSubViews()
         configureLayoutConstraints()
     }
@@ -54,23 +54,37 @@ class ProgressWithTextView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    // MARK: - selector
+    @objc private func showPopUpAnimation() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
+                NSLayoutConstraint.deactivate(self.ConsArray)
+                
+                let centerYCons = self.progressImage.centerYAnchor.constraint(equalTo: self.feedBackprogressView.centerYAnchor)
+                let leadingCons = self.progressImage.centerXAnchor.constraint(equalTo: self.feedBackprogressView.leadingAnchor, constant: CGFloat(self.progress * Float(self.width)))
+                let witdhCons = self.progressImage.widthAnchor.constraint(equalToConstant: 75)
+                let heightCons = self.progressImage.heightAnchor.constraint(equalToConstant: 75)
+                
+                self.newConsArray = [centerYCons, leadingCons, witdhCons, heightCons]
+                NSLayoutConstraint.activate(self.newConsArray)
+                self.layoutIfNeeded()
+                self.feedBackprogressView.setProgress(self.progress, animated: true)
+                self.contactGoalCountLabel.text = "\(self.contactGoalCount)회"
+            }
+        }
+    }
     
     // MARK: - function
     
-    private func configureUI() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
-                    self.feedBackprogressView.setProgress(self.progress, animated: true)
-                }
-
-            }
+    private func setUpNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showPopUpAnimation), name: NSNotification.Name("showPopUp"), object: nil)
     }
     
     private func configureAddSubViews() {
         addSubviews(feedBackprogressView,
-                          progressImage,
-                          contactGoalCountLabel,
-                          userContactGoalLabel
+                    progressImage,
+                    contactGoalCountLabel,
+                    userContactGoalLabel
         )
     }
     
@@ -85,23 +99,25 @@ class ProgressWithTextView: UIView {
         ])
         
         progressImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            progressImage.centerYAnchor.constraint(equalTo: feedBackprogressView.centerYAnchor),
-            progressImage.centerXAnchor.constraint(equalTo: feedBackprogressView.leadingAnchor),
-            progressImage.widthAnchor.constraint(equalToConstant: 50),
-            progressImage.heightAnchor.constraint(equalToConstant: 50),
-        ])
+
+        let centerYCons = progressImage.centerYAnchor.constraint(equalTo: feedBackprogressView.centerYAnchor)
+        let leadingCons = progressImage.centerXAnchor.constraint(equalTo: feedBackprogressView.leadingAnchor, constant: CGFloat(previousProgress * Float(width)))
+        let witdhCons = progressImage.widthAnchor.constraint(equalToConstant: 75)
+        let heightCons = progressImage.heightAnchor.constraint(equalToConstant: 75)
+
+        ConsArray = [centerYCons, leadingCons, witdhCons, heightCons]
+        NSLayoutConstraint.activate(ConsArray)
         
         contactGoalCountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             contactGoalCountLabel.centerXAnchor.constraint(equalTo: progressImage.centerXAnchor),
-            contactGoalCountLabel.topAnchor.constraint(equalTo: progressImage.bottomAnchor,constant: 5),
+            contactGoalCountLabel.topAnchor.constraint(equalTo: progressImage.bottomAnchor),
         ])
         
         userContactGoalLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             userContactGoalLabel.centerXAnchor.constraint(equalTo: feedBackprogressView.trailingAnchor),
-            userContactGoalLabel.topAnchor.constraint(equalTo: progressImage .bottomAnchor, constant: 5),
+            userContactGoalLabel.topAnchor.constraint(equalTo: progressImage .bottomAnchor),
         ])
     }
 }

@@ -87,7 +87,7 @@ extension UserDefaults {
     }
     var contactGoalCount: Int {
         get {
-            guard let count = UserDefaults.standard.value(forKey: TextLiteral.contactGoalCount) as? Int else { return 0 }
+            guard let count = UserDefaults.standard.value(forKey: TextLiteral.contactGoalCount) as? Int else { return 1 }
             return count
         }
         set {
