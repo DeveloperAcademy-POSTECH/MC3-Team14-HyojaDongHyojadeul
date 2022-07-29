@@ -67,6 +67,7 @@ class AddingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "추가하기"
         configureUI()
         configureAddSubView()
         configureConstraints()

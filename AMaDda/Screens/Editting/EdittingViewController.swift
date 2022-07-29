@@ -69,6 +69,7 @@ class EdittingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "수정하기"
         configureUI()
         configureAddSubView()
         configureConstraints()
