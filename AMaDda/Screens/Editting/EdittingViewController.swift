@@ -106,7 +106,7 @@ class EdittingViewController: UIViewController {
     }
     
     @objc private func didTapDeleteButton() {
-        makeRequestAlert(title: "가족 구성원 삭제", message: "가족 구성원을 삭제하시겠어요?") { [self] _ in
+        makeRequestAlert(title: "가족 구성원을 삭제하시겠어요?", message: "한번 삭제하면 다시 복구할 수 없어요") { [self] _ in
             familyMember?.deleteFamilyMember()
             navigationController?.popViewController(animated: true)
         }
