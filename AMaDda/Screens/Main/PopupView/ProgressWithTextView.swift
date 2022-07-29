@@ -10,6 +10,7 @@ import UIKit
 class ProgressWithTextView: UIView {
     
     let contactGoalCount = UserDefaults.standard.contactGoalCount
+    let userContactGoal = UserDefaults.standard.userContactGoal
     
     // MARK: - property
     private let feedBackprogressView: UIProgressView = {
@@ -24,14 +25,14 @@ class ProgressWithTextView: UIView {
         imageView.tintColor = .black
         return imageView
     }()
-    private lazy var currentContactCount: UILabel = {
-        let label = UILabel()
-        label.text = "0회"
-        return label
-    }()
-    private lazy var  contactGoalLabel: UILabel = {
+    private lazy var contactGoalCountLabel: UILabel = {
         let label = UILabel()
         label.text = "\(contactGoalCount)회"
+        return label
+    }()
+    private lazy var  userContactGoalLabel: UILabel = {
+        let label = UILabel()
+        label.text = "\(userContactGoal)회"
         return label
     }()
     
@@ -56,8 +57,8 @@ class ProgressWithTextView: UIView {
     private func configureAddSubViews() {
         addSubviews(feedBackprogressView,
                           progressImage,
-                          currentContactCount,
-                          contactGoalLabel
+                          contactGoalCountLabel,
+                          userContactGoalLabel
         )
     }
     
@@ -79,16 +80,16 @@ class ProgressWithTextView: UIView {
             progressImage.heightAnchor.constraint(equalToConstant: 50),
         ])
         
-        currentContactCount.translatesAutoresizingMaskIntoConstraints = false
+        contactGoalCountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            currentContactCount.centerXAnchor.constraint(equalTo: progressImage.centerXAnchor),
-            currentContactCount.topAnchor.constraint(equalTo: progressImage.bottomAnchor,constant: 5),
+            contactGoalCountLabel.centerXAnchor.constraint(equalTo: progressImage.centerXAnchor),
+            contactGoalCountLabel.topAnchor.constraint(equalTo: progressImage.bottomAnchor,constant: 5),
         ])
         
-        contactGoalLabel.translatesAutoresizingMaskIntoConstraints = false
+        userContactGoalLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contactGoalLabel.centerXAnchor.constraint(equalTo: feedBackprogressView.trailingAnchor),
-            contactGoalLabel.topAnchor.constraint(equalTo: progressImage .bottomAnchor, constant: 5),
+            userContactGoalLabel.centerXAnchor.constraint(equalTo: feedBackprogressView.trailingAnchor),
+            userContactGoalLabel.topAnchor.constraint(equalTo: progressImage .bottomAnchor, constant: 5),
         ])
     }
 }

@@ -15,7 +15,6 @@ class FeedBackPopUpView: UIView {
     
     weak var delegate: FeedBackPopUpViewDelegate?
     
-    
     // MARK: - property
     private let feedBackTitleLabel: UILabel = {
         let label = UILabel()
