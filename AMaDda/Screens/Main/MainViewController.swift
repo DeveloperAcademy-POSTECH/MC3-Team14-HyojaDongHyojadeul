@@ -116,7 +116,7 @@ final class MainViewController: UIViewController {
         var member = familyMember
         member.updateLastContactDate()
         UserDefaults.standard.finalContactDiffDay = 0
-        familyTableView.reloadData()
+        viewWillAppear(true)
     }
 }
 
@@ -219,8 +219,8 @@ extension MainViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { fatalError() }
             let item = self.familyMembers[indexPath.row]
             cell.item = item
-            cell.selectionStyle = .none
             cell.delegate = self
+            member = item
             return cell
         }
     }
@@ -240,19 +240,17 @@ extension MainViewController: FamilyTableCellDelegate {
     func displayActionSheet(familyMember: FamilyMemberData) {
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "전화하기", style: .default, handler: { (UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "전화하기", style: .default, handler: { _ in
             self.makeCall(familyMember: familyMember)
         }))
-        alert.addAction(UIAlertAction(title: "기록하기", style: .default, handler: { (UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "기록하기", style: .default, handler: { _ in
             self.updateLastCall(familyMember: familyMember)
         }))
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ _ in
             print("User click Dismiss button")
         }))
         
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -261,9 +259,8 @@ extension MainViewController: CXCallObserverDelegate {
     // MARK: - CXCallObserverDelegate
     
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
-        print("-----")
         if call.hasConnected == true && call.hasEnded == false {
-            updateLastCall(familyMember: <#T##FamilyMemberData#>)
+            updateLastCall(familyMember: member!)
         }
     }
 }
