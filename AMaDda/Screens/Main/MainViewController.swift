@@ -170,7 +170,6 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if 0 != familyMemberCount {
             tableView.deselectRow(at: indexPath, animated: true)
-            
             let familyMember = familyMembers[indexPath.row]
             let EditVC = EdittingViewController()
             EditVC.familyMember = familyMember
