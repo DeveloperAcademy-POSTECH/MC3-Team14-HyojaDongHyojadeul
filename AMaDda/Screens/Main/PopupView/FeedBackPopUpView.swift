@@ -14,7 +14,7 @@ protocol FeedBackPopUpViewDelegate: AnyObject {
 class FeedBackPopUpView: UIView {
     
     weak var delegate: FeedBackPopUpViewDelegate?
-    let contactGoalCount = UserDefaults.standard.contactGoalCount
+    
     
     // MARK: - property
     private let feedBackTitleLabel: UILabel = {
@@ -37,12 +37,7 @@ class FeedBackPopUpView: UIView {
         imageView.backgroundColor = .gray
         return imageView
     }()
-    private let feedBackprogressView: UIProgressView = {
-        let progressView = UIProgressView()
-        progressView.progressViewStyle = .default
-        progressView.progress = 0.5
-        return progressView
-    }()
+
     private lazy var okButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
@@ -52,17 +47,9 @@ class FeedBackPopUpView: UIView {
         button.addTarget(self, action: #selector(didTapOkButton), for: .touchUpInside)
         return button
     }()
-    private let progressImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = ImageLiterals.icBell
-        imageView.tintColor = .black
-        return imageView
-    }()
-    private lazy var  contackGoalLabel: UILabel = {
-        let label = UILabel()
-        label.text = 
-        return label
-    }()
+    
+    private let progressView = ProgressWithTextView()
+
     
     // MARK: - init
     override init(frame: CGRect) {
@@ -92,9 +79,8 @@ class FeedBackPopUpView: UIView {
         addSubviews(feedBackTitleLabel,
                     feedBackSubTitle,
                     feedBackImageView,
-                    feedBackprogressView,
-                    okButton,
-                    progressImage
+                    progressView,
+                    okButton
         )
     }
     
@@ -120,23 +106,13 @@ class FeedBackPopUpView: UIView {
             feedBackImageView.heightAnchor.constraint(equalToConstant: 200),
         ])
         
-        feedBackprogressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            feedBackprogressView.topAnchor.constraint(equalTo: feedBackImageView.bottomAnchor, constant: 40),
-            feedBackprogressView.centerXAnchor.constraint(equalTo: feedBackSubTitle.centerXAnchor),
-            feedBackprogressView.widthAnchor.constraint(equalToConstant: 220),
-            feedBackprogressView.heightAnchor.constraint(equalToConstant: 10),
+            progressView.topAnchor.constraint(equalTo: feedBackImageView.bottomAnchor, constant: 50),
+            progressView.centerXAnchor.constraint(equalTo: feedBackImageView.centerXAnchor),
+            progressView.widthAnchor.constraint(equalToConstant: 220),
+            progressView.heightAnchor.constraint(equalToConstant: 10)
         ])
-        
-        progressImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            progressImage.centerYAnchor.constraint(equalTo: feedBackprogressView.centerYAnchor),
-            progressImage.centerXAnchor.constraint(equalTo: feedBackprogressView.leadingAnchor),
-            progressImage.widthAnchor.constraint(equalToConstant: 50),
-            progressImage.heightAnchor.constraint(equalToConstant: 50),
-        ]
-        )
-        
         
         okButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
