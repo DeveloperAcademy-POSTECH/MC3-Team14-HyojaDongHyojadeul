@@ -34,8 +34,7 @@ class FamilyTableCell: UITableViewCell {
         return label
     }()
     private let callImage: UIImage = {
-        let configuration = UIImage.SymbolConfiguration(textStyle: .title1)
-        let image = UIImage.load(systemName: "phone.fill", configuration: configuration)
+        let image = ImageLiterals.catSole
         return image
     }()
     private lazy var contactButton: UIButton = {
@@ -107,7 +106,7 @@ class FamilyTableCell: UITableViewCell {
         contentView.layer.cornerRadius = 20
         
         contactButton.layer.cornerRadius = Size.actionBtnSize/2
-        contactButton.backgroundColor = .black
+        contactButton.backgroundColor = .white
     }
     
     // MARK: - selector
