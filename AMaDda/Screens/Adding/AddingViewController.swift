@@ -47,7 +47,6 @@ class AddingViewController: UIViewController {
     private lazy var nickNameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "예시) 우리어무니"
-        textField.delegate = self
         return textField
     }()
     private let nicknameUnderLineView: UIView = {
@@ -140,12 +139,15 @@ class AddingViewController: UIViewController {
     
     private func setupDelegate() {
         vc.delegate = self
+        nickNameTextField.delegate = self
+        contactNumberTextField.delegate = self
     }
     
     private func changeButtonEnableState() {
         let hasText = nickNameTextField.hasText
+        let hasNum = contactNumberTextField.hasText
         let hasImage = profileImageView.image != ImageLiterals.btnProfile
-        let canEabled = hasText && hasImage
+        let canEabled = hasText && hasImage && hasNum
 
         addButton.isDisabled = !canEabled
     }
@@ -285,6 +287,7 @@ extension AddingViewController: ProfileModalViewDelegate {
         characterImageName = imageName
         DispatchQueue.main.async {
             self.profileImageView.image = UIImage(named: imageName)
+            self.changeButtonEnableState()
         }
     }
 }
