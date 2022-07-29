@@ -219,7 +219,6 @@
 				D72A1E01288558990058EE12 /* UIImage+Extension.swift */,
 				E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */,
 				3E98E8E4288652DF001153E4 /* NSObject+Extension.swift */,
-				91804FAA288A737F0038A2A2 /* Date+Extension.swift */,
 				91DC448F288E8628002F0D46 /* Collection+Extension.swift */,
 				3E98E8F4288A9353001153E4 /* Date+Extension.swift */,
 			);
