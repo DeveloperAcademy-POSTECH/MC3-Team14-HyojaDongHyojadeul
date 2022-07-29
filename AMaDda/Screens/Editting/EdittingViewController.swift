@@ -18,12 +18,6 @@ class EdittingViewController: UIViewController {
     
     // MARK: - property
     
-    private let addingTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "수정하기"
-        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
-        return label
-    }()
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "\(familyMember?.characterImageName ?? "profile.circle")")
@@ -170,8 +164,7 @@ class EdittingViewController: UIViewController {
     }
     
     private func configureAddSubView() {
-        view.addSubviews(addingTitleLabel,
-                         profileImageView,
+        view.addSubviews(profileImageView,
                          plusIcon,
                          createNicknameLabel,
                          nickNameTextField,
@@ -181,16 +174,11 @@ class EdittingViewController: UIViewController {
     }
     
     private func configureConstraints() {
-        addingTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            addingTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            addingTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: Size.leadingTrailingPadding),
-        ])
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profileImageView.topAnchor.constraint(equalTo: addingTitleLabel.bottomAnchor),
+            profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
             profileImageView.heightAnchor.constraint(equalTo: profileImageView.widthAnchor, multiplier: 1.5),
         ])
