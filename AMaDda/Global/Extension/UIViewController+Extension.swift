@@ -25,7 +25,7 @@ extension UIViewController {
     
     func makeRequestAlert(title: String,
                           message: String,
-                          okTitle: String = "확인",
+                          okTitle: String = "삭제",
                           cancelTitle: String = "취소",
                           okAction: ((UIAlertAction) -> Void)?,
                           cancelAction: ((UIAlertAction) -> Void)? = nil,
@@ -36,11 +36,11 @@ extension UIViewController {
         let alertViewController = UIAlertController(title: title, message: message,
                                                     preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: cancelTitle, style: .default, handler: cancelAction)
-        alertViewController.addAction(cancelAction)
-        
         let okAction = UIAlertAction(title: okTitle, style: .destructive, handler: okAction)
         alertViewController.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .default, handler: cancelAction)
+        alertViewController.addAction(cancelAction)
         
         self.present(alertViewController, animated: true, completion: completion)
     }

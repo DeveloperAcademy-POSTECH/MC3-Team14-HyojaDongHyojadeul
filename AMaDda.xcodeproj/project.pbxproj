@@ -29,8 +29,7 @@
 		91F1488728859FD1005A45E1 /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1488628859FD1005A45E1 /* UserNotificationManager.swift */; };
 		91FD28A82884F32700F49D20 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28A72884F32700F49D20 /* MainViewController.swift */; };
 		91FD28AA2884F3E500F49D20 /* TodayQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28A92884F3E500F49D20 /* TodayQuestionView.swift */; };
-		91FD28AD2884F43A00F49D20 /* TodayQuestionMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28AC2884F43A00F49D20 /* TodayQuestionMockData.swift */; };
-		91FD28AF2884F44100F49D20 /* TodayQuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28AE2884F44100F49D20 /* TodayQuestionData.swift */; };
+		91FD28AF2884F44100F49D20 /* TodayQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28AE2884F44100F49D20 /* TodayQuestion.swift */; };
 		91FD28B22884F4B800F49D20 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28B12884F4B800F49D20 /* Color+Extension.swift */; };
 		91FD28B52884F55C00F49D20 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28B42884F55C00F49D20 /* Size.swift */; };
 		91FD28B82884F70A00F49D20 /* FontsPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FD28B72884F70A00F49D20 /* FontsPlaceHolder.swift */; };
@@ -39,6 +38,7 @@
 		D72A1E02288558990058EE12 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1E01288558990058EE12 /* UIImage+Extension.swift */; };
 		D72A1E1F2886D94A0058EE12 /* EdittingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A1E1E2886D94A0058EE12 /* EdittingViewController.swift */; };
 		D7ADBBA72883D520004BB5FE /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ADBBA62883D520004BB5FE /* CommonButton.swift */; };
+		E60AF5852893B30600B7FDEF /* TodayQuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60AF5842893B30600B7FDEF /* TodayQuestionData.swift */; };
 		E6278AD928843F8E00DC0CB0 /* ProfileModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */; };
 		E6278ADD2884412D00DC0CB0 /* ProfileModalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */; };
 		E6278AE52884FCF500DC0CB0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */; };
@@ -71,8 +71,7 @@
 		91F1488628859FD1005A45E1 /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		91FD28A72884F32700F49D20 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		91FD28A92884F3E500F49D20 /* TodayQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionView.swift; sourceTree = "<group>"; };
-		91FD28AC2884F43A00F49D20 /* TodayQuestionMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionMockData.swift; sourceTree = "<group>"; };
-		91FD28AE2884F44100F49D20 /* TodayQuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionData.swift; sourceTree = "<group>"; };
+		91FD28AE2884F44100F49D20 /* TodayQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestion.swift; sourceTree = "<group>"; };
 		91FD28B12884F4B800F49D20 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		91FD28B42884F55C00F49D20 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		91FD28B72884F70A00F49D20 /* FontsPlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsPlaceHolder.swift; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		D72A1E01288558990058EE12 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		D72A1E1E2886D94A0058EE12 /* EdittingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingViewController.swift; sourceTree = "<group>"; };
 		D7ADBBA62883D520004BB5FE /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
+		E60AF5842893B30600B7FDEF /* TodayQuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionData.swift; sourceTree = "<group>"; };
 		E6278AD828843F8E00DC0CB0 /* ProfileModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalViewController.swift; sourceTree = "<group>"; };
 		E6278ADC2884412D00DC0CB0 /* ProfileModalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalCell.swift; sourceTree = "<group>"; };
 		E6278AE42884FCF500DC0CB0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -220,12 +220,12 @@
 		91FD28AB2884F42600F49D20 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				91FD28AC2884F43A00F49D20 /* TodayQuestionMockData.swift */,
-				91FD28AE2884F44100F49D20 /* TodayQuestionData.swift */,
+				91FD28AE2884F44100F49D20 /* TodayQuestion.swift */,
 				91F1488628859FD1005A45E1 /* UserNotificationManager.swift */,
 				3E15D6702884FBC500570DD7 /* FamilyMemberData.swift */,
 				3E15D6722884FC1F00570DD7 /* FamilyMemberMockData.swift */,
 				91715FF52888019700A780B7 /* UserDefaultsStateManager.swift */,
+				E60AF5842893B30600B7FDEF /* TodayQuestionData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -404,9 +404,9 @@
 				D7ADBBA72883D520004BB5FE /* CommonButton.swift in Sources */,
 				3E622CF028803971006A921C /* SceneDelegate.swift in Sources */,
 				3E98E8F5288A9353001153E4 /* Date+Extension.swift in Sources */,
-				91FD28AF2884F44100F49D20 /* TodayQuestionData.swift in Sources */,
-				91FD28AD2884F43A00F49D20 /* TodayQuestionMockData.swift in Sources */,
+				91FD28AF2884F44100F49D20 /* TodayQuestion.swift in Sources */,
 				918BAFFC2886ED94002F94DB /* UserDefaults+Extension.swift in Sources */,
+				E60AF5852893B30600B7FDEF /* TodayQuestionData.swift in Sources */,
 				91F1488728859FD1005A45E1 /* UserNotificationManager.swift in Sources */,
 				3E15D6712884FBC500570DD7 /* FamilyMemberData.swift in Sources */,
 				91FD28B52884F55C00F49D20 /* Size.swift in Sources */,
@@ -565,7 +565,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 54QH6LCWDM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AMaDda/Global/Supports/info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -593,7 +593,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 54QH6LCWDM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AMaDda/Global/Supports/info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

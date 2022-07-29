@@ -2,16 +2,19 @@
 //  MainViewController.swift
 //  AMaDda
 //
-//  Created by Lee Myeonghwan on 2022/07/18.
+//  Created by Lee Myeonghwan & 이성민 on 2022/07/18.
 //
 
-import Foundation
 import UIKit
+import CallKit
 
 final class MainViewController: UIViewController {
-
+    
+    let callObserver = CXCallObserver()
+    
+    private var member: FamilyMemberData?
     private var familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
-    private let todayQuestionData = TodayQuestionMockData.mockData
+    private let todayQuestion = TodayQuestionData.questions
     private lazy var familyMemberCount = familyMembers.count
     private let todayQuestionView = TodayQuestionView()
     private let todayQuestionIndex = UserDefaults.standard.questionIndex
@@ -76,6 +79,10 @@ final class MainViewController: UIViewController {
         familyTableView.reloadData()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Selector
     @objc private func tapAddButton() {
         let addingViewController = AddingViewController()
@@ -89,6 +96,7 @@ final class MainViewController: UIViewController {
         familyTableView.delegate = self
         familyTableView.dataSource = self
         feedBackView.delegate = self
+        callObserver.setDelegate(self, queue: nil)
     }
     
     private func setButtonMenu() {
@@ -98,12 +106,54 @@ final class MainViewController: UIViewController {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
-        let cycleSetting = UIAction(title: "알림 주기 설정", image: ImageLiterals.icPencil) { [weak self] _ in
+        let cycleSetting = UIAction(title: "알림 주기 설정", image: ImageLiterals.icCalendar) { [weak self] _ in
             let notiSettingViewController = OnboardingTwoViewController()
             notiSettingViewController.cycleViewMode = .setting
             self?.navigationController?.pushViewController(notiSettingViewController, animated: true)
         }
-        settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting])
+        let goalSetting = UIAction(title: "알림 목표 설정", image: ImageLiterals.icPencil) { [weak self] _ in
+            let notiGoalViewController = OnboardingGoalViewController()
+            notiGoalViewController.cycleViewModeForGoal = .setting
+            self?.navigationController?.pushViewController(notiGoalViewController, animated: true)
+        }
+        settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting, goalSetting])
+    }
+    
+    private func makeCall(familyMember: FamilyMemberData) {
+        if let phoneCallURL = URL(string: "tel://\(familyMember.contactNumber)") {
+            let application: UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    private func updateLastCall(familyMember: FamilyMemberData) {
+        var member = familyMember
+        member.updateLastContactDate()
+        familyMembers = UserDefaults.standard.familyMembers
+        DispatchQueue.main.async {
+            self.familyTableView.reloadData()
+        }
+    }
+    
+    private func showPopUp() {
+        view.addSubview(feedBackView)
+        feedBackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            feedBackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            feedBackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            feedBackView.widthAnchor.constraint(equalToConstant: 310),
+            feedBackView.heightAnchor.constraint(equalToConstant: 530),
+        ])
+        feedBackView.alpha = 0
+        
+        UIView.animate(withDuration: 0.3) {
+            self.blurEffectView.alpha = 1
+            self.feedBackView.alpha = 1
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("showPopUp"), object: nil)
     }
 }
 
@@ -223,6 +273,7 @@ extension MainViewController: UITableViewDataSource {
             cell.item = item
             cell.selectionStyle = .none
             cell.delegate = self
+            member = item
             return cell
         }
     }
@@ -230,29 +281,8 @@ extension MainViewController: UITableViewDataSource {
 
 extension MainViewController: TodayQuestionDelegate {
     func changeTodayQuestion(_ index: Int) {
-        guard let todayQuestion = todayQuestionData[safe: index] else { return }
+        guard let todayQuestion = todayQuestion[safe: index] else { return }
         todayQuestionView.todayCardQuestionLabel.text = todayQuestion.question
-    }
-}
-
-extension MainViewController: FamilyTableCellDelegate {
-    func showPopUp() {
-        view.addSubview(feedBackView)
-        feedBackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            feedBackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            feedBackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            feedBackView.widthAnchor.constraint(equalToConstant: 310),
-            feedBackView.heightAnchor.constraint(equalToConstant: 530),
-        ])
-        feedBackView.alpha = 0
-        
-        UIView.animate(withDuration: 0.3) {
-            self.blurEffectView.alpha = 1
-            self.feedBackView.alpha = 1
-        }
-        
-        NotificationCenter.default.post(name: NSNotification.Name("showPopUp"), object: nil)
     }
 }
 
@@ -262,6 +292,40 @@ extension MainViewController: FeedBackPopUpViewDelegate {
             self.navigationController?.navigationBar.isHidden = false
             self.blurEffectView.alpha = 0
             self.feedBackView.alpha = 0
+        }
+    }
+}
+extension MainViewController: FamilyTableCellDelegate {
+    
+    // MARK: - TableViewCellDelegate
+    
+    func displayActionSheet(familyMember: FamilyMemberData) {
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "전화하기", style: .default, handler: { _ in
+            self.makeCall(familyMember: familyMember)
+        }))
+        alert.addAction(UIAlertAction(title: "이미 연락했어요", style: .default, handler: { _ in
+            self.updateLastCall(familyMember: familyMember)
+            self.showPopUp()
+        }))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ _ in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension MainViewController: CXCallObserverDelegate {
+    
+    // MARK: - CXCallObserverDelegate
+    
+    func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
+        if call.hasConnected == true && call.hasEnded == false {
+            updateLastCall(familyMember: member!)
+            UserDefaultsStateManager().userContacted()
+            showPopUp()
         }
     }
 }

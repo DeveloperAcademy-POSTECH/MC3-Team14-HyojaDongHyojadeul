@@ -9,12 +9,10 @@ import UIKit
 import SwiftUI
 
 protocol FamilyTableCellDelegate: AnyObject {
-    func showPopUp()
+    func displayActionSheet(familyMember: FamilyMemberData)
 }
 
 class FamilyTableCell: UITableViewCell {
-    
-    weak var delegate: FamilyTableCellDelegate?
     
     // TODO: cell 터치시 editing view 열기
     private enum Size {
@@ -25,6 +23,9 @@ class FamilyTableCell: UITableViewCell {
     }
     
     // MARK: - property
+    
+    weak var delegate: FamilyTableCellDelegate?
+    
     var item: FamilyMemberData? {
         didSet {
             self.familyNameLabel.text = item?.name
@@ -41,8 +42,7 @@ class FamilyTableCell: UITableViewCell {
         return label
     }()
     private let callImage: UIImage = {
-        let configuration = UIImage.SymbolConfiguration(textStyle: .title1)
-        let image = UIImage.load(systemName: "phone.fill", configuration: configuration)
+        let image = ImageLiterals.catSole
         return image
     }()
     private lazy var contactButton: UIButton = {
@@ -73,9 +73,9 @@ class FamilyTableCell: UITableViewCell {
     // MARK: - configure
     private func configureAddSubViews() {
         contentView.addSubviews(familyCharacterImageView,
-                               familyNameLabel,
-                               familyDescriptionLabel,
-                               contactButton)
+                                familyNameLabel,
+                                familyDescriptionLabel,
+                                contactButton)
     }
     
     private func configureConstraints() {
@@ -114,14 +114,14 @@ class FamilyTableCell: UITableViewCell {
         contentView.layer.cornerRadius = 20
         
         contactButton.layer.cornerRadius = Size.actionBtnSize/2
-        contactButton.backgroundColor = .black
+        contactButton.backgroundColor = .white
     }
     
     // MARK: - selector
-    
     @objc func didTapContactButton() {
+        guard let item = item else { fatalError() }
         self.item?.updateLastContactDate()
         UserDefaults.standard.finalContactDiffDay = 0
-        delegate?.showPopUp()
+        delegate?.displayActionSheet(familyMember: item)
     }
 }

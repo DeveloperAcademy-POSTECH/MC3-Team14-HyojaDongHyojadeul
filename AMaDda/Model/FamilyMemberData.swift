@@ -13,12 +13,14 @@ struct FamilyMemberData: Codable {
     var characterImageName: String
     var lastContactDate: Date
     var initialized: Bool
+    var contactNumber: String
     
-    init(name: String, characterImageName: String) {
+    init(name: String, characterImageName: String, contactNumber: String) {
         self.name = name
         self.characterImageName = characterImageName
         self.lastContactDate = Date().convertedKoreaDate
         self.initialized = true
+        self.contactNumber = contactNumber
     }
 }
 
@@ -26,7 +28,7 @@ extension FamilyMemberData {
     mutating func updateLastContactDate() {
         initialized = false
         lastContactDate = Date().convertedKoreaDate
-        updateUserDefaults()
+        updateFamilyMembers()
     }
     
     func addFamilyMember() {
@@ -35,7 +37,15 @@ extension FamilyMemberData {
         UserDefaults.standard.familyMembers = familyMembers
     }
     
-    func updateUserDefaults() {
+    func deleteFamilyMember() {
+        var familyMembers = UserDefaults.standard.familyMembers
+        if let index = familyMembers.firstIndex(where: { $0.id == self.id }) {
+            familyMembers.remove(at: index)
+        }
+        UserDefaults.standard.familyMembers = familyMembers
+    }
+    
+    func updateFamilyMembers() {
         var familyMembers = UserDefaults.standard.familyMembers
         if let index = familyMembers.firstIndex(where: { $0.id == self.id }) {
             familyMembers.remove(at: index)
