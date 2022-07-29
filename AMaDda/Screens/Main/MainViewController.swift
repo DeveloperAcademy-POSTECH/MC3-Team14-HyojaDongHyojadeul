@@ -256,6 +256,7 @@ extension MainViewController: UITableViewDataSource {
             tableView.separatorStyle = .none
             return 1
         default:
+            tableView.separatorStyle = .singleLine
             return familyMembers.count
         }
     }
