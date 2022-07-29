@@ -70,6 +70,11 @@ class EdittingViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
         return button
     }()
+    private lazy var deleteButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "삭제", style: .plain, target: self, action: #selector(didTapDeleteButton))
+        button.tintColor = .red
+        return button
+    }()
     
     // MARK: - life cycle
     
@@ -94,10 +99,14 @@ class EdittingViewController: UIViewController {
     
     @objc private func didTapAddButton() {
         guard let text = nickNameTextField.text else { return }
-        familyMembers = UserDefaults.standard.familyMembers
         familyMember?.name = text
         familyMember?.characterImageName = characterImageName
-        familyMember?.updateUserDefaults()
+        familyMember?.updateFamilyMembers()
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func didTapDeleteButton() {
+        familyMember?.deleteFamilyMember()
         navigationController?.popViewController(animated: true)
     }
     
@@ -167,6 +176,7 @@ class EdittingViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.backgroundColor = .systemBackground
+        navigationItem.setRightBarButton(deleteButton, animated: false)
     }
     
     private func configureAddSubView() {

@@ -26,7 +26,7 @@ extension FamilyMemberData {
     mutating func updateLastContactDate() {
         initialized = false
         lastContactDate = Date().convertedKoreaDate
-        updateUserDefaults()
+        updateFamilyMembers()
     }
     
     func addFamilyMember() {
@@ -35,7 +35,15 @@ extension FamilyMemberData {
         UserDefaults.standard.familyMembers = familyMembers
     }
     
-    func updateUserDefaults() {
+    func deleteFamilyMember() {
+        var familyMembers = UserDefaults.standard.familyMembers
+        if let index = familyMembers.firstIndex(where: { $0.id == self.id }) {
+            familyMembers.remove(at: index)
+        }
+        UserDefaults.standard.familyMembers = familyMembers
+    }
+    
+    func updateFamilyMembers() {
         var familyMembers = UserDefaults.standard.familyMembers
         if let index = familyMembers.firstIndex(where: { $0.id == self.id }) {
             familyMembers.remove(at: index)
