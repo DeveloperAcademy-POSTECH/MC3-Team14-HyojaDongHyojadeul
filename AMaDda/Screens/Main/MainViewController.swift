@@ -2,7 +2,7 @@
 //  MainViewController.swift
 //  AMaDda
 //
-//  Created by Lee Myeonghwan on 2022/07/18.
+//  Created by Lee Myeonghwan & 이성민 on 2022/07/18.
 //
 
 import UIKit
