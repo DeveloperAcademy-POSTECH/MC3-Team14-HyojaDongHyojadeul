@@ -59,16 +59,10 @@ class ProgressWithTextView: UIView {
     @objc private func showPopUpAnimation() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
-    
                 NSLayoutConstraint.deactivate(self.ConsArray)
-                
-                let centerYCons = self.progressImage.centerYAnchor.constraint(equalTo: self.feedBackprogressView.centerYAnchor)
-                let leadingCons = self.progressImage.centerXAnchor.constraint(equalTo: self.feedBackprogressView.leadingAnchor, constant: CGFloat(self.progress * Float(self.width)))
-                print(CGFloat(self.progress * Float(self.width)))
-                let witdhCons = self.progressImage.widthAnchor.constraint(equalToConstant: 75)
-                let heightCons = self.progressImage.heightAnchor.constraint(equalToConstant: 75)
                 self.ConsArray.popLast()
-                self.ConsArray += [self.progressImage.centerXAnchor.constraint(equalTo: self.feedBackprogressView.leadingAnchor, constant: CGFloat(self.progress * Float(self.width)))]
+                let leadingCons = self.progressImage.centerXAnchor.constraint(equalTo: self.feedBackprogressView.leadingAnchor, constant: CGFloat(self.progress * Float(self.width)))
+                self.ConsArray.append(leadingCons)
                 NSLayoutConstraint.activate(self.ConsArray)
                 self.layoutIfNeeded()
                 self.feedBackprogressView.setProgress(self.progress, animated: true)
@@ -84,9 +78,14 @@ class ProgressWithTextView: UIView {
         progress = Float(contactGoalCount) / Float(userContactGoal)
         userContactGoalLabel.text = "\(userContactGoal)회"
         feedBackprogressView.progress = previousProgress
+        updateProgressImageLayout()
+    }
+    
+    private func updateProgressImageLayout() {
         NSLayoutConstraint.deactivate(ConsArray)
         ConsArray.popLast()
-        ConsArray += [progressImage.centerXAnchor.constraint(equalTo: feedBackprogressView.leadingAnchor, constant: CGFloat(previousProgress * Float(width)))]
+        let leadingCons = progressImage.centerXAnchor.constraint(equalTo: feedBackprogressView.leadingAnchor, constant: CGFloat(previousProgress * Float(width)))
+        ConsArray.append(leadingCons)
         NSLayoutConstraint.activate(ConsArray)
     }
     
