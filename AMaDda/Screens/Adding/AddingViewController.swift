@@ -141,8 +141,9 @@ class AddingViewController: UIViewController {
     
     private func changeButtonEnableState() {
         let hasText = nickNameTextField.hasText
+        let hasNum = contactNumberTextField.hasText
         let hasImage = profileImageView.image != ImageLiterals.btnProfile
-        let canEabled = hasText && hasImage
+        let canEabled = hasText && hasImage && hasNum
 
         addButton.isDisabled = !canEabled
     }
@@ -289,6 +290,7 @@ extension AddingViewController: ProfileModalViewDelegate {
         characterImageName = imageName
         DispatchQueue.main.async {
             self.profileImageView.image = UIImage(named: imageName)
+            self.changeButtonEnableState()
         }
     }
 }
