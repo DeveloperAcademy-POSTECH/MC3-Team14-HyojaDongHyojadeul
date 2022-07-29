@@ -254,7 +254,7 @@ extension MainViewController: FamilyTableCellDelegate {
         alert.addAction(UIAlertAction(title: "전화하기", style: .default, handler: { _ in
             self.makeCall(familyMember: familyMember)
         }))
-        alert.addAction(UIAlertAction(title: "기록하기", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "이미 연락했어요", style: .default, handler: { _ in
             self.updateLastCall(familyMember: familyMember)
         }))
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ _ in
