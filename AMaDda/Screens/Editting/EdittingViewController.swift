@@ -106,8 +106,10 @@ class EdittingViewController: UIViewController {
     }
     
     @objc private func didTapDeleteButton() {
-        familyMember?.deleteFamilyMember()
-        navigationController?.popViewController(animated: true)
+        makeRequestAlert(title: "가족 구성원 삭제", message: "가족 구성원을 삭제하시겠어요?") { [self] _ in
+            familyMember?.deleteFamilyMember()
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
