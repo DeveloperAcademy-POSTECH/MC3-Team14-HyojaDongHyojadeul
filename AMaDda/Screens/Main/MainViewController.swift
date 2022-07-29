@@ -95,12 +95,17 @@ final class MainViewController: UIViewController {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
-        let cycleSetting = UIAction(title: "알림 주기 설정", image: ImageLiterals.icPencil) { [weak self] _ in
+        let cycleSetting = UIAction(title: "알림 주기 설정", image: ImageLiterals.icCalendar) { [weak self] _ in
             let notiSettingViewController = OnboardingTwoViewController()
             notiSettingViewController.cycleViewMode = .setting
             self?.navigationController?.pushViewController(notiSettingViewController, animated: true)
         }
-        settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting])
+        let goalSetting = UIAction(title: "알림 목표 설정", image: ImageLiterals.icPencil) { [weak self] _ in
+            let notiGoalViewController = OnboardingGoalViewController()
+            notiGoalViewController.cycleViewModeForGoal = .setting
+            self?.navigationController?.pushViewController(notiGoalViewController, animated: true)
+        }
+        settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting, goalSetting])
     }
     
     private func makeCall(familyMember: FamilyMemberData) {
