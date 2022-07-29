@@ -272,6 +272,7 @@ extension MainViewController: CXCallObserverDelegate {
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
         if call.hasConnected == true && call.hasEnded == false {
             updateLastCall(familyMember: member!)
+            UserDefaultsStateManager().userContacted()
         }
     }
 }
