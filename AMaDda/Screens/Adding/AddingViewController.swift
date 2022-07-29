@@ -11,6 +11,7 @@ class AddingViewController: UIViewController {
     
     private var maxLength = 5
     var characterImageName: String = "Character1"
+    var contactNumber: String = ""
     private var familyMembers = [FamilyMemberData]()
     private let vc = ProfileModalViewController()
     
@@ -30,33 +31,50 @@ class AddingViewController: UIViewController {
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
-    private let plusIcon: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = ImageLiterals.icPlus
-        imageView.tintColor = .gray
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        return imageView
+    private let addLabel: UILabel = {
+        let label = UILabel()
+        label.text = "캐릭터 추가"
+        label.textColor = .systemBlue
+        label.font = UIFont.systemFont(ofSize: 15)
+        return label
     }()
     private let createNicknameLabel: UILabel = {
         let label = UILabel()
-        label.text = "어떻게 부르고 싶나요?"
+        label.text = "호칭"
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
     }()
     private lazy var nickNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "예시) 아버지, 엄마, 세젤예 우리엄마"
+        textField.placeholder = "예시) 우리어무니"
         textField.delegate = self
         return textField
     }()
-    private let underLineView: UIView = {
+    private let nicknameUnderLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    private let createContactNumberLabel: UILabel = {
+        let label = UILabel()
+        label.text = "전화번호"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        return label
+    }()
+    private let contactNumberTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "예시) 01012341234"
+        textField.keyboardType = .numberPad
+        return textField
+    }()
+    private let contactUnderLineView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
         return view
     }()
     private lazy var textFieldLimitLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
         label.text = "0/\(maxLength)"
         label.textColor = .lightGray
         return label
@@ -80,6 +98,7 @@ class AddingViewController: UIViewController {
         setupNotificationCenter()
         setupTapGesture()
         setupDelegate()
+        self.title = "추가하기"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,8 +108,9 @@ class AddingViewController: UIViewController {
     // MARK: - seletor
     
     @objc private func didTapAddButton() {
-        guard let text = nickNameTextField.text else { return }
-        let familyMember = FamilyMemberData(name: text, characterImageName: characterImageName)
+        guard let nickname = nickNameTextField.text else { return }
+        guard let number = contactNumberTextField.text else { return }
+        let familyMember = FamilyMemberData(name: nickname, characterImageName: characterImageName, contactNumber: number)
         familyMember.addFamilyMember()
         navigationController?.popViewController(animated: true)
     }
@@ -103,6 +123,7 @@ class AddingViewController: UIViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
                 self.addButton.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height + 60)
+                self.view.transform = CGAffineTransform(translationX: 0, y: -20)
             })
         }
     }
@@ -110,6 +131,7 @@ class AddingViewController: UIViewController {
     @objc private func keyboardWillHide(notification:NSNotification) {
         UIView.animate(withDuration: 0.2, animations: {
             self.addButton.transform = .identity
+            self.view.transform = .identity
         })
     }
     
@@ -158,59 +180,81 @@ class AddingViewController: UIViewController {
     }
     
     private func configureAddSubView() {
-        view.addSubviews(addingTitleLabel,
+        view.addSubviews(
                          profileImageView,
-                         plusIcon,
+                         addLabel,
                          createNicknameLabel,
                          nickNameTextField,
-                         underLineView,
+                         createContactNumberLabel,
+                         contactNumberTextField,
+                         nicknameUnderLineView,
+                         contactUnderLineView,
                          textFieldLimitLabel,
                          addButton)
     }
     
     private func configureConstraints() {
-        addingTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            addingTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            addingTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: Size.leadingTrailingPadding),
-        ])
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profileImageView.topAnchor.constraint(equalTo: addingTitleLabel.bottomAnchor, constant: 37),
+            profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
             profileImageView.heightAnchor.constraint(equalTo: profileImageView.widthAnchor, multiplier: 1.5),
         ])
         
-        plusIcon.translatesAutoresizingMaskIntoConstraints = false
+        addLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            plusIcon.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 0),
-            plusIcon.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 0),
-            plusIcon.widthAnchor.constraint(equalToConstant: 25),
-            plusIcon.heightAnchor.constraint(equalToConstant: 25),
+            addLabel.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 0),
+            addLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
         createNicknameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            createNicknameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor,constant: 64),
+            createNicknameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 50),
             createNicknameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
+            createNicknameLabel.widthAnchor.constraint(equalToConstant: 80)
         ])
         
         nickNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nickNameTextField.topAnchor.constraint(equalTo: createNicknameLabel.bottomAnchor, constant: 20),
-            nickNameTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: Size.leadingTrailingPadding),
+            nickNameTextField.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 50),
+            nickNameTextField.centerYAnchor.constraint(equalTo: createNicknameLabel.centerYAnchor),
+            nickNameTextField.leadingAnchor.constraint(equalTo: createNicknameLabel.trailingAnchor, constant: 10),
             nickNameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            nickNameTextField.heightAnchor.constraint(equalToConstant: 50),
+            nickNameTextField.heightAnchor.constraint(equalToConstant: 35),
         ])
         
-        underLineView.translatesAutoresizingMaskIntoConstraints = false
+        nicknameUnderLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            underLineView.topAnchor.constraint(equalTo: nickNameTextField.bottomAnchor),
-            underLineView.leadingAnchor.constraint(equalTo: nickNameTextField.leadingAnchor),
-            underLineView.trailingAnchor.constraint(equalTo: nickNameTextField.trailingAnchor),
-            underLineView.heightAnchor.constraint(equalToConstant: 1),
+            nicknameUnderLineView.topAnchor.constraint(equalTo: nickNameTextField.bottomAnchor),
+            nicknameUnderLineView.leadingAnchor.constraint(equalTo: nickNameTextField.leadingAnchor),
+            nicknameUnderLineView.trailingAnchor.constraint(equalTo: nickNameTextField.trailingAnchor),
+            nicknameUnderLineView.heightAnchor.constraint(equalToConstant: 1),
+        ])
+        
+        createContactNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            createContactNumberLabel.topAnchor.constraint(equalTo: nicknameUnderLineView.bottomAnchor, constant: 30),
+            createContactNumberLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
+            createContactNumberLabel.widthAnchor.constraint(equalToConstant: 80)
+        ])
+        
+        contactNumberTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contactNumberTextField.topAnchor.constraint(equalTo: nicknameUnderLineView.bottomAnchor, constant: 30),
+            contactNumberTextField.centerYAnchor.constraint(equalTo: createContactNumberLabel.centerYAnchor),
+            contactNumberTextField.leadingAnchor.constraint(equalTo: createContactNumberLabel.trailingAnchor, constant: 10),
+            contactNumberTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            contactNumberTextField.heightAnchor.constraint(equalToConstant: 35),
+        ])
+        
+        contactUnderLineView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contactUnderLineView.topAnchor.constraint(equalTo: contactNumberTextField.bottomAnchor),
+            contactUnderLineView.leadingAnchor.constraint(equalTo: contactNumberTextField.leadingAnchor),
+            contactUnderLineView.trailingAnchor.constraint(equalTo: contactNumberTextField.trailingAnchor),
+            contactUnderLineView.heightAnchor.constraint(equalToConstant: 1),
         ])
         
         textFieldLimitLabel.translatesAutoresizingMaskIntoConstraints = false
