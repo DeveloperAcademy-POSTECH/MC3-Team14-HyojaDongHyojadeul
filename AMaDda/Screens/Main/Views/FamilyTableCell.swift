@@ -78,7 +78,7 @@ class FamilyTableCell: UITableViewCell {
             familyCharacterImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Size.sideSpacing),
             familyCharacterImageView.topAnchor.constraint(equalTo: topAnchor, constant: Size.topBottomSpacing),
             familyCharacterImageView.heightAnchor.constraint(equalToConstant: 60),
-            familyCharacterImageView.widthAnchor.constraint(equalToConstant: 50),
+            familyCharacterImageView.widthAnchor.constraint(equalToConstant: 60),
         ])
         
         familyNameLabel.translatesAutoresizingMaskIntoConstraints = false
