@@ -11,7 +11,7 @@ import UIKit
 final class MainViewController: UIViewController {
 
     private var familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
-    private let todayQuestionData = TodayQuestionMockData.mockData
+    private let todayQuestionData = TodayQuestion.questions
     private lazy var familyMemberCount = familyMembers.count
     private let todayQuestionView = TodayQuestionView()
     private let todayQuestionIndex = UserDefaults.standard.questionIndex
