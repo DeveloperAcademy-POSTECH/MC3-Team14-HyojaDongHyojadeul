@@ -307,6 +307,7 @@ extension MainViewController: FamilyTableCellDelegate {
         }))
         alert.addAction(UIAlertAction(title: "이미 연락했어요", style: .default, handler: { _ in
             self.updateLastCall(familyMember: familyMember)
+            UserDefaultsStateManager().userContacted()
             self.showPopUp()
         }))
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ _ in

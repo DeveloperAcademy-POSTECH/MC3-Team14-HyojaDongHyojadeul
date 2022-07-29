@@ -120,8 +120,6 @@ class FamilyTableCell: UITableViewCell {
     // MARK: - selector
     @objc func didTapContactButton() {
         guard let item = item else { fatalError() }
-        self.item?.updateLastContactDate()
-        UserDefaults.standard.finalContactDiffDay = 0
         delegate?.displayActionSheet(familyMember: item)
     }
 }
