@@ -1,8 +1,8 @@
 //
-//  TodayQuestionMockData.swift
+//  TodayQuestions.swift
 //  AMaDda
 //
-//  Created by Lee Myeonghwan on 2022/07/18.
+//  Created by sanghyo on 2022/07/29.
 //
 
 import Foundation
