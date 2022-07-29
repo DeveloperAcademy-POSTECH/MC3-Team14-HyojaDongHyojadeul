@@ -8,6 +8,10 @@
 import UIKit
 import SwiftUI
 
+protocol FamilyTableCellDelegate: AnyObject {
+    func displayActionSheet(familyMember: FamilyMemberData)
+}
+
 class FamilyTableCell: UITableViewCell {
     // TODO: cell 터치시 editing view 열기
     private enum Size {
@@ -18,6 +22,9 @@ class FamilyTableCell: UITableViewCell {
     }
     
     // MARK: - property
+    
+    weak var delegate: FamilyTableCellDelegate?
+    
     var item: FamilyMemberData? {
         didSet {
             self.familyNameLabel.text = item?.name
@@ -66,9 +73,9 @@ class FamilyTableCell: UITableViewCell {
     // MARK: - configure
     private func configureAddSubViews() {
         contentView.addSubviews(familyCharacterImageView,
-                               familyNameLabel,
-                               familyDescriptionLabel,
-                               contactButton)
+                                familyNameLabel,
+                                familyDescriptionLabel,
+                                contactButton)
     }
     
     private func configureConstraints() {
@@ -112,8 +119,8 @@ class FamilyTableCell: UITableViewCell {
     
     // MARK: - selector
     
-    @objc func didTapContactButton() {
-        self.item?.updateLastContactDate()
-        UserDefaults.standard.finalContactDiffDay = 0
+    @objc private func didTapContactButton() {
+        guard let item = item else { fatalError() }
+        delegate?.displayActionSheet(familyMember: item)
     }
 }
