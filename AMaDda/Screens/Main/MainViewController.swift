@@ -168,12 +168,13 @@ extension MainViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let familyMember = familyMembers[indexPath.row]
-        let EditVC = EdittingViewController()
-        EditVC.familyMember = familyMember
-        navigationController?.pushViewController(EditVC, animated: true)
+        if familyMemberCount != 0 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            let familyMember = familyMembers[indexPath.row]
+            let EditVC = EdittingViewController()
+            EditVC.familyMember = familyMember
+            navigationController?.pushViewController(EditVC, animated: true)
+        }
     }
 }
 
