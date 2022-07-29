@@ -103,13 +103,4 @@ extension UserDefaults {
             UserDefaults.standard.set(newValue, forKey: TextLiteral.isUserTodayContacted)
         }
     }
-    var goalCount: Int? {
-        get {
-            guard let count = UserDefaults.standard.value(forKey: "goalCount") as? Int else { return nil }
-            return count
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "goalCount")
-        }
-    }
 }

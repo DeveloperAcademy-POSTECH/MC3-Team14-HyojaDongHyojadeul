@@ -12,7 +12,7 @@ enum CycleViewModeForGoal: Equatable {
 }
 
 class OnboardingGoalViewController: UIViewController {
-    var goalCount: Int = 3
+    var userContactGoal: Int = 3
     var cycleViewModeForGoal = CycleViewModeForGoal.onboarding
     
     // MARK: Properties
@@ -32,7 +32,7 @@ class OnboardingGoalViewController: UIViewController {
     }()
     private lazy var showNotificationLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(goalCount)회"
+        label.text = "\(userContactGoal)회"
         label.font = .systemFont(ofSize: 40)
         return label
     }()
@@ -54,8 +54,8 @@ class OnboardingGoalViewController: UIViewController {
     
     // MARK: stepper function
     @objc private func stepperValueChanged(_ stepper: UIStepper) {
-        goalCount = Int(stepper.value)
-        showNotificationLabel.text = "\(goalCount)회"
+        userContactGoal = Int(stepper.value)
+        showNotificationLabel.text = "\(userContactGoal)회"
     }
     
     @objc private func didTapStartButton() {
@@ -68,7 +68,7 @@ class OnboardingGoalViewController: UIViewController {
         case .setting:
             navigationController?.popViewController(animated: true)
         }
-        UserDefaults.standard.goalCount = goalCount
+        UserDefaults.standard.userContactGoal = userContactGoal
     }
     
     // MARK: Life Cycle functions
@@ -82,7 +82,7 @@ class OnboardingGoalViewController: UIViewController {
     // MARK: - Functions
     private func checkCycleViewModeForGoal() {
         if case CycleViewModeForGoal.setting = cycleViewModeForGoal {
-            guard let goalNumber = UserDefaults.standard.notificationCount else { return }
+            let goalNumber = UserDefaults.standard.userContactGoal
             onboardingStepper.value = Double(goalNumber)
             showNotificationLabel.text = "\(goalNumber)회"
         }
