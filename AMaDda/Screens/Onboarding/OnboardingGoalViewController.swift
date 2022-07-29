@@ -126,6 +126,5 @@ class OnboardingGoalViewController: UIViewController {
             startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
         ])
-        
     }
 }

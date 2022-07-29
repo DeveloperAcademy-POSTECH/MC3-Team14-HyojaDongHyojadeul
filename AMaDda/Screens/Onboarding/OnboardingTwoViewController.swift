@@ -127,6 +127,5 @@ final class OnboardingTwoViewController: UIViewController {
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42),
         ])
-        
     }
 }
