@@ -51,7 +51,7 @@ class FeedBackPopUpView: UIView {
         return button
     }()
     
-    private let progressView = ProgressWithTextView()
+    let progressView = ProgressWithTextView()
 
     // MARK: - init
     override init(frame: CGRect) {

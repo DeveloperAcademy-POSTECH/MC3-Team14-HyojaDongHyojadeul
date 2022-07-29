@@ -60,6 +60,7 @@ final class OnboardingTwoViewController: UIViewController {
     }
     
     @objc private func didTapNextButton() {
+        UserDefaultsStateManager().userChangeNotificationCycle(userNotificationCycle)
         switch cycleViewMode {
         case .onboarding:
             let onboardingGoalVC = OnboardingGoalViewController()
@@ -69,7 +70,6 @@ final class OnboardingTwoViewController: UIViewController {
         case .setting:
             navigationController?.popViewController(animated: true)
         }
-        UserDefaultsStateManager().userChangeNotificationCycle(userNotificationCycle)
     }
     
     // MARK: Life Cycle functions

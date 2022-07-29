@@ -77,6 +77,7 @@ final class MainViewController: UIViewController {
         familyMembers = UserDefaults.standard.familyMembers
         familyMemberCount = familyMembers.count
         familyTableView.reloadData()
+        feedBackView.progressView.updateProgressValues()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
