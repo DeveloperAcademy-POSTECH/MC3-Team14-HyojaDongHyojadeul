@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-#if DEBUG
 extension UIViewController {
+    
     func makeAlert(title: String,
                    message: String,
                    okAction: ((UIAlertAction) -> Void)? = nil,
@@ -60,7 +60,6 @@ extension UIViewController {
             Preview(profileViewController: self)
         }
 }
-#endif
 
 extension UIViewController {
     func hidekeyboardWhenTappedAround() {
