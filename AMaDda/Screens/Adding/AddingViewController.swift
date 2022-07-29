@@ -54,7 +54,6 @@ class AddingViewController: UIViewController {
     private let nicknameUnderLineView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
-//        view.backgroundColor = .white
         return view
     }()
     private let createContactNumberLabel: UILabel = {
