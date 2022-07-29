@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import CallKit
 
 final class MainViewController: UIViewController {
+    
+    let callObserver = CXCallObserver()
     
     private var member: FamilyMemberData?
     private var familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
@@ -81,6 +84,8 @@ final class MainViewController: UIViewController {
         UserDefaultsStateManager.todayQuestionDelegate = self
         familyTableView.delegate = self
         familyTableView.dataSource = self
+        
+        callObserver.setDelegate(self, queue: nil)
     }
     
     private func setButtonMenu() {
@@ -96,6 +101,22 @@ final class MainViewController: UIViewController {
             self?.navigationController?.pushViewController(notiSettingViewController, animated: true)
         }
         settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting])
+    }
+    
+    private func makeCall(familyMember: FamilyMemberData) {
+        if let phoneCallURL = URL(string: "tel://\(familyMember.contactNumber)") {
+            let application: UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    private func updateLastCall(familyMember: FamilyMemberData) {
+        var member = familyMember
+        member.updateLastContactDate()
+        UserDefaults.standard.finalContactDiffDay = 0
+        familyTableView.reloadData()
     }
 }
 
@@ -218,7 +239,7 @@ extension MainViewController: FamilyTableCellDelegate {
     
     func displayActionSheet(familyMember: FamilyMemberData) {
         
-        let alert = UIAlertController(title: "전화하기", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "전화하기", style: .default, handler: { (UIAlertAction) in
             self.makeCall(familyMember: familyMember)
         }))
@@ -235,23 +256,14 @@ extension MainViewController: FamilyTableCellDelegate {
     }
 }
 
-extension MainViewController {
+extension MainViewController: CXCallObserverDelegate {
     
-    // MARK: - functions
+    // MARK: - CXCallObserverDelegate
     
-    private func makeCall(familyMember: FamilyMemberData) {
-        if let phoneCallURL = URL(string: "tel://\(familyMember.contactNumber)") {
-            let application: UIApplication = UIApplication.shared
-            if (application.canOpenURL(phoneCallURL)) {
-                application.open(phoneCallURL, options: [:], completionHandler: nil)
-            }
+    func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
+        print("-----")
+        if call.hasConnected == true && call.hasEnded == false {
+            updateLastCall(familyMember: <#T##FamilyMemberData#>)
         }
-        updateLastCall(familyMember: familyMember)
-    }
-    private func updateLastCall(familyMember: FamilyMemberData) {
-        var member = familyMember
-        member.updateLastContactDate()
-        UserDefaults.standard.finalContactDiffDay = 0
-        familyTableView.reloadData()
     }
 }

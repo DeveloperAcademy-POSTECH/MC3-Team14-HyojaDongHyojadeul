@@ -123,25 +123,6 @@ class FamilyTableCell: UITableViewCell {
         guard let item = item else { fatalError() }
         delegate?.displayActionSheet(familyMember: item)
     }
-//
-//    @objc func displayActionSheet() {
-//        guard let phoneNumber = self.item?.contactNumber else { return }
-//
-//        let alert = UIAlertController(title: "전화하기", message: nil, preferredStyle: .actionSheet)
-//        alert.addAction(UIAlertAction(title: "전화하기", style: .default, handler: { (UIAlertAction) in
-//            self.makeCall(phoneNumber: phoneNumber)
-//        }))
-//        alert.addAction(UIAlertAction(title: "기록하기", style: .default, handler: { (UIAlertAction) in
-//            self.updateLastCall()
-//        }))
-//        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
-//            print("User click Dismiss button")
-//        }))
-//
-//        self.present(alert, animated: true, completion: {
-//            print("completion block")
-//        })
-//    }
 }
 
 extension FamilyTableCell {
