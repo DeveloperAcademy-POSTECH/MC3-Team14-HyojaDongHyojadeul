@@ -69,11 +69,11 @@ final class OnboardingOneViewController: UIViewController {
         ])
         
         firstOnboardingImageView.translatesAutoresizingMaskIntoConstraints = false
+        firstOnboardingImageView.contentMode = .scaleAspectFit
         NSLayoutConstraint.activate([
-            firstOnboardingImageView.topAnchor.constraint(equalTo: firstOnboardTitleLabel.bottomAnchor, constant: 34),
             firstOnboardingImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            firstOnboardingImageView.widthAnchor.constraint(equalToConstant: 240),
-            firstOnboardingImageView.heightAnchor.constraint(equalToConstant: 480),
+            firstOnboardingImageView.topAnchor.constraint(equalTo: firstOnboardTitleLabel.bottomAnchor, constant: 34),
+            firstOnboardingImageView.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -34),
         ])
         
         nextButton.translatesAutoresizingMaskIntoConstraints = false
