@@ -115,10 +115,7 @@ final class MainViewController: UIViewController {
     private func updateLastCall(familyMember: FamilyMemberData) {
         var member = familyMember
         member.updateLastContactDate()
-        UserDefaults.standard.finalContactDiffDay = 0
-        
         familyMembers = UserDefaults.standard.familyMembers
-        familyMemberCount = familyMembers.count
         DispatchQueue.main.async {
             self.familyTableView.reloadData()
         }
