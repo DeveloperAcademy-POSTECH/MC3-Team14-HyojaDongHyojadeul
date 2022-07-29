@@ -14,6 +14,7 @@ enum ImageLiterals {
     static var icSetting: UIImage { .load(systemName: "ellipsis.circle") }
     static var icBell: UIImage { .load(systemName: "bell") }
     static var icPencil: UIImage { .load(systemName: "pencil") }
+    static var icCalendar: UIImage { .load(systemName: "calendar") }
     
     // MARK: - button
     static var btnProfile: UIImage { .load(systemName: "person.circle.fill") }

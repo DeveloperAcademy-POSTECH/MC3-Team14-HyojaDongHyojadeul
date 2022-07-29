@@ -2,14 +2,17 @@
 //  MainViewController.swift
 //  AMaDda
 //
-//  Created by Lee Myeonghwan on 2022/07/18.
+//  Created by Lee Myeonghwan & 이성민 on 2022/07/18.
 //
 
-import Foundation
 import UIKit
+import CallKit
 
 final class MainViewController: UIViewController {
-
+    
+    let callObserver = CXCallObserver()
+    
+    private var member: FamilyMemberData?
     private var familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
     private let todayQuestionData = TodayQuestion.questions
     private lazy var familyMemberCount = familyMembers.count
@@ -65,6 +68,10 @@ final class MainViewController: UIViewController {
         familyTableView.reloadData()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Selector
     @objc private func tapAddButton() {
         let addingViewController = AddingViewController()
@@ -77,6 +84,8 @@ final class MainViewController: UIViewController {
         UserDefaultsStateManager.todayQuestionDelegate = self
         familyTableView.delegate = self
         familyTableView.dataSource = self
+        
+        callObserver.setDelegate(self, queue: nil)
     }
     
     private func setButtonMenu() {
@@ -86,12 +95,35 @@ final class MainViewController: UIViewController {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
-        let cycleSetting = UIAction(title: "알림 주기 설정", image: ImageLiterals.icPencil) { [weak self] _ in
+        let cycleSetting = UIAction(title: "알림 주기 설정", image: ImageLiterals.icCalendar) { [weak self] _ in
             let notiSettingViewController = OnboardingTwoViewController()
             notiSettingViewController.cycleViewMode = .setting
             self?.navigationController?.pushViewController(notiSettingViewController, animated: true)
         }
-        settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting])
+        let goalSetting = UIAction(title: "알림 목표 설정", image: ImageLiterals.icPencil) { [weak self] _ in
+            let notiGoalViewController = OnboardingGoalViewController()
+            notiGoalViewController.cycleViewModeForGoal = .setting
+            self?.navigationController?.pushViewController(notiGoalViewController, animated: true)
+        }
+        settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting, goalSetting])
+    }
+    
+    private func makeCall(familyMember: FamilyMemberData) {
+        if let phoneCallURL = URL(string: "tel://\(familyMember.contactNumber)") {
+            let application: UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    private func updateLastCall(familyMember: FamilyMemberData) {
+        var member = familyMember
+        member.updateLastContactDate()
+        familyMembers = UserDefaults.standard.familyMembers
+        DispatchQueue.main.async {
+            self.familyTableView.reloadData()
+        }
     }
 }
 
@@ -109,8 +141,8 @@ extension MainViewController {
         view.addSubviews(todayQuestionView,
                          familyTableLabel,
                          familyTableView,
-                        addMemberButton,
-                        settingButton)
+                         addMemberButton,
+                         settingButton)
         todayQuestionView.configureAddSubViewsTodayQuestionView()
     }
     private func configureConstraints() {
@@ -200,7 +232,8 @@ extension MainViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { fatalError() }
             let item = self.familyMembers[indexPath.row]
             cell.item = item
-            cell.selectionStyle = .none
+            cell.delegate = self
+            member = item
             return cell
         }
     }
@@ -210,5 +243,38 @@ extension MainViewController: TodayQuestionDelegate {
     func changeTodayQuestion(_ index: Int) {
         guard let todayQuestion = todayQuestionData[safe: index] else { return }
         todayQuestionView.todayCardQuestionLabel.text = todayQuestion.question
+    }
+}
+
+extension MainViewController: FamilyTableCellDelegate {
+    
+    // MARK: - TableViewCellDelegate
+    
+    func displayActionSheet(familyMember: FamilyMemberData) {
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "전화하기", style: .default, handler: { _ in
+            self.makeCall(familyMember: familyMember)
+        }))
+        alert.addAction(UIAlertAction(title: "이미 연락했어요", style: .default, handler: { _ in
+            self.updateLastCall(familyMember: familyMember)
+        }))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ _ in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension MainViewController: CXCallObserverDelegate {
+    
+    // MARK: - CXCallObserverDelegate
+    
+    func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
+        if call.hasConnected == true && call.hasEnded == false {
+            updateLastCall(familyMember: member!)
+            UserDefaultsStateManager().userContacted()
+        }
     }
 }
