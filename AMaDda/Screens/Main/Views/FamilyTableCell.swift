@@ -8,7 +8,14 @@
 import UIKit
 import SwiftUI
 
+protocol FamilyTableCellDelegate: AnyObject {
+    func showPopUp()
+}
+
 class FamilyTableCell: UITableViewCell {
+    
+    weak var delegate: FamilyTableCellDelegate?
+    
     // TODO: cell 터치시 editing view 열기
     private enum Size {
         static let sideSpacing: CGFloat = 30.0
@@ -115,5 +122,6 @@ class FamilyTableCell: UITableViewCell {
     @objc func didTapContactButton() {
         self.item?.updateLastContactDate()
         UserDefaults.standard.finalContactDiffDay = 0
+        delegate?.showPopUp()
     }
 }

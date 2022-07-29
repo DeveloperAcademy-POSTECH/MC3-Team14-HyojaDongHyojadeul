@@ -46,6 +46,17 @@ final class MainViewController: UIViewController {
         button.showsMenuAsPrimaryAction = true
         return button
     }()
+    private let feedBackView: FeedBackPopUpView = {
+        let view = FeedBackPopUpView()
+        view.backgroundColor = .systemBackground
+        return view
+    }()
+    private let blurEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.alpha = 0
+        return blurView
+    }()
     
     // MARK: - init
     
@@ -77,6 +88,7 @@ final class MainViewController: UIViewController {
         UserDefaultsStateManager.todayQuestionDelegate = self
         familyTableView.delegate = self
         familyTableView.dataSource = self
+        feedBackView.delegate = self
     }
     
     private func setButtonMenu() {
@@ -110,7 +122,8 @@ extension MainViewController {
                          familyTableLabel,
                          familyTableView,
                         addMemberButton,
-                        settingButton)
+                        settingButton,
+                         blurEffectView)
         todayQuestionView.configureAddSubViewsTodayQuestionView()
     }
     private func configureConstraints() {
@@ -153,6 +166,14 @@ extension MainViewController {
             settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
             settingButton.heightAnchor.constraint(equalToConstant: touchAreaSize),
             settingButton.widthAnchor.constraint(equalToConstant: touchAreaSize),
+        ])
+        
+        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            blurEffectView.topAnchor.constraint(equalTo: view.topAnchor),
+            blurEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blurEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
 }
@@ -200,6 +221,7 @@ extension MainViewController: UITableViewDataSource {
             let item = self.familyMembers[indexPath.row]
             cell.item = item
             cell.selectionStyle = .none
+            cell.delegate = self
             return cell
         }
     }
@@ -209,5 +231,35 @@ extension MainViewController: TodayQuestionDelegate {
     func changeTodayQuestion(_ index: Int) {
         guard let todayQuestion = todayQuestionData[safe: index] else { return }
         todayQuestionView.todayCardQuestionLabel.text = todayQuestion.question
+    }
+}
+
+extension MainViewController: FamilyTableCellDelegate {
+    func showPopUp() {
+        view.addSubview(feedBackView)
+        feedBackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            feedBackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            feedBackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            feedBackView.widthAnchor.constraint(equalToConstant: 310),
+            feedBackView.heightAnchor.constraint(equalToConstant: 530),
+        ])
+        feedBackView.alpha = 0
+        
+        UIView.animate(withDuration: 0.3) {
+            self.navigationController?.navigationBar.isHidden = true
+            self.blurEffectView.alpha = 1
+            self.feedBackView.alpha = 1
+        }
+    }
+}
+
+extension MainViewController: FeedBackPopUpViewDelegate {
+    func removePopup() {
+        UIView.animate(withDuration: 0.3) {
+            self.navigationController?.navigationBar.isHidden = false
+            self.blurEffectView.alpha = 0
+            self.feedBackView.alpha = 0
+        }
     }
 }
