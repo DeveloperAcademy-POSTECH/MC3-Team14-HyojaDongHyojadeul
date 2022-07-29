@@ -38,7 +38,7 @@ final class UserDefaultsStateManager {
     }
     static private func updateTodayQuestion() {
         var questionIndex = UserDefaults.standard.questionIndex
-        if questionIndex >= TodayQuestion.questions.count - 1 {
+        if questionIndex >= TodayQuestionData.questions.count - 1 {
             questionIndex = 0
         } else {
             questionIndex += 1
