@@ -14,8 +14,8 @@ final class MainViewController: UIViewController {
     
     private var member: FamilyMemberData?
     private var familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
+    private let todayQuestion = TodayQuestionData.questions
     private lazy var familyMemberCount = familyMembers.count
-    private let todayQuestionData = TodayQuestionMockData.mockData
     private let todayQuestionView = TodayQuestionView()
     private let todayQuestionIndex = UserDefaults.standard.questionIndex
     
@@ -241,7 +241,7 @@ extension MainViewController: UITableViewDataSource {
 
 extension MainViewController: TodayQuestionDelegate {
     func changeTodayQuestion(_ index: Int) {
-        guard let todayQuestion = todayQuestionData[safe: index] else { return }
+        guard let todayQuestion = todayQuestion[safe: index] else { return }
         todayQuestionView.todayCardQuestionLabel.text = todayQuestion.question
     }
 }
