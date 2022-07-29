@@ -14,6 +14,7 @@ protocol FeedBackPopUpViewDelegate: AnyObject {
 class FeedBackPopUpView: UIView {
     
     weak var delegate: FeedBackPopUpViewDelegate?
+    let contactGoalCount = UserDefaults.standard.contactGoalCount
     
     // MARK: - property
     private let feedBackTitleLabel: UILabel = {
@@ -56,6 +57,11 @@ class FeedBackPopUpView: UIView {
         imageView.image = ImageLiterals.icBell
         imageView.tintColor = .black
         return imageView
+    }()
+    private lazy var  contackGoalLabel: UILabel = {
+        let label = UILabel()
+        label.text = 
+        return label
     }()
     
     // MARK: - init
@@ -116,9 +122,9 @@ class FeedBackPopUpView: UIView {
         
         feedBackprogressView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            feedBackprogressView.topAnchor.constraint(equalTo: feedBackImageView.bottomAnchor, constant: 60),
+            feedBackprogressView.topAnchor.constraint(equalTo: feedBackImageView.bottomAnchor, constant: 40),
             feedBackprogressView.centerXAnchor.constraint(equalTo: feedBackSubTitle.centerXAnchor),
-            feedBackprogressView.widthAnchor.constraint(equalToConstant: 270),
+            feedBackprogressView.widthAnchor.constraint(equalToConstant: 220),
             feedBackprogressView.heightAnchor.constraint(equalToConstant: 10),
         ])
         
