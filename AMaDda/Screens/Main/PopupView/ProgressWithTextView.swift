@@ -60,7 +60,7 @@ class ProgressWithTextView: UIView {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
                 NSLayoutConstraint.deactivate(self.ConsArray)
-                self.ConsArray.popLast()
+                _ = self.ConsArray.popLast()
                 let leadingCons = self.progressImage.centerXAnchor.constraint(equalTo: self.feedBackprogressView.leadingAnchor, constant: CGFloat(self.progress * Float(self.width)))
                 self.ConsArray.append(leadingCons)
                 NSLayoutConstraint.activate(self.ConsArray)
@@ -83,7 +83,7 @@ class ProgressWithTextView: UIView {
     
     private func updateProgressImageLayout() {
         NSLayoutConstraint.deactivate(ConsArray)
-        ConsArray.popLast()
+        _ = ConsArray.popLast()
         let leadingCons = progressImage.centerXAnchor.constraint(equalTo: feedBackprogressView.leadingAnchor, constant: CGFloat(previousProgress * Float(width)))
         ConsArray.append(leadingCons)
         NSLayoutConstraint.activate(ConsArray)
