@@ -49,6 +49,7 @@ class EdittingViewController: UIViewController {
     private lazy var nickNameTextField: UITextField = {
         let textField = UITextField()
         textField.text = familyMember?.name
+        textField.placeholder = "예시) 우리어무니"
         return textField
     }()
     private let nicknameUnderLineView: UIView = {
