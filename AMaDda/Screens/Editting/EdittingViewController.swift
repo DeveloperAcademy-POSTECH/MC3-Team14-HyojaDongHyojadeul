@@ -51,6 +51,7 @@ class EdittingViewController: UIViewController {
         let textField = UITextField()
         textField.text = familyMember?.name
         textField.tag = nickNameTextFieldTag
+        textField.placeholder = "예시) 우리어무니"
         return textField
     }()
     private let nicknameUnderLineView: UIView = {
