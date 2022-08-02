@@ -10,12 +10,13 @@ import UIKit
 class EdittingViewController: UIViewController {
     
     private var maxLength = 5
-    var characterImageName: String = "Character1"
     var contactNumber = ""
     private var familyMembers = [FamilyMemberData]()
     private let vc = ProfileModalViewController()
     var familyMember: FamilyMemberData?
     private lazy var placeholderTextCount = nickNameTextField.text?.count ?? 0
+    private let nickNameTextFieldTag = 0
+    private let contactNumberTextFieldTag = 1
     
     // MARK: - property
     
@@ -49,6 +50,7 @@ class EdittingViewController: UIViewController {
     private lazy var nickNameTextField: UITextField = {
         let textField = UITextField()
         textField.text = familyMember?.name
+        textField.tag = nickNameTextFieldTag
         textField.placeholder = "예시) 우리어무니"
         return textField
     }()
@@ -68,6 +70,7 @@ class EdittingViewController: UIViewController {
          textField.text = familyMember?.contactNumber
          textField.placeholder = "예시) 01012341234"
          textField.keyboardType = .numberPad
+         textField.tag = contactNumberTextFieldTag
          return textField
      }()
      private let contactUnderLineView: UIView = {
@@ -121,7 +124,6 @@ class EdittingViewController: UIViewController {
         familyMembers = UserDefaults.standard.familyMembers
         familyMember?.name = text
         familyMember?.contactNumber = number
-        familyMember?.characterImageName = characterImageName
         familyMember?.updateFamilyMembers()
         navigationController?.popViewController(animated: true)
     }
@@ -299,14 +301,16 @@ class EdittingViewController: UIViewController {
 
 extension EdittingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        setCounter(count: textField.text?.count ?? 0)
+        if textField.tag == nickNameTextFieldTag {
+            setCounter(count: textField.text?.count ?? 0)
+        }
         changeButtonEnableState()
     }
 }
 
 extension EdittingViewController: ProfileModalViewDelegate {
     func registerSelectedCharacter(imageName: String) {
-        characterImageName = imageName
+        familyMember?.characterImageName = imageName
         DispatchQueue.main.async {
             self.profileImageView.image = UIImage(named: imageName)
             self.changeButtonEnableState()

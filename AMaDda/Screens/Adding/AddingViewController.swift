@@ -14,6 +14,8 @@ class AddingViewController: UIViewController {
     var contactNumber: String = ""
     private var familyMembers = [FamilyMemberData]()
     private let vc = ProfileModalViewController()
+    private let nickNameTextFieldTag = 0
+    private let contactNumberTextFieldTag = 1
     
     // MARK: - property
     
@@ -47,6 +49,7 @@ class AddingViewController: UIViewController {
     private lazy var nickNameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "예시) 우리어무니"
+        textField.tag = nickNameTextFieldTag
         return textField
     }()
     private let nicknameUnderLineView: UIView = {
@@ -60,10 +63,11 @@ class AddingViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
     }()
-    private let contactNumberTextField: UITextField = {
+    private lazy var contactNumberTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "예시) 01012341234"
         textField.keyboardType = .numberPad
+        textField.tag = contactNumberTextFieldTag
         return textField
     }()
     private let contactUnderLineView: UIView = {
@@ -277,7 +281,9 @@ class AddingViewController: UIViewController {
 
 extension AddingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        setCounter(count: textField.text?.count ?? 0)
+        if textField.tag == nickNameTextFieldTag {
+            setCounter(count: textField.text?.count ?? 0)
+        }
         changeButtonEnableState()
     }
 }
