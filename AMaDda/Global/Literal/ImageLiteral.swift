@@ -22,6 +22,11 @@ enum ImageLiterals {
     // MARK: - design
     static var openingQuote: UIImage { .load(systemName: "quote.opening")}
     static var closingQuote: UIImage { .load(systemName: "quote.closing")}
+    static var FeedBackHigh1: UIImage { .load(name: "FeedBackHigh1") }
+    static var FeedBackHigh2: UIImage { .load(name: "FeedBackHigh2") }
+    static var FeedBackHigh3: UIImage { .load(name: "FeedBackHigh3") }
+    
+    static var FeedBackLow1: UIImage { .load(name: "FeedBackLow1") }
 }
 
 // MARK: - ProfileImage

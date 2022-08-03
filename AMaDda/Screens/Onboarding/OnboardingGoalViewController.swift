@@ -59,6 +59,7 @@ class OnboardingGoalViewController: UIViewController {
     }
     
     @objc private func didTapStartButton() {
+        UserDefaults.standard.userContactGoal = userContactGoal
         switch cycleViewModeForGoal {
         case .onboarding:
             let mainVC = MainViewController()
@@ -68,7 +69,6 @@ class OnboardingGoalViewController: UIViewController {
         case .setting:
             navigationController?.popViewController(animated: true)
         }
-        UserDefaults.standard.userContactGoal = userContactGoal
     }
     
     // MARK: Life Cycle functions

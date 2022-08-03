@@ -49,6 +49,17 @@ final class MainViewController: UIViewController {
         button.showsMenuAsPrimaryAction = true
         return button
     }()
+    private let feedBackView: FeedBackPopUpView = {
+        let view = FeedBackPopUpView()
+        view.backgroundColor = .systemBackground
+        return view
+    }()
+    private let blurEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.alpha = 0
+        return blurView
+    }()
     
     // MARK: - init
     
@@ -66,6 +77,7 @@ final class MainViewController: UIViewController {
         familyMembers = UserDefaults.standard.familyMembers
         familyMemberCount = familyMembers.count
         familyTableView.reloadData()
+        feedBackView.progressView.updateProgressValues()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -84,7 +96,7 @@ final class MainViewController: UIViewController {
         UserDefaultsStateManager.todayQuestionDelegate = self
         familyTableView.delegate = self
         familyTableView.dataSource = self
-        
+        feedBackView.delegate = self
         callObserver.setDelegate(self, queue: nil)
     }
     
@@ -125,6 +137,25 @@ final class MainViewController: UIViewController {
             self.familyTableView.reloadData()
         }
     }
+    
+    private func showPopUp() {
+        view.addSubview(feedBackView)
+        feedBackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            feedBackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            feedBackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            feedBackView.widthAnchor.constraint(equalToConstant: 310),
+            feedBackView.heightAnchor.constraint(equalToConstant: 530),
+        ])
+        feedBackView.alpha = 0
+        
+        UIView.animate(withDuration: 0.3) {
+            self.blurEffectView.alpha = 1
+            self.feedBackView.alpha = 1
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("showPopUp"), object: nil)
+    }
 }
 
 extension MainViewController {
@@ -141,8 +172,9 @@ extension MainViewController {
         view.addSubviews(todayQuestionView,
                          familyTableLabel,
                          familyTableView,
-                         addMemberButton,
-                         settingButton)
+                        addMemberButton,
+                        settingButton,
+                         blurEffectView)
         todayQuestionView.configureAddSubViewsTodayQuestionView()
     }
     private func configureConstraints() {
@@ -185,6 +217,14 @@ extension MainViewController {
             settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
             settingButton.heightAnchor.constraint(equalToConstant: touchAreaSize),
             settingButton.widthAnchor.constraint(equalToConstant: touchAreaSize),
+        ])
+        
+        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            blurEffectView.topAnchor.constraint(equalTo: view.topAnchor),
+            blurEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blurEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
 }
@@ -233,6 +273,7 @@ extension MainViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FamilyTableCell.className, for: indexPath) as? FamilyTableCell else { fatalError() }
             let item = self.familyMembers[indexPath.row]
             cell.item = item
+            cell.selectionStyle = .none
             cell.delegate = self
             member = item
             return cell
@@ -247,6 +288,15 @@ extension MainViewController: TodayQuestionDelegate {
     }
 }
 
+extension MainViewController: FeedBackPopUpViewDelegate {
+    func removePopup() {
+        UIView.animate(withDuration: 0.3) {
+            self.navigationController?.navigationBar.isHidden = false
+            self.blurEffectView.alpha = 0
+            self.feedBackView.alpha = 0
+        }
+    }
+}
 extension MainViewController: FamilyTableCellDelegate {
     
     // MARK: - TableViewCellDelegate
@@ -259,6 +309,8 @@ extension MainViewController: FamilyTableCellDelegate {
         }))
         alert.addAction(UIAlertAction(title: "이미 연락했어요", style: .default, handler: { _ in
             self.updateLastCall(familyMember: familyMember)
+            UserDefaultsStateManager().userContacted()
+            self.showPopUp()
         }))
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ _ in
             print("User click Dismiss button")
@@ -276,6 +328,7 @@ extension MainViewController: CXCallObserverDelegate {
         if call.hasConnected == true && call.hasEnded == false {
             updateLastCall(familyMember: member!)
             UserDefaultsStateManager().userContacted()
+            showPopUp()
         }
     }
 }

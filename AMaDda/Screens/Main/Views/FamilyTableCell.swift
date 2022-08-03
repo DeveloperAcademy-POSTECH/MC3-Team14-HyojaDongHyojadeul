@@ -13,6 +13,7 @@ protocol FamilyTableCellDelegate: AnyObject {
 }
 
 class FamilyTableCell: UITableViewCell {
+    
     // TODO: cell 터치시 editing view 열기
     private enum Size {
         static let sideSpacing: CGFloat = 30.0
@@ -117,8 +118,7 @@ class FamilyTableCell: UITableViewCell {
     }
     
     // MARK: - selector
-    
-    @objc private func didTapContactButton() {
+    @objc func didTapContactButton() {
         guard let item = item else { fatalError() }
         delegate?.displayActionSheet(familyMember: item)
     }

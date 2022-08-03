@@ -20,6 +20,8 @@
 		595E3B41288577D60036B677 /* OnboardingOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E3B40288577D60036B677 /* OnboardingOneViewController.swift */; };
 		598F8F6428918E7B0040ACA4 /* OnboardingGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598F8F6328918E7B0040ACA4 /* OnboardingGoalViewController.swift */; };
 		59F2584228868FA9003BC6ED /* OnboardingTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */; };
+		7E9F483A2890F62A00CE8FF7 /* FeedBackPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F48392890F62A00CE8FF7 /* FeedBackPopUpView.swift */; };
+		7EF32E1E2893750100A7C40A /* ProgressWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32E1D2893750100A7C40A /* ProgressWithTextView.swift */; };
 		91715FF62888019700A780B7 /* UserDefaultsStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91715FF52888019700A780B7 /* UserDefaultsStateManager.swift */; };
 		918BAFFC2886ED94002F94DB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */; };
 		91DC448E288E80E7002F0D46 /* TextLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DC448D288E80E7002F0D46 /* TextLiteral.swift */; };
@@ -60,6 +62,8 @@
 		595E3B40288577D60036B677 /* OnboardingOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOneViewController.swift; sourceTree = "<group>"; };
 		598F8F6328918E7B0040ACA4 /* OnboardingGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGoalViewController.swift; sourceTree = "<group>"; };
 		59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoViewController.swift; sourceTree = "<group>"; };
+		7E9F48392890F62A00CE8FF7 /* FeedBackPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackPopUpView.swift; sourceTree = "<group>"; };
+		7EF32E1D2893750100A7C40A /* ProgressWithTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWithTextView.swift; sourceTree = "<group>"; };
 		91715FF52888019700A780B7 /* UserDefaultsStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStateManager.swift; sourceTree = "<group>"; };
 		918BAFFB2886ED94002F94DB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		91DC448D288E80E7002F0D46 /* TextLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLiteral.swift; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 		3E622D0928803C44006A921C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				7E9F48382890F60D00CE8FF7 /* PopupView */,
 				91FD28A62884F30E00F49D20 /* Views */,
 				91FD28A72884F32700F49D20 /* MainViewController.swift */,
 			);
@@ -191,6 +196,15 @@
 				598F8F6328918E7B0040ACA4 /* OnboardingGoalViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		7E9F48382890F60D00CE8FF7 /* PopupView */ = {
+			isa = PBXGroup;
+			children = (
+				7E9F48392890F62A00CE8FF7 /* FeedBackPopUpView.swift */,
+				7EF32E1D2893750100A7C40A /* ProgressWithTextView.swift */,
+			);
+			path = PopupView;
 			sourceTree = "<group>";
 		};
 		91FD28A62884F30E00F49D20 /* Views */ = {
@@ -375,6 +389,7 @@
 				D72A1E02288558990058EE12 /* UIImage+Extension.swift in Sources */,
 				E6278AE52884FCF500DC0CB0 /* UIView+Extension.swift in Sources */,
 				59F2584228868FA9003BC6ED /* OnboardingTwoViewController.swift in Sources */,
+				7E9F483A2890F62A00CE8FF7 /* FeedBackPopUpView.swift in Sources */,
 				91FD28B22884F4B800F49D20 /* Color+Extension.swift in Sources */,
 				D72A1E0028854C9C0058EE12 /* ImageLiteral.swift in Sources */,
 				91FD28B82884F70A00F49D20 /* FontsPlaceHolder.swift in Sources */,
@@ -384,6 +399,7 @@
 				3E622CEE28803971006A921C /* AppDelegate.swift in Sources */,
 				91DC4490288E8628002F0D46 /* Collection+Extension.swift in Sources */,
 				3E98E8E5288652DF001153E4 /* NSObject+Extension.swift in Sources */,
+				7EF32E1E2893750100A7C40A /* ProgressWithTextView.swift in Sources */,
 				91FD28AA2884F3E500F49D20 /* TodayQuestionView.swift in Sources */,
 				D7ADBBA72883D520004BB5FE /* CommonButton.swift in Sources */,
 				3E622CF028803971006A921C /* SceneDelegate.swift in Sources */,
