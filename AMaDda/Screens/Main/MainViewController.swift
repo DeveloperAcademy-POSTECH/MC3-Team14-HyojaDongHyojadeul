@@ -275,7 +275,6 @@ extension MainViewController: UITableViewDataSource {
             cell.item = item
             cell.selectionStyle = .none
             cell.delegate = self
-            member = item
             return cell
         }
     }
@@ -302,6 +301,7 @@ extension MainViewController: FamilyTableCellDelegate {
     // MARK: - TableViewCellDelegate
     
     func displayActionSheet(familyMember: FamilyMemberData) {
+        member = familyMember
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "전화하기", style: .default, handler: { _ in
@@ -326,7 +326,8 @@ extension MainViewController: CXCallObserverDelegate {
     
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
         if call.hasConnected == true && call.hasEnded == false {
-            updateLastCall(familyMember: member!)
+            guard let member = member else { return }
+            updateLastCall(familyMember: member)
             UserDefaultsStateManager().userContacted()
             showPopUp()
         }
