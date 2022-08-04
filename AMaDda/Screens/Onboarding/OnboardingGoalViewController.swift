@@ -30,6 +30,11 @@ class OnboardingGoalViewController: UIViewController {
 
         return label
     }()
+    private let OnboardingGoalImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "onboardingGoalImage.png")
+        return imageView
+    }()
     private lazy var startButton: CommonButton = {
         let button = CommonButton()
         let buttonTitle = cycleViewModeForGoal == .onboarding ? "시작하기" : "저장하기"
@@ -66,7 +71,8 @@ class OnboardingGoalViewController: UIViewController {
     
     private func configureAddSubView() {
         view.addSubviews(onboardingGoalTitleLabel,
-                        startButton)
+                         OnboardingGoalImageView,
+                         startButton)
     }
     
     private func configureConstraints(){
@@ -75,6 +81,14 @@ class OnboardingGoalViewController: UIViewController {
             onboardingGoalTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
             onboardingGoalTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Size.leadingTrailingPadding),
             onboardingGoalTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
+        ])
+        
+        OnboardingGoalImageView.translatesAutoresizingMaskIntoConstraints = false
+        OnboardingGoalImageView.contentMode = .scaleAspectFit
+        NSLayoutConstraint.activate([
+            OnboardingGoalImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            OnboardingGoalImageView.topAnchor.constraint(equalTo: onboardingGoalTitleLabel.bottomAnchor, constant: 34),
+            OnboardingGoalImageView.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -34),
         ])
         
         startButton.translatesAutoresizingMaskIntoConstraints = false
