@@ -18,7 +18,7 @@ class OnboardingGoalViewController: UIViewController {
     // MARK: Properties
     private let onboardingGoalTitleLabel: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(string: "가족들에게 일주일에\nn회 연락해보세요")
+        let attributedString = NSMutableAttributedString(string: "가족들에게 일주일에\n3회를 목표로 연락해보세요")
         let paragraphStyle = NSMutableParagraphStyle()
         
         label.font = .boldSystemFont(ofSize: 25)
@@ -38,7 +38,7 @@ class OnboardingGoalViewController: UIViewController {
     private let onboardingGoalTextLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
-        label.text = "설정에서 목표를 변경할 수 있어요"
+        label.text = "설정에서 목표횟수를 변경할 수 있어요"
         label.textColor = UIColor.onboardingGoalTextColor
         return label
     }()
