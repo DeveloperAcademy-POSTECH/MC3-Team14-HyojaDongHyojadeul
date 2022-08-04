@@ -96,13 +96,13 @@ class OnboardingGoalViewController: UIViewController {
         NSLayoutConstraint.activate([
             onboardingGoalImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             onboardingGoalImageView.topAnchor.constraint(equalTo: onboardingGoalTitleLabel.bottomAnchor, constant: 34),
-            onboardingGoalTextLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -100),
-            onboardingGoalImageView.bottomAnchor.constraint(equalTo: onboardingGoalTextLabel.topAnchor, constant: -16),
+            onboardingGoalImageView.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -130),
         ])
         
         onboardingGoalTextLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             onboardingGoalTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            onboardingGoalTextLabel.topAnchor.constraint(equalTo: onboardingGoalImageView.bottomAnchor, constant: 16)
         ])
         
         startButton.translatesAutoresizingMaskIntoConstraints = false
