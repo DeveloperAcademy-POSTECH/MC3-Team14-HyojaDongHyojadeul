@@ -30,10 +30,17 @@ class OnboardingGoalViewController: UIViewController {
 
         return label
     }()
-    private let OnboardingGoalImageView: UIImageView = {
+    private let onboardingGoalImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "onboardingGoalImage.png")
         return imageView
+    }()
+    private let onboardingGoalTextLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.text = "설정에서 목표를 변경할 수 있어요"
+        label.textColor = .systemGray
+        return label
     }()
     private lazy var startButton: CommonButton = {
         let button = CommonButton()
@@ -71,7 +78,8 @@ class OnboardingGoalViewController: UIViewController {
     
     private func configureAddSubView() {
         view.addSubviews(onboardingGoalTitleLabel,
-                         OnboardingGoalImageView,
+                         onboardingGoalImageView,
+                         onboardingGoalTextLabel,
                          startButton)
     }
     
@@ -83,12 +91,18 @@ class OnboardingGoalViewController: UIViewController {
             onboardingGoalTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
-        OnboardingGoalImageView.translatesAutoresizingMaskIntoConstraints = false
-        OnboardingGoalImageView.contentMode = .scaleAspectFit
+        onboardingGoalImageView.translatesAutoresizingMaskIntoConstraints = false
+        onboardingGoalImageView.contentMode = .scaleAspectFit
         NSLayoutConstraint.activate([
-            OnboardingGoalImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            OnboardingGoalImageView.topAnchor.constraint(equalTo: onboardingGoalTitleLabel.bottomAnchor, constant: 34),
-            OnboardingGoalImageView.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -34),
+            onboardingGoalImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            onboardingGoalImageView.topAnchor.constraint(equalTo: onboardingGoalTitleLabel.bottomAnchor, constant: 34),
+            onboardingGoalTextLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -100),
+            onboardingGoalImageView.bottomAnchor.constraint(equalTo: onboardingGoalTextLabel.topAnchor, constant: -16),
+        ])
+        
+        onboardingGoalTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            onboardingGoalTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
         startButton.translatesAutoresizingMaskIntoConstraints = false
