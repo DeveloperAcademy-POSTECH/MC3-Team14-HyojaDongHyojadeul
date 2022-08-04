@@ -283,7 +283,9 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: TodayQuestionDelegate {
     func changeTodayQuestion(_ index: Int) {
         guard let todayQuestion = todayQuestion[safe: index] else { return }
-        todayQuestionView.todayCardQuestionLabel.text = todayQuestion.question
+        DispatchQueue.main.async {
+            self.todayQuestionView.todayCardQuestionLabel.text = todayQuestion.question
+        }
     }
 }
 
