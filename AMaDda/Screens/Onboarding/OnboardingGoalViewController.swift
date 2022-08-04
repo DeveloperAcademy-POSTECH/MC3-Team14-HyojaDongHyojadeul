@@ -18,7 +18,7 @@ class OnboardingGoalViewController: UIViewController {
     // MARK: Properties
     private let onboardingGoalTitleLabel: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(string: "일주일에 몇 회 가족에게\n연락하는 것을 목표로 하시나요?")
+        let attributedString = NSMutableAttributedString(string: "가족들에게 일주일에\nn회 연락해보세요")
         let paragraphStyle = NSMutableParagraphStyle()
         
         label.font = .boldSystemFont(ofSize: 25)
