@@ -39,7 +39,7 @@ class OnboardingGoalViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.text = "설정에서 목표를 변경할 수 있어요"
-        label.textColor = .systemGray
+        label.textColor = UIColor.onboardingGoalTextColor
         return label
     }()
     private lazy var startButton: CommonButton = {
