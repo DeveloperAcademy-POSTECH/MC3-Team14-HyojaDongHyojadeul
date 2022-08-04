@@ -36,7 +36,7 @@ class EdittingViewController: UIViewController {
     }()
     private let addLabel: UILabel = {
         let label = UILabel()
-        label.text = "캐릭터 추가"
+        label.text = "캐릭터 변경"
         label.textColor = .systemBlue
         label.font = UIFont.systemFont(ofSize: 15)
         return label
