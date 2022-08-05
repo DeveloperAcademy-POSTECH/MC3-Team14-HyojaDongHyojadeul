@@ -41,12 +41,9 @@ final class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(tapAddButton), for: .touchUpInside)
         return button
     }()
-    private let settingButton: UIButton = {
-        let button = UIButton()
-        let configuaration = UIImage.SymbolConfiguration(pointSize: 24)
-        let image = UIImage.load(systemName: "ellipsis.circle", configuration: configuaration)
-        button.setImage(image, for: .normal)
-        button.showsMenuAsPrimaryAction = true
+    private let settingButton: UIBarButtonItem = {
+        let image = UIImage.load(systemName: "gearshape")
+        let button = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
         return button
     }()
     private let feedBackView: FeedBackPopUpView = {
@@ -167,13 +164,13 @@ extension MainViewController {
         familyTableView.backgroundColor = .systemBackground
         setButtonMenu()
         self.navigationItem.setHidesBackButton(true, animated:true)
+        self.navigationItem.rightBarButtonItem = settingButton
     }
     private func configureAddSubViews() {
         view.addSubviews(todayQuestionView,
                          familyTableLabel,
                          familyTableView,
                         addMemberButton,
-                        settingButton,
                          blurEffectView)
         todayQuestionView.configureAddSubViewsTodayQuestionView()
     }
@@ -209,14 +206,6 @@ extension MainViewController {
             addMemberButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
             addMemberButton.heightAnchor.constraint(equalToConstant: touchAreaSize),
             addMemberButton.widthAnchor.constraint(equalToConstant: touchAreaSize),
-        ])
-        
-        settingButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            settingButton.centerYAnchor.constraint(equalTo: todayQuestionView.todayTitleLabel.centerYAnchor),
-            settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
-            settingButton.heightAnchor.constraint(equalToConstant: touchAreaSize),
-            settingButton.widthAnchor.constraint(equalToConstant: touchAreaSize),
         ])
         
         blurEffectView.translatesAutoresizingMaskIntoConstraints = false
