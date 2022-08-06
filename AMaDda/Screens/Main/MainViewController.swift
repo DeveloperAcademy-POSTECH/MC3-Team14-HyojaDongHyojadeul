@@ -203,7 +203,7 @@ extension MainViewController {
         addMemberButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addMemberButton.centerYAnchor.constraint(equalTo: familyTableLabel.centerYAnchor),
-            addMemberButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Size.leadingTrailingPadding),
+            addMemberButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             addMemberButton.heightAnchor.constraint(equalToConstant: touchAreaSize),
             addMemberButton.widthAnchor.constraint(equalToConstant: touchAreaSize),
         ])
