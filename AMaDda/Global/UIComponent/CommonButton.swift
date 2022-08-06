@@ -37,6 +37,19 @@ class CommonButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - darkmode
+    private let darkModeColor: UIColor = {
+        let color = UIColor(dynamicProvider: {traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return UIColor.white
+            }
+            else {
+                return UIColor.black
+            }
+        })
+        return color
+    }()
+    
     // MARK: - func
     
     private func render() {
@@ -48,7 +61,7 @@ class CommonButton: UIButton {
     private func configureUI() {
         layer.cornerRadius = 10
         titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        backgroundColor = .black
+        backgroundColor = darkModeColor
     }
     
     private func setupAttribute() {
