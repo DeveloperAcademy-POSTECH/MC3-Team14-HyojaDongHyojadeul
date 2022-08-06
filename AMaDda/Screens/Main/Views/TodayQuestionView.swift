@@ -64,7 +64,7 @@ extension TodayQuestionView {
         
         todayCardQuestionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            todayCardQuestionLabel.centerYAnchor.constraint(equalTo: todayCardView.centerYAnchor),
+            todayCardQuestionLabel.centerYAnchor.constraint(equalTo: todayCardView.centerYAnchor, constant: 10),
             todayCardQuestionLabel.centerXAnchor.constraint(equalTo: todayCardView.centerXAnchor),
             todayCardQuestionLabel.widthAnchor.constraint(lessThanOrEqualTo: todayCardView.widthAnchor, constant: -50)
         ])
