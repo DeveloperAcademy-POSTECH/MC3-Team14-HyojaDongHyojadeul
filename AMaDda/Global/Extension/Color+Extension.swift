@@ -33,4 +33,7 @@ extension UIColor {
     static var disableButtonColor: UIColor {
         return UIColor(hex: "DADADA")
     }
+    static var onboardingGoalTextColor: UIColor {
+        return UIColor(hex: "909090")
+    }
 }

@@ -48,7 +48,7 @@ class CommonButton: UIButton {
     private func configureUI() {
         layer.cornerRadius = 10
         titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        backgroundColor = .black
+        backgroundColor = .black	
     }
     
     private func setupAttribute() {
