@@ -33,6 +33,7 @@ final class OnboardingOneViewController: UIViewController {
     private lazy var nextButton: CommonButton = {
         let button = CommonButton()
         button.setTitle("다음", for: .normal)
+        button.setTitleColor(UIColor.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()

@@ -48,6 +48,7 @@ class OnboardingGoalViewController: UIViewController {
         let button = CommonButton()
         let buttonTitle = cycleViewModeForGoal == .onboarding ? "시작하기" : "저장하기"
         button.setTitle(buttonTitle, for: .normal)
+        button.setTitleColor(UIColor.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
     }()
