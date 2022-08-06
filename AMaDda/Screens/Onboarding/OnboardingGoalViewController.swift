@@ -33,6 +33,7 @@ class OnboardingGoalViewController: UIViewController {
     private let onboardingGoalImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "onboardingGoalImage.png")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     private let onboardingGoalTextLabel: UILabel = {
@@ -92,7 +93,6 @@ class OnboardingGoalViewController: UIViewController {
         ])
         
         onboardingGoalImageView.translatesAutoresizingMaskIntoConstraints = false
-        onboardingGoalImageView.contentMode = .scaleAspectFit
         NSLayoutConstraint.activate([
             onboardingGoalImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             onboardingGoalImageView.topAnchor.constraint(equalTo: onboardingGoalTitleLabel.bottomAnchor, constant: 34),
