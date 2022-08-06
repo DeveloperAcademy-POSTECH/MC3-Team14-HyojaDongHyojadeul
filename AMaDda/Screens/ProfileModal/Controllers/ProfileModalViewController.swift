@@ -21,7 +21,8 @@ final class ProfileModalViewController: UIViewController {
 
     // TODO: 이미지 이름 바인딩 필요
     weak var delegate: ProfileModalViewDelegate?
-    var selectedCharacterName = ProfileImage.baseName + "1"
+    var defaultImageName = ProfileImage.baseName + "1"
+    private lazy var selectedCharacterName = defaultImageName
     private let cancelBarButtonTag = 0
     private let registerBarButtonTag = 1
     private let characterNames: [String] = ProfileImage.allCases.map {
@@ -36,16 +37,6 @@ final class ProfileModalViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
-    }()
-    private lazy var cancelBarButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapBarButton(_:)))
-        button.tag = cancelBarButtonTag
-        return button
-    }()
-    private lazy var registerBarButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "등록", style: .plain, target: self, action: #selector(tapBarButton(_:)))
-        button.tag = registerBarButtonTag
-        return button
     }()
     private lazy var saveButton: UIButton = {
         let button = UIButton()
@@ -72,8 +63,6 @@ final class ProfileModalViewController: UIViewController {
     // MARK: - configure
     private func configureUI() {
         view.backgroundColor = .systemBackground
-        navigationItem.leftBarButtonItem = cancelBarButton
-        navigationItem.rightBarButtonItem = registerBarButton
     }
     
     private func configureAddSubviews() {
@@ -126,22 +115,13 @@ final class ProfileModalViewController: UIViewController {
     @objc func didTapSaveButton() {
         let imageIndex = getImageIndex(by: selectedCharacterName)
         self.delegate?.registerSelectedCharacter(imageName: characterNames[imageIndex])
-       
         dismiss(animated: true)
     }
     
     @objc func didTapCancelButton() {
+        selectedCharacterName = defaultImageName
+        collectionView.reloadData()
         dismiss(animated: true)
-    }
-    
-    @objc func tapBarButton(_ sender: Any) {
-        guard let sender = sender as? UIBarButtonItem else { return }
-        if sender.tag == cancelBarButtonTag {
-            // TODO: 데이터 바인딩 방법에 따른 코드 구현
-            let imageIndex = getImageIndex(by: selectedCharacterName)
-            self.delegate?.registerSelectedCharacter(imageName: characterNames[imageIndex])
-        }
-        navigationController?.popViewController(animated: true)
     }
 }
 
