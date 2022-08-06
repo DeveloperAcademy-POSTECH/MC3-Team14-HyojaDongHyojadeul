@@ -9,7 +9,7 @@ import UIKit
 
 class ProgressWithTextView: UIView {
 
-    let contactGoalCount = UserDefaults.standard.contactGoalCount == 0 ? 1 : UserDefaults.standard.contactGoalCount
+    private lazy var contactGoalCount = UserDefaults.standard.contactGoalCount == 0 ? 1 : UserDefaults.standard.contactGoalCount
     var userContactGoal = UserDefaults.standard.userContactGoal
     private lazy var previousContactGoalCount = contactGoalCount - 1
     private lazy var previousProgress = Float(previousContactGoalCount) / Float(userContactGoal)
