@@ -11,6 +11,7 @@ import CallKit
 final class MainViewController: UIViewController {
     
     let callObserver = CXCallObserver()
+    let notiGoalViewController = OnboardingGoalViewController()
     
     private var member: FamilyMemberData?
     private var familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
@@ -77,7 +78,6 @@ final class MainViewController: UIViewController {
         familyMembers = UserDefaults.standard.familyMembers
         familyMemberCount = familyMembers.count
         familyTableView.reloadData()
-        feedBackView.progressView.updateProgressValues()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -93,6 +93,7 @@ final class MainViewController: UIViewController {
     // MARK: - functions
     
     private func setUpDelegate() {
+        notiGoalViewController.delegate = self
         UserDefaultsStateManager.todayQuestionDelegate = self
         familyTableView.delegate = self
         familyTableView.dataSource = self
@@ -108,14 +109,15 @@ final class MainViewController: UIViewController {
             }
         }
         let cycleSetting = UIAction(title: "알림 주기 설정", image: ImageLiterals.icCalendar) { [weak self] _ in
+            guard let self = self else { return }
             let notiSettingViewController = OnboardingTwoViewController()
             notiSettingViewController.cycleViewMode = .setting
-            self?.navigationController?.pushViewController(notiSettingViewController, animated: true)
+            self.navigationController?.pushViewController(notiSettingViewController, animated: true)
         }
         let goalSetting = UIAction(title: "알림 목표 설정", image: ImageLiterals.icPencil) { [weak self] _ in
-            let notiGoalViewController = OnboardingGoalViewController()
-            notiGoalViewController.cycleViewModeForGoal = .setting
-            self?.navigationController?.pushViewController(notiGoalViewController, animated: true)
+            guard let self = self else { return }
+            self.notiGoalViewController.cycleViewModeForGoal = .setting
+            self.navigationController?.pushViewController(self.notiGoalViewController, animated: true)
         }
         settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting, goalSetting])
     }
@@ -280,6 +282,12 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
+extension MainViewController: GoalSettingDelegate {
+    func changeGoal() {
+        feedBackView.progressView.updateProgressValues()
+    }
+}
+
 extension MainViewController: TodayQuestionDelegate {
     func changeTodayQuestion(_ index: Int) {
         guard let todayQuestion = todayQuestion[safe: index] else { return }
@@ -298,6 +306,7 @@ extension MainViewController: FeedBackPopUpViewDelegate {
         }
     }
 }
+
 extension MainViewController: FamilyTableCellDelegate {
     
     // MARK: - TableViewCellDelegate
