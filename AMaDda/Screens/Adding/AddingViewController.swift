@@ -86,6 +86,7 @@ class AddingViewController: UIViewController {
         let button = CommonButton()
         button.title = "추가하기"
         button.isDisabled = true
+        button.setTitleColor(UIColor.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
         return button
     }()

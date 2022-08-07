@@ -88,6 +88,7 @@ class EdittingViewController: UIViewController {
         let button = CommonButton()
         button.title = "저장하기"
         button.isDisabled = true
+        button.setTitleColor(UIColor.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
         return button
     }()
