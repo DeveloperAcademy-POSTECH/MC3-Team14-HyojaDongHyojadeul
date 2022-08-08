@@ -75,7 +75,7 @@ class FeedBackPopUpView: UIView {
     func updateCardContent(contactCount: Int, goalCount: Int) {
         var contactState: ContactState {
             switch contactCount {
-            case 1..<goalCount:
+            case 1 ..< goalCount:
                 return .low(image: lowImages.randomElement())
             case goalCount:
                 return .middle(image: middleImages.randomElement())

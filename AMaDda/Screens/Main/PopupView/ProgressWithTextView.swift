@@ -38,7 +38,7 @@ class ProgressWithTextView: UIView {
     }()
     private lazy var contactGoalCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(contactGoalCount-1)일"
+        label.text = "\(contactGoalCount - 1)일"
         return label
     }()
     private lazy var  userContactGoalLabel: UILabel = {

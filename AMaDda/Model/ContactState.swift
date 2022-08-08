@@ -25,7 +25,7 @@ enum ContactState {
     }
     
     var feedBackSubTitle: String {
-        switch self{
+        switch self {
         case .low:
             return "주간 목표를 향해 열심히\n달려가는 중이에요! "
         case .middle:
