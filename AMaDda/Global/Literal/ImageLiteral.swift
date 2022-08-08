@@ -27,6 +27,10 @@ enum ImageLiterals {
     static var FeedBackHigh3: UIImage { .load(name: "FeedBackHigh3") }
     
     static var FeedBackLow1: UIImage { .load(name: "FeedBackLow1") }
+    static var FeedBackLow2: UIImage { .load(name: "FeedBackLow2") }
+    static var FeedBackMiddle1: UIImage { .load(name: "FeedBackMiddle1") }
+    static var FeedBackMiddle2: UIImage { .load(name: "FeedBackMiddle2") }
+    static var FeedBackMiddle3: UIImage { .load(name: "FeedBackMiddle3") }
 }
 
 // MARK: - ProfileImage

@@ -33,17 +33,17 @@ class ProgressWithTextView: UIView {
     }()
     private let zeroCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "0회"
+        label.text = "0일"
         return label
     }()
     private lazy var contactGoalCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(contactGoalCount-1)회"
+        label.text = "\(contactGoalCount-1)일"
         return label
     }()
     private lazy var  userContactGoalLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(userContactGoal)회"
+        label.text = "\(userContactGoal)일"
         return label
     }()
     
@@ -63,6 +63,7 @@ class ProgressWithTextView: UIView {
     @objc private func showPopUpAnimation() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
+                guard self.contactGoalCount <= self.userContactGoal else { return }
                 NSLayoutConstraint.deactivate(self.ConsArray)
                 _ = self.ConsArray.popLast()
                 let leadingCons = self.progressImage.centerXAnchor.constraint(equalTo: self.feedBackprogressView.leadingAnchor, constant: CGFloat(self.progress * Float(self.width)))
@@ -70,7 +71,7 @@ class ProgressWithTextView: UIView {
                 NSLayoutConstraint.activate(self.ConsArray)
                 self.layoutIfNeeded()
                 self.feedBackprogressView.setProgress(self.progress, animated: true)
-                self.contactGoalCountLabel.text = "\(self.contactGoalCount)회"
+                self.contactGoalCountLabel.text = "\(self.contactGoalCount)일"
             }
         }
     }
@@ -80,7 +81,8 @@ class ProgressWithTextView: UIView {
         userContactGoal = UserDefaults.standard.userContactGoal
         previousProgress = Float(previousContactGoalCount) / Float(userContactGoal)
         progress = Float(contactGoalCount) / Float(userContactGoal)
-        userContactGoalLabel.text = "\(userContactGoal)회"
+        contactGoalCountLabel.text = "\(contactGoalCount - 1)일"
+        userContactGoalLabel.text = "\(userContactGoal)일"
         feedBackprogressView.progress = previousProgress
         updateProgressImageLayout()
     }
