@@ -27,9 +27,9 @@ enum ContactState {
     var feedBackSubTitle: String {
         switch self{
         case .low:
-            return "목표를 향해 열심히\n달려가는 중이에요! "
+            return "주간 목표를 향해 열심히\n달려가는 중이에요! "
         case .middle:
-            return "계획했던 연락 목표를\n달성했어요!"
+            return "계획했던 주간 연락 목표를\n달성했어요!"
         case let .high(count, _):
             return "이번주에 \(count)일\n연락했어요!"
         }

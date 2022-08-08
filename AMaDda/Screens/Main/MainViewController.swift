@@ -156,7 +156,7 @@ final class MainViewController: UIViewController {
             self.feedBackView.alpha = 1
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name("showPopUp"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name("showPopUp"), object: UserDefaults.standard.contactGoalCount)
     }
 }
 
@@ -284,7 +284,7 @@ extension MainViewController: UITableViewDataSource {
 
 extension MainViewController: GoalSettingDelegate {
     func changeGoal() {
-        feedBackView.progressView.updateProgressValues()
+        feedBackView.progressView.updateProgressValues(contactGoalCount: UserDefaults.standard.contactGoalCount)
     }
 }
 
