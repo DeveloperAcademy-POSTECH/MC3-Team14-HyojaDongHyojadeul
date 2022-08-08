@@ -66,9 +66,10 @@ final class ProfileModalViewController: UIViewController {
     }
     
     private func configureAddSubviews() {
-        view.addSubview(collectionView)
-        view.addSubview(cancelButton)
-        view.addSubview(saveButton)
+        view.addSubviews(collectionView,
+                         cancelButton,
+                         saveButton
+        )
     }
     
     private func configureConstraints() {
@@ -76,7 +77,7 @@ final class ProfileModalViewController: UIViewController {
         
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cancelButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            cancelButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             cancelButton.widthAnchor.constraint(equalToConstant: 44),
             cancelButton.heightAnchor.constraint(equalToConstant: 44)
