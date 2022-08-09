@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol MainSettingGoalDelegate: AnyObject {
+    func changeGoal()
+}
+
 class SettingGoalViewController: UIViewController {
     var userContactGoal: Int = 3
+    
+    var delegate: MainSettingGoalDelegate?
     
     // MARK: Properties
     private let onboardingGoalTitleLabel: UILabel = {
@@ -55,6 +61,7 @@ class SettingGoalViewController: UIViewController {
     
     @objc private func didTapStartButton() {
         UserDefaults.standard.userContactGoal = userContactGoal
+        delegate?.changeGoal()
         navigationController?.popViewController(animated: true)
     }
     

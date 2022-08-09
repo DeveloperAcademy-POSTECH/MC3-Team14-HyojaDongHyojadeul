@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol GoalSettingDelegate: AnyObject {
-    func changeGoal()
-}
-
 enum CycleViewModeForGoal: Equatable {
     case onboarding, setting
 }
@@ -18,7 +14,6 @@ enum CycleViewModeForGoal: Equatable {
 class OnboardingGoalViewController: UIViewController {
     var userContactGoal: Int = 3
     var cycleViewModeForGoal = CycleViewModeForGoal.onboarding
-    weak var delegate: GoalSettingDelegate?
     
     // MARK: Properties
     private let onboardingGoalTitleLabel: UILabel = {
@@ -66,7 +61,6 @@ class OnboardingGoalViewController: UIViewController {
             navigationController?.isNavigationBarHidden = false
             UserDefaults.standard.checkedOnboarding = true
         case .setting:
-            delegate?.changeGoal()
             navigationController?.popViewController(animated: true)
         }
     }
