@@ -41,9 +41,7 @@
 
 ## 🌃 Screenshots
 
-<div display="flex">
-<img width="210" height="500" alt="image" src="https://user-images.githubusercontent.com/56781342/183576866-8e119077-6af8-4ecf-8cce-5dd7183987a8.png"> <img  width="210" height="500" alt="image" src="https://user-images.githubusercontent.com/56781342/183576879-eaa6c7e3-2fc0-4bac-80dd-5f75e8bc0743.png"> <img  width="210" height="500" alt="image" src="https://user-images.githubusercontent.com/56781342/183576891-58e43203-63f3-4095-98e1-06677a380be7.png"> <img  width="210" height="500" alt="image" src="https://user-images.githubusercontent.com/56781342/183576900-c09c443d-7ab7-4047-901b-b100b370f248.png">
-</div>
+<img width="200" height="450" alt="image" src="https://user-images.githubusercontent.com/56781342/183576866-8e119077-6af8-4ecf-8cce-5dd7183987a8.png"> <img  width="200" height="450" alt="image" src="https://user-images.githubusercontent.com/56781342/183576879-eaa6c7e3-2fc0-4bac-80dd-5f75e8bc0743.png"> <img  width="200" height="450" alt="image" src="https://user-images.githubusercontent.com/56781342/183576891-58e43203-63f3-4095-98e1-06677a380be7.png"> <img  width="200" height="450" alt="image" src="https://user-images.githubusercontent.com/56781342/183576900-c09c443d-7ab7-4047-901b-b100b370f248.png">
 
 ## Coding Convention
 
