@@ -28,10 +28,19 @@ extension UIColor {
         return UIColor(hex: "D1B48C")
     }
     static var cardBackgroundColor: UIColor {
-        return UIColor(hex: "F4F3F3")
+        return UIColor(hex: "E0E0E0")
     }
-    static var disableButtonColor: UIColor {
-        return UIColor(hex: "DADADA")
+    static var disableDarkButtonColor: UIColor {
+        return UIColor(hex: "#3C3C3C")
+    }
+    static var disableDarkTitleColor: UIColor {
+        return UIColor(hex: "#777777")
+    }
+    static var disableLightButtonColor: UIColor {
+        return UIColor(hex: "E0E0E0")
+    }
+    static var disableLightTitleColor: UIColor {
+        return UIColor(hex: "A6A6A6")
     }
     static var onboardingGoalTextColor: UIColor {
         return UIColor(hex: "909090")
