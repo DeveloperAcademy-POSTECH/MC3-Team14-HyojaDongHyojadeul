@@ -19,6 +19,7 @@
 		3E98E8F5288A9353001153E4 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98E8F4288A9353001153E4 /* Date+Extension.swift */; };
 		595E3B41288577D60036B677 /* OnboardingOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E3B40288577D60036B677 /* OnboardingOneViewController.swift */; };
 		598F8F6428918E7B0040ACA4 /* OnboardingGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598F8F6328918E7B0040ACA4 /* OnboardingGoalViewController.swift */; };
+		59B4919F28A25DF900D7FC30 /* SettingGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B4919E28A25DF900D7FC30 /* SettingGoalViewController.swift */; };
 		59F2584228868FA9003BC6ED /* OnboardingTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */; };
 		7E9F483A2890F62A00CE8FF7 /* FeedBackPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F48392890F62A00CE8FF7 /* FeedBackPopUpView.swift */; };
 		7EF32E1E2893750100A7C40A /* ProgressWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32E1D2893750100A7C40A /* ProgressWithTextView.swift */; };
@@ -61,6 +62,7 @@
 		3E98E8F4288A9353001153E4 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		595E3B40288577D60036B677 /* OnboardingOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOneViewController.swift; sourceTree = "<group>"; };
 		598F8F6328918E7B0040ACA4 /* OnboardingGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGoalViewController.swift; sourceTree = "<group>"; };
+		59B4919E28A25DF900D7FC30 /* SettingGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalViewController.swift; sourceTree = "<group>"; };
 		59F2584128868FA9003BC6ED /* OnboardingTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoViewController.swift; sourceTree = "<group>"; };
 		7E9F48392890F62A00CE8FF7 /* FeedBackPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackPopUpView.swift; sourceTree = "<group>"; };
 		7EF32E1D2893750100A7C40A /* ProgressWithTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWithTextView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		3E622D0128803BBD006A921C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				59B4919D28A25DE200D7FC30 /* SettingGoalViewController */,
 				D72A1E1D2886D93B0058EE12 /* Editting */,
 				595E3B3E288577B30036B677 /* Onboarding */,
 				E6278AD728843ECB00DC0CB0 /* ProfileModal */,
@@ -196,6 +199,14 @@
 				598F8F6328918E7B0040ACA4 /* OnboardingGoalViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		59B4919D28A25DE200D7FC30 /* SettingGoalViewController */ = {
+			isa = PBXGroup;
+			children = (
+				59B4919E28A25DF900D7FC30 /* SettingGoalViewController.swift */,
+			);
+			path = SettingGoalViewController;
 			sourceTree = "<group>";
 		};
 		7E9F48382890F60D00CE8FF7 /* PopupView */ = {
@@ -413,6 +424,7 @@
 				595E3B41288577D60036B677 /* OnboardingOneViewController.swift in Sources */,
 				3E15D6732884FC1F00570DD7 /* FamilyMemberMockData.swift in Sources */,
 				91FD28A82884F32700F49D20 /* MainViewController.swift in Sources */,
+				59B4919F28A25DF900D7FC30 /* SettingGoalViewController.swift in Sources */,
 				D72A1E1F2886D94A0058EE12 /* EdittingViewController.swift in Sources */,
 				91715FF62888019700A780B7 /* UserDefaultsStateManager.swift in Sources */,
 				D72A1DFE28854AA10058EE12 /* AddingViewController.swift in Sources */,
