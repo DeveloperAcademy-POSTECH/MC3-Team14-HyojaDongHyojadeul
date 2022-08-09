@@ -72,15 +72,15 @@ class FeedBackPopUpView: UIView {
     }
     
     // MARK: - function
-    func updateCardContent(contactCount: Int, goalCount: Int) {
+    func updateCardContent(contactGoalCount: Int, goalCount: Int) {
         var contactState: ContactState {
-            switch contactCount {
+            switch contactGoalCount {
             case 1 ..< goalCount:
                 return .low(image: lowImages.randomElement())
             case goalCount:
                 return .middle(image: middleImages.randomElement())
             default:
-                return .high(count: contactCount, image: highImages.randomElement())
+                return .high(count: contactGoalCount, image: highImages.randomElement())
             }
         }
         feedBackTitleLabel.text = contactState.feedBackTitle

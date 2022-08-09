@@ -321,7 +321,7 @@ extension MainViewController: FamilyTableCellDelegate {
         alert.addAction(UIAlertAction(title: "이미 연락했어요", style: .default, handler: { _ in
             self.updateLastCall(familyMember: familyMember)
             UserDefaultsStateManager().userContacted()
-            self.feedBackView.updateCardContent(contactCount: UserDefaults.standard.contactGoalCount, goalCount: UserDefaults.standard.userContactGoal)
+            self.feedBackView.updateCardContent(contactGoalCount: UserDefaults.standard.contactGoalCount, goalCount: UserDefaults.standard.userContactGoal)
             self.showPopUp()
         }))
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ _ in
@@ -341,7 +341,7 @@ extension MainViewController: CXCallObserverDelegate {
             guard let member = member else { return }
             updateLastCall(familyMember: member)
             UserDefaultsStateManager().userContacted()
-            feedBackView.updateCardContent(contactCount: UserDefaults.standard.contactGoalCount, goalCount: UserDefaults.standard.userContactGoal)
+            feedBackView.updateCardContent(contactGoalCount: UserDefaults.standard.contactGoalCount, goalCount: UserDefaults.standard.userContactGoal)
             showPopUp()
         }
     }
