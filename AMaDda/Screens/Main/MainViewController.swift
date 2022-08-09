@@ -42,9 +42,9 @@ final class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(tapAddButton), for: .touchUpInside)
         return button
     }()
-    private let settingButton: UIBarButtonItem = {
+    private lazy var settingButton: UIBarButtonItem = {
         let image = UIImage.load(systemName: "gearshape")
-        let button = UIBarButtonItem(image: image, style: .plain, target: nil, action: #selector(didTapSettingButton))
+        let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(didTapSettingButton))
         return button
     }()
     private let feedBackView: FeedBackPopUpView = {
