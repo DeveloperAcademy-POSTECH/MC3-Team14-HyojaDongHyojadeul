@@ -22,6 +22,7 @@ class SettingViewController: UIViewController {
         configureAddSubView()
         configureConstraints()
         setupDelegate()
+        self.title = "설정"
     }
     
     // MARK: - function
