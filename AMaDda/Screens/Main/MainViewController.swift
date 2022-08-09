@@ -46,7 +46,8 @@ final class MainViewController: UIViewController {
         let configuaration = UIImage.SymbolConfiguration(pointSize: 24)
         let image = UIImage.load(systemName: "ellipsis.circle", configuration: configuaration)
         button.setImage(image, for: .normal)
-        button.showsMenuAsPrimaryAction = true
+//        button.showsMenuAsPrimaryAction = true
+        button.addTarget(self, action: #selector(didTapSettingButton), for: .touchUpInside)
         return button
     }()
     private let feedBackView: FeedBackPopUpView = {
@@ -85,6 +86,9 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - Selector
+    @objc private func didTapSettingButton() {
+        navigationController?.pushViewController(SettingViewController(), animated: true)
+    }
     @objc private func tapAddButton() {
         let addingViewController = AddingViewController()
         navigationController?.pushViewController(addingViewController, animated: true)
