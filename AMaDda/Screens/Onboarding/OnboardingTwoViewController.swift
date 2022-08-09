@@ -49,6 +49,7 @@ final class OnboardingTwoViewController: UIViewController {
         let button = CommonButton()
         let buttonTitle = cycleViewMode == .onboarding ? "다음" : "저장하기"
         button.setTitle(buttonTitle, for: .normal)
+        button.setTitleColor(UIColor.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()

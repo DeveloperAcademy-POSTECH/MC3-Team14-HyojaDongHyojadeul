@@ -37,6 +37,30 @@ class CommonButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - darkmode
+    private let darkModeColor: UIColor = {
+        let color = UIColor(dynamicProvider: {traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return UIColor.white
+            }
+            else {
+                return UIColor.black
+            }
+        })
+        return color
+    }()
+    
+    // MARK: - darkmode status
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if traitCollection.userInterfaceStyle == .dark {
+            backgroundColor = isDisabled ? .disableDarkButtonColor : darkModeColor
+            setTitleColor(isDisabled ? UIColor.disableDarkTitleColor : .black, for: .normal)
+        } else {
+            backgroundColor = isDisabled ? .disableLightButtonColor : darkModeColor
+            setTitleColor(isDisabled ? UIColor.disableLightTitleColor : .white, for: .normal)
+        }
+    }
+    
     // MARK: - func
     
     private func render() {
@@ -48,15 +72,22 @@ class CommonButton: UIButton {
     private func configureUI() {
         layer.cornerRadius = 10
         titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        backgroundColor = .black	
+        backgroundColor = darkModeColor
     }
     
     private func setupAttribute() {
         if let title = title {
             setTitle(title, for: .normal)
         }
-
-        backgroundColor = isDisabled ? .disableButtonColor : .black
+        
+        if traitCollection.userInterfaceStyle == .dark {
+            backgroundColor = isDisabled ? .disableDarkButtonColor : darkModeColor
+            setTitleColor(isDisabled ? .disableDarkTitleColor : .black, for: .normal)
+        } else {
+            backgroundColor = isDisabled ? .disableLightButtonColor : darkModeColor
+            setTitleColor(isDisabled ? .disableLightTitleColor : .white, for: .normal)
+        }
+        
         isEnabled = !isDisabled
     }
 }
