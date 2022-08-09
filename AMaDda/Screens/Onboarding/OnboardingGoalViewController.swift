@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol GoalSettingDelegate: AnyObject {
+    func changeGoal()
+}
+
 enum CycleViewModeForGoal: Equatable {
     case onboarding, setting
 }
@@ -14,11 +18,12 @@ enum CycleViewModeForGoal: Equatable {
 class OnboardingGoalViewController: UIViewController {
     var userContactGoal: Int = 3
     var cycleViewModeForGoal = CycleViewModeForGoal.onboarding
+    weak var delegate: GoalSettingDelegate?
     
     // MARK: Properties
     private let onboardingGoalTitleLabel: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(string: "일주일에 몇 회 가족에게\n연락하는 것을 목표로 하시나요?")
+        let attributedString = NSMutableAttributedString(string: "가족들에게 일주일에\n3회를 목표로 연락해보세요")
         let paragraphStyle = NSMutableParagraphStyle()
         
         label.font = .boldSystemFont(ofSize: 25)
@@ -30,33 +35,27 @@ class OnboardingGoalViewController: UIViewController {
 
         return label
     }()
-    private lazy var showNotificationLabel: UILabel = {
-        let label = UILabel()
-        label.text = "\(userContactGoal)회"
-        label.font = .systemFont(ofSize: 40)
-        return label
+    private let onboardingGoalImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "onboardingGoalImage.png")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
-    private lazy var onboardingStepper: UIStepper = {
-        let stepper = UIStepper()
-        stepper.value = 3
-        stepper.maximumValue = 7
-        stepper.minimumValue = 1
-        stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
-        return stepper
+    private let onboardingGoalTextLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.text = "설정에서 목표횟수를 변경할 수 있어요"
+        label.textColor = UIColor.onboardingGoalTextColor
+        return label
     }()
     private lazy var startButton: CommonButton = {
         let button = CommonButton()
         let buttonTitle = cycleViewModeForGoal == .onboarding ? "시작하기" : "저장하기"
         button.setTitle(buttonTitle, for: .normal)
+        button.setTitleColor(UIColor.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
     }()
-    
-    // MARK: stepper function
-    @objc private func stepperValueChanged(_ stepper: UIStepper) {
-        userContactGoal = Int(stepper.value)
-        showNotificationLabel.text = "\(userContactGoal)회"
-    }
     
     @objc private func didTapStartButton() {
         UserDefaults.standard.userContactGoal = userContactGoal
@@ -67,6 +66,7 @@ class OnboardingGoalViewController: UIViewController {
             navigationController?.isNavigationBarHidden = false
             UserDefaults.standard.checkedOnboarding = true
         case .setting:
+            delegate?.changeGoal()
             navigationController?.popViewController(animated: true)
         }
     }
@@ -79,26 +79,16 @@ class OnboardingGoalViewController: UIViewController {
         configureConstraints()
     }
     
-    // MARK: - Functions
-    private func checkCycleViewModeForGoal() {
-        if case CycleViewModeForGoal.setting = cycleViewModeForGoal {
-            let goalNumber = UserDefaults.standard.userContactGoal
-            onboardingStepper.value = Double(goalNumber)
-            showNotificationLabel.text = "\(goalNumber)회"
-        }
-    }
-    
     // MARK: Configures
     private func configureUI() {
         view.backgroundColor = .systemBackground
-        checkCycleViewModeForGoal()
     }
     
     private func configureAddSubView() {
         view.addSubviews(onboardingGoalTitleLabel,
-                        showNotificationLabel,
-                        onboardingStepper,
-                        startButton)
+                         onboardingGoalImageView,
+                         onboardingGoalTextLabel,
+                         startButton)
     }
     
     private func configureConstraints(){
@@ -109,16 +99,17 @@ class OnboardingGoalViewController: UIViewController {
             onboardingGoalTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Size.leadingTrailingPadding),
         ])
         
-        showNotificationLabel.translatesAutoresizingMaskIntoConstraints = false
+        onboardingGoalImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            showNotificationLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            showNotificationLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            onboardingGoalImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            onboardingGoalImageView.topAnchor.constraint(equalTo: onboardingGoalTitleLabel.bottomAnchor, constant: 34),
+            onboardingGoalImageView.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -130),
         ])
         
-        onboardingStepper.translatesAutoresizingMaskIntoConstraints = false
+        onboardingGoalTextLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            onboardingStepper.topAnchor.constraint(equalTo: showNotificationLabel.bottomAnchor, constant: 104),
-            onboardingStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            onboardingGoalTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            onboardingGoalTextLabel.topAnchor.constraint(equalTo: onboardingGoalImageView.bottomAnchor, constant: 16)
         ])
         
         startButton.translatesAutoresizingMaskIntoConstraints = false

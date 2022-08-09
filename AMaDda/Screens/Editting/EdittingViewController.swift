@@ -12,7 +12,7 @@ class EdittingViewController: UIViewController {
     private var maxLength = 5
     var contactNumber = ""
     private var familyMembers = [FamilyMemberData]()
-    private let vc = ProfileModalViewController()
+    private let modalViewController = ProfileModalViewController()
     var familyMember: FamilyMemberData?
     private lazy var placeholderTextCount = nickNameTextField.text?.count ?? 0
     private let nickNameTextFieldTag = 0
@@ -36,7 +36,7 @@ class EdittingViewController: UIViewController {
     }()
     private let addLabel: UILabel = {
         let label = UILabel()
-        label.text = "캐릭터 추가"
+        label.text = "캐릭터 변경"
         label.textColor = .systemBlue
         label.font = UIFont.systemFont(ofSize: 15)
         return label
@@ -136,7 +136,9 @@ class EdittingViewController: UIViewController {
     }
     
     @objc private func didTapProfileImageView(_ gesture: UITapGestureRecognizer) {
-        present(vc, animated: true)
+        guard let imageName = familyMember?.characterImageName else { return }
+        modalViewController.defaultImageName = imageName
+        present(modalViewController, animated: true)
     }
     
     @objc private func keyboardWillShow(notification:NSNotification) {
@@ -147,7 +149,7 @@ class EdittingViewController: UIViewController {
             })
         }
     }
-    
+
     @objc private func keyboardWillHide(notification:NSNotification) {
         UIView.animate(withDuration: 0.2, animations: {
             self.editButton.transform = .identity
@@ -162,7 +164,7 @@ class EdittingViewController: UIViewController {
     }
     
     private func setupDelegate() {
-        vc.delegate = self
+        modalViewController.delegate = self
         nickNameTextField.delegate = self
         contactNumberTextField.delegate = self
     }

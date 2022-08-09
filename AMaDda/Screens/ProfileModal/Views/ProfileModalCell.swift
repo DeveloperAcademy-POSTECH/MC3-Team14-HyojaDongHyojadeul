@@ -27,11 +27,11 @@ final class ProfileModalCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    private let checkMarkImageView: UIImageView = {
+    private lazy var checkMarkImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "checkmark.circle.fill")
+        imageView.image = UIImage(systemName: "checkmark.circle.fill")?.withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .black
+        imageView.tintColor = .systemBlue
         imageView.isHidden = true
         return imageView
     }()

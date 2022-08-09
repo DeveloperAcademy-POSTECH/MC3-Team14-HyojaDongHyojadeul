@@ -19,7 +19,7 @@ final class OnboardingTwoViewController: UIViewController {
     // MARK: Properties
     private let onboardingTwoTitleLabel: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(string: "며칠에 한 번 가족에게\n연락하고 싶으세요?")
+        let attributedString = NSMutableAttributedString(string: "며칠에 한 번\n알림을 받고 싶으세요?")
         let paragraphStyle = NSMutableParagraphStyle()
         
         label.font = .boldSystemFont(ofSize: 25)
@@ -49,6 +49,7 @@ final class OnboardingTwoViewController: UIViewController {
         let button = CommonButton()
         let buttonTitle = cycleViewMode == .onboarding ? "다음" : "저장하기"
         button.setTitle(buttonTitle, for: .normal)
+        button.setTitleColor(UIColor.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
@@ -66,7 +67,6 @@ final class OnboardingTwoViewController: UIViewController {
             let onboardingGoalVC = OnboardingGoalViewController()
             navigationController?.pushViewController(onboardingGoalVC, animated: true)
             navigationController?.isNavigationBarHidden = true
-            UserDefaults.standard.checkedOnboarding = true
         case .setting:
             navigationController?.popViewController(animated: true)
         }
