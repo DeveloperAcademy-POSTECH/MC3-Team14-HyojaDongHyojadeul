@@ -19,7 +19,7 @@ enum ContactState {
             return "애정 뿜뿜!"
         case .middle:
             return "축하드려요!"
-        default:
+        case .high:
             return "엄청나요!"
         }
     }
