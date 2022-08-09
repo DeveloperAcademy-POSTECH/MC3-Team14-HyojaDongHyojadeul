@@ -27,15 +27,14 @@ class AddingViewController: UIViewController {
     }()
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiterals.btnProfile
+        imageView.image = UIImage.load(name: "Character1")
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .lightGray
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
     private let addLabel: UILabel = {
         let label = UILabel()
-        label.text = "캐릭터 추가"
+        label.text = "캐릭터 변경"
         label.textColor = .systemBlue
         label.font = UIFont.systemFont(ofSize: 15)
         return label
@@ -150,8 +149,7 @@ class AddingViewController: UIViewController {
     private func changeButtonEnableState() {
         let hasText = nickNameTextField.hasText
         let hasNum = contactNumberTextField.hasText
-        let hasImage = profileImageView.image != ImageLiterals.btnProfile
-        let canEabled = hasText && hasImage && hasNum
+        let canEabled = hasText && hasNum
 
         addButton.isDisabled = !canEabled
     }
@@ -293,7 +291,6 @@ extension AddingViewController: ProfileModalViewDelegate {
         characterImageName = imageName
         DispatchQueue.main.async {
             self.profileImageView.image = UIImage(named: imageName)
-            self.changeButtonEnableState()
         }
     }
 }

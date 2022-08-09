@@ -9,7 +9,7 @@ import UIKit
 
 class ProgressWithTextView: UIView {
 
-    let contactGoalCount = UserDefaults.standard.contactGoalCount == 0 ? 1 : UserDefaults.standard.contactGoalCount
+    private lazy var contactGoalCount = UserDefaults.standard.contactGoalCount == 0 ? 1 : UserDefaults.standard.contactGoalCount
     var userContactGoal = UserDefaults.standard.userContactGoal
     private lazy var previousContactGoalCount = contactGoalCount - 1
     private lazy var previousProgress = Float(previousContactGoalCount) / Float(userContactGoal)
@@ -31,6 +31,11 @@ class ProgressWithTextView: UIView {
         imageView.tintColor = .black
         return imageView
     }()
+    private let zeroCountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0회"
+        return label
+    }()
     private lazy var contactGoalCountLabel: UILabel = {
         let label = UILabel()
         label.text = "\(contactGoalCount-1)회"
@@ -45,7 +50,6 @@ class ProgressWithTextView: UIView {
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("progress \(userContactGoal)")
         setUpNotification()
         configureAddSubViews()
         configureLayoutConstraints()
@@ -96,6 +100,7 @@ class ProgressWithTextView: UIView {
     private func configureAddSubViews() {
         addSubviews(feedBackprogressView,
                     progressImage,
+                    zeroCountLabel,
                     contactGoalCountLabel,
                     userContactGoalLabel
         )
@@ -120,6 +125,12 @@ class ProgressWithTextView: UIView {
 
         ConsArray = [centerYCons, witdhCons, heightCons, leadingCons]
         NSLayoutConstraint.activate(ConsArray)
+        
+        zeroCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            zeroCountLabel.centerXAnchor.constraint(equalTo: feedBackprogressView.leadingAnchor),
+            zeroCountLabel.topAnchor.constraint(equalTo: progressImage.bottomAnchor),
+        ])
         
         contactGoalCountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
