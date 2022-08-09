@@ -19,7 +19,7 @@ class FamilyTableCell: UITableViewCell {
         static let sideSpacing: CGFloat = 30.0
         static let topBottomSpacing: CGFloat = 25.0
         static let height: CGFloat = 120.0
-        static let actionBtnSize: CGFloat = 55.0
+        static let actionBtnSize: CGFloat = 70.0
     }
     
     // MARK: - property
@@ -41,16 +41,23 @@ class FamilyTableCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-    private let callImage: UIImage = {
-        let image = ImageLiterals.catSole
-        return image
+    private lazy var callTapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action:  #selector(didTapContactButton(_:)))
+        gesture.numberOfTapsRequired = 1
+        return gesture
     }()
-    private lazy var contactButton: UIButton = {
-        let contactButton = UIButton()
-        contactButton.setImage(callImage, for: .normal)
-        contactButton.tintColor = .white
-        contactButton.addTarget(self, action: #selector(didTapContactButton), for: .touchUpInside)
-        return contactButton
+    private lazy var callButtonImageView: UIImageView = {
+        let imageView = UIImageView()
+        
+        // TODO: catsole 사이즈 바꾸기 & 터치 영역 키우기
+        imageView.image = ImageLiterals.catSole
+        imageView.layer.borderWidth = 3
+        imageView.image?.resize(to: CGSize(width: 50, height: 50))
+//        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(callTapGesture)
+        return imageView
     }()
     
     // MARK: - init
@@ -75,7 +82,7 @@ class FamilyTableCell: UITableViewCell {
         contentView.addSubviews(familyCharacterImageView,
                                 familyNameLabel,
                                 familyDescriptionLabel,
-                                contactButton)
+                                callButtonImageView)
     }
     
     private func configureConstraints() {
@@ -100,12 +107,12 @@ class FamilyTableCell: UITableViewCell {
             familyDescriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
         
-        contactButton.translatesAutoresizingMaskIntoConstraints = false
+        callButtonImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contactButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Size.sideSpacing),
-            contactButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            contactButton.widthAnchor.constraint(equalToConstant: Size.actionBtnSize),
-            contactButton.heightAnchor.constraint(equalToConstant: Size.actionBtnSize),
+            callButtonImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Size.sideSpacing),
+            callButtonImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            callButtonImageView.widthAnchor.constraint(equalToConstant: Size.actionBtnSize),
+            callButtonImageView.heightAnchor.constraint(equalToConstant: Size.actionBtnSize),
         ])
     }
     
@@ -113,12 +120,12 @@ class FamilyTableCell: UITableViewCell {
         backgroundColor = .systemBackground
         contentView.layer.cornerRadius = 20
         
-        contactButton.layer.cornerRadius = Size.actionBtnSize/2
-        contactButton.backgroundColor = .white
+        callButtonImageView.layer.cornerRadius = Size.actionBtnSize/2
+        callButtonImageView.backgroundColor = .white
     }
     
-    // MARK: - selector
-    @objc func didTapContactButton() {
+//     MARK: - selector
+    @objc func didTapContactButton(_ gesture: UITapGestureRecognizer) {
         guard let item = item else { fatalError() }
         delegate?.displayActionSheet(familyMember: item)
     }
