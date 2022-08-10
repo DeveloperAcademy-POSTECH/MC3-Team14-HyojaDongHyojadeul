@@ -12,7 +12,7 @@ protocol MainSettingGoalDelegate: AnyObject {
 }
 
 class SettingGoalViewController: UIViewController {
-    var userContactGoal: Int = 3
+    var userContactGoal: Int = UserDefaults.standard.userContactGoal
     
     var delegate: MainSettingGoalDelegate?
     

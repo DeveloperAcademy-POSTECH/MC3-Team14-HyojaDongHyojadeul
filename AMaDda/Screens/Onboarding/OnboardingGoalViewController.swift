@@ -7,13 +7,7 @@
 
 import UIKit
 
-enum CycleViewModeForGoal: Equatable {
-    case onboarding, setting
-}
-
 class OnboardingGoalViewController: UIViewController {
-    var userContactGoal: Int = 3
-    var cycleViewModeForGoal = CycleViewModeForGoal.onboarding
     
     // MARK: Properties
     private let onboardingGoalTitleLabel: UILabel = {
@@ -45,7 +39,7 @@ class OnboardingGoalViewController: UIViewController {
     }()
     private lazy var startButton: CommonButton = {
         let button = CommonButton()
-        let buttonTitle = cycleViewModeForGoal == .onboarding ? "시작하기" : "저장하기"
+        let buttonTitle = "시작하기"
         button.setTitle(buttonTitle, for: .normal)
         button.setTitleColor(UIColor.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
@@ -53,16 +47,10 @@ class OnboardingGoalViewController: UIViewController {
     }()
     
     @objc private func didTapStartButton() {
-        UserDefaults.standard.userContactGoal = userContactGoal
-        switch cycleViewModeForGoal {
-        case .onboarding:
-            let mainVC = MainViewController()
-            navigationController?.pushViewController(mainVC, animated: true)
-            navigationController?.isNavigationBarHidden = false
-            UserDefaults.standard.checkedOnboarding = true
-        case .setting:
-            navigationController?.popViewController(animated: true)
-        }
+        let mainVC = MainViewController()
+        navigationController?.pushViewController(mainVC, animated: true)
+        navigationController?.isNavigationBarHidden = false
+        UserDefaults.standard.checkedOnboarding = true
     }
     
     // MARK: Life Cycle functions
