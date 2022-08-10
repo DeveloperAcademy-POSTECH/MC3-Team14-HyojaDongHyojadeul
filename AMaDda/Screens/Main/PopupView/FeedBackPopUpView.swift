@@ -14,8 +14,9 @@ protocol FeedBackPopUpViewDelegate: AnyObject {
 class FeedBackPopUpView: UIView {
     
     weak var delegate: FeedBackPopUpViewDelegate?
-    
-    private let imageArray = [ImageLiterals.FeedBackHigh1, ImageLiterals.FeedBackHigh2, ImageLiterals.FeedBackHigh3]
+    private let lowImages = [ImageLiterals.FeedBackLow1, ImageLiterals.FeedBackLow2]
+    private let middleImages = [ImageLiterals.FeedBackMiddle1, ImageLiterals.FeedBackMiddle2, ImageLiterals.FeedBackMiddle3]
+    private let highImages = [ImageLiterals.FeedBackHigh1, ImageLiterals.FeedBackHigh2]
     
     // MARK: - property
     private let feedBackTitleLabel: UILabel = {
@@ -24,7 +25,7 @@ class FeedBackPopUpView: UIView {
         label.font = UIFont.systemFont(ofSize: 26, weight: .regular)
         return label
     }()
-    private let feedBackSubTitle: UILabel = {
+    private let feedBackSubTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "계획했던 연락 목표를\n달성했어요!"
         label.numberOfLines = 0
@@ -35,7 +36,7 @@ class FeedBackPopUpView: UIView {
     }()
     private lazy var feedBackImageView: UIImageView = {
         let imageView = UIImageView()
-        let randomImage = imageArray.randomElement()
+        let randomImage = lowImages.randomElement()
         imageView.image = randomImage
         imageView.backgroundColor = .systemBackground
         return imageView
@@ -71,6 +72,21 @@ class FeedBackPopUpView: UIView {
     }
     
     // MARK: - function
+    func updateCardContent(contactGoalCount: Int, goalCount: Int) {
+        var contactState: ContactState {
+            switch contactGoalCount {
+            case 1 ..< goalCount:
+                return .low(image: lowImages.randomElement())
+            case goalCount:
+                return .middle(image: middleImages.randomElement())
+            default:
+                return .high(count: contactGoalCount, image: highImages.randomElement())
+            }
+        }
+        feedBackTitleLabel.text = contactState.feedBackTitle
+        feedBackSubTitleLabel.text = contactState.feedBackSubTitle
+        feedBackImageView.image = contactState.feedBackImage
+    }
     
     // MARK: - configure
     private func configureUI() {
@@ -79,7 +95,7 @@ class FeedBackPopUpView: UIView {
     
     private func configureAddSubViews() {
         addSubviews(feedBackTitleLabel,
-                    feedBackSubTitle,
+                    feedBackSubTitleLabel,
                     feedBackImageView,
                     progressView,
                     okButton
@@ -93,17 +109,17 @@ class FeedBackPopUpView: UIView {
             feedBackTitleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
         
-        feedBackSubTitle.translatesAutoresizingMaskIntoConstraints = false
+        feedBackSubTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            feedBackSubTitle.topAnchor.constraint(equalTo: feedBackTitleLabel.bottomAnchor, constant: 5),
-            feedBackSubTitle.centerXAnchor.constraint(equalTo: feedBackTitleLabel.centerXAnchor),
+            feedBackSubTitleLabel.topAnchor.constraint(equalTo: feedBackTitleLabel.bottomAnchor, constant: 5),
+            feedBackSubTitleLabel.centerXAnchor.constraint(equalTo: feedBackTitleLabel.centerXAnchor),
         ])
         
         
         feedBackImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            feedBackImageView.topAnchor.constraint(equalTo: feedBackSubTitle.bottomAnchor,constant: 30),
-            feedBackImageView.centerXAnchor.constraint(equalTo: feedBackSubTitle.centerXAnchor),
+            feedBackImageView.topAnchor.constraint(equalTo: feedBackSubTitleLabel.bottomAnchor,constant: 30),
+            feedBackImageView.centerXAnchor.constraint(equalTo: feedBackSubTitleLabel.centerXAnchor),
             feedBackImageView.widthAnchor.constraint(equalToConstant: 200),
             feedBackImageView.heightAnchor.constraint(equalToConstant: 200),
         ])

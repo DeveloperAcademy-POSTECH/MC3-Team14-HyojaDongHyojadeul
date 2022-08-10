@@ -12,8 +12,8 @@ class ProgressWithTextView: UIView {
     private lazy var contactGoalCount = UserDefaults.standard.contactGoalCount == 0 ? 1 : UserDefaults.standard.contactGoalCount
     var userContactGoal = UserDefaults.standard.userContactGoal
     private lazy var previousContactGoalCount = contactGoalCount - 1
-    private lazy var previousProgress = Float(previousContactGoalCount) / Float(userContactGoal)
-    private lazy var progress = Float(contactGoalCount) / Float(userContactGoal)
+    private lazy var previousProgress: Float = Float(previousContactGoalCount) / Float(userContactGoal)
+    private lazy var progress: Float = Float(contactGoalCount) / Float(userContactGoal)
     private let width = 220
     
     var ConsArray: [NSLayoutConstraint] = []
@@ -33,17 +33,17 @@ class ProgressWithTextView: UIView {
     }()
     private let zeroCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "0회"
+        label.text = "0일"
         return label
     }()
     private lazy var contactGoalCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(contactGoalCount-1)회"
+        label.text = "\(contactGoalCount - 1)일"
         return label
     }()
     private lazy var  userContactGoalLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(userContactGoal)회"
+        label.text = "\(userContactGoal)일"
         return label
     }()
     
@@ -60,9 +60,12 @@ class ProgressWithTextView: UIView {
     }
     
     // MARK: - selector
-    @objc private func showPopUpAnimation() {
+    @objc private func showPopUpAnimation(notification: Notification) {
+        guard let contactGoalCount = notification.object as? Int else { return }
+        updateProgressValues(contactGoalCount: contactGoalCount)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
+                guard contactGoalCount <= self.userContactGoal else { return }
                 NSLayoutConstraint.deactivate(self.ConsArray)
                 _ = self.ConsArray.popLast()
                 let leadingCons = self.progressImage.centerXAnchor.constraint(equalTo: self.feedBackprogressView.leadingAnchor, constant: CGFloat(self.progress * Float(self.width)))
@@ -70,22 +73,24 @@ class ProgressWithTextView: UIView {
                 NSLayoutConstraint.activate(self.ConsArray)
                 self.layoutIfNeeded()
                 self.feedBackprogressView.setProgress(self.progress, animated: true)
-                self.contactGoalCountLabel.text = "\(self.contactGoalCount)회"
+                self.contactGoalCountLabel.text = "\(contactGoalCount)일"
             }
         }
     }
     
     // MARK: - function
-    func updateProgressValues() {
+    func updateProgressValues(contactGoalCount: Int) {
         userContactGoal = UserDefaults.standard.userContactGoal
+        previousContactGoalCount = contactGoalCount - 1
         previousProgress = Float(previousContactGoalCount) / Float(userContactGoal)
         progress = Float(contactGoalCount) / Float(userContactGoal)
-        userContactGoalLabel.text = "\(userContactGoal)회"
+        contactGoalCountLabel.text = "\(contactGoalCount - 1)일"
+        userContactGoalLabel.text = "\(userContactGoal)일"
         feedBackprogressView.progress = previousProgress
-        updateProgressImageLayout()
+        updateProgressImageLayout(previousProgress)
     }
     
-    private func updateProgressImageLayout() {
+    private func updateProgressImageLayout(_ previousProgress: Float) {
         NSLayoutConstraint.deactivate(ConsArray)
         _ = ConsArray.popLast()
         let leadingCons = progressImage.centerXAnchor.constraint(equalTo: feedBackprogressView.leadingAnchor, constant: CGFloat(previousProgress * Float(width)))
