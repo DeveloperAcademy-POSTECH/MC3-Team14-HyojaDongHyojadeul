@@ -11,7 +11,7 @@ import CallKit
 final class MainViewController: UIViewController {
     
     let callObserver = CXCallObserver()
-    let notiGoalViewController = OnboardingGoalViewController()
+    let settingGoalViewController = SettingGoalViewController()
     
     private var member: FamilyMemberData?
     private var familyMembers: [FamilyMemberData] = UserDefaults.standard.familyMembers
@@ -90,7 +90,7 @@ final class MainViewController: UIViewController {
     // MARK: - functions
     
     private func setUpDelegate() {
-        notiGoalViewController.delegate = self
+        settingGoalViewController.delegate = self
         UserDefaultsStateManager.todayQuestionDelegate = self
         familyTableView.delegate = self
         familyTableView.dataSource = self
@@ -113,8 +113,8 @@ final class MainViewController: UIViewController {
         }
         let goalSetting = UIAction(title: "알림 목표 설정", image: ImageLiterals.icPencil) { [weak self] _ in
             guard let self = self else { return }
-            self.notiGoalViewController.cycleViewModeForGoal = .setting
-            self.navigationController?.pushViewController(self.notiGoalViewController, animated: true)
+            //self.notiGoalViewController.cycleViewModeForGoal = .setting
+            self.navigationController?.pushViewController(self.settingGoalViewController, animated: true)
         }
         settingButton.menu = UIMenu(options: .displayInline , children: [notiSetting, cycleSetting, goalSetting])
     }
@@ -271,7 +271,7 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
-extension MainViewController: GoalSettingDelegate {
+extension MainViewController: MainSettingGoalDelegate {
     func changeGoal() {
         feedBackView.progressView.updateProgressValues(contactGoalCount: UserDefaults.standard.contactGoalCount)
     }

@@ -78,7 +78,7 @@ extension UserDefaults {
     // MARK: - Feedback data
     var userContactGoal: Int {
         get {
-            guard let goal = UserDefaults.standard.value(forKey: TextLiteral.userContactGoal) as? Int else { return 2 }
+            guard let goal = UserDefaults.standard.value(forKey: TextLiteral.userContactGoal) as? Int else { return 3 }
             return goal
         }
         set {
