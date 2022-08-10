@@ -152,7 +152,7 @@ final class MainViewController: UIViewController {
             self.blurEffectView.alpha = 1
             self.feedBackView.alpha = 1
         }
-        
+        self.navigationItem.rightBarButtonItem = nil
         NotificationCenter.default.post(name: NSNotification.Name("showPopUp"), object: UserDefaults.standard.contactGoalCount)
     }
 }
@@ -289,10 +289,11 @@ extension MainViewController: TodayQuestionDelegate {
 extension MainViewController: FeedBackPopUpViewDelegate {
     func removePopup() {
         UIView.animate(withDuration: 0.3) {
-            self.navigationController?.navigationBar.isHidden = false
             self.blurEffectView.alpha = 0
             self.feedBackView.alpha = 0
         }
+        self.navigationItem.rightBarButtonItem = settingButton
+        navigationController?.navigationItem.rightBarButtonItem = settingButton
     }
 }
 
@@ -314,7 +315,7 @@ extension MainViewController: FamilyTableCellDelegate {
             self.showPopUp()
         }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler:{ _ in
-            print("User click Dismiss button")
+
         }))
         
         self.present(alert, animated: true, completion: nil)
