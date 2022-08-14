@@ -49,6 +49,7 @@ class SettingGoalViewController: UIViewController {
         let button = CommonButton()
         let buttonTitle = "저장하기"
         button.setTitle(buttonTitle, for: .normal)
+        button.setTitleColor(UIColor.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
     }()
