@@ -7,8 +7,7 @@
 <img width="150" height="150" alt="image" src="https://user-images.githubusercontent.com/56781342/183575958-20f965d3-4008-490e-b63a-cd80183c127a.png">
 
 
-<br/>
-<br/>
+[아마따 (앱스토어 링크)](https://apps.apple.com/kr/app/%EC%95%84%EB%A7%88%EB%94%B0-%EC%95%84-%EB%A7%9E%EB%8B%A4-%EA%B0%80%EC%A1%B1%ED%95%9C%ED%85%8C-%EC%97%B0%EB%9D%BD%ED%95%B4%EC%95%BC%EC%A7%80/id1639102740)
 
 성인자녀가 부모님께 연락하는 것을 잊지 않도록 도와주는 앱
 

@@ -20,11 +20,9 @@ final class UserNotificationManager {
     func addRequest() {
         // TODO: userNotificationCycle 앱 알림 횟수 설정할 떄 pending 삭제 후 UserDefaluts에 등록
         guard let userNotificationCycle = UserDefaults.standard.userNotificationCycle else {
-            print("userNotificationCycle 값 없음")
             return
         }
         guard var finalContactDiffDay = UserDefaults.standard.finalContactDiffDay else {
-            print("finalContactDiffDay 값 없음")
             return
         }
         // MARK: - request 등록 날짜 계산
@@ -35,10 +33,10 @@ final class UserNotificationManager {
             // MARK: - request 등록
             self.requestLastPendingDate { [self] requestLastPendingDate in
                 var requestStartDate = Calendar.current.date(byAdding: .day, value: userNotificationCycle, to: requestLastPendingDate) ?? Date()
-                for i in 0..<requestAddCount {
+                for _ in 0..<requestAddCount {
                     finalContactDiffDay += userNotificationCycle
                     var requestStartDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: requestStartDate)
-                    requestStartDateComponents.hour = 14
+                    requestStartDateComponents.hour = 20
                     requestStartDateComponents.minute = 0
                     let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: requestStartDateComponents, repeats: false)
                     let notificationContent = createRequestContent(finalContactDiffDay)
@@ -50,7 +48,6 @@ final class UserNotificationManager {
                         }
                     }
                     requestStartDate = Calendar.current.date(byAdding: .day, value: userNotificationCycle, to: requestStartDate) ?? Date()
-                    print("request\(i) 등록 완료")
                 }
             }
         }
@@ -95,7 +92,6 @@ final class UserNotificationManager {
     }
     func removeAllPendingRequest() {
         notificationCenter.removeAllPendingNotificationRequests()
-        print("Pending request 삭제 완료")
     }
     func updateRequestPendingContent() {
         guard let finalContactDiff = UserDefaults.standard.finalContactDiffDay else { return }
