@@ -43,11 +43,9 @@ class FeedBackPopUpView: UIView {
     }()
 
     private lazy var okButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .black
+        let button = CommonButton()
         button.setTitle("확인", for: .normal)
-        button.layer.cornerRadius = 10
-        button.tintColor = .white
+        button.setTitleColor(UIColor.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(didTapOkButton), for: .touchUpInside)
         return button
     }()
